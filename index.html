@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTMLレポート</title>
+  <style>
+    :root { --ink:#171a1d; --muted:#687078; --rule:#d8dde1; --blue:#155d91; --paper:#fff; --back:#eef1f3; }
+    * { box-sizing:border-box; }
+    html { background:var(--back); }
+    body { max-width:920px; min-height:100vh; margin:0 auto; padding:48px clamp(20px,6vw,72px) 72px; color:var(--ink); background:var(--paper); font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif; }
+    header { padding-bottom:28px; border-bottom:2px solid var(--ink); }
+    h1 { margin:0; font-size:clamp(2rem,7vw,3.5rem); line-height:1.15; letter-spacing:-.04em; }
+    .description { max-width:38em; margin:18px 0 0; color:var(--muted); line-height:1.8; }
+    label { display:block; margin:34px 0 8px; font-size:.8rem; font-weight:700; }
+    input { width:100%; padding:12px 14px; border:1px solid var(--rule); border-radius:0; background:#fff; color:var(--ink); font:inherit; }
+    main { margin-top:20px; }
+    article { display:grid; grid-template-columns:7.5em 1fr; gap:22px; padding:24px 0; border-bottom:1px solid var(--rule); }
+    time { color:var(--muted); font-size:.82rem; font-variant-numeric:tabular-nums; }
+    h2 { margin:0 0 8px; font-size:1.1rem; line-height:1.5; }
+    h2 a { color:var(--ink); text-decoration:none; }
+    h2 a:hover { color:var(--blue); text-decoration:underline; text-underline-offset:3px; }
+    p { margin:0; color:var(--muted); font-family:"Yu Mincho","Hiragino Mincho ProN",serif; line-height:1.75; }
+    .empty { display:none; margin-top:30px; color:var(--muted); }
+    @media (max-width:600px) { body { padding-top:34px; } article { grid-template-columns:1fr; gap:6px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HTMLレポート</h1>
+    <p class="description">企業比較と業界調査の閲覧用一覧です。タイトル、企業名、テーマで検索できます。</p>
+    <label for="search">レポートを検索</label>
+    <input id="search" type="search" placeholder="例：ユニオンツール、PCB" autocomplete="off">
+  </header>
+  <main id="reports">
+    <article data-search="guangdong d-tech 鼎泰高科 ユニオンツール pcb ドリル 工具 比較">
+      <time datetime="2026-08-27">2026年8月27日</time>
+      <div>
+        <h2><a href="工具2社比較/index.html">Guangdong D-Techとユニオンツールの比較</a></h2>
+        <p>PCB用ドリル2社の事業範囲、販売基盤、製造体制、直近業績、財務余力を比較します。</p>
+      </div>
+    </article>
+    <p class="empty" id="empty">該当するレポートはありません。</p>
+  </main>
+  <script>
+    const search = document.querySelector('#search');
+    const reports = [...document.querySelectorAll('article')];
+    const empty = document.querySelector('#empty');
+    search.addEventListener('input', () => {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+      for (const report of reports) {
+        const matched = !query || report.textContent.toLowerCase().includes(query) || report.dataset.search.includes(query);
+        report.hidden = !matched;
+        if (matched) visible += 1;
+      }
+      empty.style.display = visible ? 'none' : 'block';
+    });
+  </script>
+</body>
+</html>
