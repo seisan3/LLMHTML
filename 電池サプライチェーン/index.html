@@ -10,6 +10,7 @@
 @media(max-width:760px){body{font-size:16px}header{padding-top:30px}.summary,.use-grid{grid-template-columns:1fr}.summary div,.use{padding:14px 16px}section{margin-top:54px}.flow{grid-template-columns:1fr;overflow:visible}.flow-box{min-height:0}.arrow{height:28px;line-height:28px;transform:rotate(90deg)}.table-wrap{width:calc(100% + 18px);padding-right:18px}.share-chart{padding:16px 12px}.share-row{grid-template-columns:92px minmax(90px,1fr) 50px;gap:8px}.bar-label,.share-value{font-size:.7rem}}@media(max-width:420px){h1{font-size:2.05rem}.share-row{grid-template-columns:82px minmax(72px,1fr) 46px}}@media print{html{background:#fff}nav{display:none}body{max-width:none}.share-chart,.use{break-inside:avoid}a{color:inherit}}
 .chain-wrap{margin:28px 0;overflow-x:auto;padding-bottom:10px}.chain{display:grid;grid-template-columns:1fr 22px 1.35fr 22px 1fr 22px 1fr 22px 1.15fr;min-width:820px;align-items:stretch}.chain-stage{display:flex;flex-direction:column;padding:0 8px 12px;border-top:5px solid var(--green);background:#fff}.chain-stage h3{margin:0 -8px 14px;padding:10px 10px 9px;border-bottom:1px solid var(--rule);color:var(--green);font-size:.76rem;letter-spacing:.06em}.chain-node{margin:5px 0;padding:10px;border:1px solid var(--rule);background:var(--paper);font:700 .76rem/1.45 "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}.chain-node small{display:block;margin-top:4px;color:var(--muted);font:400 .69rem/1.5 "Yu Mincho","Hiragino Mincho ProN",serif}.chain-node.focus{border-color:var(--green);background:var(--soft);font-size:.88rem}.chain-arrow{display:flex;align-items:center;justify-content:center;color:var(--gold);font:700 1.55rem "Yu Gothic",sans-serif}.chain-note{margin:-2px 0 0;color:var(--muted);font-size:.75rem}@media(max-width:760px){.chain-wrap{width:calc(100% + 18px);padding-right:18px}}@media print{.chain{min-width:0}}
 h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}
+.partial-share{max-width:760px;margin:24px 0;padding:22px;border:1px solid var(--rule);background:#fff}.partial-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}.partial-head span{color:var(--muted);font-size:.78rem}.partial-head strong{color:var(--green);font-size:1.45rem;line-height:1;font-variant-numeric:tabular-nums}.coverage-track{position:relative;height:18px;margin:18px 0 9px;background:var(--soft);overflow:hidden}.coverage-fill,.coverage-core,.coverage-band{position:absolute;inset-block:0;left:0;background:var(--green)}.coverage-band{left:40%;width:2%;background:repeating-linear-gradient(135deg,var(--gold),var(--gold) 3px,#d7bf92 3px,#d7bf92 6px)}.partial-note{margin:0;color:var(--muted);font-size:.75rem}.company-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}.company-tags span{padding:5px 9px;border:1px solid var(--rule);background:var(--paper);font:700 .7rem "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}@media(max-width:760px){.partial-share{padding:16px 12px}.partial-head{align-items:flex-start;flex-direction:column;gap:7px}}
 </style>
 </head>
 <body>
@@ -183,17 +184,17 @@ h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragi
 <p>2025年に世界80カ国で登録されたEV、PHEV、HEVへの電池搭載容量を比較する。このシェアには定置用蓄電池、データセンターUPS、民生機器用セルを含まない。</p>
 <div class="share-chart" aria-label="2025年EV用電池セルメーカー世界シェア">
 <div class="share-row">
-<span class="bar-label">CATL</span>
+<span class="bar-label">CATL（宁德时代）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:98%">
+<div class="bar-fill" style="width:39.2%">
 </div>
 </div>
 <span class="share-value">39.2%</span>
 </div>
 <div class="share-row">
-<span class="bar-label">BYD</span>
+<span class="bar-label">BYD（比亚迪）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:41%">
+<div class="bar-fill" style="width:16.4%">
 </div>
 </div>
 <span class="share-value">16.4%</span>
@@ -201,23 +202,23 @@ h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragi
 <div class="share-row">
 <span class="bar-label">LGES</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:23%">
+<div class="bar-fill" style="width:9.2%">
 </div>
 </div>
 <span class="share-value">9.2%</span>
 </div>
 <div class="share-row">
-<span class="bar-label">CALB</span>
+<span class="bar-label">CALB（中创新航）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:13.3%">
+<div class="bar-fill" style="width:5.3%">
 </div>
 </div>
 <span class="share-value">5.3%</span>
 </div>
 <div class="share-row">
-<span class="bar-label">Gotion</span>
+<span class="bar-label">Gotion（国轩高科）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:11.3%">
+<div class="bar-fill" style="width:4.5%">
 </div>
 </div>
 <span class="share-value">4.5%</span>
@@ -225,7 +226,7 @@ h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragi
 <div class="share-row">
 <span class="bar-label">SK On</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:9.3%">
+<div class="bar-fill" style="width:3.7%">
 </div>
 </div>
 <span class="share-value">3.7%</span>
@@ -233,15 +234,15 @@ h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragi
 <div class="share-row">
 <span class="bar-label">Panasonic</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:9.3%">
+<div class="bar-fill" style="width:3.7%">
 </div>
 </div>
 <span class="share-value">3.7%</span>
 </div>
 <div class="share-row">
-<span class="bar-label">EVE</span>
+<span class="bar-label">EVE（亿纬锂能）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:6.5%">
+<div class="bar-fill" style="width:2.6%">
 </div>
 </div>
 <span class="share-value">2.6%</span>
@@ -249,182 +250,129 @@ h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragi
 <div class="share-row">
 <span class="bar-label">Samsung SDI</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:6%">
+<div class="bar-fill" style="width:2.4%">
 </div>
 </div>
 <span class="share-value">2.4%</span>
 </div>
 <div class="share-row">
-<span class="bar-label">SVOLT</span>
+<span class="bar-label">SVOLT（蜂巢能源）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:6%">
+<div class="bar-fill" style="width:2.4%">
 </div>
 </div>
 <span class="share-value">2.4%</span>
 </div>
 </div>
-<div class="table-wrap">
-<table>
-<thead><tr><th>企業</th><th>2025年シェア</th><th>位置づけ</th></tr></thead>
-<tbody>
-<tr><td>CATL</td><td>39.2%</td><td>EV用セルで世界首位となる。</td></tr>
-<tr><td>BYD</td><td>16.4%</td><td>EV用セルで世界2位となる。</td></tr>
-<tr><td>LG Energy Solution</td><td>9.2%</td><td>EV用セルで世界3位となる。</td></tr>
-<tr><td>CALB</td><td>5.3%</td><td>EV用セルで世界4位となる。</td></tr>
-<tr><td>Gotion</td><td>4.5%</td><td>EV用セルで世界5位となる。</td></tr>
-</tbody>
-</table>
-</div>
 <h4>定置用ESSセル</h4>
-<p>InfoLinkによる2025年の定置用セル出荷量は612.39GWhで、電力系統向けが556.74GWhを占めた。会社別の出荷量とシェアは公開されていないため、順位だけを示す。</p>
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>順位</th>
-<th>企業</th>
-<th>位置づけ</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>1</td><td>CATL</td><td>電力系統向けセル出荷で首位となる。</td></tr>
-<tr><td>2</td><td>Hithium</td><td>電力系統向けセル出荷で2位となる。</td></tr>
-<tr><td>3</td><td>EVE Energy</td><td>電力系統向けセル出荷で3位となる。</td></tr>
-<tr><td>4</td><td>CALB</td><td>電力系統向けセル出荷で4位となる。</td></tr>
-<tr><td>5</td><td>BYD</td><td>電力系統向けセル出荷で5位となる。</td></tr>
-</tbody>
-</table>
+<p>SNE Researchによる2025年の定置用ESSセル出荷量は550GWhで、CATL（宁德时代）が30%を占めた。</p>
+<div class="partial-share" aria-label="定置用ESSセルはCATLの30%のみ個社シェアが判明">
+<div class="partial-head"><span>判明している個社シェア</span><strong>CATL（宁德时代） 30%</strong></div>
+<div class="coverage-track"><div class="coverage-fill" style="width:30%"></div></div>
+<p class="partial-note">残り70%は個社別の内訳を公開資料で確認できない。</p>
+<div class="company-tags" aria-label="InfoLinkによる上位5社"><span>CATL（宁德时代）</span><span>Hithium（海辰储能）</span><span>EVE Energy（亿纬锂能）</span><span>CALB（中创新航）</span><span>BYD（比亚迪）</span></div>
 </div>
-<p class="meta">SNE Researchは2025年の定置用ESSセル出荷量を550GWh、CATLのシェアを30%とする。InfoLinkとは集計範囲が異なる。</p>
+<p class="meta">InfoLinkは市場総量を612.39GWhとし、電力系統向けの上位5社をCATL（宁德时代）、Hithium（海辰储能）、EVE Energy（亿纬锂能）、CALB（中创新航）、BYD（比亚迪）の順とする。会社別シェアは公開していない。</p>
 <h3>システム・機器メーカー</h3>
 <h4>BESSシステム</h4>
 <p>セル、PCS、制御装置、筐体を含むシステム出荷を比較する。2025年の世界出荷量は約460GWhとなった。</p>
-<div class="table-wrap">
-<table>
-<thead><tr><th>企業</th><th>2025年シェア</th><th>位置づけ</th></tr></thead>
-<tbody>
-<tr><td>BYD</td><td>13%</td><td>BESSシステム出荷で世界首位となる。</td></tr>
-<tr><td>Tesla</td><td>10%</td><td>BESSシステム出荷で世界2位となる。</td></tr>
-<tr><td>Sungrow</td><td>9%</td><td>BESSシステム出荷で世界3位となる。</td></tr>
-<tr><td>CRRC Zhuzhou</td><td>6%</td><td>中国系システムメーカーで、世界4位グループとなる。</td></tr>
-<tr><td>CATL</td><td>6%</td><td>セルに加えてBESSシステムも供給する。</td></tr>
-<tr><td>Hyper Strong</td><td>6%</td><td>中国系システムメーカーで、世界4位グループとなる。</td></tr>
-</tbody>
-</table>
+<div class="share-chart" aria-label="2025年BESSシステム世界シェア">
+<div class="share-row"><span class="bar-label">BYD（比亚迪）</span><div class="bar-track"><div class="bar-fill" style="width:13%"></div></div><span class="share-value">13%</span></div>
+<div class="share-row"><span class="bar-label">Tesla</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="share-value">10%</span></div>
+<div class="share-row"><span class="bar-label">Sungrow（阳光电源）</span><div class="bar-track"><div class="bar-fill" style="width:9%"></div></div><span class="share-value">9%</span></div>
+<div class="share-row"><span class="bar-label">CRRC Zhuzhou（中车株洲所）</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="share-value">6%</span></div>
+<div class="share-row"><span class="bar-label">CATL（宁德时代）</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="share-value">6%</span></div>
+<div class="share-row"><span class="bar-label">Hyper Strong（海博思创）</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="share-value">6%</span></div>
 </div>
 <h4>データセンターUPS</h4>
 <p>2025年の市場規模は87.6億ドルで、上位5社の合計シェアは40～42%となる。会社別シェアは公開されていない。</p>
-<div class="table-wrap">
-<table>
-<thead><tr><th>企業</th><th>主な位置づけ</th></tr></thead>
-<tbody>
-<tr><td>Schneider Electric</td><td>UPSと配電を含むデータセンター電源設備を供給する。</td></tr>
-<tr><td>Vertiv</td><td>UPSを含むクリティカル電源とデータセンター設備を供給する。</td></tr>
-<tr><td>Eaton</td><td>UPSと配電機器を組み合わせて供給する。</td></tr>
-<tr><td>Huawei</td><td>UPSとデータセンター向け電源システムを供給する。</td></tr>
-<tr><td>ABB</td><td>UPSと配電設備を供給する。</td></tr>
-</tbody>
-</table>
+<div class="partial-share" aria-label="データセンターUPS上位5社の合計シェアは40から42%">
+<div class="partial-head"><span>上位5社の合計シェア</span><strong>40～42%</strong></div>
+<div class="coverage-track"><div class="coverage-core" style="width:40%"></div><div class="coverage-band"></div></div>
+<p class="partial-note">斜線部分は公表値の幅を示す。各社の個別シェアは非開示。</p>
+<div class="company-tags"><span>Schneider Electric</span><span>Vertiv</span><span>Eaton</span><span>Huawei</span><span>ABB</span></div>
 </div>
 <h3>正極材メーカー</h3>
 <h4>LFP</h4>
 <p>2025年のLFP出荷量347万トンを分母に、SNE Research公表の会社別出荷量からシェアを計算した。</p>
 <div class="share-chart">
 <div class="share-row">
-<span class="bar-label">Hunan Yuneng</span>
+<span class="bar-label">Hunan Yuneng（湖南裕能）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:82%">
+<div class="bar-fill" style="width:32.8%">
 </div>
 </div>
 <span class="share-value">32.8%</span>
 </div>
 <div class="share-row">
-<span class="bar-label">Hubei Wanrun</span>
+<span class="bar-label">Hubei Wanrun（万润新能）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:27%">
+<div class="bar-fill" style="width:10.8%">
 </div>
 </div>
 <span class="share-value">10.8%</span>
 </div>
 <div class="share-row">
-<span class="bar-label">Dynanonic</span>
+<span class="bar-label">Dynanonic（德方纳米）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:20%">
+<div class="bar-fill" style="width:8.1%">
 </div>
 </div>
 <span class="share-value">8.1%</span>
 </div>
 <div class="share-row">
-<span class="bar-label">Youshan</span>
+<span class="bar-label">Youshan（友山科技）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:15.5%">
+<div class="bar-fill" style="width:6.2%">
 </div>
 </div>
 <span class="share-value">6.2%</span>
 </div>
 <div class="share-row">
-<span class="bar-label">Lopal</span>
+<span class="bar-label">Lopal（龙蟠科技）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:14.5%">
+<div class="bar-fill" style="width:5.8%">
 </div>
 </div>
 <span class="share-value">5.8%</span>
 </div>
 <div class="share-row">
-<span class="bar-label">Gotion</span>
+<span class="bar-label">Gotion（国轩高科）</span>
 <div class="bar-track">
-<div class="bar-fill" style="width:14.5%">
+<div class="bar-fill" style="width:5.8%">
 </div>
 </div>
 <span class="share-value">5.8%</span>
 </div>
 </div>
 <p class="meta">計算値。各社出荷量を347万トンで除した。LFP供給は中国に集中する。</p>
-<div class="table-wrap">
-<table>
-<thead><tr><th>企業</th><th>2025年シェア</th><th>位置づけ</th></tr></thead>
-<tbody>
-<tr><td>Hunan Yuneng</td><td>32.8%</td><td>LFP出荷量で首位となる。</td></tr>
-<tr><td>Hubei Wanrun</td><td>10.8%</td><td>LFP出荷量で2位となる。</td></tr>
-<tr><td>Dynanonic</td><td>8.1%</td><td>LFP出荷量で3位となる。</td></tr>
-</tbody>
-</table>
-</div>
 <h4>三元系</h4>
+<p>2025年の世界生産量106.73万tを分母に、各社の公表出荷量からシェアを計算した。</p>
+<div class="share-chart" aria-label="2025年三元系正極材の世界シェア計算値">
+<div class="share-row"><span class="bar-label">Reshine（南通瑞翔）</span><div class="bar-track"><div class="bar-fill" style="width:16.6%"></div></div><span class="share-value">16.6%</span></div>
+<div class="share-row"><span class="bar-label">Tianjin B&amp;M（天津巴莫）</span><div class="bar-track"><div class="bar-fill" style="width:10.9%"></div></div><span class="share-value">10.9%</span></div>
+<div class="share-row"><span class="bar-label">Ronbay（容百科技）</span><div class="bar-track"><div class="bar-fill" style="width:9.7%"></div></div><span class="share-value">9.7%</span></div>
+</div>
+<p class="meta">計算値。Reshine（南通瑞翔）17.7万t、Tianjin B&amp;M（天津巴莫）11.6万t、Ronbay（容百科技）10.4万tを、SMM公表の世界生産量106.73万tで除した。</p>
 <div class="table-wrap">
 <table>
 <thead>
 <tr>
-<th>メーカー</th>
-<th>2025年出荷量</th>
-<th>位置づけ</th>
+<th>その他の主要メーカー</th>
+<th>出荷量</th>
+<th>注記</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Reshine</td>
-<td>17.7万t</td>
-<td>三元系首位。CATL、EVE、CALBへミッドニッケル材を供給</td>
-</tr>
-<tr>
-<td>Tianjin B&amp;M</td>
-<td>11.6万t</td>
-<td>CATLとLGESが主要顧客</td>
-</tr>
-<tr>
-<td>Ronbay</td>
-<td>10.4万t</td>
-<td>高ニッケル材に強く、CATL向けが中心</td>
-</tr>
-<tr>
-<td>Brunp</td>
+<td>Brunp（广东邦普）</td>
 <td>非開示</td>
-<td>CATL傘下。三元系5位</td>
+<td>CATL（宁德时代）傘下</td>
 </tr>
 <tr>
 <td>L&amp;F、EcoPro、POSCO Future M</td>
 <td>各5万から8万t</td>
-<td>韓国の主要三元系メーカー</td>
+<td>韓国の主要メーカー</td>
 </tr>
 </tbody>
 </table>
@@ -442,17 +390,17 @@ h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragi
 <tbody>
 <tr>
 <td>NCA</td>
-<td>住友金属鉱山、EcoPro BM、BASF、Ronbay</td>
+<td>住友金属鉱山、EcoPro BM、BASF、Ronbay（容百科技）</td>
 <td>同一定義の2025年世界シェアを公開資料で確認できない</td>
 </tr>
 <tr>
 <td>LCO</td>
-<td>Xiamen Tungsten、Shanshan、Tianjin B&amp;M、日亜化学工業</td>
+<td>Xiamen Tungsten（厦钨新能）、Shanshan（杉杉）、Tianjin B&amp;M（天津巴莫）、日亜化学工業</td>
 <td>小型民生用を含む統一的な出荷量シェアは非開示</td>
 </tr>
 <tr>
 <td>LMO</td>
-<td>Xiamen Tungsten、Reshine、Shanshan、日亜化学工業</td>
+<td>Xiamen Tungsten（厦钨新能）、Reshine（南通瑞翔）、Shanshan（杉杉）、日亜化学工業</td>
 <td>NCMとの混合使用があり、単独材料の比較可能なシェアは乏しい</td>
 </tr>
 </tbody>
@@ -502,7 +450,7 @@ h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragi
 <li>
 <a href="https://www.sneresearch.com/en/insight/release_view/586/page/0">SNE Research, 2025 Global EV Battery Usage</a>。EV用セルメーカーシェア。</li>
 <li>
-<a href="https://sneresearch.com/en/insight/release_view/583/page/0">SNE Research, 2025 Global LIB ESS Market</a>。定置用ESSセルの市場規模、CATLと中国上位7社のシェア。</li>
+<a href="https://sneresearch.com/en/insight/release_view/583/page/0">SNE Research, 2025 Global LIB ESS Market</a>。定置用ESSセルの市場規模、CATL（宁德时代）と中国上位7社のシェア。</li>
 <li>
 <a href="https://www.ess-news.com/2026/02/09/infolink-2025-energy-storage-cell-shipments-jump-95-to-612-gwh-as-market-flips-from-glut-to-tightness/">InfoLink, 2025 Energy Storage Cell Shipments</a>。異なる集計範囲による定置用セル出荷量と主要メーカー順位。</li>
 <li>
@@ -515,6 +463,10 @@ h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragi
 <a href="https://www.whitehouse.gov/presidential-actions/2026/08/declaring-a-national-emergency-to-secure-the-united-states-bulk-power-system/">Executive Order 14420</a>。基幹電力システムに使う外国製設備の規制。</li>
 <li>
 <a href="https://www.sneresearch.com/kr/insight/release_view/680/page/276?s_cat=%7C&amp;s_keyword=">SNE Research, 2025 Cathode Material Shipments</a>。正極材495万トン、LFP347万トン、会社別出荷量。</li>
+<li>
+<a href="https://new-energy.smm.cn/content/14042/103727639">SMM, 2025国内三元材料競争格局</a>。三元系正極材の中国、海外、世界生産量。</li>
+<li>
+<a href="https://www.battery100.org/report/012QZD2026.html">EVTank, 2025年三元材料企業出荷量</a>。中国企業の出荷順位と南通瑞翔の出荷量。</li>
 <li>
 <a href="https://www.iea.org/reports/global-ev-outlook-2026/electric-vehicle-batteries">IEA, Global EV Outlook 2026</a>。EV用途と定置用途の正極化学。</li>
 <li>
