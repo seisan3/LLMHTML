@@ -9,6 +9,7 @@
 :root{--ink:#20211f;--muted:#696b66;--rule:#d9d5cd;--paper:#fffdf8;--back:#e9e5dc;--green:#496b5a;--gold:#b18845;--soft:#f3efe6;--blue:#496b7b}*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--back)}body{max-width:1160px;margin:0 auto;background:var(--paper);color:var(--ink);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;line-height:1.78}header,main,footer{padding-inline:clamp(18px,6vw,80px)}header{padding-top:42px;padding-bottom:36px;border-top:8px solid var(--green)}h1,h2,h3,.kicker,.meta,.metric,.tag,table,.flow,.home,.bar-label,.share-value,.use-title{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}h1{max-width:14em;margin:.08em 0 .32em;font-size:clamp(2.15rem,6vw,4.3rem);line-height:1.12;letter-spacing:-.045em}h2{margin:0 0 24px;padding-top:14px;border-top:2px solid var(--ink);font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.45}h3{margin:30px 0 10px;font-size:1rem}.home{display:inline-block;margin-bottom:18px;color:var(--muted);font-size:.74rem;font-weight:700;letter-spacing:.08em;text-decoration:none}.home:hover{color:var(--green);text-decoration:underline}.kicker{margin:0;color:var(--green);font-size:.76rem;font-weight:700;letter-spacing:.14em}.deck{max-width:48em;margin:20px 0;font-size:1.08rem}.meta{color:var(--muted);font-size:.78rem}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:28px;border:1px solid var(--rule);background:var(--rule)}.summary div{padding:17px;background:var(--paper)}.metric{display:block;color:var(--green);font-size:1.5rem;font-weight:700}.summary small{color:var(--muted)}nav{position:sticky;top:0;z-index:4;display:flex;gap:22px;overflow-x:auto;padding:12px clamp(18px,6vw,80px);border-block:1px solid var(--rule);background:rgba(255,253,248,.96);font:700 .77rem "Yu Gothic",sans-serif;white-space:nowrap}nav a{color:var(--ink);text-decoration:none}nav a:hover{color:var(--green)}section{margin-top:68px}p{max-width:50em}.lead{font-size:1.08rem}.callout{margin:24px 0;padding:18px 21px;border-left:4px solid var(--gold);background:var(--soft)}.flow{display:grid;grid-template-columns:repeat(7,minmax(95px,1fr));align-items:center;margin:28px 0;overflow-x:auto}.flow-box{min-height:100px;padding:15px 11px;border:1px solid var(--rule);background:#fff}.flow-box b{display:block;margin-bottom:5px;color:var(--green)}.arrow{text-align:center;color:var(--gold);font-size:1.45rem}.use-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:24px;background:var(--rule);border:1px solid var(--rule)}.use{padding:20px;background:#fff}.use-title{display:block;margin-bottom:8px;color:var(--green);font-weight:700}.use p{margin:.6em 0}.use small{color:var(--muted)}.table-wrap{overflow-x:auto;margin:22px 0}table{width:100%;min-width:720px;border-collapse:collapse;font-size:.79rem;line-height:1.5}th,td{padding:11px 9px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}thead th{border-top:1px solid var(--ink);border-bottom:2px solid var(--ink)}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}.chem-table td:first-child{font-weight:700;color:var(--green)}.share-chart{max-width:760px;margin:24px 0;padding:22px;border:1px solid var(--rule);background:#fff}.share-row{display:grid;grid-template-columns:minmax(120px,190px) minmax(120px,1fr) 58px;align-items:center;gap:12px;margin:10px 0}.bar-label{font-size:.78rem}.bar-track{height:14px;background:var(--soft);overflow:hidden}.bar-fill{height:100%;background:var(--green)}.bar-fill.alt{background:var(--gold)}.share-value{text-align:right;font-size:.78rem;font-variant-numeric:tabular-nums}.source-list{padding-left:1.2em}.source-list li{margin:9px 0}.source-list a{color:var(--blue);text-underline-offset:3px}footer{margin-top:72px;padding-top:24px;padding-bottom:48px;border-top:1px solid var(--ink);color:var(--muted);font-size:.78rem}
 @media(max-width:760px){body{font-size:16px}header{padding-top:30px}.summary,.use-grid{grid-template-columns:1fr}.summary div,.use{padding:14px 16px}section{margin-top:54px}.flow{grid-template-columns:1fr;overflow:visible}.flow-box{min-height:0}.arrow{height:28px;line-height:28px;transform:rotate(90deg)}.table-wrap{width:calc(100% + 18px);padding-right:18px}.share-chart{padding:16px 12px}.share-row{grid-template-columns:92px minmax(90px,1fr) 50px;gap:8px}.bar-label,.share-value{font-size:.7rem}}@media(max-width:420px){h1{font-size:2.05rem}.share-row{grid-template-columns:82px minmax(72px,1fr) 46px}}@media print{html{background:#fff}nav{display:none}body{max-width:none}.share-chart,.use{break-inside:avoid}a{color:inherit}}
 .chain-wrap{margin:28px 0;overflow-x:auto;padding-bottom:10px}.chain{display:grid;grid-template-columns:1fr 22px 1.35fr 22px 1fr 22px 1fr 22px 1.15fr;min-width:820px;align-items:stretch}.chain-stage{display:flex;flex-direction:column;padding:0 8px 12px;border-top:5px solid var(--green);background:#fff}.chain-stage h3{margin:0 -8px 14px;padding:10px 10px 9px;border-bottom:1px solid var(--rule);color:var(--green);font-size:.76rem;letter-spacing:.06em}.chain-node{margin:5px 0;padding:10px;border:1px solid var(--rule);background:var(--paper);font:700 .76rem/1.45 "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}.chain-node small{display:block;margin-top:4px;color:var(--muted);font:400 .69rem/1.5 "Yu Mincho","Hiragino Mincho ProN",serif}.chain-node.focus{border-color:var(--green);background:var(--soft);font-size:.88rem}.chain-arrow{display:flex;align-items:center;justify-content:center;color:var(--gold);font:700 1.55rem "Yu Gothic",sans-serif}.chain-note{margin:-2px 0 0;color:var(--muted);font-size:.75rem}@media(max-width:760px){.chain-wrap{width:calc(100% + 18px);padding-right:18px}}@media print{.chain{min-width:0}}
+h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}
 </style>
 </head>
 <body>
@@ -20,15 +21,17 @@
 <p class="meta">基準日　2026年8月31日　市場シェアは2025年通年実績</p>
 </header>
 <nav aria-label="ページ内目次">
+<a href="#overview">概要</a>
 <a href="#structure">サプライチェーン</a>
-<a href="#uses">用途</a>
-<a href="#chemistry">正極材</a>
-<a href="#cells">セルメーカー</a>
+<a href="#players">主要企業</a>
 <a href="#us-rules">米国規制</a>
-<a href="#makers">正極材メーカー</a>
 <a href="#sources">出典</a>
 </nav>
 <main>
+<section id="overview">
+<h2>概要</h2>
+<p class="lead">リチウムイオン電池はEVと定置用蓄電池が需要を牽引する。2025年の正極材出荷量は495万tで、LFPが72%を占めた。定置用蓄電池の新規導入ではLFPが約90%に達した。</p>
+</section>
 <section id="structure">
 <h2>サプライチェーン</h2>
 <p class="lead">鉱物を精製して電池材料を作り、正極、負極、セパレーター、電解液をセルへ組み込む。セルはモジュールとパックを経て、車載、定置用、民生機器へ供給される。</p>
@@ -72,9 +75,7 @@
 </div>
 <p class="chain-note">狭い画面では図を横にスクロールできる。</p>
 <div class="callout">「正極材」は正極活物質を指す場合が多い。「正極」は活物質、導電助剤、バインダーを混ぜ、アルミ箔へ塗った電極を指す。</div>
-</section>
-<section id="uses">
-<h2>用途によって選ばれる電池が異なる</h2>
+<h3 id="uses">用途</h3>
 <div class="use-grid">
 <article class="use">
 <span class="use-title">モビリティ</span>
@@ -104,9 +105,7 @@
 <p>鉄道、航空、宇宙、潜水艦、通信設備では、温度範囲、信頼性、保守性、認証実績が材料費より優先される。LFP、NCM、LTO、鉛、ニッケル系を用途別に使う。</p>
 </article>
 </div>
-</section>
-<section id="chemistry">
-<h2>正極材を材料、特徴、用途で比較する</h2>
+<h3 id="chemistry">正極材</h3>
 <div class="table-wrap">
 <table class="chem-table">
 <thead>
@@ -177,8 +176,10 @@
 </div>
 </div>
 </section>
-<section id="cells">
-<h2>EV用セルメーカーの世界シェア</h2>
+<section id="players">
+<h2>主要企業</h2>
+<h3>セルメーカー</h3>
+<h4>EV用セル</h4>
 <p>2025年に世界80カ国で登録されたEV、PHEV、HEVへの電池搭載容量を比較する。このシェアには定置用蓄電池、データセンターUPS、民生機器用セルを含まない。</p>
 <div class="share-chart" aria-label="2025年EV用電池セルメーカー世界シェア">
 <div class="share-row">
@@ -262,88 +263,71 @@
 <span class="share-value">2.4%</span>
 </div>
 </div>
-<div class="callout">GSユアサはこのEV用リチウムイオン電池の世界上位10社に入らない。同社は自動車用と産業用の鉛蓄電池、産業用リチウムイオン電池、HEV用、航空宇宙向けを含むため、CATLとは事業構成が異なる。</div>
-<h3>2025年の定置用とデータセンター向け世界シェア</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>企業</th><th>2025年シェア</th><th>位置づけ</th></tr></thead>
+<tbody>
+<tr><td>CATL</td><td>39.2%</td><td>EV用セルで世界首位となる。</td></tr>
+<tr><td>BYD</td><td>16.4%</td><td>EV用セルで世界2位となる。</td></tr>
+<tr><td>LG Energy Solution</td><td>9.2%</td><td>EV用セルで世界3位となる。</td></tr>
+<tr><td>CALB</td><td>5.3%</td><td>EV用セルで世界4位となる。</td></tr>
+<tr><td>Gotion</td><td>4.5%</td><td>EV用セルで世界5位となる。</td></tr>
+</tbody>
+</table>
+</div>
+<h4>定置用ESSセル</h4>
+<p>InfoLinkによる2025年の定置用セル出荷量は612.39GWhで、電力系統向けが556.74GWhを占めた。会社別の出荷量とシェアは公開されていないため、順位だけを示す。</p>
 <div class="table-wrap">
 <table>
 <thead>
 <tr>
-<th>市場</th>
-<th>市場規模</th>
-<th>主要企業とシェア</th>
-<th>集計単位</th>
+<th>順位</th>
+<th>企業</th>
+<th>位置づけ</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>定置用ESSセル</td>
-<td>550GWh</td>
-<td>CATL 30%。中国上位7社合計83.3%</td>
-<td>SNE Researchによるセル出荷容量</td>
-</tr>
-<tr>
-<td>定置用BESSシステム</td>
-<td>約460GWh</td>
-<td>BYD 13%、Tesla 10%、Sungrow 9%</td>
-<td>セル、PCS、制御装置、筐体を含むシステム出荷</td>
-</tr>
-<tr>
-<td>データセンターUPS</td>
-<td>87.6億ドル</td>
-<td>Schneider Electric、Vertiv、Eaton、Huawei、ABBの上位5社合計40～42%</td>
-<td>UPS機器の売上。セルメーカーシェアではない</td>
-</tr>
-<tr>
-<td>民生機器用セル</td>
-<td>比較可能な総量なし</td>
-<td>同一定義の世界メーカー別シェアを公開資料で確認できない</td>
-<td>スマートフォン、PC、電動工具で市場を分ける必要がある</td>
-</tr>
+<tr><td>1</td><td>CATL</td><td>電力系統向けセル出荷で首位となる。</td></tr>
+<tr><td>2</td><td>Hithium</td><td>電力系統向けセル出荷で2位となる。</td></tr>
+<tr><td>3</td><td>EVE Energy</td><td>電力系統向けセル出荷で3位となる。</td></tr>
+<tr><td>4</td><td>CALB</td><td>電力系統向けセル出荷で4位となる。</td></tr>
+<tr><td>5</td><td>BYD</td><td>電力系統向けセル出荷で5位となる。</td></tr>
 </tbody>
 </table>
 </div>
-<p class="meta">調査会社は集計対象を独自に定める。InfoLinkによる2025年の定置用セル出荷量は612.39GWhで、SNE Researchの550GWhとは一致しない。</p>
-</section>
-<section id="us-rules">
-<h2>米国市場では中国系サプライチェーンへの制限が強まる</h2>
-<p class="lead">米国では、税額控除の適格性と基幹電力システムの安全保障規制が別々に中国系の部材と設備へ影響する。</p>
+<p class="meta">SNE Researchは2025年の定置用ESSセル出荷量を550GWh、CATLのシェアを30%とする。InfoLinkとは集計範囲が異なる。</p>
+<h3>システム・機器メーカー</h3>
+<h4>BESSシステム</h4>
+<p>セル、PCS、制御装置、筐体を含むシステム出荷を比較する。2025年の世界出荷量は約460GWhとなった。</p>
 <div class="table-wrap">
 <table>
-<thead>
-<tr>
-<th>制度</th>
-<th>対象</th>
-<th>中国系サプライチェーンへの影響</th>
-<th>適用時期</th>
-</tr>
-</thead>
+<thead><tr><th>企業</th><th>2025年シェア</th><th>位置づけ</th></tr></thead>
 <tbody>
-<tr>
-<td>税法48E</td>
-<td>蓄電設備への投資税額控除</td>
-<td>禁止対象外国事業体から一定以上の材料支援を受けた設備は税額控除を受けられない</td>
-<td>2025年12月31日より後に建設を始める設備</td>
-</tr>
-<tr>
-<td>税法45X</td>
-<td>米国内で生産する電池部材への生産税額控除</td>
-<td>禁止対象外国事業体に由来する材料や部品が基準を超える対象製品は税額控除を受けられない</td>
-<td>OBBBA成立後の課税年度。既存契約には限定的な経過措置がある</td>
-</tr>
-<tr>
-<td>大統領令14420</td>
-<td>系統用BESS、系統接続インバーター、重要インフラ用UPS、制御ソフト</td>
-<td>米エネルギー省が安全保障上の危険を認定した外国製設備について、取得、輸入、設置を禁止または条件付きにできる</td>
-<td>2026年8月26日発効。実施規則は120日以内に策定</td>
-</tr>
+<tr><td>BYD</td><td>13%</td><td>BESSシステム出荷で世界首位となる。</td></tr>
+<tr><td>Tesla</td><td>10%</td><td>BESSシステム出荷で世界2位となる。</td></tr>
+<tr><td>Sungrow</td><td>9%</td><td>BESSシステム出荷で世界3位となる。</td></tr>
+<tr><td>CRRC Zhuzhou</td><td>6%</td><td>中国系システムメーカーで、世界4位グループとなる。</td></tr>
+<tr><td>CATL</td><td>6%</td><td>セルに加えてBESSシステムも供給する。</td></tr>
+<tr><td>Hyper Strong</td><td>6%</td><td>中国系システムメーカーで、世界4位グループとなる。</td></tr>
 </tbody>
 </table>
 </div>
-<div class="callout">中国製セルを使う全案件が直ちに禁止される制度ではない。48Eと45Xは原産コストと企業支配関係で適格性を判定し、大統領令14420はエネルギー省が設備や取引の危険性を認定する。</div>
-</section>
-<section id="makers">
-<h2>正極材ごとの主要メーカー</h2>
-<h3>LFP</h3>
+<h4>データセンターUPS</h4>
+<p>2025年の市場規模は87.6億ドルで、上位5社の合計シェアは40～42%となる。会社別シェアは公開されていない。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>企業</th><th>主な位置づけ</th></tr></thead>
+<tbody>
+<tr><td>Schneider Electric</td><td>UPSと配電を含むデータセンター電源設備を供給する。</td></tr>
+<tr><td>Vertiv</td><td>UPSを含むクリティカル電源とデータセンター設備を供給する。</td></tr>
+<tr><td>Eaton</td><td>UPSと配電機器を組み合わせて供給する。</td></tr>
+<tr><td>Huawei</td><td>UPSとデータセンター向け電源システムを供給する。</td></tr>
+<tr><td>ABB</td><td>UPSと配電設備を供給する。</td></tr>
+</tbody>
+</table>
+</div>
+<h3>正極材メーカー</h3>
+<h4>LFP</h4>
 <p>2025年のLFP出荷量347万トンを分母に、SNE Research公表の会社別出荷量からシェアを計算した。</p>
 <div class="share-chart">
 <div class="share-row">
@@ -396,7 +380,17 @@
 </div>
 </div>
 <p class="meta">計算値。各社出荷量を347万トンで除した。LFP供給は中国に集中する。</p>
-<h3>NCMを中心とする三元系</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>企業</th><th>2025年シェア</th><th>位置づけ</th></tr></thead>
+<tbody>
+<tr><td>Hunan Yuneng</td><td>32.8%</td><td>LFP出荷量で首位となる。</td></tr>
+<tr><td>Hubei Wanrun</td><td>10.8%</td><td>LFP出荷量で2位となる。</td></tr>
+<tr><td>Dynanonic</td><td>8.1%</td><td>LFP出荷量で3位となる。</td></tr>
+</tbody>
+</table>
+</div>
+<h4>三元系</h4>
 <div class="table-wrap">
 <table>
 <thead>
@@ -435,7 +429,7 @@
 </tbody>
 </table>
 </div>
-<h3>NCA、LCO、LMO</h3>
+<h4>その他</h4>
 <div class="table-wrap">
 <table>
 <thead>
@@ -465,8 +459,45 @@
 </table>
 </div>
 </section>
+<section id="us-rules">
+<h2>米国規制</h2>
+<p class="lead">米国では、税額控除の適格性と基幹電力システムの安全保障規制が別々に中国系の部材と設備へ影響する。</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>制度</th>
+<th>対象</th>
+<th>中国系サプライチェーンへの影響</th>
+<th>適用時期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>税法48E</td>
+<td>蓄電設備への投資税額控除</td>
+<td>禁止対象外国事業体から一定以上の材料支援を受けた設備は税額控除を受けられない</td>
+<td>2025年12月31日より後に建設を始める設備</td>
+</tr>
+<tr>
+<td>税法45X</td>
+<td>米国内で生産する電池部材への生産税額控除</td>
+<td>禁止対象外国事業体に由来する材料や部品が基準を超える対象製品は税額控除を受けられない</td>
+<td>OBBBA成立後の課税年度。既存契約には限定的な経過措置がある</td>
+</tr>
+<tr>
+<td>大統領令14420</td>
+<td>系統用BESS、系統接続インバーター、重要インフラ用UPS、制御ソフト</td>
+<td>米エネルギー省が安全保障上の危険を認定した外国製設備について、取得、輸入、設置を禁止または条件付きにできる</td>
+<td>2026年8月26日発効。実施規則は120日以内に策定</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout">中国製セルを使う全案件が直ちに禁止される制度ではない。48Eと45Xは原産コストと企業支配関係で適格性を判定し、大統領令14420はエネルギー省が設備や取引の危険性を認定する。</div>
+</section>
 <section id="sources">
-<h2>出典と数値の定義</h2>
+<h2>出典</h2>
 <ul class="source-list">
 <li>
 <a href="https://www.sneresearch.com/en/insight/release_view/586/page/0">SNE Research, 2025 Global EV Battery Usage</a>。EV用セルメーカーシェア。</li>
