@@ -1,19 +1,501 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="リチウムイオン電池の構成、用途、正極材、主要メーカー、サプライチェーンを整理"><title>電池の構成とサプライチェーン</title>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="リチウムイオン電池の構成、用途、正極材、主要メーカー、サプライチェーンを整理">
+<title>電池の構成とサプライチェーン</title>
 <style>
 :root{--ink:#20211f;--muted:#696b66;--rule:#d9d5cd;--paper:#fffdf8;--back:#e9e5dc;--green:#496b5a;--gold:#b18845;--soft:#f3efe6;--blue:#496b7b}*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--back)}body{max-width:1160px;margin:0 auto;background:var(--paper);color:var(--ink);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;line-height:1.78}header,main,footer{padding-inline:clamp(18px,6vw,80px)}header{padding-top:42px;padding-bottom:36px;border-top:8px solid var(--green)}h1,h2,h3,.kicker,.meta,.metric,.tag,table,.flow,.home,.bar-label,.share-value,.use-title{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}h1{max-width:14em;margin:.08em 0 .32em;font-size:clamp(2.15rem,6vw,4.3rem);line-height:1.12;letter-spacing:-.045em}h2{margin:0 0 24px;padding-top:14px;border-top:2px solid var(--ink);font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.45}h3{margin:30px 0 10px;font-size:1rem}.home{display:inline-block;margin-bottom:18px;color:var(--muted);font-size:.74rem;font-weight:700;letter-spacing:.08em;text-decoration:none}.home:hover{color:var(--green);text-decoration:underline}.kicker{margin:0;color:var(--green);font-size:.76rem;font-weight:700;letter-spacing:.14em}.deck{max-width:48em;margin:20px 0;font-size:1.08rem}.meta{color:var(--muted);font-size:.78rem}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:28px;border:1px solid var(--rule);background:var(--rule)}.summary div{padding:17px;background:var(--paper)}.metric{display:block;color:var(--green);font-size:1.5rem;font-weight:700}.summary small{color:var(--muted)}nav{position:sticky;top:0;z-index:4;display:flex;gap:22px;overflow-x:auto;padding:12px clamp(18px,6vw,80px);border-block:1px solid var(--rule);background:rgba(255,253,248,.96);font:700 .77rem "Yu Gothic",sans-serif;white-space:nowrap}nav a{color:var(--ink);text-decoration:none}nav a:hover{color:var(--green)}section{margin-top:68px}p{max-width:50em}.lead{font-size:1.08rem}.callout{margin:24px 0;padding:18px 21px;border-left:4px solid var(--gold);background:var(--soft)}.flow{display:grid;grid-template-columns:repeat(7,minmax(95px,1fr));align-items:center;margin:28px 0;overflow-x:auto}.flow-box{min-height:100px;padding:15px 11px;border:1px solid var(--rule);background:#fff}.flow-box b{display:block;margin-bottom:5px;color:var(--green)}.arrow{text-align:center;color:var(--gold);font-size:1.45rem}.use-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:24px;background:var(--rule);border:1px solid var(--rule)}.use{padding:20px;background:#fff}.use-title{display:block;margin-bottom:8px;color:var(--green);font-weight:700}.use p{margin:.6em 0}.use small{color:var(--muted)}.table-wrap{overflow-x:auto;margin:22px 0}table{width:100%;min-width:720px;border-collapse:collapse;font-size:.79rem;line-height:1.5}th,td{padding:11px 9px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}thead th{border-top:1px solid var(--ink);border-bottom:2px solid var(--ink)}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}.chem-table td:first-child{font-weight:700;color:var(--green)}.share-chart{max-width:760px;margin:24px 0;padding:22px;border:1px solid var(--rule);background:#fff}.share-row{display:grid;grid-template-columns:minmax(120px,190px) minmax(120px,1fr) 58px;align-items:center;gap:12px;margin:10px 0}.bar-label{font-size:.78rem}.bar-track{height:14px;background:var(--soft);overflow:hidden}.bar-fill{height:100%;background:var(--green)}.bar-fill.alt{background:var(--gold)}.share-value{text-align:right;font-size:.78rem;font-variant-numeric:tabular-nums}.source-list{padding-left:1.2em}.source-list li{margin:9px 0}.source-list a{color:var(--blue);text-underline-offset:3px}footer{margin-top:72px;padding-top:24px;padding-bottom:48px;border-top:1px solid var(--ink);color:var(--muted);font-size:.78rem}
 @media(max-width:760px){body{font-size:16px}header{padding-top:30px}.summary,.use-grid{grid-template-columns:1fr}.summary div,.use{padding:14px 16px}section{margin-top:54px}.flow{grid-template-columns:1fr;overflow:visible}.flow-box{min-height:0}.arrow{height:28px;line-height:28px;transform:rotate(90deg)}.table-wrap{width:calc(100% + 18px);padding-right:18px}.share-chart{padding:16px 12px}.share-row{grid-template-columns:92px minmax(90px,1fr) 50px;gap:8px}.bar-label,.share-value{font-size:.7rem}}@media(max-width:420px){h1{font-size:2.05rem}.share-row{grid-template-columns:82px minmax(72px,1fr) 46px}}@media print{html{background:#fff}nav{display:none}body{max-width:none}.share-chart,.use{break-inside:avoid}a{color:inherit}}
-</style></head><body>
-<header><a class="home" href="../index.html" aria-label="HTMLレポート一覧へ戻る">HOME</a><p class="kicker">BATTERY STRUCTURE AND SUPPLY CHAIN</p><h1>電池の構成とサプライチェーン</h1><p class="deck">リチウムイオン電池を中心に、材料がセルになるまでの工程、用途による電池選択、正極材の種類、主要メーカーを整理する。車載に限らず、民生機器、データセンター、系統用蓄電池を対象とする。</p><p class="meta">基準日　2026年8月31日　市場シェアは2025年通年実績</p><div class="summary"><div><span class="metric">495万t</span><small>2025年の正極材出荷量</small></div><div><span class="metric">72%</span><small>正極材出荷量に占めるLFP</small></div><div><span class="metric">約90%</span><small>定置用蓄電池導入量に占めるLFP</small></div></div></header>
-<nav aria-label="ページ内目次"><a href="#structure">構成</a><a href="#uses">用途</a><a href="#chemistry">正極材</a><a href="#cells">セルメーカー</a><a href="#us-rules">米国規制</a><a href="#makers">正極材メーカー</a><a href="#sources">出典</a></nav>
+.chain-wrap{margin:28px 0;overflow-x:auto;padding-bottom:10px}.chain{display:grid;grid-template-columns:1fr 22px 1.35fr 22px 1fr 22px 1fr 22px 1.15fr;min-width:820px;align-items:stretch}.chain-stage{display:flex;flex-direction:column;padding:0 8px 12px;border-top:5px solid var(--green);background:#fff}.chain-stage h3{margin:0 -8px 14px;padding:10px 10px 9px;border-bottom:1px solid var(--rule);color:var(--green);font-size:.76rem;letter-spacing:.06em}.chain-node{margin:5px 0;padding:10px;border:1px solid var(--rule);background:var(--paper);font:700 .76rem/1.45 "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}.chain-node small{display:block;margin-top:4px;color:var(--muted);font:400 .69rem/1.5 "Yu Mincho","Hiragino Mincho ProN",serif}.chain-node.focus{border-color:var(--green);background:var(--soft);font-size:.88rem}.chain-arrow{display:flex;align-items:center;justify-content:center;color:var(--gold);font:700 1.55rem "Yu Gothic",sans-serif}.chain-note{margin:-2px 0 0;color:var(--muted);font-size:.75rem}@media(max-width:760px){.chain-wrap{width:calc(100% + 18px);padding-right:18px}}@media print{.chain{min-width:0}}
+</style>
+</head>
+<body>
+<header>
+<a class="home" href="../index.html" aria-label="HTMLレポート一覧へ戻る">HOME</a>
+<p class="kicker">BATTERY STRUCTURE AND SUPPLY CHAIN</p>
+<h1>電池の構成とサプライチェーン</h1>
+<p class="deck">リチウムイオン電池を中心に、材料がセルになるまでの工程、用途による電池選択、正極材の種類、主要メーカーを整理する。車載に限らず、民生機器、データセンター、系統用蓄電池を対象とする。</p>
+<p class="meta">基準日　2026年8月31日　市場シェアは2025年通年実績</p>
+</header>
+<nav aria-label="ページ内目次">
+<a href="#structure">サプライチェーン</a>
+<a href="#uses">用途</a>
+<a href="#chemistry">正極材</a>
+<a href="#cells">セルメーカー</a>
+<a href="#us-rules">米国規制</a>
+<a href="#makers">正極材メーカー</a>
+<a href="#sources">出典</a>
+</nav>
 <main>
-<section id="structure"><h2>材料からセルまで</h2><p class="lead">正極材メーカーは主に粉末状の正極活物質を製造する。セルメーカーは正極活物質と負極活物質を調達し、電極を製造してセパレーター、電解液と組み合わせる。</p><div class="flow" aria-label="正極原料から正極まで"><div class="flow-box"><b>正極原料</b>Li、Ni、Co、Mn、Fe、P</div><div class="arrow">›</div><div class="flow-box"><b>前駆体</b>NCMではNi、Co、Mnを共沈</div><div class="arrow">›</div><div class="flow-box"><b>正極活物質</b>LFP、NCM、NCA等の粉末</div><div class="arrow">›</div><div class="flow-box"><b>正極</b>アルミ箔へ塗布した電極</div></div><div class="flow" aria-label="セルの主要構成"><div class="flow-box"><b>正極</b>電圧、容量、安全性を左右する</div><div class="arrow">＋</div><div class="flow-box"><b>負極</b>充電時にLiイオンを受ける</div><div class="arrow">＋</div><div class="flow-box"><b>セパレーター</b>短絡を防ぎイオンを通す</div><div class="arrow">＋</div><div class="flow-box"><b>電解液</b>Liイオンを運ぶ</div></div><div class="callout">「正極材」は正極活物質を指す場合が多い。「正極」は活物質、導電助剤、バインダーを混ぜ、アルミ箔へ塗った電極を指す。</div></section>
-<section id="uses"><h2>用途によって選ばれる電池が異なる</h2><div class="use-grid"><article class="use"><span class="use-title">モビリティ</span><p>EVではLFPとNCM、NCAが中心となる。価格、安全性、寿命を重視する車種はLFP、航続距離と軽量化を重視する車種は高ニッケル系を使う。</p><small>2025年のEV搭載容量ではLFPが55%超。</small></article><article class="use"><span class="use-title">系統用蓄電池</span><p>設置面積より価格、寿命、充放電回数、安全性を重視するためLFPが中心となる。ナトリウムイオンとフロー電池は一部で商用化または導入検討が進む。</p><small>2025年の新規導入ではLFPが約90%。</small></article><article class="use"><span class="use-title">データセンター</span><p>UPSではVRLA鉛蓄電池が現在も使われるが、長寿命、省スペース、急速充電を理由にリチウムイオンへ移行している。新しいUPS製品ではLFPが有力で、NMCとLMO系も使われる。</p><small>UPSを越える大規模BESSではLFPが中心。発電機の全面代替はまだ限定的。</small></article><article class="use"><span class="use-title">スマートフォン</span><p>容積当たりの容量を優先するためLCOが中心となる。小型電池では材料価格より体積エネルギー密度の価値が高い。</p></article><article class="use"><span class="use-title">電動工具</span><p>高出力と急速放電が必要で、NCM、NCA、LMO系が使われる。出力、安全性、重量の均衡で選ぶ。</p></article><article class="use"><span class="use-title">産業用と特殊用途</span><p>鉄道、航空、宇宙、潜水艦、通信設備では、温度範囲、信頼性、保守性、認証実績が材料費より優先される。LFP、NCM、LTO、鉛、ニッケル系を用途別に使う。</p></article></div></section>
-<section id="chemistry"><h2>正極材を材料、特徴、用途で比較する</h2><div class="table-wrap"><table class="chem-table"><thead><tr><th>正極材</th><th>主な材料</th><th>特徴</th><th>主な用途</th></tr></thead><tbody><tr><td>LFP</td><td>リチウム、鉄、リン</td><td>安価で熱安定性と寿命に優れる。重量当たりの容量は高ニッケル系より低い。</td><td>普及価格帯EV、バス、商用車、系統用蓄電池、データセンターUPS</td></tr><tr><td>NCM</td><td>リチウム、ニッケル、コバルト、マンガン</td><td>エネルギー密度と出力の均衡を調整できる。高ニッケル化で容量が増す一方、熱管理が難しくなる。</td><td>中高級EV、PHEV、電動工具、一部UPS</td></tr><tr><td>NCA</td><td>リチウム、ニッケル、コバルト、アルミニウム</td><td>高いエネルギー密度を持つ。製造管理と電池制御に高い精度を要する。</td><td>高航続EV、円筒形セル、電動工具</td></tr><tr><td>LCO</td><td>リチウム、コバルト</td><td>体積エネルギー密度が高い。コバルト使用量が多く、高コストで熱安定性に制約がある。</td><td>スマートフォン、ノートPC、カメラ、小型電子機器</td></tr><tr><td>LMO</td><td>リチウム、マンガン</td><td>高出力で比較的安全性が高い。単独では寿命と容量に制約があり、NCMと混合する場合がある。</td><td>電動工具、医療機器、HEV、一部UPS</td></tr><tr><td>LMFP</td><td>リチウム、鉄、マンガン、リン</td><td>LFPの安全性を保ちながら電圧と容量を高める開発系統。量産規模はLFPより小さい。</td><td>EV、定置用蓄電池</td></tr></tbody></table></div><h3>2025年の正極材出荷量</h3><div class="share-chart"><div class="share-row"><span class="bar-label">LFP</span><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div><span class="share-value">72%</span></div><div class="share-row"><span class="bar-label">三元系等</span><div class="bar-track"><div class="bar-fill alt" style="width:28%"></div></div><span class="share-value">28%</span></div></div></section>
-<section id="cells"><h2>EV用セルメーカーの世界シェア</h2><p>2025年に世界80カ国で登録されたEV、PHEV、HEVへの電池搭載容量を比較する。このシェアには定置用蓄電池、データセンターUPS、民生機器用セルを含まない。</p><div class="share-chart" aria-label="2025年EV用電池セルメーカー世界シェア">
-<div class="share-row"><span class="bar-label">CATL</span><div class="bar-track"><div class="bar-fill" style="width:98%"></div></div><span class="share-value">39.2%</span></div><div class="share-row"><span class="bar-label">BYD</span><div class="bar-track"><div class="bar-fill" style="width:41%"></div></div><span class="share-value">16.4%</span></div><div class="share-row"><span class="bar-label">LGES</span><div class="bar-track"><div class="bar-fill" style="width:23%"></div></div><span class="share-value">9.2%</span></div><div class="share-row"><span class="bar-label">CALB</span><div class="bar-track"><div class="bar-fill" style="width:13.3%"></div></div><span class="share-value">5.3%</span></div><div class="share-row"><span class="bar-label">Gotion</span><div class="bar-track"><div class="bar-fill" style="width:11.3%"></div></div><span class="share-value">4.5%</span></div><div class="share-row"><span class="bar-label">SK On</span><div class="bar-track"><div class="bar-fill" style="width:9.3%"></div></div><span class="share-value">3.7%</span></div><div class="share-row"><span class="bar-label">Panasonic</span><div class="bar-track"><div class="bar-fill" style="width:9.3%"></div></div><span class="share-value">3.7%</span></div><div class="share-row"><span class="bar-label">EVE</span><div class="bar-track"><div class="bar-fill" style="width:6.5%"></div></div><span class="share-value">2.6%</span></div><div class="share-row"><span class="bar-label">Samsung SDI</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="share-value">2.4%</span></div><div class="share-row"><span class="bar-label">SVOLT</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span class="share-value">2.4%</span></div></div><div class="callout">GSユアサはこのEV用リチウムイオン電池の世界上位10社に入らない。同社は自動車用と産業用の鉛蓄電池、産業用リチウムイオン電池、HEV用、航空宇宙向けを含むため、CATLとは事業構成が異なる。</div><h3>2025年の定置用とデータセンター向け世界シェア</h3><div class="table-wrap"><table><thead><tr><th>市場</th><th>市場規模</th><th>主要企業とシェア</th><th>集計単位</th></tr></thead><tbody><tr><td>定置用ESSセル</td><td>550GWh</td><td>CATL 30%。中国上位7社合計83.3%</td><td>SNE Researchによるセル出荷容量</td></tr><tr><td>定置用BESSシステム</td><td>約460GWh</td><td>BYD 13%、Tesla 10%、Sungrow 9%</td><td>セル、PCS、制御装置、筐体を含むシステム出荷</td></tr><tr><td>データセンターUPS</td><td>87.6億ドル</td><td>Schneider Electric、Vertiv、Eaton、Huawei、ABBの上位5社合計40～42%</td><td>UPS機器の売上。セルメーカーシェアではない</td></tr><tr><td>民生機器用セル</td><td>比較可能な総量なし</td><td>同一定義の世界メーカー別シェアを公開資料で確認できない</td><td>スマートフォン、PC、電動工具で市場を分ける必要がある</td></tr></tbody></table></div><p class="meta">調査会社は集計対象を独自に定める。InfoLinkによる2025年の定置用セル出荷量は612.39GWhで、SNE Researchの550GWhとは一致しない。</p></section>
-<section id="us-rules"><h2>米国市場では中国系サプライチェーンへの制限が強まる</h2><p class="lead">米国では、税額控除の適格性と基幹電力システムの安全保障規制が別々に中国系の部材と設備へ影響する。</p><div class="table-wrap"><table><thead><tr><th>制度</th><th>対象</th><th>中国系サプライチェーンへの影響</th><th>適用時期</th></tr></thead><tbody><tr><td>税法48E</td><td>蓄電設備への投資税額控除</td><td>禁止対象外国事業体から一定以上の材料支援を受けた設備は税額控除を受けられない</td><td>2025年12月31日より後に建設を始める設備</td></tr><tr><td>税法45X</td><td>米国内で生産する電池部材への生産税額控除</td><td>禁止対象外国事業体に由来する材料や部品が基準を超える対象製品は税額控除を受けられない</td><td>OBBBA成立後の課税年度。既存契約には限定的な経過措置がある</td></tr><tr><td>大統領令14420</td><td>系統用BESS、系統接続インバーター、重要インフラ用UPS、制御ソフト</td><td>米エネルギー省が安全保障上の危険を認定した外国製設備について、取得、輸入、設置を禁止または条件付きにできる</td><td>2026年8月26日発効。実施規則は120日以内に策定</td></tr></tbody></table></div><div class="callout">中国製セルを使う全案件が直ちに禁止される制度ではない。48Eと45Xは原産コストと企業支配関係で適格性を判定し、大統領令14420はエネルギー省が設備や取引の危険性を認定する。</div></section>
-<section id="makers"><h2>正極材ごとの主要メーカー</h2><h3>LFP</h3><p>2025年のLFP出荷量347万トンを分母に、SNE Research公表の会社別出荷量からシェアを計算した。</p><div class="share-chart"><div class="share-row"><span class="bar-label">Hunan Yuneng</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><span class="share-value">32.8%</span></div><div class="share-row"><span class="bar-label">Hubei Wanrun</span><div class="bar-track"><div class="bar-fill" style="width:27%"></div></div><span class="share-value">10.8%</span></div><div class="share-row"><span class="bar-label">Dynanonic</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="share-value">8.1%</span></div><div class="share-row"><span class="bar-label">Youshan</span><div class="bar-track"><div class="bar-fill" style="width:15.5%"></div></div><span class="share-value">6.2%</span></div><div class="share-row"><span class="bar-label">Lopal</span><div class="bar-track"><div class="bar-fill" style="width:14.5%"></div></div><span class="share-value">5.8%</span></div><div class="share-row"><span class="bar-label">Gotion</span><div class="bar-track"><div class="bar-fill" style="width:14.5%"></div></div><span class="share-value">5.8%</span></div></div><p class="meta">計算値。各社出荷量を347万トンで除した。LFP供給は中国に集中する。</p>
-<h3>NCMを中心とする三元系</h3><div class="table-wrap"><table><thead><tr><th>メーカー</th><th>2025年出荷量</th><th>位置づけ</th></tr></thead><tbody><tr><td>Reshine</td><td>17.7万t</td><td>三元系首位。CATL、EVE、CALBへミッドニッケル材を供給</td></tr><tr><td>Tianjin B&amp;M</td><td>11.6万t</td><td>CATLとLGESが主要顧客</td></tr><tr><td>Ronbay</td><td>10.4万t</td><td>高ニッケル材に強く、CATL向けが中心</td></tr><tr><td>Brunp</td><td>非開示</td><td>CATL傘下。三元系5位</td></tr><tr><td>L&amp;F、EcoPro、POSCO Future M</td><td>各5万から8万t</td><td>韓国の主要三元系メーカー</td></tr></tbody></table></div><h3>NCA、LCO、LMO</h3><div class="table-wrap"><table><thead><tr><th>正極材</th><th>主要メーカー</th><th>シェアの扱い</th></tr></thead><tbody><tr><td>NCA</td><td>住友金属鉱山、EcoPro BM、BASF、Ronbay</td><td>同一定義の2025年世界シェアを公開資料で確認できない</td></tr><tr><td>LCO</td><td>Xiamen Tungsten、Shanshan、Tianjin B&amp;M、日亜化学工業</td><td>小型民生用を含む統一的な出荷量シェアは非開示</td></tr><tr><td>LMO</td><td>Xiamen Tungsten、Reshine、Shanshan、日亜化学工業</td><td>NCMとの混合使用があり、単独材料の比較可能なシェアは乏しい</td></tr></tbody></table></div></section>
-<section id="sources"><h2>出典と数値の定義</h2><ul class="source-list"><li><a href="https://www.sneresearch.com/en/insight/release_view/586/page/0">SNE Research, 2025 Global EV Battery Usage</a>。EV用セルメーカーシェア。</li><li><a href="https://sneresearch.com/en/insight/release_view/583/page/0">SNE Research, 2025 Global LIB ESS Market</a>。定置用ESSセルの市場規模、CATLと中国上位7社のシェア。</li><li><a href="https://www.ess-news.com/2026/02/09/infolink-2025-energy-storage-cell-shipments-jump-95-to-612-gwh-as-market-flips-from-glut-to-tightness/">InfoLink, 2025 Energy Storage Cell Shipments</a>。異なる集計範囲による定置用セル出荷量と主要メーカー順位。</li><li><a href="https://source.benchmarkminerals.com/article/the-top-energy-storage-cell-suppliers-and-system-integrators-in-2025">Benchmark Mineral Intelligence, 2025 BESS Suppliers and Integrators</a>。BESSシステム出荷量と主要インテグレーター。</li><li><a href="https://www.marketsandmarkets.com/ResearchInsight/data-center-ups-market.asp">MarketsandMarkets, Data Center UPS Market</a>。2025年の市場規模と上位5社合計シェア。</li><li><a href="https://www.irs.gov/irb/2026-11_IRB">IRS Notice 2026-15</a>。48E、45Xと禁止対象外国事業体に関する暫定指針。</li><li><a href="https://www.whitehouse.gov/presidential-actions/2026/08/declaring-a-national-emergency-to-secure-the-united-states-bulk-power-system/">Executive Order 14420</a>。基幹電力システムに使う外国製設備の規制。</li><li><a href="https://www.sneresearch.com/kr/insight/release_view/680/page/276?s_cat=%7C&amp;s_keyword=">SNE Research, 2025 Cathode Material Shipments</a>。正極材495万トン、LFP347万トン、会社別出荷量。</li><li><a href="https://www.iea.org/reports/global-ev-outlook-2026/electric-vehicle-batteries">IEA, Global EV Outlook 2026</a>。EV用途と定置用途の正極化学。</li><li><a href="https://www.iea.org/reports/global-energy-review-2026/technology-battery-storage">IEA, Global Energy Review 2026</a>。2025年の定置用蓄電池とLFP比率。</li><li><a href="https://intelligence.uptimeinstitute.com/resource/bess-data-centers-use-cases-and-technologies">Uptime Institute, BESS in data centers</a>。データセンターのUPS、BESS用途と技術成熟度。</li><li><a href="https://www.eaton.com/us/en-us/products/backup-power-ups-surge-it-power-distribution/backup-power-ups/lithium-ion-batteries-/eaton-5p-lithium-ion-ups-battery-safety.html">Eaton, Lithium-ion UPS battery safety</a>。UPSにおけるLFP採用。</li></ul><div class="callout">セルメーカーシェアはEV搭載容量、定置用セルは出荷容量、BESSシステムはシステム出荷、UPSは機器売上、正極材メーカーは材料出荷重量を基準とする。用途と測定単位が異なるため、各シェアを直接比較できない。</div></section>
-</main><footer>本資料は市場構造の学習用であり、投資判断を目的としない。メーカー別シェアの計算値は、公表出荷量を公表市場総量で除して小数第1位に丸めた。</footer></body></html>
+<section id="structure">
+<h2>サプライチェーン</h2>
+<p class="lead">鉱物を精製して電池材料を作り、正極、負極、セパレーター、電解液をセルへ組み込む。セルはモジュールとパックを経て、車載、定置用、民生機器へ供給される。</p>
+<div class="chain-wrap" tabindex="0" aria-label="電池のサプライチェーン。横にスクロールして全体を表示">
+<div class="chain">
+<div class="chain-stage">
+<h3>原料</h3>
+<div class="chain-node">リチウム、ニッケル、コバルト、マンガン<small>正極材の原料</small></div>
+<div class="chain-node">鉄、リン<small>LFPの原料</small></div>
+<div class="chain-node">天然黒鉛、合成黒鉛<small>負極材の主原料</small></div>
+</div>
+<div class="chain-arrow" aria-hidden="true">›</div>
+<div class="chain-stage">
+<h3>材料・部品</h3>
+<div class="chain-node">正極材<small>LFP、NCM、NCA、LCO、LMO</small></div>
+<div class="chain-node">負極材<small>黒鉛、シリコン系材料</small></div>
+<div class="chain-node">セパレーター<small>正極と負極の短絡を防ぐ</small></div>
+<div class="chain-node">電解液<small>リチウムイオンを運ぶ</small></div>
+</div>
+<div class="chain-arrow" aria-hidden="true">›</div>
+<div class="chain-stage">
+<h3>対象製品</h3>
+<div class="chain-node focus">電池セル<small>材料を電極に加工し、円筒形、角形、パウチ形の容器へ組み込む</small></div>
+</div>
+<div class="chain-arrow" aria-hidden="true">›</div>
+<div class="chain-stage">
+<h3>完成品</h3>
+<div class="chain-node">モジュール<small>複数のセルを接続する</small></div>
+<div class="chain-node">電池パック<small>BMS、冷却機構、筐体を組み合わせる</small></div>
+<div class="chain-node">蓄電システム<small>PCS、制御装置、筐体を加える</small></div>
+</div>
+<div class="chain-arrow" aria-hidden="true">›</div>
+<div class="chain-stage">
+<h3>用途</h3>
+<div class="chain-node">モビリティ<small>EV、PHEV、HEV、商用車</small></div>
+<div class="chain-node">定置用<small>系統用蓄電池、家庭用蓄電池</small></div>
+<div class="chain-node">データセンター<small>UPS、構内BESS</small></div>
+<div class="chain-node">民生・産業用<small>スマートフォン、PC、電動工具、鉄道、航空</small></div>
+</div>
+</div>
+</div>
+<p class="chain-note">狭い画面では図を横にスクロールできる。</p>
+<div class="callout">「正極材」は正極活物質を指す場合が多い。「正極」は活物質、導電助剤、バインダーを混ぜ、アルミ箔へ塗った電極を指す。</div>
+</section>
+<section id="uses">
+<h2>用途によって選ばれる電池が異なる</h2>
+<div class="use-grid">
+<article class="use">
+<span class="use-title">モビリティ</span>
+<p>EVではLFPとNCM、NCAが中心となる。価格、安全性、寿命を重視する車種はLFP、航続距離と軽量化を重視する車種は高ニッケル系を使う。</p>
+<small>2025年のEV搭載容量ではLFPが55%超。</small>
+</article>
+<article class="use">
+<span class="use-title">系統用蓄電池</span>
+<p>設置面積より価格、寿命、充放電回数、安全性を重視するためLFPが中心となる。ナトリウムイオンとフロー電池は一部で商用化または導入検討が進む。</p>
+<small>2025年の新規導入ではLFPが約90%。</small>
+</article>
+<article class="use">
+<span class="use-title">データセンター</span>
+<p>UPSではVRLA鉛蓄電池が現在も使われるが、長寿命、省スペース、急速充電を理由にリチウムイオンへ移行している。新しいUPS製品ではLFPが有力で、NMCとLMO系も使われる。</p>
+<small>UPSを越える大規模BESSではLFPが中心。発電機の全面代替はまだ限定的。</small>
+</article>
+<article class="use">
+<span class="use-title">スマートフォン</span>
+<p>容積当たりの容量を優先するためLCOが中心となる。小型電池では材料価格より体積エネルギー密度の価値が高い。</p>
+</article>
+<article class="use">
+<span class="use-title">電動工具</span>
+<p>高出力と急速放電が必要で、NCM、NCA、LMO系が使われる。出力、安全性、重量の均衡で選ぶ。</p>
+</article>
+<article class="use">
+<span class="use-title">産業用と特殊用途</span>
+<p>鉄道、航空、宇宙、潜水艦、通信設備では、温度範囲、信頼性、保守性、認証実績が材料費より優先される。LFP、NCM、LTO、鉛、ニッケル系を用途別に使う。</p>
+</article>
+</div>
+</section>
+<section id="chemistry">
+<h2>正極材を材料、特徴、用途で比較する</h2>
+<div class="table-wrap">
+<table class="chem-table">
+<thead>
+<tr>
+<th>正極材</th>
+<th>主な材料</th>
+<th>特徴</th>
+<th>主な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LFP</td>
+<td>リチウム、鉄、リン</td>
+<td>安価で熱安定性と寿命に優れる。重量当たりの容量は高ニッケル系より低い。</td>
+<td>普及価格帯EV、バス、商用車、系統用蓄電池、データセンターUPS</td>
+</tr>
+<tr>
+<td>NCM</td>
+<td>リチウム、ニッケル、コバルト、マンガン</td>
+<td>エネルギー密度と出力の均衡を調整できる。高ニッケル化で容量が増す一方、熱管理が難しくなる。</td>
+<td>中高級EV、PHEV、電動工具、一部UPS</td>
+</tr>
+<tr>
+<td>NCA</td>
+<td>リチウム、ニッケル、コバルト、アルミニウム</td>
+<td>高いエネルギー密度を持つ。製造管理と電池制御に高い精度を要する。</td>
+<td>高航続EV、円筒形セル、電動工具</td>
+</tr>
+<tr>
+<td>LCO</td>
+<td>リチウム、コバルト</td>
+<td>体積エネルギー密度が高い。コバルト使用量が多く、高コストで熱安定性に制約がある。</td>
+<td>スマートフォン、ノートPC、カメラ、小型電子機器</td>
+</tr>
+<tr>
+<td>LMO</td>
+<td>リチウム、マンガン</td>
+<td>高出力で比較的安全性が高い。単独では寿命と容量に制約があり、NCMと混合する場合がある。</td>
+<td>電動工具、医療機器、HEV、一部UPS</td>
+</tr>
+<tr>
+<td>LMFP</td>
+<td>リチウム、鉄、マンガン、リン</td>
+<td>LFPの安全性を保ちながら電圧と容量を高める開発系統。量産規模はLFPより小さい。</td>
+<td>EV、定置用蓄電池</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>2025年の正極材出荷量</h3>
+<div class="share-chart">
+<div class="share-row">
+<span class="bar-label">LFP</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:72%">
+</div>
+</div>
+<span class="share-value">72%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">三元系等</span>
+<div class="bar-track">
+<div class="bar-fill alt" style="width:28%">
+</div>
+</div>
+<span class="share-value">28%</span>
+</div>
+</div>
+</section>
+<section id="cells">
+<h2>EV用セルメーカーの世界シェア</h2>
+<p>2025年に世界80カ国で登録されたEV、PHEV、HEVへの電池搭載容量を比較する。このシェアには定置用蓄電池、データセンターUPS、民生機器用セルを含まない。</p>
+<div class="share-chart" aria-label="2025年EV用電池セルメーカー世界シェア">
+<div class="share-row">
+<span class="bar-label">CATL</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:98%">
+</div>
+</div>
+<span class="share-value">39.2%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">BYD</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:41%">
+</div>
+</div>
+<span class="share-value">16.4%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">LGES</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:23%">
+</div>
+</div>
+<span class="share-value">9.2%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">CALB</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:13.3%">
+</div>
+</div>
+<span class="share-value">5.3%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">Gotion</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:11.3%">
+</div>
+</div>
+<span class="share-value">4.5%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">SK On</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:9.3%">
+</div>
+</div>
+<span class="share-value">3.7%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">Panasonic</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:9.3%">
+</div>
+</div>
+<span class="share-value">3.7%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">EVE</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:6.5%">
+</div>
+</div>
+<span class="share-value">2.6%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">Samsung SDI</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:6%">
+</div>
+</div>
+<span class="share-value">2.4%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">SVOLT</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:6%">
+</div>
+</div>
+<span class="share-value">2.4%</span>
+</div>
+</div>
+<div class="callout">GSユアサはこのEV用リチウムイオン電池の世界上位10社に入らない。同社は自動車用と産業用の鉛蓄電池、産業用リチウムイオン電池、HEV用、航空宇宙向けを含むため、CATLとは事業構成が異なる。</div>
+<h3>2025年の定置用とデータセンター向け世界シェア</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>市場</th>
+<th>市場規模</th>
+<th>主要企業とシェア</th>
+<th>集計単位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定置用ESSセル</td>
+<td>550GWh</td>
+<td>CATL 30%。中国上位7社合計83.3%</td>
+<td>SNE Researchによるセル出荷容量</td>
+</tr>
+<tr>
+<td>定置用BESSシステム</td>
+<td>約460GWh</td>
+<td>BYD 13%、Tesla 10%、Sungrow 9%</td>
+<td>セル、PCS、制御装置、筐体を含むシステム出荷</td>
+</tr>
+<tr>
+<td>データセンターUPS</td>
+<td>87.6億ドル</td>
+<td>Schneider Electric、Vertiv、Eaton、Huawei、ABBの上位5社合計40～42%</td>
+<td>UPS機器の売上。セルメーカーシェアではない</td>
+</tr>
+<tr>
+<td>民生機器用セル</td>
+<td>比較可能な総量なし</td>
+<td>同一定義の世界メーカー別シェアを公開資料で確認できない</td>
+<td>スマートフォン、PC、電動工具で市場を分ける必要がある</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="meta">調査会社は集計対象を独自に定める。InfoLinkによる2025年の定置用セル出荷量は612.39GWhで、SNE Researchの550GWhとは一致しない。</p>
+</section>
+<section id="us-rules">
+<h2>米国市場では中国系サプライチェーンへの制限が強まる</h2>
+<p class="lead">米国では、税額控除の適格性と基幹電力システムの安全保障規制が別々に中国系の部材と設備へ影響する。</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>制度</th>
+<th>対象</th>
+<th>中国系サプライチェーンへの影響</th>
+<th>適用時期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>税法48E</td>
+<td>蓄電設備への投資税額控除</td>
+<td>禁止対象外国事業体から一定以上の材料支援を受けた設備は税額控除を受けられない</td>
+<td>2025年12月31日より後に建設を始める設備</td>
+</tr>
+<tr>
+<td>税法45X</td>
+<td>米国内で生産する電池部材への生産税額控除</td>
+<td>禁止対象外国事業体に由来する材料や部品が基準を超える対象製品は税額控除を受けられない</td>
+<td>OBBBA成立後の課税年度。既存契約には限定的な経過措置がある</td>
+</tr>
+<tr>
+<td>大統領令14420</td>
+<td>系統用BESS、系統接続インバーター、重要インフラ用UPS、制御ソフト</td>
+<td>米エネルギー省が安全保障上の危険を認定した外国製設備について、取得、輸入、設置を禁止または条件付きにできる</td>
+<td>2026年8月26日発効。実施規則は120日以内に策定</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout">中国製セルを使う全案件が直ちに禁止される制度ではない。48Eと45Xは原産コストと企業支配関係で適格性を判定し、大統領令14420はエネルギー省が設備や取引の危険性を認定する。</div>
+</section>
+<section id="makers">
+<h2>正極材ごとの主要メーカー</h2>
+<h3>LFP</h3>
+<p>2025年のLFP出荷量347万トンを分母に、SNE Research公表の会社別出荷量からシェアを計算した。</p>
+<div class="share-chart">
+<div class="share-row">
+<span class="bar-label">Hunan Yuneng</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:82%">
+</div>
+</div>
+<span class="share-value">32.8%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">Hubei Wanrun</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:27%">
+</div>
+</div>
+<span class="share-value">10.8%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">Dynanonic</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:20%">
+</div>
+</div>
+<span class="share-value">8.1%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">Youshan</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:15.5%">
+</div>
+</div>
+<span class="share-value">6.2%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">Lopal</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:14.5%">
+</div>
+</div>
+<span class="share-value">5.8%</span>
+</div>
+<div class="share-row">
+<span class="bar-label">Gotion</span>
+<div class="bar-track">
+<div class="bar-fill" style="width:14.5%">
+</div>
+</div>
+<span class="share-value">5.8%</span>
+</div>
+</div>
+<p class="meta">計算値。各社出荷量を347万トンで除した。LFP供給は中国に集中する。</p>
+<h3>NCMを中心とする三元系</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>メーカー</th>
+<th>2025年出荷量</th>
+<th>位置づけ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reshine</td>
+<td>17.7万t</td>
+<td>三元系首位。CATL、EVE、CALBへミッドニッケル材を供給</td>
+</tr>
+<tr>
+<td>Tianjin B&amp;M</td>
+<td>11.6万t</td>
+<td>CATLとLGESが主要顧客</td>
+</tr>
+<tr>
+<td>Ronbay</td>
+<td>10.4万t</td>
+<td>高ニッケル材に強く、CATL向けが中心</td>
+</tr>
+<tr>
+<td>Brunp</td>
+<td>非開示</td>
+<td>CATL傘下。三元系5位</td>
+</tr>
+<tr>
+<td>L&amp;F、EcoPro、POSCO Future M</td>
+<td>各5万から8万t</td>
+<td>韓国の主要三元系メーカー</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>NCA、LCO、LMO</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>正極材</th>
+<th>主要メーカー</th>
+<th>シェアの扱い</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NCA</td>
+<td>住友金属鉱山、EcoPro BM、BASF、Ronbay</td>
+<td>同一定義の2025年世界シェアを公開資料で確認できない</td>
+</tr>
+<tr>
+<td>LCO</td>
+<td>Xiamen Tungsten、Shanshan、Tianjin B&amp;M、日亜化学工業</td>
+<td>小型民生用を含む統一的な出荷量シェアは非開示</td>
+</tr>
+<tr>
+<td>LMO</td>
+<td>Xiamen Tungsten、Reshine、Shanshan、日亜化学工業</td>
+<td>NCMとの混合使用があり、単独材料の比較可能なシェアは乏しい</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sources">
+<h2>出典と数値の定義</h2>
+<ul class="source-list">
+<li>
+<a href="https://www.sneresearch.com/en/insight/release_view/586/page/0">SNE Research, 2025 Global EV Battery Usage</a>。EV用セルメーカーシェア。</li>
+<li>
+<a href="https://sneresearch.com/en/insight/release_view/583/page/0">SNE Research, 2025 Global LIB ESS Market</a>。定置用ESSセルの市場規模、CATLと中国上位7社のシェア。</li>
+<li>
+<a href="https://www.ess-news.com/2026/02/09/infolink-2025-energy-storage-cell-shipments-jump-95-to-612-gwh-as-market-flips-from-glut-to-tightness/">InfoLink, 2025 Energy Storage Cell Shipments</a>。異なる集計範囲による定置用セル出荷量と主要メーカー順位。</li>
+<li>
+<a href="https://source.benchmarkminerals.com/article/the-top-energy-storage-cell-suppliers-and-system-integrators-in-2025">Benchmark Mineral Intelligence, 2025 BESS Suppliers and Integrators</a>。BESSシステム出荷量と主要インテグレーター。</li>
+<li>
+<a href="https://www.marketsandmarkets.com/ResearchInsight/data-center-ups-market.asp">MarketsandMarkets, Data Center UPS Market</a>。2025年の市場規模と上位5社合計シェア。</li>
+<li>
+<a href="https://www.irs.gov/irb/2026-11_IRB">IRS Notice 2026-15</a>。48E、45Xと禁止対象外国事業体に関する暫定指針。</li>
+<li>
+<a href="https://www.whitehouse.gov/presidential-actions/2026/08/declaring-a-national-emergency-to-secure-the-united-states-bulk-power-system/">Executive Order 14420</a>。基幹電力システムに使う外国製設備の規制。</li>
+<li>
+<a href="https://www.sneresearch.com/kr/insight/release_view/680/page/276?s_cat=%7C&amp;s_keyword=">SNE Research, 2025 Cathode Material Shipments</a>。正極材495万トン、LFP347万トン、会社別出荷量。</li>
+<li>
+<a href="https://www.iea.org/reports/global-ev-outlook-2026/electric-vehicle-batteries">IEA, Global EV Outlook 2026</a>。EV用途と定置用途の正極化学。</li>
+<li>
+<a href="https://www.iea.org/reports/global-energy-review-2026/technology-battery-storage">IEA, Global Energy Review 2026</a>。2025年の定置用蓄電池とLFP比率。</li>
+<li>
+<a href="https://intelligence.uptimeinstitute.com/resource/bess-data-centers-use-cases-and-technologies">Uptime Institute, BESS in data centers</a>。データセンターのUPS、BESS用途と技術成熟度。</li>
+<li>
+<a href="https://www.eaton.com/us/en-us/products/backup-power-ups-surge-it-power-distribution/backup-power-ups/lithium-ion-batteries-/eaton-5p-lithium-ion-ups-battery-safety.html">Eaton, Lithium-ion UPS battery safety</a>。UPSにおけるLFP採用。</li>
+</ul>
+<div class="callout">セルメーカーシェアはEV搭載容量、定置用セルは出荷容量、BESSシステムはシステム出荷、UPSは機器売上、正極材メーカーは材料出荷重量を基準とする。用途と測定単位が異なるため、各シェアを直接比較できない。</div>
+</section>
+</main>
+<footer>本資料は市場構造の学習用であり、投資判断を目的としない。メーカー別シェアの計算値は、公表出荷量を公表市場総量で除して小数第1位に丸めた。</footer>
+</body>
+</html>
