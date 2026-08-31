@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="車載用リチウムイオン電池のセル、正極、正極材、主要企業、2025年世界シェアを整理した入門レポート">
+  <title>電池のセル、正極、正極材</title>
+  <style>
+    :root{--ink:#20211f;--muted:#696b66;--rule:#d9d5cd;--paper:#fffdf8;--back:#e9e5dc;--green:#496b5a;--green2:#75927f;--rust:#a5543e;--gold:#b18845;--soft:#f3efe6;--blue:#496b7b}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--back)}body{max-width:1160px;margin:0 auto;background:var(--paper);color:var(--ink);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;line-height:1.78}
+    header,main,footer{padding-left:clamp(20px,6vw,80px);padding-right:clamp(20px,6vw,80px)}header{padding-top:56px;padding-bottom:38px;border-top:8px solid var(--green)}
+    h1,h2,h3,.kicker,.meta,.metric,.pill,table,.flow,.legend,.note-title{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}h1{max-width:13em;margin:.08em 0 .32em;font-size:clamp(2.25rem,6vw,4.45rem);line-height:1.12;letter-spacing:-.045em}h2{margin:0 0 24px;padding-top:14px;border-top:2px solid var(--ink);font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.5}h3{margin:32px 0 10px;font-size:1rem}.kicker{margin:0;color:var(--green);font-size:.76rem;font-weight:700;letter-spacing:.14em}.deck{max-width:46em;margin:20px 0;font-size:1.08rem}.meta{color:var(--muted);font-size:.78rem}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:28px;background:var(--rule);border:1px solid var(--rule)}.summary div{padding:18px;background:var(--paper)}.metric{display:block;color:var(--green);font-size:1.55rem;font-weight:700}.summary small{color:var(--muted)}nav{position:sticky;top:0;z-index:4;display:flex;gap:22px;overflow-x:auto;padding:12px clamp(20px,6vw,80px);border-block:1px solid var(--rule);background:rgba(255,253,248,.96);font:700 .78rem "Yu Gothic",sans-serif;white-space:nowrap}nav a{color:var(--ink);text-decoration:none}nav a:hover{color:var(--green)}section{margin-top:72px}p{max-width:49em}.lead{font-size:1.08rem}.flow{display:grid;grid-template-columns:repeat(7,minmax(100px,1fr));align-items:center;margin:28px 0;overflow-x:auto}.flow .box{min-height:94px;padding:16px 12px;border:1px solid var(--rule);background:#fff}.flow .box b{display:block;margin-bottom:5px;color:var(--green)}.flow .arrow{text-align:center;color:var(--gold);font-size:1.5rem}.callout{margin:24px 0;padding:20px 22px;border-left:4px solid var(--gold);background:var(--soft)}.note-title{display:block;margin-bottom:5px;font-weight:700}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px}.card{padding:22px;border:1px solid var(--rule);background:#fff}.card h3{margin-top:0}.pill{display:inline-block;margin:0 5px 7px 0;padding:3px 9px;border:1px solid var(--green2);border-radius:999px;color:var(--green);font-size:.72rem}.table-wrap{overflow-x:auto;margin:22px 0}table{width:100%;min-width:740px;border-collapse:collapse;font-size:.79rem;line-height:1.5}th,td{padding:11px 9px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}thead th{border-top:1px solid var(--ink);border-bottom:2px solid var(--ink)}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}.barcell{min-width:180px}.bar{display:inline-block;height:9px;margin-right:8px;background:var(--green);vertical-align:middle}.rank{color:var(--muted)}.chart{padding:24px;border:1px solid var(--rule);background:#fff}.chem-row{display:grid;grid-template-columns:90px 1fr 60px;align-items:center;gap:12px;margin:14px 0;font-family:"Yu Gothic",sans-serif;font-size:.82rem}.track{height:18px;background:var(--soft)}.fill{height:100%;background:var(--green)}.fill.other{background:var(--gold)}.source-list{padding-left:1.2em}.source-list li{margin:9px 0}.source-list a{color:var(--blue);text-underline-offset:3px}footer{margin-top:72px;padding-top:24px;padding-bottom:48px;border-top:1px solid var(--ink);color:var(--muted);font-size:.78rem}
+    @media(max-width:760px){body{font-size:16px}.summary,.grid2{grid-template-columns:1fr}.summary div{padding:14px 17px}section{margin-top:56px}.flow{grid-template-columns:150px 34px 150px 34px 150px 34px 150px}.table-wrap{width:calc(100% + 20px);padding-right:20px}header{padding-top:38px}.chart{padding:18px 14px}}
+    @media print{html{background:#fff}nav{display:none}body{max-width:none}.card,.chart{break-inside:avoid}a{color:inherit}}
+  </style>
+</head>
+<body>
+  <header>
+    <p class="kicker">LITHIUM-ION BATTERY SUPPLY CHAIN</p>
+    <h1>電池のセル、正極、正極材</h1>
+    <p class="deck">車載用リチウムイオン電池について、材料がセルになるまでの工程と、化学系統別の特徴、主要企業、世界シェアを整理する。</p>
+    <p class="meta">基準日　2026年8月31日　市場シェアは比較可能な2025年通年実績</p>
+    <div class="summary" aria-label="主要数値">
+      <div><span class="metric">1,187GWh</span><small>2025年の世界EV電池搭載量</small></div>
+      <div><span class="metric">55.6%</span><small>CATLとBYDの合計シェア</small></div>
+      <div><span class="metric">55%超</span><small>EV電池搭載量に占めるLFP</small></div>
+    </div>
+  </header>
+  <nav aria-label="ページ内目次">
+    <a href="#map">関係図</a><a href="#chemistry">正極材の種類</a><a href="#cells">セルメーカー</a><a href="#cam">正極材メーカー</a><a href="#reading">シェアの読み方</a><a href="#sources">出典</a>
+  </nav>
+  <main>
+    <section id="map">
+      <h2>セル、正極、正極材の関係</h2>
+      <p class="lead">市場で「正極材メーカー」と呼ばれる企業は、主に粉末状の正極活物質を製造する。セルメーカーはその粉末を調達し、アルミ箔へ塗布して正極を作り、負極、セパレーター、電解液と組み合わせる。</p>
+      <div class="flow" aria-label="正極原料からセルまでの流れ">
+        <div class="box"><b>正極原料</b>Li、Ni、Co、Mn、Fe、P</div><div class="arrow">›</div>
+        <div class="box"><b>前駆体</b>NCMではNi、Co、Mnを共沈</div><div class="arrow">›</div>
+        <div class="box"><b>正極活物質</b>LFP、NCM、NCAの粉末</div><div class="arrow">›</div>
+        <div class="box"><b>正極</b>活物質をアルミ箔へ塗布</div>
+      </div>
+      <div class="flow" aria-label="電池セルの構成">
+        <div class="box"><b>正極</b>電圧と容量を左右する</div><div class="arrow">＋</div>
+        <div class="box"><b>負極</b>充電時にLiイオンを受ける</div><div class="arrow">＋</div>
+        <div class="box"><b>セパレーター</b>短絡を防ぎイオンを通す</div><div class="arrow">＋</div>
+        <div class="box"><b>電解液</b>Liイオンを運ぶ</div>
+      </div>
+      <div class="callout"><span class="note-title">用語上の注意</span>「正極材」は正極活物質を指す場合が多い。「正極」は活物質、導電助剤、バインダーを混ぜてアルミ箔へ塗った電極を指す。</div>
+    </section>
+
+    <section id="chemistry">
+      <h2>正極材の種類がセルの性格を決める</h2>
+      <div class="grid2">
+        <article class="card"><h3>LFP</h3><span class="pill">低コスト</span><span class="pill">長寿命</span><span class="pill">高い熱安定性</span><p>リン酸鉄リチウムを使う。ニッケルとコバルトを含まず、量産EVと定置用蓄電池で採用が広がった。重量当たりのエネルギー密度は高ニッケル系より低い。</p></article>
+        <article class="card"><h3>NCM</h3><span class="pill">高エネルギー密度</span><span class="pill">配合が多様</span><p>ニッケル、コバルト、マンガンを使う。NCM523、622、811、9系の順にニッケル比率が高まる。高ニッケル化は容量を増やす一方、熱管理と製造管理を難しくする。</p></article>
+        <article class="card"><h3>NCA</h3><span class="pill">高エネルギー密度</span><span class="pill">円筒形で実績</span><p>ニッケル、コバルト、アルミニウムを使う。Panasonic EnergyのTesla向け円筒形セルで採用実績がある。</p></article>
+        <article class="card"><h3>LMOとLCO</h3><span class="pill">用途特化</span><p>LMOはマンガン系で出力特性を持つ。LCOはコバルト系で容量が高く、スマートフォンなど小型機器で使われる。車載市場の中心はLFPとNCM、NCAである。</p></article>
+      </div>
+      <h3>2025年の世界EV電池搭載量を正極化学で分類</h3>
+      <div class="chart" role="img" aria-label="2025年の世界EV電池搭載量でLFPが55%超、ニッケル系その他が45%未満">
+        <div class="chem-row"><b>LFP</b><div class="track"><div class="fill" style="width:56%"></div></div><span>55%超</span></div>
+        <div class="chem-row"><b>その他</b><div class="track"><div class="fill other" style="width:44%"></div></div><span>45%未満</span></div>
+        <p class="meta">注：その他の中心はNCMとNCA。IEAはLFPを「55%超」と公表しているため、図は56対44の概略表示。</p>
+      </div>
+    </section>
+
+    <section id="cells">
+      <h2>セルメーカーの世界シェア</h2>
+      <p>2025年に世界80カ国で登録されたEV、PHEV、HEVへの電池搭載容量を比べる。工場能力や売上高のシェアではない。</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>順位</th><th>セルメーカー</th><th>国</th><th class="num">シェア</th><th>主な正極化学と特徴</th></tr></thead>
+        <tbody>
+          <tr><td class="rank">1</td><td>CATL</td><td>中国</td><td class="num barcell"><span class="bar" style="width:118px"></span>39.2%</td><td>LFPと三元系。外販先が広い</td></tr>
+          <tr><td class="rank">2</td><td>BYD</td><td>中国</td><td class="num barcell"><span class="bar" style="width:49px"></span>16.4%</td><td>LFP中心。セルから自動車まで垂直統合</td></tr>
+          <tr><td class="rank">3</td><td>LG Energy Solution</td><td>韓国</td><td class="num barcell"><span class="bar" style="width:28px"></span>約9.2%</td><td>NCM系を中心に複数形状を展開</td></tr>
+          <tr><td class="rank">4</td><td>CALB</td><td>中国</td><td class="num barcell"><span class="bar" style="width:16px"></span>5.3%</td><td>LFPと三元系。角形中心</td></tr>
+          <tr><td class="rank">5</td><td>Gotion High-Tech</td><td>中国</td><td class="num barcell"><span class="bar" style="width:14px"></span>4.5%</td><td>LFPに強み</td></tr>
+          <tr><td class="rank">6</td><td>SK On</td><td>韓国</td><td class="num barcell"><span class="bar" style="width:11px"></span>約3.7%</td><td>高ニッケルNCM系</td></tr>
+          <tr><td class="rank">7</td><td>Panasonic Energy</td><td>日本</td><td class="num barcell"><span class="bar" style="width:11px"></span>約3.7%</td><td>NCA、高ニッケル系の円筒形</td></tr>
+          <tr><td class="rank">8</td><td>EVE Energy</td><td>中国</td><td class="num barcell"><span class="bar" style="width:8px"></span>2.6%</td><td>LFPと三元系。車載と定置用</td></tr>
+          <tr><td class="rank">9</td><td>Samsung SDI</td><td>韓国</td><td class="num barcell"><span class="bar" style="width:7px"></span>2.4%</td><td>高ニッケル三元系</td></tr>
+          <tr><td class="rank">10</td><td>SVOLT</td><td>中国</td><td class="num barcell"><span class="bar" style="width:7px"></span>2.4%</td><td>LFPと三元系</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout"><span class="note-title">GSユアサの位置</span>GSユアサはこの車載用リチウムイオン電池の世界上位10社に入らない。鉛蓄電池、産業用蓄電池、HEV用、航空宇宙向けを含む事業構成で、CATLとは対象市場が異なる。</div>
+    </section>
+
+    <section id="cam">
+      <h2>正極材メーカーは化学系統ごとに顔ぶれが変わる</h2>
+      <div class="grid2">
+        <article class="card"><h3>LFP正極材</h3><p>Hunan Yunengが世界最大手で、Dynanonic、Wanrun New Energy、Lopal Techが続く。IEAによればLFP正極材の98%以上を中国が生産する。企業間競争と同時に地域集中を見る必要がある。</p></article>
+        <article class="card"><h3>三元系正極材</h3><p>Ronbay、Reshine、Xiamen Tungsten、EcoPro BM、POSCO Future Mが主要企業となる。中国勢に加え、韓国と日本にも量産企業が存在する。</p></article>
+      </div>
+      <h3>2025年の世界三元系正極材シェア</h3>
+      <p>三元系正極材の需要量を分母にした出荷重量ベースの集計で、LFPを含まない。</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>順位</th><th>正極材メーカー</th><th>国</th><th class="num">出荷量</th><th class="num">シェア</th></tr></thead>
+        <tbody>
+          <tr><td class="rank">1</td><td>Ronbay</td><td>中国</td><td class="num">11.9万t</td><td class="num">9.5%</td></tr>
+          <tr><td class="rank">2</td><td>Reshine</td><td>中国</td><td class="num">10.5万t</td><td class="num">8.4%</td></tr>
+          <tr><td class="rank">3</td><td>Xiamen Tungsten</td><td>中国</td><td class="num">10.5万t</td><td class="num">8.4%</td></tr>
+          <tr><td class="rank">4</td><td>Brunp</td><td>中国</td><td class="num">8.6万t</td><td class="num">6.8%</td></tr>
+          <tr><td class="rank">5</td><td>Tianjin B&amp;M</td><td>中国</td><td class="num">8.5万t</td><td class="num">6.8%</td></tr>
+          <tr><td class="rank">6</td><td>EcoPro</td><td>韓国</td><td class="num">8.0万t</td><td class="num">6.4%</td></tr>
+          <tr><td class="rank">7</td><td>POSCO Future M</td><td>韓国</td><td class="num">7.4万t</td><td class="num">5.9%</td></tr>
+          <tr><td class="rank">8</td><td>Easpring</td><td>中国</td><td class="num">6.6万t</td><td class="num">5.3%</td></tr>
+        </tbody>
+      </table></div>
+      <p>セル市場ではCATLが39.2%を占める一方、三元系正極材市場の首位は9.5%である。セルは集中度が高く、三元系正極材は複数企業へ分散している。</p>
+    </section>
+
+    <section id="reading">
+      <h2>世界シェアを読むときの基準</h2>
+      <div class="grid2">
+        <article class="card"><h3>セル</h3><p>EV搭載容量、セル出荷量、生産量、公称生産能力、売上高のいずれを使うか確認する。本資料はEV搭載容量を使う。</p></article>
+        <article class="card"><h3>正極材</h3><p>化学系統、出荷重量、売上高、生産能力の範囲を確認する。本資料の企業別表は三元系だけを対象とする。</p></article>
+      </div>
+      <div class="callout"><span class="note-title">企業分析の順序</span>正極化学、正極材メーカー、セルメーカー、セル形状、搭載車種の順にたどると、材料選択が企業収益へ伝わる経路を確認できる。</div>
+    </section>
+
+    <section id="sources">
+      <h2>出典</h2>
+      <ul class="source-list">
+        <li><a href="https://www.sneresearch.com/en/insight/release_view/586/page/0">SNE Research, 2025 Global EV Battery Usage</a>。世界80カ国の登録車両に基づく。</li>
+        <li><a href="https://www.iea.org/reports/global-ev-outlook-2026/electric-vehicle-batteries">IEA, Global EV Outlook 2026, Electric vehicle batteries</a>。正極化学、企業国籍、電池搭載量。</li>
+        <li><a href="https://www.iea.org/reports/global-ev-outlook-2026/manufacturing-and-trade">IEA, Global EV Outlook 2026, Manufacturing and trade</a>。セルと活物質の地域別生産。</li>
+        <li><a href="https://www.iea.org/reports/global-critical-minerals-outlook-2025/beyond-nmc-batteries-supply-chain-issues-for-emerging-battery-technologies">IEA, Global Critical Minerals Outlook 2025</a>。LFP供給網の地域集中。</li>
+        <li><a href="https://kind.krx.co.kr/external/2026/03/06/001291/20260306002940/00660.htm">EcoPro BM, 2025 Annual Report</a>。SNE Researchによる三元系正極材の出荷量とシェア。</li>
+      </ul>
+    </section>
+  </main>
+  <footer>本資料は市場構造の学習用であり、投資判断を目的としない。数値は各出典の定義に従い、異なる母集団のシェアを直接比較しない。</footer>
+</body>
+</html>
