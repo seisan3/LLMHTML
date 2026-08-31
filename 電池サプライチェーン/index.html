@@ -11,6 +11,7 @@
 .chain-wrap{margin:28px 0;overflow-x:auto;padding-bottom:10px}.chain{display:grid;grid-template-columns:1fr 22px 1.35fr 22px 1fr 22px 1fr 22px 1.15fr;min-width:820px;align-items:stretch}.chain-stage{display:flex;flex-direction:column;padding:0 8px 12px;border-top:5px solid var(--green);background:#fff}.chain-stage h3{margin:0 -8px 14px;padding:10px 10px 9px;border-bottom:1px solid var(--rule);color:var(--green);font-size:.76rem;letter-spacing:.06em}.chain-node{margin:5px 0;padding:10px;border:1px solid var(--rule);background:var(--paper);font:700 .76rem/1.45 "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}.chain-node small{display:block;margin-top:4px;color:var(--muted);font:400 .69rem/1.5 "Yu Mincho","Hiragino Mincho ProN",serif}.chain-node.focus{border-color:var(--green);background:var(--soft);font-size:.88rem}.chain-arrow{display:flex;align-items:center;justify-content:center;color:var(--gold);font:700 1.55rem "Yu Gothic",sans-serif}.chain-note{margin:-2px 0 0;color:var(--muted);font-size:.75rem}@media(max-width:760px){.chain-wrap{width:calc(100% + 18px);padding-right:18px}}@media print{.chain{min-width:0}}
 h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}
 .partial-share{max-width:760px;margin:24px 0;padding:22px;border:1px solid var(--rule);background:#fff}.partial-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}.partial-head span{color:var(--muted);font-size:.78rem}.partial-head strong{color:var(--green);font-size:1.45rem;line-height:1;font-variant-numeric:tabular-nums}.coverage-track{position:relative;height:18px;margin:18px 0 9px;background:var(--soft);overflow:hidden}.coverage-fill,.coverage-core,.coverage-band{position:absolute;inset-block:0;left:0;background:var(--green)}.coverage-band{left:40%;width:2%;background:repeating-linear-gradient(135deg,var(--gold),var(--gold) 3px,#d7bf92 3px,#d7bf92 6px)}.partial-note{margin:0;color:var(--muted);font-size:.75rem}.company-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}.company-tags span{padding:5px 9px;border:1px solid var(--rule);background:var(--paper);font:700 .7rem "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}@media(max-width:760px){.partial-share{padding:16px 12px}.partial-head{align-items:flex-start;flex-direction:column;gap:7px}}
+.memory-table td:first-child{color:var(--green);font-weight:700}.memory-table td:last-child{font-weight:700;font-variant-numeric:tabular-nums}.quiz{max-width:760px;margin-top:26px}.quiz details{border-top:1px solid var(--rule)}.quiz details:last-child{border-bottom:1px solid var(--rule)}.quiz summary{cursor:pointer;padding:13px 4px;font:700 .8rem/1.5 "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}.quiz details p{margin:0;padding:0 4px 15px;color:var(--muted);font-size:.88rem}
 </style>
 </head>
 <body>
@@ -26,6 +27,7 @@ h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragi
 <a href="#structure">サプライチェーン</a>
 <a href="#players">主要企業</a>
 <a href="#us-rules">米国規制</a>
+<a href="#memory">覚える骨格</a>
 <a href="#sources">出典</a>
 </nav>
 <main>
@@ -421,6 +423,28 @@ h4{margin:28px 0 10px;color:var(--green);font:700 .88rem/1.5 "Yu Gothic","Hiragi
 </table>
 </div>
 <div class="callout">中国製セルを使う全案件が直ちに禁止される制度ではない。48Eと45Xは原産コストと企業支配関係で適格性を判定し、大統領令14420はエネルギー省が設備や取引の危険性を認定する。</div>
+</section>
+<section id="memory">
+<h2>覚える骨格</h2>
+<p class="lead">用途ごとに、要求性能から材料、製品、企業、数字までを一つの流れで覚える。</p>
+<div class="table-wrap">
+<table class="memory-table">
+<thead><tr><th>用途</th><th>求める性能</th><th>主材料</th><th>セル</th><th>完成品</th><th>主要企業</th><th>覚える数字</th></tr></thead>
+<tbody>
+<tr><td>EV</td><td>価格、安全性、航続距離</td><td>LFP、三元系</td><td>EV用セル</td><td>モジュール、パック</td><td>CATL（宁德时代）、BYD（比亚迪）</td><td>CATL 39.2%</td></tr>
+<tr><td>系統用</td><td>価格、寿命、安全性</td><td>LFP</td><td>ESSセル</td><td>BESS</td><td>CATL（宁德时代）、BYD（比亚迪）</td><td>CATL 30%</td></tr>
+<tr><td>データセンター</td><td>信頼性、省スペース</td><td>鉛、LFP</td><td>蓄電池</td><td>UPS</td><td>Schneider Electric、Vertiv、Eaton</td><td>上位5社40～42%</td></tr>
+<tr><td>民生機器</td><td>小型、高容量</td><td>LCO</td><td>小型セル</td><td>スマートフォン、PC</td><td>用途別に異なる</td><td>比較可能な総量なし</td></tr>
+</tbody>
+</table>
+</div>
+<h3>確認問題</h3>
+<div class="quiz">
+<details><summary>1　LFPが系統用蓄電池に向く理由を3つ答える</summary><p>価格が低く、熱安定性と寿命に優れるため。</p></details>
+<details><summary>2　CATLのEV用セルと定置用ESSセルのシェアを答える</summary><p>EV用セルは39.2%、定置用ESSセルは30%。</p></details>
+<details><summary>3　BESSとUPSで主要企業が異なる理由を説明する</summary><p>BESSはセル、PCS、制御装置、筐体を含む蓄電システムである。UPSはデータセンターへ電力を継続供給する電源機器であり、比較する製品と企業が異なる。</p></details>
+<details><summary>4　原料から用途までの5段階を順に答える</summary><p>原料、材料・部品、対象製品、完成品、用途。</p></details>
+</div>
 </section>
 <section id="sources">
 <h2>出典</h2>
