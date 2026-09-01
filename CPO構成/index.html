@@ -42,6 +42,12 @@
     .part:nth-child(even) { padding-left:22px; border-left:1px solid var(--rule); }
     .part dt { font-weight:700; }
     .part dd { margin:0; color:var(--muted); font-size:.82rem; line-height:1.65; }
+    .company-list { border-top:1px solid var(--ink); }
+    .company-entry { display:grid; grid-template-columns:13em minmax(0,42em); gap:24px; padding:19px 0; border-bottom:1px solid var(--rule); }
+    .company-entry h3, .company-entry p { margin:0; }
+    .company-entry h3 { line-height:1.55; }
+    .company-role { display:block; margin-top:3px; color:var(--blue); font-size:.74rem; font-weight:700; }
+    .company-entry p { font-size:.92rem; line-height:1.75; }
     .photo { background:#090b0c; }
     .photo img { display:block; width:100%; height:auto; }
     .note { max-width:52em; padding:14px 17px; border-left:3px solid var(--blue); background:var(--blue-soft); font: .8rem/1.7 "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif; }
@@ -59,6 +65,7 @@
       .parts { grid-template-columns:1fr; }
       .part:nth-child(odd), .part:nth-child(even) { padding-left:0; padding-right:0; border-left:0; }
       .part { grid-template-columns:6.2em 1fr; }
+      .company-entry { grid-template-columns:1fr; gap:7px; }
       .diagram { padding:10px; }
     }
   </style>
@@ -109,6 +116,48 @@
     </section>
 
     <section>
+      <h2>関連する日本企業</h2>
+      <p>CPOスイッチ全体を一社で供給する日本企業ではなく、光エンジン、外部レーザー、光ファイバー接続、パッケージ基板、検査装置の各工程に関連企業がある。以下は、各社の開示資料でCPOまたは近接分野への取り組みを確認できる企業である。</p>
+
+      <div class="company-list">
+        <article class="company-entry">
+          <h3>NTT（9432）<span class="company-role">光エンジン</span></h3>
+          <p>光と電気を変換する光電融合デバイス「PEC-2」を開発している。20mm角で3.2Tbpsを扱い、16個で51.2Tbpsスイッチを構成する計画で、2026年の商用化を目指す。次世代のPEC-3では、GPUやCPUの近くへ載せる光チップレットまで接続範囲を広げる。<sup><a href="#s3">3</a></sup></p>
+        </article>
+
+        <article class="company-entry">
+          <h3>エンプラス（6961）<span class="company-role">レンズと光結合部品</span></h3>
+          <p>光エンジンの微小な光路と光ファイバーを結ぶ精密プラスチックレンズが担当領域になる。1.6T光トランシーバー用レンズを量産し、3.2Tと6.4TのCPO関連部品では開発とサンプル出荷を進めている。光路が増え、位置合わせの許容誤差が小さくなるほど加工精度が問われる。<sup><a href="#s4">4</a></sup></p>
+        </article>
+
+        <article class="company-entry">
+          <h3>精工技研（6834）<span class="company-role">ファイバーアレイと光コネクター</span></h3>
+          <p>複数の光ファイバーを所定の間隔で並べるMTフェルール、ファイバーアレイ、研磨装置、検査装置を扱う。光エンジンと外部ファイバーの接続には高精度の調心が必要であり、同社はデータセンター需要に対応してMT型ファイバーアレイの量産と生産能力の増強を進めている。<sup><a href="#s5">5</a></sup></p>
+        </article>
+
+        <article class="company-entry">
+          <h3>古河電気工業（5801）<span class="company-role">外部レーザー</span></h3>
+          <p>CPOスイッチへ連続光を供給する外部光源を開発している。レーザーを交換可能なモジュールとしてスイッチ前面に置けば、発熱源を光エンジンから離し、故障時の保守もしやすい。同社はCPO向けに低消費電力の外部光源を開発し、製品化を進めている。<sup><a href="#s6">6</a></sup></p>
+        </article>
+
+        <article class="company-entry">
+          <h3>santec Holdings（6777）<span class="company-role">光回路の計測</span></h3>
+          <p>光エンジンそのものではなく、シリコンフォトニクス回路とファイバー接続部の測定を担う。波長可変光源や光部品試験装置に加え、光回路内部の反射位置を5μmの空間分解能で調べる装置を展開し、研究開発から量産検査までを対象にする。<sup><a href="#s7">7</a></sup></p>
+        </article>
+
+        <article class="company-entry">
+          <h3>アドバンテスト（6857）<span class="company-role">電気と光の統合検査</span></h3>
+          <p>スイッチASIC側の電気信号と光エンジン側の光信号を一体で検査する装置を展開する。シリコンフォトニクスとCPO向けに、ウエハー検査から最終検査まで対応するATEを拡充し、シリコンフォトニクス量産向け装置の受注も開示している。<sup><a href="#s8">8</a></sup></p>
+        </article>
+
+        <article class="company-entry">
+          <h3>イビデン（4062）<span class="company-role">高性能パッケージ基板</span></h3>
+          <p>大型のスイッチASICと周辺部品を載せる高性能ICパッケージ基板が関連領域になる。同社はAIサーバー向け基板の能力増強を進めるが、開示資料はCPO専用売上を示していない。CPOの光部品への直接投資ではなく、大型ASICの実装基盤を通じた関連銘柄と見るのが妥当である。<sup><a href="#s9">9</a></sup></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
       <h2>実物では何が同じ場所に載るのか</h2>
       <p>下の写真は、IntelがCPUと同じパッケージで動作させた光I/Oチップレットである。中央の大きなチップが電気回路、右側の細長い部分が光回路とファイバー接続部に当たる。スイッチ用CPOも、演算または通信を担う大型ASICの近くへ光変換部を置くという点で共通する。</p>
 
@@ -126,6 +175,13 @@
     <ol>
       <li><a href="https://www.broadcom.com/products/fiber-optic-modules-components/co-packaged-optics/switches/bcm78919">Broadcom, BCM78919 102.4-Tb/s Multilayer CPO Switch</a>。スイッチASIC、光エンジン、光ファイバーの構成を参照した。</li>
       <li><a href="https://www.intel.com/content/www/us/en/newsroom/news/intel-unveils-first-integrated-optical-io-chiplet.html">Intel, Intel Demonstrates First Fully Integrated Optical I/O Chiplet</a>。光I/Oチップレットの構成、写真、接続対象を参照した。</li>
+      <li id="s3"><a href="https://group.ntt/jp/ir/library/annual/pdf/integrated_report_25j.pdf">NTT「統合報告書2025」</a>。PEC-2の寸法、通信容量、スイッチ構成とPEC-3の開発計画を参照した。</li>
+      <li id="s4"><a href="https://www.enplas.co.jp/jp/wp-content/uploads/2026/01/20260130_3Q_j.pdf">エンプラス「FY03/26Q3決算説明会資料」</a>。1.6T光トランシーバー用レンズの量産、3.2Tと6.4TのCPO関連開発を参照した。</li>
+      <li id="s5"><a href="https://www.seikoh-giken.co.jp/irinfo/pdf/pre_2026_4.pdf">精工技研「設備投資に関するお知らせ」</a>。MT型ファイバーアレイ、研磨機、検査装置の生産能力増強を参照した。</li>
+      <li id="s6"><a href="https://www.furukawa.co.jp/release/2023/comm_20230926-2.html">古河電気工業「CPO向け外部光源を開発」</a>。低消費電力外部光源の構成と用途を参照した。</li>
+      <li id="s7"><a href="https://inst.santec.com/jp/news/spa-200">santec「高性能光ネットワークアナライザ SPA-200」</a>。シリコンフォトニクスとケーブルアセンブリの測定用途を参照した。</li>
+      <li id="s8"><a href="https://www.advantest.com/tw/products/semiconductor-test-system/soc/v93000/">Advantest, V93000 SoC Test System</a>。シリコンフォトニクスとCPO向け検査範囲を参照した。</li>
+      <li id="s9"><a href="https://www.ibiden.com/ir/items/en_kessannsetsumeiFY2025.pdf">IBIDEN「FY2025 Financial Results」</a>。AIサーバー向けICパッケージ基板の能力増強計画を参照した。</li>
     </ol>
   </footer>
 </body>
