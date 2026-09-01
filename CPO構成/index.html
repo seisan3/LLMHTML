@@ -42,11 +42,10 @@
     .part:nth-child(even) { padding-left:22px; border-left:1px solid var(--rule); }
     .part dt { font-weight:700; }
     .part dd { margin:0; color:var(--muted); font-size:.82rem; line-height:1.65; }
-    .company-list { border-top:1px solid var(--ink); }
-    .company-entry { display:grid; grid-template-columns:13em minmax(0,42em); gap:24px; padding:19px 0; border-bottom:1px solid var(--rule); }
+    .company-list { max-width:42em; }
+    .company-entry { margin:0 0 1.5em; }
     .company-entry h3, .company-entry p { margin:0; }
-    .company-entry h3 { line-height:1.55; }
-    .company-role { display:block; margin-top:3px; color:var(--blue); font-size:.74rem; font-weight:700; }
+    .company-entry h3 { font-size:1rem; font-weight:700; line-height:1.55; }
     .company-entry p { font-size:.92rem; line-height:1.75; }
     .photo { background:#090b0c; }
     .photo img { display:block; width:100%; height:auto; }
@@ -65,7 +64,6 @@
       .parts { grid-template-columns:1fr; }
       .part:nth-child(odd), .part:nth-child(even) { padding-left:0; padding-right:0; border-left:0; }
       .part { grid-template-columns:6.2em 1fr; }
-      .company-entry { grid-template-columns:1fr; gap:7px; }
       .diagram { padding:10px; }
     }
   </style>
@@ -121,37 +119,37 @@
 
       <div class="company-list">
         <article class="company-entry">
-          <h3>NTT（9432）<span class="company-role">光エンジン</span></h3>
+          <h3>NTT（9432）</h3>
           <p>光と電気を変換する光電融合デバイス「PEC-2」を開発している。20mm角で3.2Tbpsを扱い、16個で51.2Tbpsスイッチを構成する計画で、2026年の商用化を目指す。次世代のPEC-3では、GPUやCPUの近くへ載せる光チップレットまで接続範囲を広げる。<sup><a href="#s3">3</a></sup></p>
         </article>
 
         <article class="company-entry">
-          <h3>エンプラス（6961）<span class="company-role">レンズと光結合部品</span></h3>
+          <h3>エンプラス（6961）</h3>
           <p>光エンジンの微小な光路と光ファイバーを結ぶ精密プラスチックレンズが担当領域になる。1.6T光トランシーバー用レンズを量産し、3.2Tと6.4TのCPO関連部品では開発とサンプル出荷を進めている。光路が増え、位置合わせの許容誤差が小さくなるほど加工精度が問われる。<sup><a href="#s4">4</a></sup></p>
         </article>
 
         <article class="company-entry">
-          <h3>精工技研（6834）<span class="company-role">ファイバーアレイと光コネクター</span></h3>
+          <h3>精工技研（6834）</h3>
           <p>複数の光ファイバーを所定の間隔で並べるMTフェルール、ファイバーアレイ、研磨装置、検査装置を扱う。光エンジンと外部ファイバーの接続には高精度の調心が必要であり、同社はデータセンター需要に対応してMT型ファイバーアレイの量産と生産能力の増強を進めている。<sup><a href="#s5">5</a></sup></p>
         </article>
 
         <article class="company-entry">
-          <h3>古河電気工業（5801）<span class="company-role">外部レーザー</span></h3>
+          <h3>古河電気工業（5801）</h3>
           <p>CPOスイッチへ連続光を供給する外部光源を開発している。レーザーを交換可能なモジュールとしてスイッチ前面に置けば、発熱源を光エンジンから離し、故障時の保守もしやすい。同社はCPO向けに低消費電力の外部光源を開発し、製品化を進めている。<sup><a href="#s6">6</a></sup></p>
         </article>
 
         <article class="company-entry">
-          <h3>santec Holdings（6777）<span class="company-role">光回路の計測</span></h3>
+          <h3>santec Holdings（6777）</h3>
           <p>光エンジンそのものではなく、シリコンフォトニクス回路とファイバー接続部の測定を担う。波長可変光源や光部品試験装置に加え、光回路内部の反射位置を5μmの空間分解能で調べる装置を展開し、研究開発から量産検査までを対象にする。<sup><a href="#s7">7</a></sup></p>
         </article>
 
         <article class="company-entry">
-          <h3>アドバンテスト（6857）<span class="company-role">電気と光の統合検査</span></h3>
+          <h3>アドバンテスト（6857）</h3>
           <p>スイッチASIC側の電気信号と光エンジン側の光信号を一体で検査する装置を展開する。シリコンフォトニクスとCPO向けに、ウエハー検査から最終検査まで対応するATEを拡充し、シリコンフォトニクス量産向け装置の受注も開示している。<sup><a href="#s8">8</a></sup></p>
         </article>
 
         <article class="company-entry">
-          <h3>イビデン（4062）<span class="company-role">高性能パッケージ基板</span></h3>
+          <h3>イビデン（4062）</h3>
           <p>大型のスイッチASICと周辺部品を載せる高性能ICパッケージ基板が関連領域になる。同社はAIサーバー向け基板の能力増強を進めるが、開示資料はCPO専用売上を示していない。CPOの光部品への直接投資ではなく、大型ASICの実装基盤を通じた関連銘柄と見るのが妥当である。<sup><a href="#s9">9</a></sup></p>
         </article>
       </div>
