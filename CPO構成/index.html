@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CPOは何と何をつなぐのか</title>
+  <style>
+    :root { --ink:#1c2023; --muted:#646b70; --rule:#d5d9dc; --paper:#fff; --back:#edf0f1; --blue:#17658c; --blue-soft:#eaf4f7; --gold:#b47a21; --gold-soft:#fbf3e5; --green:#34745d; }
+    * { box-sizing:border-box; }
+    html { background:var(--back); color:var(--ink); }
+    body { max-width:1040px; min-height:100vh; margin:0 auto; background:var(--paper); font:17px/1.82 "Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif; }
+    header, main, footer { padding-left:clamp(22px,7vw,86px); padding-right:clamp(22px,7vw,86px); }
+    header { padding-top:48px; padding-bottom:32px; border-top:7px solid var(--blue); }
+    .home, .kicker, .meta, h1, h2, h3, figcaption, .takeaway, .legend, .parts, footer { font-family:"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif; }
+    .home { color:var(--muted); font-size:.75rem; font-weight:700; text-decoration:none; }
+    .home:hover { color:var(--blue); text-decoration:underline; }
+    .kicker { margin:20px 0 8px; color:var(--blue); font-size:.76rem; font-weight:700; letter-spacing:.12em; }
+    h1 { max-width:18em; margin:0; font-size:clamp(2rem,5.6vw,3.8rem); line-height:1.2; letter-spacing:-.04em; }
+    .deck { max-width:40em; margin:22px 0 0; font-size:1.08rem; }
+    .meta { margin-top:20px; color:var(--muted); font-size:.75rem; }
+    .takeaway { display:grid; grid-template-columns:repeat(3,1fr); margin:5px 0 0; border-top:1px solid var(--ink); border-bottom:1px solid var(--ink); }
+    .takeaway div { padding:17px 16px; border-right:1px solid var(--rule); font-size:.84rem; line-height:1.65; }
+    .takeaway div:last-child { border-right:0; }
+    main { padding-bottom:68px; }
+    section { margin-top:62px; }
+    h2 { margin:0 0 24px; padding-top:12px; border-top:2px solid var(--ink); font-size:1.42rem; line-height:1.45; }
+    h3 { margin:30px 0 10px; font-size:1rem; }
+    p { max-width:42em; margin:0 0 1em; }
+    strong { font-weight:700; }
+    figure { margin:28px 0; }
+    .diagram { padding:22px; border:1px solid var(--rule); background:#fafbfb; overflow:hidden; }
+    .diagram svg { display:block; width:100%; height:auto; }
+    figcaption { margin-top:11px; color:var(--muted); font-size:.75rem; line-height:1.65; }
+    .legend { display:flex; flex-wrap:wrap; gap:12px 20px; margin:13px 0 0; color:var(--muted); font-size:.73rem; }
+    .legend span::before { content:""; display:inline-block; width:16px; height:7px; margin-right:6px; vertical-align:1px; }
+    .legend .electric::before { background:var(--gold); }
+    .legend .optical::before { background:var(--blue); }
+    .parts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid var(--ink); }
+    .part { display:grid; grid-template-columns:7.2em 1fr; gap:14px; padding:15px 0; border-bottom:1px solid var(--rule); }
+    .part:nth-child(odd) { padding-right:22px; }
+    .part:nth-child(even) { padding-left:22px; border-left:1px solid var(--rule); }
+    .part dt { font-weight:700; }
+    .part dd { margin:0; color:var(--muted); font-size:.82rem; line-height:1.65; }
+    .photo { background:#090b0c; }
+    .photo img { display:block; width:100%; height:auto; }
+    .note { max-width:52em; padding:14px 17px; border-left:3px solid var(--blue); background:var(--blue-soft); font: .8rem/1.7 "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif; }
+    footer { padding-top:30px; padding-bottom:44px; border-top:1px solid var(--ink); font-size:.75rem; line-height:1.7; }
+    footer h2 { margin:0 0 12px; padding:0; border:0; font-size:1rem; }
+    footer ol { margin:0; padding-left:1.5em; }
+    footer li { margin-bottom:7px; }
+    a { color:var(--blue); text-underline-offset:2px; overflow-wrap:anywhere; }
+    @media (max-width:720px) {
+      body { font-size:16px; }
+      header { padding-top:34px; }
+      .takeaway { grid-template-columns:1fr; }
+      .takeaway div { border-right:0; border-bottom:1px solid var(--rule); }
+      .takeaway div:last-child { border-bottom:0; }
+      .parts { grid-template-columns:1fr; }
+      .part:nth-child(odd), .part:nth-child(even) { padding-left:0; padding-right:0; border-left:0; }
+      .part { grid-template-columns:6.2em 1fr; }
+      .diagram { padding:10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="home" href="../index.html">HOME</a>
+    <p class="kicker">CO-PACKAGED OPTICS</p>
+    <h1>CPOは何と何を<br>つなぐのか</h1>
+    <p class="deck">CPOは、スイッチASICが扱う電気信号を、その近くで光へ変換する実装方式である。光ファイバーの先には、別のスイッチまたはGPUサーバーがつながる。</p>
+    <p class="meta">2026年9月1日　初学者向け構成説明</p>
+  </header>
+
+  <main>
+    <div class="takeaway" aria-label="このページで確認する三点">
+      <div><strong>スイッチASIC</strong><br>多数の通信から送り先を決める。</div>
+      <div><strong>光エンジン</strong><br>電気信号と光信号を相互変換する。</div>
+      <div><strong>レーザー</strong><br>データを運ぶ光を光エンジンへ供給する。</div>
+    </div>
+
+    <section>
+      <h2>CPOが接続する範囲</h2>
+      <p>CPOパッケージの内部では、スイッチASICと光ファイバーを光エンジンがつなぐ。光ファイバーは装置の外へ延び、GPUサーバーや別のネットワークスイッチに接続する。</p>
+
+      <figure class="diagram" aria-labelledby="cpo-caption">
+        <svg viewBox="0 0 920 390" role="img" aria-label="GPUサーバー、CPOスイッチ、別のGPUサーバーの接続模式図">
+          <defs>
+            <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#17658c"/></marker>
+            <marker id="arrowGold" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b47a21"/></marker>
+          </defs>
+          <rect x="20" y="65" width="175" height="250" rx="5" fill="#f3f5f6" stroke="#8b9297"/>
+          <text x="107" y="95" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2023">GPUサーバー A</text>
+          <rect x="52" y="125" width="110" height="62" rx="4" fill="#fff" stroke="#1c2023"/>
+          <text x="107" y="162" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#1c2023">GPU</text>
+          <rect x="52" y="220" width="110" height="62" rx="4" fill="#eaf4f7" stroke="#17658c"/>
+          <text x="107" y="247" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1c2023">NIC /</text>
+          <text x="107" y="267" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1c2023">光モジュール</text>
+          <path d="M107 187 L107 218" stroke="#b47a21" stroke-width="5" marker-end="url(#arrowGold)"/>
+
+          <rect x="268" y="28" width="384" height="326" rx="6" fill="#fff" stroke="#1c2023" stroke-width="2"/>
+          <text x="460" y="57" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2023">CPOスイッチ</text>
+          <rect x="366" y="129" width="188" height="126" rx="5" fill="#fbf3e5" stroke="#b47a21" stroke-width="2"/>
+          <text x="460" y="183" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1c2023">スイッチASIC</text>
+          <text x="460" y="211" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#646b70">データの送り先を決める</text>
+          <rect x="287" y="145" width="63" height="94" rx="4" fill="#eaf4f7" stroke="#17658c"/>
+          <text x="318" y="184" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#1c2023">光</text>
+          <text x="318" y="202" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#1c2023">エンジン</text>
+          <rect x="570" y="145" width="63" height="94" rx="4" fill="#eaf4f7" stroke="#17658c"/>
+          <text x="601" y="184" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#1c2023">光</text>
+          <text x="601" y="202" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#1c2023">エンジン</text>
+          <path d="M351 192 L364 192" stroke="#b47a21" stroke-width="5" marker-end="url(#arrowGold)"/>
+          <path d="M555 192 L568 192" stroke="#b47a21" stroke-width="5" marker-end="url(#arrowGold)"/>
+          <rect x="395" y="286" width="130" height="42" rx="21" fill="#f3f5f6" stroke="#8b9297"/>
+          <text x="460" y="312" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1c2023">外部レーザー</text>
+          <path d="M395 307 C342 307 318 272 318 241" fill="none" stroke="#17658c" stroke-width="4" marker-end="url(#arrowBlue)"/>
+          <path d="M525 307 C578 307 601 272 601 241" fill="none" stroke="#17658c" stroke-width="4" marker-end="url(#arrowBlue)"/>
+
+          <rect x="725" y="65" width="175" height="250" rx="5" fill="#f3f5f6" stroke="#8b9297"/>
+          <text x="812" y="95" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2023">GPUサーバー B</text>
+          <rect x="757" y="125" width="110" height="62" rx="4" fill="#fff" stroke="#1c2023"/>
+          <text x="812" y="162" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#1c2023">GPU</text>
+          <rect x="757" y="220" width="110" height="62" rx="4" fill="#eaf4f7" stroke="#17658c"/>
+          <text x="812" y="247" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1c2023">NIC /</text>
+          <text x="812" y="267" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1c2023">光モジュール</text>
+          <path d="M812 187 L812 218" stroke="#b47a21" stroke-width="5" marker-end="url(#arrowGold)"/>
+
+          <path d="M162 251 C215 251 235 192 286 192" fill="none" stroke="#17658c" stroke-width="6" marker-end="url(#arrowBlue)"/>
+          <path d="M634 192 C685 192 705 251 756 251" fill="none" stroke="#17658c" stroke-width="6" marker-end="url(#arrowBlue)"/>
+          <text x="235" y="236" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#17658c">光ファイバー</text>
+          <text x="685" y="236" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#17658c">光ファイバー</text>
+        </svg>
+        <div class="legend"><span class="electric">電気信号</span><span class="optical">光信号またはレーザー光</span></div>
+        <figcaption id="cpo-caption">図1　CPOスイッチを介したGPUサーバー間通信の模式図。NICはNetwork Interface Cardの略である。構成を説明するための自作図であり、製品内部の寸法と配置は示していない。</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>光エンジンを構成する部品</h2>
+      <p><strong>光エンジン</strong>は、電気信号と光信号を相互変換する小型モジュールである。送信側はレーザー光へデータを書き込み、受信側は到着した光を電気信号へ戻す。</p>
+
+      <dl class="parts">
+        <div class="part"><dt>レーザー</dt><dd>データを運ぶ連続光を発生させる。交換しやすい外部配置と、光エンジンへの内蔵がある。</dd></div>
+        <div class="part"><dt>変調器</dt><dd>スイッチASICから受けた0と1の電気信号を、光の変化として書き込む。</dd></div>
+        <div class="part"><dt>光導波路</dt><dd>光エンジン内部で光を目的の変調器、受光素子、出力端へ運ぶ。</dd></div>
+        <div class="part"><dt>受光素子</dt><dd>光ファイバーから届いた光を電気信号へ変換する。</dd></div>
+        <div class="part"><dt>ドライバーとTIA</dt><dd>変調器を駆動し、受光素子が出す弱い電気信号を増幅する。</dd></div>
+        <div class="part"><dt>レンズとFAU</dt><dd>微小な光路と複数の光ファイバーを正確に位置合わせする。FAUはFiber Array Unitの略である。</dd></div>
+      </dl>
+    </section>
+
+    <section>
+      <h2>実物では何が同じ場所に載るのか</h2>
+      <p>下の写真は、IntelがCPUと同じパッケージで動作させた光I/Oチップレットである。中央の大きなチップが電気回路、右側の細長い部分が光回路とファイバー接続部に当たる。スイッチ用CPOも、演算または通信を担う大型ASICの近くへ光変換部を置くという点で共通する。</p>
+
+      <figure class="photo">
+        <img src="intel-oci-chiplet.jpg" alt="Intelの光I/Oチップレット。大型の電気ICの横に光回路とファイバー接続部が配置されている。">
+        <figcaption>図2　Intel Optical Compute Interconnect chiplet。Intel Corporation提供。原典はIntel Newsroomの<a href="https://www.intel.com/content/www/us/en/newsroom/news/intel-unveils-first-integrated-optical-io-chiplet.html">製品発表</a>である。</figcaption>
+      </figure>
+
+      <aside class="note">現在の商用化はネットワークスイッチ向けCPOが先行する。次の段階では、GPUやCPUと同じパッケージに光I/Oチップレットを載せ、GPU間やCPU間を光ファイバーで直接接続する。</aside>
+    </section>
+  </main>
+
+  <footer>
+    <h2>出典</h2>
+    <ol>
+      <li><a href="https://www.broadcom.com/products/fiber-optic-modules-components/co-packaged-optics/switches/bcm78919">Broadcom, BCM78919 102.4-Tb/s Multilayer CPO Switch</a>。スイッチASIC、光エンジン、光ファイバーの構成を参照した。</li>
+      <li><a href="https://www.intel.com/content/www/us/en/newsroom/news/intel-unveils-first-integrated-optical-io-chiplet.html">Intel, Intel Demonstrates First Fully Integrated Optical I/O Chiplet</a>。光I/Oチップレットの構成、写真、接続対象を参照した。</li>
+    </ol>
+  </footer>
+</body>
+</html>
