@@ -3,146 +3,145 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="設備投資発表を資金調達と財務影響まで読むための分析フレームワーク">
-  <title>設備投資を読むための分析フレームワーク</title>
+  <meta name="description" content="公開情報から設備投資の負担感、追加調達の方向、財務への影響を読むための分析フレームワーク">
+  <title>設備投資の負担と資金調達を読む</title>
   <style>
-    :root { --ink:#211f1b;--muted:#6d685e;--paper:#fffdf8;--back:#ebe6dc;--rule:#d7cfc0;--soft:#f5f0e7;--accent:#a14330;--accent-soft:#f3dfd7;--navy:#274d62;--navy-soft:#e2eaed;--green:#3f6752;--green-soft:#e2ece5;--amber:#93601d;--amber-soft:#f3e7cb;--shadow:0 22px 70px rgba(67,52,29,.11); }
-    * { box-sizing:border-box; }
-    html { background:var(--back);scroll-behavior:smooth; }
-    body { margin:0;color:var(--ink);background:var(--back);font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.7; }
-    .page { max-width:1180px;margin:0 auto;background:var(--paper);box-shadow:var(--shadow); }
-    header { padding:58px clamp(22px,7vw,88px) 46px;color:#fffaf2;background:#292823; }
-    .eyebrow { margin:0 0 10px;color:#d7b39f;font-size:.75rem;font-weight:700;letter-spacing:.15em; }
-    h1 { max-width:900px;margin:0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(2.1rem,5.8vw,4.35rem);font-weight:600;line-height:1.15;letter-spacing:-.045em; }
-    .lead { max-width:780px;margin:21px 0 0;color:#d7d2c8;font-size:1rem; }
-    .principle { display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;margin-top:29px;padding-top:22px;border-top:1px solid #58564f; }
-    .principle b { color:#dda68f;font-size:.72rem;letter-spacing:.1em;white-space:nowrap; }
-    .principle p { margin:0;color:#f5efe4;font-family:"Yu Mincho","Hiragino Mincho ProN",serif; }
-    nav { position:sticky;top:0;z-index:3;display:flex;gap:4px;overflow-x:auto;padding:10px clamp(18px,5vw,60px);border-bottom:1px solid var(--rule);background:rgba(255,253,248,.96);backdrop-filter:blur(8px); }
-    nav a { flex:0 0 auto;padding:7px 10px;color:var(--muted);font-size:.72rem;font-weight:700;text-decoration:none; }
-    nav a:hover { color:var(--accent); }
-    main { padding:48px clamp(18px,6vw,72px) 72px; }
-    section { margin-bottom:58px;scroll-margin-top:70px; }
-    .section-head { display:grid;grid-template-columns:54px 1fr;gap:17px;align-items:start;margin-bottom:23px; }
-    .number { display:grid;place-items:center;width:46px;height:46px;color:#fff;background:var(--accent);font-family:Georgia,serif;font-size:1.25rem; }
-    h2 { margin:0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(1.35rem,3vw,2rem);font-weight:600;line-height:1.35; }
-    .section-intro { max-width:780px;margin:5px 0 0;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.9rem; }
-    .distinction { display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
-    .term { padding:20px;border-top:4px solid var(--navy);background:var(--navy-soft); }
-    .term:nth-child(2) { border-color:var(--accent);background:var(--accent-soft); }
-    .term:nth-child(3) { border-color:var(--green);background:var(--green-soft); }
-    .term h3 { margin:0 0 8px;font-size:.9rem; }
-    .term p { margin:0;color:#514e48;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.82rem; }
-    .table-wrap { overflow-x:auto; }
-    .framework { width:100%;border-collapse:collapse;table-layout:fixed; }
-    .framework th { padding:10px 12px;color:#fff;background:#353530;font-size:.72rem;text-align:left;vertical-align:bottom; }
-    .framework td { padding:15px 12px;border-bottom:1px solid var(--rule);vertical-align:top;font-size:.79rem; }
-    .framework tbody tr:nth-child(even) td { background:var(--soft); }
-    .framework th:nth-child(1) { width:19%; }.framework th:nth-child(2),.framework th:nth-child(3),.framework th:nth-child(4) { width:27%; }
-    .framework td:first-child { font-weight:700; }
-    .framework p { margin:0; }.framework p+p { margin-top:7px; }
-    .tag { display:inline-block;margin-bottom:5px;padding:2px 6px;color:var(--accent);border:1px solid #d8a99e;background:#fff8f4;font-size:.63rem;font-weight:700; }
-    .equation { margin:22px 0 0;padding:20px 22px;border-left:5px solid var(--accent);background:var(--soft); }
-    .equation b { display:block;margin-bottom:5px;font-size:.72rem; }.equation p { margin:0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif; }
-    .judgement { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule); }
-    .case { padding:22px;background:#fff; }.case .case-no { color:var(--accent);font:700 .7rem Georgia,serif; }.case h3 { margin:5px 0 9px;font-size:.95rem; }.case p { margin:0;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.81rem; }.case strong { color:var(--ink); }
-    .timeline { display:grid;grid-template-columns:repeat(4,1fr);margin-top:12px; }
-    .phase { position:relative;padding:18px 16px 18px 20px;border-top:3px solid var(--ink); }.phase:not(:last-child)::after { position:absolute;top:-7px;right:-4px;width:9px;height:9px;content:"";background:var(--ink);transform:rotate(45deg); }.phase h3 { margin:0 0 8px;font-size:.83rem; }.phase p { margin:0;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.77rem; }
-    .sheet { border:1px solid var(--rule); }.sheet-row { display:grid;grid-template-columns:22% 1fr 1fr;border-bottom:1px solid var(--rule); }.sheet-row:last-child { border-bottom:0; }.sheet-cell { min-height:62px;padding:13px 14px;border-right:1px solid var(--rule);font-size:.78rem; }.sheet-cell:last-child { border-right:0; }.sheet-row.header .sheet-cell { min-height:auto;color:#fff;background:#353530;font-weight:700; }.sheet-row:not(.header) .sheet-cell:first-child { background:var(--soft);font-weight:700; }.write-line { display:block;min-height:25px;border-bottom:1px dotted #aaa298;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif; }
-    .red-flags { display:grid;grid-template-columns:1fr 1fr;gap:12px; }.flag { padding:15px 17px;border-left:4px solid var(--amber);background:var(--amber-soft);font-size:.8rem; }.flag b { display:block;margin-bottom:3px; }
-    .closing { padding:26px;color:#f9f4eb;background:#2d2d29; }.closing h2 { font-size:1.25rem; }.closing p { max-width:850px;margin:9px 0 0;color:#d8d3ca;font-family:"Yu Mincho","Hiragino Mincho ProN",serif; }
-    footer { padding:22px clamp(18px,6vw,72px);color:#aaa59b;background:#22221f;font-size:.7rem; }
-    @media(max-width:800px){ .distinction,.judgement,.timeline{grid-template-columns:1fr}.phase:not(:last-child)::after{display:none}.framework{min-width:720px}.sheet-row{grid-template-columns:1fr}.sheet-cell{border-right:0;border-bottom:1px solid var(--rule)}.sheet-cell:last-child{border-bottom:0}.sheet-row.header{display:none}.red-flags{grid-template-columns:1fr} }
-    @media print { html,body,.page{background:#fff;box-shadow:none}header{padding:28px 34px;color:#111;background:#fff;border-bottom:2px solid #111}.eyebrow,.lead,.principle p{color:#444}.principle{border-color:#aaa}nav{display:none}main{padding:28px 34px}section{break-inside:avoid;margin-bottom:34px} }
+    :root{--ink:#1f211f;--muted:#696b66;--paper:#fffdf8;--back:#eae6dd;--rule:#d6d0c5;--soft:#f4f0e8;--red:#9f3f30;--red-soft:#f3dfd8;--blue:#31596c;--blue-soft:#e0eaed;--green:#466652;--green-soft:#e3ebe5;--amber:#92621e;--amber-soft:#f4e8cb;--shadow:0 22px 70px rgba(62,52,36,.11)}
+    *{box-sizing:border-box}html{background:var(--back);scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--back);font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.65}.page{max-width:1160px;margin:0 auto;background:var(--paper);box-shadow:var(--shadow)}
+    header{padding:56px clamp(22px,7vw,84px) 44px;color:#faf7ef;background:#292b28}.eyebrow{margin:0 0 9px;color:#d8ae9d;font-size:.72rem;font-weight:700;letter-spacing:.16em}h1{max-width:880px;margin:0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(2.1rem,5.7vw,4.2rem);font-weight:600;line-height:1.15;letter-spacing:-.045em}.lead{max-width:780px;margin:20px 0 0;color:#d4d1c9}.scope{display:grid;grid-template-columns:auto 1fr;gap:18px;margin-top:27px;padding-top:20px;border-top:1px solid #555852}.scope b{color:#dfa58f;font-size:.7rem;letter-spacing:.1em}.scope p{margin:0;color:#f1ece3;font-family:"Yu Mincho","Hiragino Mincho ProN",serif}
+    nav{position:sticky;top:0;z-index:3;display:flex;gap:3px;overflow-x:auto;padding:9px clamp(16px,5vw,58px);border-bottom:1px solid var(--rule);background:rgba(255,253,248,.96);backdrop-filter:blur(8px)}nav a{flex:0 0 auto;padding:7px 9px;color:var(--muted);font-size:.7rem;font-weight:700;text-decoration:none}nav a:hover{color:var(--red)}
+    main{padding:46px clamp(18px,6vw,68px) 68px}section{margin-bottom:54px;scroll-margin-top:62px}.section-head{display:grid;grid-template-columns:46px 1fr;gap:16px;margin-bottom:21px}.no{display:grid;place-items:center;width:42px;height:42px;color:#fff;background:var(--red);font-family:Georgia,serif;font-size:1.15rem}h2{margin:0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(1.3rem,3vw,1.9rem);font-weight:600;line-height:1.35}.intro{max-width:790px;margin:5px 0 0;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.87rem}
+    .question{display:grid;grid-template-columns:1.1fr .9fr;gap:1px;margin-bottom:26px;border:1px solid var(--rule);background:var(--rule)}.question>div{padding:20px;background:#fff}.question .answer{background:var(--red-soft)}.question small{display:block;margin-bottom:5px;color:var(--red);font-size:.65rem;font-weight:700;letter-spacing:.08em}.question p{margin:0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif}.question strong{font-size:1.05rem}
+    .table-wrap{overflow-x:auto}.matrix{width:100%;border-collapse:collapse;table-layout:fixed}.matrix th{padding:10px 12px;color:#fff;background:#353833;font-size:.7rem;text-align:left;vertical-align:bottom}.matrix td{padding:14px 12px;border-bottom:1px solid var(--rule);vertical-align:top;font-size:.77rem}.matrix tbody tr:nth-child(even) td{background:var(--soft)}.matrix th:nth-child(1){width:20%}.matrix th:nth-child(2){width:25%}.matrix th:nth-child(3){width:25%}.matrix th:nth-child(4){width:30%}.matrix td:first-child{font-weight:700}.matrix p{margin:0}.matrix p+p{margin-top:6px}.source{display:inline-block;margin-bottom:5px;padding:2px 6px;color:var(--blue);border:1px solid #9cb7c3;background:#f7fbfc;font-size:.61rem;font-weight:700}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{padding:19px;border-top:4px solid var(--blue);background:var(--blue-soft)}.card:nth-child(2){border-color:var(--red);background:var(--red-soft)}.card:nth-child(3){border-color:var(--green);background:var(--green-soft)}.card h3{margin:0 0 7px;font-size:.88rem}.card p{margin:0;color:#50534f;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.79rem}
+    .formula{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:10px;margin:20px 0}.bucket{padding:18px;border:1px solid var(--rule);background:#fff}.bucket h3{margin:0 0 10px;font-size:.82rem}.bucket ul{margin:0;padding-left:1.1em;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.78rem}.operator{display:grid;place-items:center;color:var(--red);font-family:Georgia,serif;font-size:1.5rem}.note{padding:14px 16px;border-left:4px solid var(--amber);background:var(--amber-soft);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.79rem}
+    .scale{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:16px;border:1px solid var(--rule);background:var(--rule)}.level{padding:17px;background:#fff}.level span{display:block;color:var(--red);font:700 .65rem Georgia,serif}.level h3{margin:4px 0 6px;font-size:.82rem}.level p{margin:0;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.74rem}
+    .signals{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.signal{display:grid;grid-template-columns:38% 1fr;border:1px solid var(--rule);background:#fff}.signal b{padding:13px;background:var(--soft);font-size:.75rem}.signal p{margin:0;padding:13px;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.76rem}
+    .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}.phase{padding:18px;background:#fff}.phase .phase-label{color:var(--red);font-size:.63rem;font-weight:700}.phase h3{margin:4px 0 8px;font-size:.84rem}.phase p{margin:0;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.75rem}
+    .output{border:1px solid var(--rule)}.output-row{display:grid;grid-template-columns:23% 1fr;border-bottom:1px solid var(--rule)}.output-row:last-child{border-bottom:0}.output-row b{padding:14px;background:var(--soft);font-size:.76rem}.output-row p{margin:0;padding:14px;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.78rem}.output-row em{color:var(--red);font-style:normal}
+    .guardrails{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.guard{padding:15px 16px;border-left:4px solid var(--amber);background:var(--amber-soft);font-size:.75rem}.guard b{display:block;margin-bottom:4px}.closing{padding:25px;color:#f7f3ea;background:#2c2e2a}.closing h2{font-size:1.2rem}.closing p{max-width:850px;margin:8px 0 0;color:#d4d1c9;font-family:"Yu Mincho","Hiragino Mincho ProN",serif}footer{padding:21px clamp(18px,6vw,68px);color:#aaa79f;background:#22241f;font-size:.68rem}
+    @media(max-width:800px){.question,.cards,.scale,.signals,.timeline,.guardrails{grid-template-columns:1fr}.matrix{min-width:720px}.formula{grid-template-columns:1fr}.operator{height:26px;transform:rotate(90deg)}.output-row{grid-template-columns:1fr}.signal{grid-template-columns:1fr}.scope{grid-template-columns:1fr;gap:6px}}
+    @media print{html,body,.page{background:#fff;box-shadow:none}header{padding:28px 32px;color:#111;background:#fff;border-bottom:2px solid #111}.eyebrow,.lead,.scope p{color:#444}.scope{border-color:#aaa}nav{display:none}main{padding:28px 32px}section{break-inside:avoid;margin-bottom:34px}}
   </style>
 </head>
 <body>
 <div class="page">
   <header>
-    <p class="eyebrow">CAPEX ANALYSIS FRAMEWORK</p>
-    <h1>設備投資を読むための分析フレームワーク</h1>
-    <p class="lead">設備投資の発表から、追加調達の可能性と財務への影響までを確認する順序です。各項目は会社開示、過去実績、同業他社と比較します。</p>
-    <div class="principle"><b>読む順序</b><p>投資額の大きさだけで判断せず、支出の確度と時期、内部資金、調達余力、稼働後の利益貢献を順番に確認します。</p></div>
+    <p class="eyebrow">PUBLIC INFORMATION FRAMEWORK</p>
+    <h1>設備投資の負担と資金調達を読む</h1>
+    <p class="lead">上場企業の公開情報だけを使い、設備投資が会社にとって重いか、追加調達が必要になりそうか、財務への負担がどこに表れるかを確認します。</p>
+    <div class="scope"><b>分析の精度</b><p>正確な支払残額は求めません。会社の規模に対する投資負担、内部資金の余裕、負債の変化を使い、方向性を四段階で評価します。</p></div>
   </header>
-  <nav aria-label="ページ内目次"><a href="#amounts">金額の区別</a><a href="#plan">投資計画</a><a href="#funding">資金需要</a><a href="#finance">調達余力</a><a href="#impact">財務影響</a><a href="#sheet">一枚の整理表</a></nav>
+  <nav aria-label="ページ内目次"><a href="#collect">何を集めるか</a><a href="#size">投資の重さ</a><a href="#progress">進捗</a><a href="#funding">資金余力</a><a href="#signals">調達方向</a><a href="#impact">財務影響</a><a href="#output">結論</a></nav>
   <main>
-    <section id="amounts">
-      <div class="section-head"><span class="number">0</span><div><h2>最初に三つの金額を区別する</h2><p class="section-intro">発表額、貸借対照表の計上額、将来の支払額は一致しません。ここを分けると資金需要を二重計上しにくくなります。</p></div></div>
-      <div class="distinction">
-        <article class="term"><h3>公表した投資総額</h3><p>計画全体の予算です。未契約分を含む場合があり、金額や実施時期を会社が変更できます。</p></article>
-        <article class="term"><h3>建設仮勘定と設備未払金</h3><p>期末までに工事や納入が進み、資産または負債として認識した金額です。建設仮勘定は契約残額を表しません。</p></article>
-        <article class="term"><h3>今後の現金支出</h3><p>認識済み未払額と、未認識の契約残額、未契約の計画額のうち実行する部分です。追加調達の検討ではこの支払時期を使います。</p></article>
-      </div>
-    </section>
-    <section id="plan">
-      <div class="section-head"><span class="number">1</span><div><h2>投資計画の確度と規模を確認する</h2><p class="section-intro">設備投資がどこまで確定し、会社の現在の事業規模に対してどれほど大きいかを見ます。</p></div></div>
-      <div class="table-wrap"><table class="framework"><thead><tr><th>見る項目</th><th>集める情報</th><th>比べる対象</th><th>読み方</th></tr></thead><tbody>
-        <tr><td><span class="tag">確度</span><p>進捗段階</p></td><td><p>取締役会決議、発注、着工、完成、稼働開始の各日付</p></td><td><p>前回発表と今回発表</p><p>計画と実績</p></td><td><p>発表だけなら変更余地が大きく、契約と着工が進むほど支出を避けにくくなります。</p></td></tr>
-        <tr><td><span class="tag">規模</span><p>投資総額</p></td><td><p>土地、建物、装置、立ち上げ費用、運転資金を含む範囲</p></td><td><p>年間設備投資</p><p>売上高、総資産、EBITDA、時価総額</p></td><td><p>平年の設備投資や年間営業CFを大きく上回る案件は、複数年度の資金負担として扱います。</p></td></tr>
-        <tr><td><span class="tag">目的</span><p>維持か成長か</p></td><td><p>更新、能力増強、新製品、内製化、規制対応の別</p></td><td><p>既存能力と増設能力</p><p>現在の稼働率と受注</p></td><td><p>成長投資では需要根拠を確認します。維持投資では支出後も売上が増えない点を織り込みます。</p></td></tr>
-        <tr><td><span class="tag">時期</span><p>支出予定</p></td><td><p>年度別の支出額、支払条件、完成時期、量産開始時期</p></td><td><p>債務返済年度</p><p>営業CFの発生年度</p></td><td><p>総額よりも、支払いが集中する年度に資金不足が生じるかを確認します。</p></td></tr>
+    <section id="collect">
+      <div class="section-head"><span class="no">1</span><div><h2>外部から取得できる情報を集める</h2><p class="intro">必須項目は有価証券報告書、決算短信、決算説明資料、設備投資の発表資料から取得します。契約済み額と支払済み額は必須にしません。</p></div></div>
+      <div class="question"><div><small>最初の問い</small><p><strong>会社が公表した投資を、既存の資金力でおおむね吸収できるか。</strong></p></div><div class="answer"><small>得たい答え</small><p>余裕あり、吸収可能、余裕が小さい、外部調達の可能性が高い、の四段階です。</p></div></div>
+      <div class="table-wrap"><table class="matrix"><thead><tr><th>項目</th><th>公開資料から拾う数値</th><th>取得場所</th><th>分析での使い方</th></tr></thead><tbody>
+        <tr><td>投資計画</td><td><p>投資総額、投資期間、補助金、生産開始時期</p></td><td><span class="source">発表資料</span><p>中期経営計画</p></td><td><p>投資の総規模と期間を確認します。補助金は受領時期が不明なら、総額の負担軽減要因として扱います。</p></td></tr>
+        <tr><td>平常時の投資</td><td><p>過去3年程度の設備投資額、固定資産取得支出、減価償却費</p></td><td><span class="source">CF計算書</span><p>設備投資実績</p></td><td><p>今回の案件が通常投資に上乗せされる規模を確認します。</p></td></tr>
+        <tr><td>資金創出力</td><td><p>営業CF、EBITDA、フリーCF</p></td><td><span class="source">決算短信</span><p>決算説明資料</p></td><td><p>設備投資を何年の内部資金で吸収できるかを見る基準にします。</p></td></tr>
+        <tr><td>流動性</td><td><p>現金及び現金同等物、短期運用資産</p></td><td><span class="source">BSと注記</span><p>有価証券明細</p></td><td><p>短期運用目的と確認できる資産だけを手元流動性へ加えます。</p></td></tr>
+        <tr><td>投資進捗</td><td><p>建設仮勘定、固定資産の増加、固定資産取得支出</p></td><td><span class="source">BSとCF</span><p>有形固定資産注記</p></td><td><p>支出残額の計算には使わず、工事が初期、中盤、後半のどこかを見る材料にします。</p></td></tr>
+        <tr><td>負債構成</td><td><p>短期借入金、CP、長期借入金、社債、リース債務</p></td><td><span class="source">BSと注記</span><p>資金調達資料</p></td><td><p>期首からの増減と返済期限を確認し、短期調達か長期調達かを判定します。</p></td></tr>
+        <tr><td>競合する支出</td><td><p>債務返済、配当、自社株買い、M&amp;A</p></td><td><span class="source">CFと注記</span><p>株主還元方針</p></td><td><p>設備投資と同じ期間に発生する資金使途として加えます。</p></td></tr>
       </tbody></table></div>
     </section>
+
+    <section id="size">
+      <div class="section-head"><span class="no">2</span><div><h2>投資額を会社の規模と比較する</h2><p class="intro">絶対額の大小ではなく、会社が毎年生む資金と通常の投資額に対して評価します。</p></div></div>
+      <div class="cards">
+        <article class="card"><h3>営業CFとの比較</h3><p>投資総額を年間営業CFで割ります。数年分に達する案件は、建設期間中の営業CFだけで賄いにくくなります。</p></article>
+        <article class="card"><h3>通常投資との比較</h3><p>投資総額を過去の年間設備投資と比べます。通常投資を大きく超える部分が追加の資金負担です。</p></article>
+        <article class="card"><h3>財務規模との比較</h3><p>投資総額をEBITDA、総資産、自己資本と比べます。投資後の負債増加を会社が吸収できるかを見ます。</p></article>
+      </div>
+      <div class="scale">
+        <article class="level"><span>LEVEL 1</span><h3>軽い</h3><p>現預金と単年度営業CFの範囲に収まり、通常投資との差も小さい状態です。</p></article>
+        <article class="level"><span>LEVEL 2</span><h3>吸収可能</h3><p>複数年度の営業CFを使いますが、既存の財務余力で対応できる状態です。</p></article>
+        <article class="level"><span>LEVEL 3</span><h3>余裕が小さい</h3><p>債務返済や株主還元を含めると、現金減少または借入増加が見込まれる状態です。</p></article>
+        <article class="level"><span>LEVEL 4</span><h3>調達を要する</h3><p>内部資金と既存の流動性だけでは負担が重く、新規調達や投資変更を検討する状態です。</p></article>
+      </div>
+    </section>
+
+    <section id="progress">
+      <div class="section-head"><span class="no">3</span><div><h2>公開情報から投資の進み具合を読む</h2><p class="intro">建設仮勘定は契約残額ではありません。複数の公開数値が同じ方向へ動いているかを見ます。</p></div></div>
+      <div class="table-wrap"><table class="matrix"><thead><tr><th>観察する動き</th><th>初期に見られる状態</th><th>建設中に見られる状態</th><th>完成前後に見られる状態</th></tr></thead><tbody>
+        <tr><td>建設仮勘定</td><td><p>残高が小さいか、増加が始まります。</p></td><td><p>残高が増加します。</p></td><td><p>機械装置や建物への振替で減少します。</p></td></tr>
+        <tr><td>投資CF</td><td><p>支出がまだ小さい場合があります。</p></td><td><p>固定資産取得支出が増加します。</p></td><td><p>大型支出が一巡します。</p></td></tr>
+        <tr><td>減価償却費</td><td><p>大きな変化は通常ありません。</p></td><td><p>建設中資産には原則として本格的な償却が始まりません。</p></td><td><p>使用開始後に増加します。</p></td></tr>
+        <tr><td>会社説明</td><td><p>用地取得、発注、着工を説明します。</p></td><td><p>工事進捗、予算変更、稼働時期を説明します。</p></td><td><p>試運転、量産開始、稼働率を説明します。</p></td></tr>
+      </tbody></table></div>
+      <div class="note">建設仮勘定が投資総額を上回ったり、案件別の範囲と合わなかったりする場合があります。会社全体の他案件、借入費用、為替換算、計画変更が含まれるため、進捗率を精密に計算しません。</div>
+    </section>
+
     <section id="funding">
-      <div class="section-head"><span class="number">2</span><div><h2>設備投資期間の資金需要を確認する</h2><p class="section-intro">手元現金を全額使えるとは限りません。日常運転に残す現金と、設備投資以外の支出を含めて見ます。</p></div></div>
-      <div class="table-wrap"><table class="framework"><thead><tr><th>見る項目</th><th>集める情報</th><th>比べる対象</th><th>読み方</th></tr></thead><tbody>
-        <tr><td>内部資金</td><td><p>現預金、予想営業CF、資産売却、補助金</p></td><td><p>今後の設備支出</p><p>最低限維持する現金</p></td><td><p>現預金と営業CFで支払えても、必要な運転資金を失うなら外部調達を検討します。</p></td></tr>
-        <tr><td>競合する支出</td><td><p>債務返済、配当、自社株買い、M&amp;A、運転資金増加</p></td><td><p>設備投資の支払年度</p><p>過去の株主還元方針</p></td><td><p>設備投資と既存債務の返済が重なる年度は、借換えと設備資金の調達が同時に必要になります。</p></td></tr>
-        <tr><td>計画の柔軟性</td><td><p>延期、縮小、分割、共同出資が可能な範囲</p></td><td><p>契約済み額</p><p>キャンセル費用</p></td><td><p>未契約分が多ければ、会社は資金不足時に投資額を抑えられます。契約済み額が多ければ調達の必要性が高まります。</p></td></tr>
-      </tbody></table></div>
-      <div class="equation"><b>資金不足の概算</b><p>今後の設備支出＋債務返済＋株主還元＋運転資金増加＋維持する現金－現預金－営業CF－資産売却や補助金</p></div>
+      <div class="section-head"><span class="no">4</span><div><h2>内部資金で吸収できるかを概算する</h2><p class="intro">年度別の支出額が不明でも、資金の使途と原資を並べれば負担の方向を判断できます。</p></div></div>
+      <div class="formula">
+        <div class="bucket"><h3>資金の使途</h3><ul><li>公表した設備投資</li><li>通常の維持更新投資</li><li>期間中の債務返済</li><li>配当と自社株買い</li><li>公表済みのM&amp;A</li></ul></div>
+        <div class="operator">対</div>
+        <div class="bucket"><h3>公開情報で確認できる原資</h3><ul><li>現金及び現金同等物</li><li>投資期間中の営業CF</li><li>公表済みの補助金</li><li>公表済みの資産売却</li><li>開示済みの未使用融資枠</li></ul></div>
+      </div>
+      <div class="note">正確な差額は出しません。投資期間中の営業CFを保守的に置き、資金の使途が明らかに上回るか、ほぼ均衡するか、十分下回るかを判定します。</div>
     </section>
-    <section id="finance">
-      <div class="section-head"><span class="number">3</span><div><h2>追加調達の可能性と手段を確認する</h2><p class="section-intro">資金不足があっても、すぐに新規社債や増資へ進むとは限りません。既存の融資枠と財務方針を先に見ます。</p></div></div>
-      <div class="table-wrap"><table class="framework"><thead><tr><th>見る項目</th><th>集める情報</th><th>比べる対象</th><th>読み方</th></tr></thead><tbody>
-        <tr><td>利用可能な枠</td><td><p>コミットメントライン、当座貸越、未使用融資枠</p></td><td><p>資金不足額</p><p>枠の期限と利用条件</p></td><td><p>資金不足が既存枠に収まるなら、新たな資本市場調達を急ぐ可能性は下がります。ただし枠の利用も有利子負債を増やします。</p></td></tr>
-        <tr><td>借入余力</td><td><p>有利子負債、ネットD/E、純有利子負債／EBITDA、利払い余力</p></td><td><p>会社目標</p><p>過去レンジ、同業他社、格付け基準</p></td><td><p>現在の数値だけでなく、必要額を借りた後の指標を比較します。</p></td></tr>
-        <tr><td>会社の選択肢</td><td><p>借入、社債、リース、増資、共同出資、資産売却、補助金</p></td><td><p>調達期間と設備の使用期間</p><p>金利、希薄化、担保</p></td><td><p>長期設備を短期借入だけで賄う場合は借換え負担が残ります。増資なら利払いは増えませんが、株式価値が希薄化します。</p></td></tr>
-        <tr><td>会社の説明</td><td><p>資金調達方針、格付け維持方針、株主還元方針</p></td><td><p>必要資金と説明済みの調達額</p></td><td><p>必要額が大きいのに調達方法を説明していない場合は、次回決算で確認する論点になります。</p></td></tr>
-      </tbody></table></div>
-      <div class="judgement">
-        <article class="case"><span class="case-no">CASE 1</span><h3>内部資金で支払える</h3><p><strong>追加調達の可能性は低めです。</strong>営業CFの下振れ、予算超過、最低現金の置き方を確認します。</p></article>
-        <article class="case"><span class="case-no">CASE 2</span><h3>内部資金では不足するが融資枠内</h3><p><strong>借入増加の可能性があります。</strong>融資枠の利用条件、期限、借入後のレバレッジを確認します。</p></article>
-        <article class="case"><span class="case-no">CASE 3</span><h3>融資枠を使っても不足する</h3><p><strong>新規借入、社債、増資、資産売却、投資縮小の検討が必要です。</strong>会社の優先順位を確認します。</p></article>
+
+    <section id="signals">
+      <div class="section-head"><span class="no">5</span><div><h2>貸借対照表の変化から調達方向を読む</h2><p class="intro">設備投資との因果関係は断定せず、投資発表後の負債と流動性の変化を時系列で照合します。</p></div></div>
+      <div class="signals">
+        <article class="signal"><b>現金が減少する</b><p>手元資金を先に使っている可能性があります。営業CFの悪化や株主還元による減少も確認します。</p></article>
+        <article class="signal"><b>CPと短期借入が増える</b><p>建設期間のつなぎ資金を調達している可能性があります。長期資金への借換えが次の論点です。</p></article>
+        <article class="signal"><b>長期借入と社債が増える</b><p>長期設備に合わせて資金を確保した可能性があります。返済期間と追加利息を確認します。</p></article>
+        <article class="signal"><b>リース債務が増える</b><p>設備の一部をリースで取得した可能性があります。有利子負債の定義をリース込みと除きに分けます。</p></article>
+        <article class="signal"><b>有価証券が減少する</b><p>資産売却を資金源にした可能性があります。短期運用資産か政策保有株式かを注記で確認します。</p></article>
+        <article class="signal"><b>株主還元を縮小する</b><p>内部資金を設備投資へ振り向けた可能性があります。中期経営計画の配分方針と照合します。</p></article>
+        <article class="signal"><b>増資や転換社債を発表する</b><p>借入余力や格付けを意識した可能性があります。希薄化と資金使途を確認します。</p></article>
+        <article class="signal"><b>投資額や時期を変更する</b><p>需要、工事費、資金余力の変化を反映した可能性があります。変更前後の差を確認します。</p></article>
       </div>
     </section>
+
     <section id="impact">
-      <div class="section-head"><span class="number">4</span><div><h2>財務諸表への影響を時間順に確認する</h2><p class="section-intro">設備投資は、建設中、支払い、稼働開始後で財務諸表への表れ方が変わります。</p></div></div>
+      <div class="section-head"><span class="no">6</span><div><h2>財務への負担が表れる時期を確認する</h2><p class="intro">現金流出、負債増加、減価償却、利益貢献は同時には発生しません。</p></div></div>
       <div class="timeline">
-        <article class="phase"><h3>発表と契約</h3><p>発表だけでは通常、貸借対照表は動きません。契約残額は注記や会社説明で確認します。</p></article>
-        <article class="phase"><h3>建設中</h3><p>工事の進行に応じて建設仮勘定が増えます。未払いなら設備未払金も増えます。</p></article>
-        <article class="phase"><h3>支払いと調達</h3><p>設備代金の支払いは投資CFを減らします。借入や社債の発行は財務CFと有利子負債を増やします。</p></article>
-        <article class="phase"><h3>稼働開始後</h3><p>建設仮勘定を機械装置などへ振り替え、減価償却を始めます。売上と利益の立ち上がりが遅ければ利益率が低下します。</p></article>
+        <article class="phase"><span class="phase-label">PHASE 1</span><h3>発表から着工</h3><p>投資額の規模を評価します。貸借対照表への影響はまだ小さい場合があります。</p></article>
+        <article class="phase"><span class="phase-label">PHASE 2</span><h3>建設期間</h3><p>建設仮勘定と投資CFの支出が増えます。現金減少や短期調達が表れやすい期間です。</p></article>
+        <article class="phase"><span class="phase-label">PHASE 3</span><h3>稼働開始</h3><p>減価償却費と利息が増えます。低稼働なら利益負担が先行します。</p></article>
+        <article class="phase"><span class="phase-label">PHASE 4</span><h3>安定稼働</h3><p>売上、EBITDA、営業CFが増え、投資後のレバレッジとROICを評価できます。</p></article>
       </div>
-      <div class="table-wrap" style="margin-top:24px"><table class="framework"><thead><tr><th>財務への影響</th><th>見る指標</th><th>比べる対象</th><th>確認する問い</th></tr></thead><tbody>
-        <tr><td>流動性</td><td><p>現預金、短期借入、流動比率、融資枠</p></td><td><p>投資前</p><p>支出集中年度</p></td><td><p>最低限の現金を残して支払えるか。</p></td></tr>
-        <tr><td>レバレッジ</td><td><p>純有利子負債／EBITDA、ネットD/E</p></td><td><p>投資前、借入後</p><p>会社目標、同業他社</p></td><td><p>利益貢献前の一時的な悪化を会社が許容できるか。</p></td></tr>
-        <tr><td>利益</td><td><p>減価償却費、支払利息、設備のEBITDA貢献</p></td><td><p>稼働初年度</p><p>安定稼働年度</p></td><td><p>利益貢献が減価償却費と利息を上回るのはいつか。</p></td></tr>
-        <tr><td>投資効率</td><td><p>ROIC、投下資本回転率、稼働率</p></td><td><p>会社の資本コスト</p><p>既存事業、同業設備</p></td><td><p>増えた利益が投資額に見合うか。</p></td></tr>
+      <div class="table-wrap" style="margin-top:20px"><table class="matrix"><thead><tr><th>見る指標</th><th>比較前</th><th>比較後</th><th>方向性の読み方</th></tr></thead><tbody>
+        <tr><td>純有利子負債／EBITDA</td><td><p>投資発表前</p></td><td><p>建設期間中と安定稼働後</p></td><td><p>利益貢献前に上昇し、安定稼働後に低下する経路を確認します。</p></td></tr>
+        <tr><td>営業CF－設備投資</td><td><p>通常年度</p></td><td><p>建設期間</p></td><td><p>赤字化が一時的か、通常投資を含めて長期化するかを見ます。</p></td></tr>
+        <tr><td>減価償却費／売上高</td><td><p>稼働前</p></td><td><p>稼働開始後</p></td><td><p>売上の立ち上がりより償却負担が先行していないかを見ます。</p></td></tr>
+        <tr><td>支払利息と利払い余力</td><td><p>調達前</p></td><td><p>借入と社債の増加後</p></td><td><p>金利負担が既存利益で十分吸収できるかを確認します。</p></td></tr>
       </tbody></table></div>
     </section>
-    <section id="sheet">
-      <div class="section-head"><span class="number">5</span><div><h2>一枚に整理する</h2><p class="section-intro">案件ごとに次の表を埋めます。金額を精密に予測するより、会社開示で判明している部分と不明な部分を分けることを優先します。</p></div></div>
-      <div class="sheet" role="table" aria-label="設備投資分析の記入用整理表">
-        <div class="sheet-row header" role="row"><div class="sheet-cell">論点</div><div class="sheet-cell">確認した事実</div><div class="sheet-cell">比較と判断</div></div>
-        <div class="sheet-row" role="row"><div class="sheet-cell">投資の確度</div><div class="sheet-cell"><span class="write-line">発表、契約、着工、稼働のどこか</span></div><div class="sheet-cell"><span class="write-line">前回計画から変更があるか</span></div></div>
-        <div class="sheet-row" role="row"><div class="sheet-cell">今後の支出</div><div class="sheet-cell"><span class="write-line">総額、支払済み、契約残、年度別支出</span></div><div class="sheet-cell"><span class="write-line">年間営業CFの何年分か</span></div></div>
-        <div class="sheet-row" role="row"><div class="sheet-cell">内部資金</div><div class="sheet-cell"><span class="write-line">現預金、営業CF、補助金、資産売却</span></div><div class="sheet-cell"><span class="write-line">最低現金を残した後に不足するか</span></div></div>
-        <div class="sheet-row" role="row"><div class="sheet-cell">競合する支出</div><div class="sheet-cell"><span class="write-line">債務返済、配当、自社株買い、運転資金</span></div><div class="sheet-cell"><span class="write-line">設備支出と同じ年度に集中するか</span></div></div>
-        <div class="sheet-row" role="row"><div class="sheet-cell">調達余力</div><div class="sheet-cell"><span class="write-line">未使用融資枠、借入余力、格付け方針</span></div><div class="sheet-cell"><span class="write-line">不足額を賄った後も目標内か</span></div></div>
-        <div class="sheet-row" role="row"><div class="sheet-cell">利益負担</div><div class="sheet-cell"><span class="write-line">減価償却、利息、稼働開始、利益貢献</span></div><div class="sheet-cell"><span class="write-line">費用先行期間は何年か</span></div></div>
-        <div class="sheet-row" role="row"><div class="sheet-cell">投資回収</div><div class="sheet-cell"><span class="write-line">能力増加、需要根拠、安定稼働時利益</span></div><div class="sheet-cell"><span class="write-line">ROICが資本コストを上回るか</span></div></div>
+
+    <section id="output">
+      <div class="section-head"><span class="no">7</span><div><h2>分析結果を七行にまとめる</h2><p class="intro">取得できない数値を埋めず、確認した事実と推定を分けます。</p></div></div>
+      <div class="output">
+        <div class="output-row"><b>投資規模</b><p>投資額は年間営業CFの［　］年分、通常の年間設備投資の［　］倍で、負担感は<em>［軽い／吸収可能／余裕が小さい／調達を要する］</em>。</p></div>
+        <div class="output-row"><b>投資進捗</b><p>建設仮勘定、固定資産取得支出、会社説明から、案件は<em>［初期／建設中／完成前後］</em>とみられる。</p></div>
+        <div class="output-row"><b>内部資金</b><p>現預金と投資期間中の営業CFに対し、設備投資、債務返済、株主還元を含む資金負担は<em>［十分小さい／おおむね均衡／上回る］</em>。</p></div>
+        <div class="output-row"><b>調達方向</b><p>負債と流動性の変化から、<em>［手元資金／短期借入／長期借入／社債／リース／資産売却／資本調達］</em>の利用が考えやすい。</p></div>
+        <div class="output-row"><b>財務負担</b><p>主な負担は<em>［現金減少／短期負債増加／レバレッジ上昇／利息増加／減価償却増加］</em>に表れる。</p></div>
+        <div class="output-row"><b>負担の時期</b><p>財務負担は<em>［建設期間／稼働初期］</em>に重く、安定稼働後のEBITDAと営業CFで回復できるかを確認する。</p></div>
+        <div class="output-row"><b>未開示事項</b><p>判断を変え得る未開示情報は、年度別支出、補助金の受領時期、調達方法、稼働後の収益計画である。</p></div>
       </div>
     </section>
+
     <section>
-      <div class="section-head"><span class="number">6</span><div><h2>追加確認が必要になる兆候</h2><p class="section-intro">次の兆候があれば、会社の資金調達方針と投資計画の変更余地を確認します。</p></div></div>
-      <div class="red-flags">
-        <div class="flag"><b>支出時期を開示していない</b>総額だけでは、資金不足が発生する年度を判断できません。</div><div class="flag"><b>建設仮勘定が急増している</b>工事進捗に対して支払いと借入が今後増える可能性があります。</div><div class="flag"><b>設備投資と債務返済が重なる</b>借換え需要を設備資金と一緒に見積もる必要があります。</div><div class="flag"><b>株主還元方針を維持している</b>配当や自社株買いを続けるなら、内部資金の設備投資への配分は減ります。</div><div class="flag"><b>稼働開始後の需要根拠が弱い</b>低稼働でも減価償却費と利息は発生します。</div><div class="flag"><b>調達方法を説明していない</b>資金不足が大きい場合、借入、社債、増資、資産売却の優先順位を確認します。</div>
+      <div class="section-head"><span class="no">8</span><div><h2>誤読を防ぐ</h2><p class="intro">外部分析では取得できる情報に限界があります。次の項目は別の意味を持つため、機械的に足し引きしません。</p></div></div>
+      <div class="guardrails">
+        <div class="guard"><b>売上債権</b>通常の営業に必要な運転資産です。全額を設備投資へ使える流動性とは扱いません。</div>
+        <div class="guard"><b>有価証券</b>短期運用資産と政策保有株式を区別します。換金可能性と売却方針を確認します。</div>
+        <div class="guard"><b>建設仮勘定</b>認識済みの工事原価です。今後の支払残額や資金源を表しません。</div>
+        <div class="guard"><b>負債残高</b>設備投資向けとは限りません。残高ではなく、投資発表前後の増減と会社説明を見ます。</div>
+        <div class="guard"><b>補助金</b>投資負担を減らしますが、支出と受領の時期がずれれば一時的な資金調達が必要です。</div>
+        <div class="guard"><b>契約済み額</b>開示されている場合だけ補助材料にします。取得できない企業では推定しません。</div>
       </div>
     </section>
-    <aside class="closing"><h2>最終的に答える問い</h2><p>この設備投資は、いつまでにいくら支払い、その期間の内部資金でどこまで賄え、残額を調達した後も財務目標を守れ、稼働後の利益が減価償却費と利息を上回るか。</p></aside>
+
+    <aside class="closing"><h2>最終的に判断すること</h2><p>この設備投資は会社の営業CFと通常投資に対してどの程度重く、建設期間中の現金と負債がどちらへ動き、稼働後の利益が財務負担を吸収できそうか。</p></aside>
   </main>
-  <footer>このフレームワークは設備投資発表の初期整理を目的とします。個別企業では採用会計基準、契約条件、業界特性を確認してください。</footer>
+  <footer>本フレームワークは公開情報による初期分析を目的とします。正確な案件別支出、資金使途、契約条件の推定は行いません。</footer>
 </div>
 </body>
 </html>
