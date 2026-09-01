@@ -6,14 +6,14 @@
   <meta name="description" content="@himagyoの週次市場観測に登場するオプション、ボラティリティ、相関、フロー関連指標の定義表">
   <title>@himagyo 市場観測の特殊指標</title>
   <style>
-    :root{--ink:#1d1b18;--muted:#706a62;--rule:#d8d1c7;--soft:#f7f3ed;--paper:#fffdf9;--back:#ebe6de;--rust:#a34832;--blue:#315d72;--green:#4e695b}
-    *{box-sizing:border-box}html{background:var(--back);color:var(--ink)}body{max-width:1440px;min-height:100vh;margin:0 auto;background:var(--paper);font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;font-size:16px;line-height:1.65}
-    header,main,footer{padding-inline:clamp(18px,4.8vw,70px)}header{padding-top:46px;padding-bottom:28px;border-top:7px solid var(--rust)}.home{display:inline-block;margin-bottom:18px;color:var(--muted);font-size:.75rem;font-weight:700;text-decoration:none}.home:hover{color:var(--rust);text-decoration:underline}.kicker{margin:0 0 8px;color:var(--rust);font-size:.75rem;font-weight:700;letter-spacing:.14em}h1{margin:0;font-size:clamp(2rem,5vw,3.55rem);line-height:1.14;letter-spacing:-.04em}.deck{max-width:58em;margin:18px 0 0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:1.02rem}.meta{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:20px;color:var(--muted);font-size:.78rem}
-    .controls{position:sticky;top:0;z-index:3;margin:0 calc(clamp(18px,4.8vw,70px)*-1);padding:14px clamp(18px,4.8vw,70px);border-block:1px solid var(--rule);background:rgba(255,253,249,.96);backdrop-filter:blur(8px)}.search{width:100%;padding:11px 13px;border:1px solid var(--rule);border-radius:0;background:#fff;color:var(--ink);font:inherit}.filters{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.filters button{padding:6px 10px;border:1px solid var(--rule);background:#fff;color:var(--muted);font:inherit;font-size:.76rem;cursor:pointer}.filters button.active{border-color:var(--rust);background:var(--rust);color:#fff}
-    main{padding-bottom:68px}.intro{margin:28px 0 18px;padding:14px 17px;border-left:3px solid var(--rust);background:var(--soft);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.9rem}.intro p{margin:0}.table-wrap{overflow-x:auto;border-top:2px solid var(--ink)}table{width:100%;min-width:1180px;border-collapse:collapse;font-size:.79rem;line-height:1.48}th,td{padding:11px 10px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}thead th{position:sticky;top:108px;z-index:2;border-bottom:2px solid var(--ink);background:var(--paper);font-size:.72rem}th:nth-child(1){width:11%}th:nth-child(2){width:10%}th:nth-child(3){width:24%}th:nth-child(4){width:24%}th:nth-child(5){width:20%}th:nth-child(6){width:11%}.code{font-weight:800;color:var(--rust);white-space:nowrap}.name{display:block;margin-top:2px;color:var(--muted);font-size:.67rem}.tag{display:inline-block;padding:2px 6px;border:1px solid currentColor;color:var(--blue);font-size:.65rem;white-space:nowrap}.tag.model{color:var(--rust)}.tag.flow{color:var(--green)}.caution{color:var(--muted)}a{color:var(--blue);text-underline-offset:2px}.empty{display:none;padding:30px 0;color:var(--muted)}
-    .sources{margin-top:42px}.sources h2{margin:0 0 12px;padding-top:10px;border-top:2px solid var(--ink);font-size:1.15rem}.sources ul{margin:0;padding-left:1.25em;font-size:.82rem}.sources li+li{margin-top:6px}footer{padding-top:24px;padding-bottom:38px;border-top:1px solid var(--ink);color:var(--muted);font-size:.72rem}
-    @media(max-width:720px){body{font-size:15px}header{padding-top:32px}.controls{position:static;margin-inline:0;padding-inline:0}.table-wrap{width:calc(100% + 18px);padding-right:18px}thead th{position:static}}
-    @media print{@page{size:A4 landscape;margin:8mm}html{background:#fff}body{max-width:none;font-size:8pt}header,main,footer{padding-inline:8mm}header{padding-top:5mm}.home,.controls,footer{display:none}.deck{font-size:8pt}.intro{margin-top:3mm}table{min-width:0;font-size:6.5pt}th,td{padding:3px 4px}thead th{position:static}}
+    :root{--ink:#181b1f;--muted:#666c73;--rule:#cfd4d8;--soft:#f3f5f6;--blue:#155d91;--red:#a64538;--paper:#fff}
+    *{box-sizing:border-box}html{background:#e9ecee;color:var(--ink)}body{max-width:1180px;min-height:100vh;margin:0 auto;background:var(--paper);font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;font-size:17px;line-height:1.82;letter-spacing:.015em}
+    header,main,footer{padding-left:clamp(22px,6vw,86px);padding-right:clamp(22px,6vw,86px)}header{padding-top:58px;padding-bottom:34px;border-top:7px solid var(--blue)}.home{display:inline-block;margin:0 0 20px;color:var(--muted);font:700 .74rem "Yu Gothic",sans-serif;letter-spacing:.08em;text-decoration:none}.home:hover{color:var(--blue);text-decoration:underline}.kicker,.meta,h1,h2,table,.controls,.intro,.sources{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif}.kicker{margin:0 0 12px;color:var(--blue);font-size:.77rem;font-weight:700;letter-spacing:.14em}h1{max-width:18em;margin:0;font-size:clamp(2rem,4.8vw,3.6rem);line-height:1.2;letter-spacing:-.035em}.deck{max-width:42em;margin:24px 0 0;font-size:1.13rem;line-height:1.75}.meta{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:26px;color:var(--muted);font-size:.78rem}
+    main{padding-bottom:80px}section{margin-top:72px}h2{margin:0 0 26px;padding-top:13px;border-top:2px solid var(--ink);font-size:1.46rem;line-height:1.45}.controls{margin:0 0 22px}.search{width:100%;padding:12px 14px;border:1px solid var(--rule);border-radius:0;background:#fff;color:var(--ink);font:inherit;font-size:.85rem}.filters{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.filters button{padding:6px 11px;border:1px solid var(--rule);background:#fff;color:var(--muted);font:inherit;font-size:.74rem;cursor:pointer}.filters button.active{border-color:var(--blue);background:var(--blue);color:#fff}
+    .intro{max-width:66em;margin:0 0 28px;padding:15px 17px;border-left:3px solid var(--blue);background:var(--soft);font-size:.79rem;line-height:1.75}.intro p{margin:0}.table-wrap{width:100%;margin:30px 0;overflow-x:auto}table{width:100%;min-width:1040px;border-collapse:collapse;font-size:.78rem;line-height:1.55;font-variant-numeric:tabular-nums}th,td{padding:13px 11px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}thead th{border-top:1px solid var(--ink);border-bottom:2px solid var(--ink);font-weight:700}th:nth-child(1){width:12%}th:nth-child(2){width:10%}th:nth-child(3){width:25%}th:nth-child(4){width:20%}th:nth-child(5){width:21%}th:nth-child(6){width:12%}.code{font-weight:800;color:var(--blue);white-space:nowrap}.name{display:block;margin-top:2px;color:var(--muted);font-size:.69rem;font-weight:400}.tag{display:inline-block;color:var(--blue);font-size:.68rem;font-weight:700;white-space:nowrap}.tag.model{color:var(--red)}.caution{color:var(--muted);font-size:.74rem}a{color:var(--blue);text-underline-offset:2px;overflow-wrap:anywhere}.empty{display:none;padding:30px 0;color:var(--muted)}
+    .sources{margin-top:72px}.sources h2{margin:0 0 20px;padding-top:13px;border-top:2px solid var(--ink);font-size:1.2rem}.sources ul{max-width:62em;margin:0;padding-left:1.6em;font-size:.76rem;line-height:1.7}.sources li{margin-bottom:9px}footer{padding-top:34px;padding-bottom:50px;border-top:1px solid var(--ink);color:var(--muted);font-size:.74rem}
+    @media(max-width:820px){body{font-size:16px}header{padding-top:38px}section,.sources{margin-top:56px}.table-wrap{width:calc(100% + 22px);margin-right:-22px;padding-right:22px}}
+    @media print{@page{size:A4 landscape;margin:8mm}html{background:#fff}body{max-width:none;font-size:8pt}header,main,footer{padding-inline:8mm}header{padding-top:5mm}.home,.controls,footer{display:none}section{margin-top:5mm}.deck{font-size:8pt}.intro{margin-top:3mm}table{min-width:0;font-size:6.4pt}th,td{padding:3px 4px}}
   </style>
 </head>
 <body>
@@ -25,12 +25,14 @@
     <div class="meta"><span>作成日 2026年9月1日</span><span>対象 オプション、ボラティリティ、相関、フロー、ポジショニング</span><span id="count">36指標</span></div>
   </header>
   <main>
-    <div class="controls">
-      <input class="search" id="search" type="search" placeholder="指標名、定義、読み方を検索" autocomplete="off">
-      <div class="filters" id="filters"><button class="active" data-filter="all">すべて</button><button data-filter="vol">ボラティリティ</button><button data-filter="surface">スキュー</button><button data-filter="dealer">ディーラー</button><button data-filter="corr">相関</button><button data-filter="flow">フロー</button><button data-filter="position">ポジション</button><button data-filter="credit">クレジット</button></div>
-    </div>
-    <aside class="intro"><p>定義欄は、入力データと集計対象を特定できる粒度で記載した。厳密な重み式は省略している。「提供元系列」は記事の画像からデータ提供元を確定できず、本文中で確認できた用途だけを記載した。この区分を公式定義として扱わない。</p></aside>
-    <div class="table-wrap">
+    <section>
+      <h2>指標の定義と記事内での読み方</h2>
+      <div class="controls">
+        <input class="search" id="search" type="search" placeholder="指標名、定義、読み方を検索" autocomplete="off">
+        <div class="filters" id="filters"><button class="active" data-filter="all">すべて</button><button data-filter="vol">ボラティリティ</button><button data-filter="surface">スキュー</button><button data-filter="dealer">ディーラー</button><button data-filter="corr">相関</button><button data-filter="flow">フロー</button><button data-filter="position">ポジション</button><button data-filter="credit">クレジット</button></div>
+      </div>
+      <aside class="intro"><p>定義欄は、入力データと集計対象を特定できる粒度で記載した。厳密な重み式は省略している。「提供元系列」は記事の画像からデータ提供元を確定できず、本文中で確認できた用途だけを記載した。この区分を公式定義として扱わない。</p></aside>
+      <div class="table-wrap">
       <table>
         <thead><tr><th>指標</th><th>種別</th><th>定義</th><th>何を測るか</th><th>基本的な読み方</th><th>注意点</th></tr></thead>
         <tbody id="rows">
@@ -79,7 +81,8 @@
         </tbody>
       </table>
       <p class="empty" id="empty">該当する指標はありません。</p>
-    </div>
+      </div>
+    </section>
     <section class="sources">
       <h2>定義の参照先</h2>
       <ul>
