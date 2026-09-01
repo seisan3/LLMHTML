@@ -3,410 +3,146 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="設備投資による資金不足、追加調達の可能性、財務への影響を確認する分析フォーム">
-  <title>設備投資と資金調達の分析シート</title>
+  <meta name="description" content="設備投資発表を資金調達と財務影響まで読むための分析フレームワーク">
+  <title>設備投資を読むための分析フレームワーク</title>
   <style>
-    :root {
-      --ink:#21201d; --muted:#6d6961; --paper:#fffdf8; --back:#eee9df;
-      --rule:#d7d0c3; --soft:#f5f0e7; --accent:#9d3f2d; --accent-soft:#f4ded6;
-      --good:#28644d; --good-soft:#dfece5; --warn:#936019; --warn-soft:#f5e8cb;
-      --bad:#9a342d; --bad-soft:#f3dcd8; --blue:#315f7c; --blue-soft:#dfeaf0;
-      --shadow:0 20px 60px rgba(62,49,29,.10);
-    }
+    :root { --ink:#211f1b;--muted:#6d685e;--paper:#fffdf8;--back:#ebe6dc;--rule:#d7cfc0;--soft:#f5f0e7;--accent:#a14330;--accent-soft:#f3dfd7;--navy:#274d62;--navy-soft:#e2eaed;--green:#3f6752;--green-soft:#e2ece5;--amber:#93601d;--amber-soft:#f3e7cb;--shadow:0 22px 70px rgba(67,52,29,.11); }
     * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; background:var(--back); }
-    body { margin:0; color:var(--ink); background:var(--back); font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif; line-height:1.65; }
-    button,input,select,textarea { font:inherit; }
-    button { cursor:pointer; }
-    .page { max-width:1220px; margin:0 auto; background:var(--paper); box-shadow:var(--shadow); }
-    .hero { padding:54px clamp(22px,6vw,78px) 42px; color:#fffaf2; background:#272723; }
-    .eyebrow { margin:0 0 10px; color:#dbb9a4; font-size:.76rem; font-weight:700; letter-spacing:.16em; }
-    h1 { max-width:850px; margin:0; font-family:"Yu Mincho","Hiragino Mincho ProN",serif; font-size:clamp(2rem,5.8vw,4.25rem); font-weight:600; line-height:1.16; letter-spacing:-.045em; }
-    .lead { max-width:760px; margin:20px 0 0; color:#d9d5cd; font-size:1rem; }
-    .hero-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
-    .button { min-height:42px; padding:9px 16px; border:1px solid #7c786f; color:#fff; background:transparent; }
-    .button:hover { border-color:#fff; }
-    .button.primary { border-color:#bf5c45; background:#a94430; }
-    .button.light { border-color:var(--rule); color:var(--ink); background:#fff; }
-    .button.light:hover { border-color:var(--accent); color:var(--accent); }
-    .toolbar-note { align-self:center; color:#aaa69e; font-size:.75rem; }
-    .layout { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr); align-items:start; }
-    .inputs { padding:42px clamp(22px,4vw,54px) 70px; border-right:1px solid var(--rule); }
-    .results { position:sticky; top:0; max-height:100vh; overflow:auto; padding:42px clamp(22px,4vw,48px) 70px; background:#f7f3eb; }
-    .section { margin-bottom:42px; }
-    .section-head { display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:17px; padding-bottom:10px; border-bottom:1px solid var(--rule); }
-    h2 { margin:0; font-family:"Yu Mincho","Hiragino Mincho ProN",serif; font-size:1.35rem; font-weight:600; line-height:1.35; }
-    .step { color:var(--accent); font-size:.72rem; font-weight:700; letter-spacing:.11em; white-space:nowrap; }
-    .section-note { margin:-7px 0 18px; color:var(--muted); font-family:"Yu Mincho","Hiragino Mincho ProN",serif; font-size:.88rem; }
-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
-    .field.full { grid-column:1 / -1; }
-    label { display:block; margin-bottom:6px; font-size:.78rem; font-weight:700; }
-    .unit-label { color:var(--muted); font-weight:400; }
-    input[type="number"], input[type="text"], input[type="date"], select, textarea {
-      width:100%; min-height:43px; padding:9px 11px; border:1px solid var(--rule); border-radius:0; outline:none; color:var(--ink); background:#fff;
-    }
-    textarea { min-height:78px; resize:vertical; }
-    input:focus,select:focus,textarea:focus { border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft); }
-    .help { display:block; margin-top:5px; color:var(--muted); font-size:.7rem; line-height:1.5; }
-    details { border-top:1px solid var(--rule); }
-    details:last-child { border-bottom:1px solid var(--rule); }
-    summary { padding:13px 0; font-size:.83rem; font-weight:700; cursor:pointer; }
-    details .details-body { padding:0 0 18px; }
-    .checks { display:grid; gap:9px; }
-    .check { display:flex; gap:9px; align-items:flex-start; padding:9px 10px; background:var(--soft); }
-    .check input { flex:0 0 auto; width:16px; height:16px; margin-top:4px; accent-color:var(--accent); }
-    .check label { margin:0; font-weight:500; line-height:1.5; }
-    .status-card { margin-bottom:20px; padding:22px; border-left:5px solid var(--blue); background:var(--blue-soft); }
-    .status-card.good { border-color:var(--good); background:var(--good-soft); }
-    .status-card.warn { border-color:var(--warn); background:var(--warn-soft); }
-    .status-card.bad { border-color:var(--bad); background:var(--bad-soft); }
-    .status-kicker { margin:0 0 3px; color:var(--muted); font-size:.7rem; font-weight:700; letter-spacing:.08em; }
-    .status-title { margin:0; font-size:1.3rem; line-height:1.35; }
-    .status-copy { margin:7px 0 0; font-family:"Yu Mincho","Hiragino Mincho ProN",serif; font-size:.88rem; }
-    .metrics { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; margin-bottom:24px; background:var(--rule); border:1px solid var(--rule); }
-    .metric { min-height:104px; padding:15px; background:var(--paper); }
-    .metric.wide { grid-column:1 / -1; }
-    .metric-label { color:var(--muted); font-size:.7rem; line-height:1.4; }
-    .metric-value { margin-top:5px; font-family:Georgia,"Times New Roman",serif; font-size:1.55rem; font-variant-numeric:tabular-nums; line-height:1.2; }
-    .metric-sub { margin-top:5px; color:var(--muted); font-size:.66rem; line-height:1.4; }
-    .result-section { margin-top:28px; }
-    .result-section h3 { margin:0 0 11px; font-size:.9rem; }
-    .bar-row { margin-bottom:15px; }
-    .bar-label { display:flex; justify-content:space-between; gap:12px; margin-bottom:5px; font-size:.72rem; }
-    .bar { height:9px; overflow:hidden; background:#ddd6ca; }
-    .bar > span { display:block; width:0; height:100%; background:var(--accent); transition:width .25s ease; }
-    .findings { display:grid; gap:8px; padding:0; list-style:none; }
-    .finding { padding:11px 12px 11px 34px; position:relative; background:#fff; font-size:.78rem; }
-    .finding::before { position:absolute; left:12px; top:11px; content:"○"; color:var(--blue); font-weight:700; }
-    .finding.bad::before { content:"!"; color:var(--bad); }
-    .finding.warn::before { content:"△"; color:var(--warn); }
-    .finding.good::before { content:"✓"; color:var(--good); }
-    .empty-result { color:var(--muted); font-family:"Yu Mincho","Hiragino Mincho ProN",serif; font-size:.82rem; }
-    .formula { margin-top:25px; padding:15px; border:1px solid var(--rule); background:rgba(255,255,255,.55); color:var(--muted); font-size:.7rem; }
-    .formula code { color:var(--ink); font-family:Consolas,monospace; }
-    .guide { padding:54px clamp(22px,6vw,78px) 68px; border-top:1px solid var(--rule); }
-    .guide-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:24px; }
-    .guide article { padding-top:14px; border-top:3px solid var(--ink); }
-    .guide h3 { margin:0 0 8px; font-size:.92rem; }
-    .guide p,.guide li { color:var(--muted); font-family:"Yu Mincho","Hiragino Mincho ProN",serif; font-size:.82rem; }
-    .guide ul { margin:8px 0 0; padding-left:1.2em; }
-    .sources { margin-top:38px; padding-top:20px; border-top:1px solid var(--rule); }
-    .sources a { color:var(--blue); }
-    footer { padding:22px clamp(22px,6vw,78px); color:#bdb8af; background:#272723; font-size:.7rem; }
-    .noscript { margin:0; padding:16px; color:#fff; background:var(--bad); text-align:center; }
-    @media (max-width:900px) {
-      .layout { grid-template-columns:1fr; }
-      .inputs { border-right:0; }
-      .results { position:static; max-height:none; border-top:1px solid var(--rule); }
-      .guide-grid { grid-template-columns:1fr; }
-    }
-    @media (max-width:560px) {
-      .hero { padding-top:38px; }
-      .grid,.metrics { grid-template-columns:1fr; }
-      .field.full,.metric.wide { grid-column:auto; }
-      .inputs,.results { padding-left:18px; padding-right:18px; }
-    }
-    @media print {
-      html,body,.page { background:#fff; box-shadow:none; }
-      .hero-actions,.help,.guide { display:none !important; }
-      .hero { padding:24px 30px; color:#111; background:#fff; border-bottom:2px solid #111; }
-      .eyebrow,.lead { color:#555; }
-      .layout { display:grid; grid-template-columns:1fr 1fr; }
-      .inputs,.results { padding:24px; }
-      .results { position:static; max-height:none; }
-      input,select,textarea { border-color:#aaa; }
-    }
+    html { background:var(--back);scroll-behavior:smooth; }
+    body { margin:0;color:var(--ink);background:var(--back);font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.7; }
+    .page { max-width:1180px;margin:0 auto;background:var(--paper);box-shadow:var(--shadow); }
+    header { padding:58px clamp(22px,7vw,88px) 46px;color:#fffaf2;background:#292823; }
+    .eyebrow { margin:0 0 10px;color:#d7b39f;font-size:.75rem;font-weight:700;letter-spacing:.15em; }
+    h1 { max-width:900px;margin:0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(2.1rem,5.8vw,4.35rem);font-weight:600;line-height:1.15;letter-spacing:-.045em; }
+    .lead { max-width:780px;margin:21px 0 0;color:#d7d2c8;font-size:1rem; }
+    .principle { display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;margin-top:29px;padding-top:22px;border-top:1px solid #58564f; }
+    .principle b { color:#dda68f;font-size:.72rem;letter-spacing:.1em;white-space:nowrap; }
+    .principle p { margin:0;color:#f5efe4;font-family:"Yu Mincho","Hiragino Mincho ProN",serif; }
+    nav { position:sticky;top:0;z-index:3;display:flex;gap:4px;overflow-x:auto;padding:10px clamp(18px,5vw,60px);border-bottom:1px solid var(--rule);background:rgba(255,253,248,.96);backdrop-filter:blur(8px); }
+    nav a { flex:0 0 auto;padding:7px 10px;color:var(--muted);font-size:.72rem;font-weight:700;text-decoration:none; }
+    nav a:hover { color:var(--accent); }
+    main { padding:48px clamp(18px,6vw,72px) 72px; }
+    section { margin-bottom:58px;scroll-margin-top:70px; }
+    .section-head { display:grid;grid-template-columns:54px 1fr;gap:17px;align-items:start;margin-bottom:23px; }
+    .number { display:grid;place-items:center;width:46px;height:46px;color:#fff;background:var(--accent);font-family:Georgia,serif;font-size:1.25rem; }
+    h2 { margin:0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(1.35rem,3vw,2rem);font-weight:600;line-height:1.35; }
+    .section-intro { max-width:780px;margin:5px 0 0;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.9rem; }
+    .distinction { display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
+    .term { padding:20px;border-top:4px solid var(--navy);background:var(--navy-soft); }
+    .term:nth-child(2) { border-color:var(--accent);background:var(--accent-soft); }
+    .term:nth-child(3) { border-color:var(--green);background:var(--green-soft); }
+    .term h3 { margin:0 0 8px;font-size:.9rem; }
+    .term p { margin:0;color:#514e48;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.82rem; }
+    .table-wrap { overflow-x:auto; }
+    .framework { width:100%;border-collapse:collapse;table-layout:fixed; }
+    .framework th { padding:10px 12px;color:#fff;background:#353530;font-size:.72rem;text-align:left;vertical-align:bottom; }
+    .framework td { padding:15px 12px;border-bottom:1px solid var(--rule);vertical-align:top;font-size:.79rem; }
+    .framework tbody tr:nth-child(even) td { background:var(--soft); }
+    .framework th:nth-child(1) { width:19%; }.framework th:nth-child(2),.framework th:nth-child(3),.framework th:nth-child(4) { width:27%; }
+    .framework td:first-child { font-weight:700; }
+    .framework p { margin:0; }.framework p+p { margin-top:7px; }
+    .tag { display:inline-block;margin-bottom:5px;padding:2px 6px;color:var(--accent);border:1px solid #d8a99e;background:#fff8f4;font-size:.63rem;font-weight:700; }
+    .equation { margin:22px 0 0;padding:20px 22px;border-left:5px solid var(--accent);background:var(--soft); }
+    .equation b { display:block;margin-bottom:5px;font-size:.72rem; }.equation p { margin:0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif; }
+    .judgement { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule); }
+    .case { padding:22px;background:#fff; }.case .case-no { color:var(--accent);font:700 .7rem Georgia,serif; }.case h3 { margin:5px 0 9px;font-size:.95rem; }.case p { margin:0;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.81rem; }.case strong { color:var(--ink); }
+    .timeline { display:grid;grid-template-columns:repeat(4,1fr);margin-top:12px; }
+    .phase { position:relative;padding:18px 16px 18px 20px;border-top:3px solid var(--ink); }.phase:not(:last-child)::after { position:absolute;top:-7px;right:-4px;width:9px;height:9px;content:"";background:var(--ink);transform:rotate(45deg); }.phase h3 { margin:0 0 8px;font-size:.83rem; }.phase p { margin:0;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:.77rem; }
+    .sheet { border:1px solid var(--rule); }.sheet-row { display:grid;grid-template-columns:22% 1fr 1fr;border-bottom:1px solid var(--rule); }.sheet-row:last-child { border-bottom:0; }.sheet-cell { min-height:62px;padding:13px 14px;border-right:1px solid var(--rule);font-size:.78rem; }.sheet-cell:last-child { border-right:0; }.sheet-row.header .sheet-cell { min-height:auto;color:#fff;background:#353530;font-weight:700; }.sheet-row:not(.header) .sheet-cell:first-child { background:var(--soft);font-weight:700; }.write-line { display:block;min-height:25px;border-bottom:1px dotted #aaa298;color:var(--muted);font-family:"Yu Mincho","Hiragino Mincho ProN",serif; }
+    .red-flags { display:grid;grid-template-columns:1fr 1fr;gap:12px; }.flag { padding:15px 17px;border-left:4px solid var(--amber);background:var(--amber-soft);font-size:.8rem; }.flag b { display:block;margin-bottom:3px; }
+    .closing { padding:26px;color:#f9f4eb;background:#2d2d29; }.closing h2 { font-size:1.25rem; }.closing p { max-width:850px;margin:9px 0 0;color:#d8d3ca;font-family:"Yu Mincho","Hiragino Mincho ProN",serif; }
+    footer { padding:22px clamp(18px,6vw,72px);color:#aaa59b;background:#22221f;font-size:.7rem; }
+    @media(max-width:800px){ .distinction,.judgement,.timeline{grid-template-columns:1fr}.phase:not(:last-child)::after{display:none}.framework{min-width:720px}.sheet-row{grid-template-columns:1fr}.sheet-cell{border-right:0;border-bottom:1px solid var(--rule)}.sheet-cell:last-child{border-bottom:0}.sheet-row.header{display:none}.red-flags{grid-template-columns:1fr} }
+    @media print { html,body,.page{background:#fff;box-shadow:none}header{padding:28px 34px;color:#111;background:#fff;border-bottom:2px solid #111}.eyebrow,.lead,.principle p{color:#444}.principle{border-color:#aaa}nav{display:none}main{padding:28px 34px}section{break-inside:avoid;margin-bottom:34px} }
   </style>
 </head>
 <body>
-<noscript><p class="noscript">計算にはJavaScriptを有効にしてください。</p></noscript>
 <div class="page">
-  <header class="hero">
-    <p class="eyebrow">CAPEX FUNDING CHECK</p>
-    <h1>設備投資と資金調達の分析シート</h1>
-    <p class="lead">公表済みの設備投資計画を、支出予定、内部資金、既存の融資枠に分けて入力します。追加調達の必要額と、全額を借入で賄った場合の財務負担を概算します。</p>
-    <div class="hero-actions">
-      <button class="button primary" id="exampleButton" type="button">記入例を入れる</button>
-      <button class="button" id="saveButton" type="button">入力を保存</button>
-      <button class="button" id="printButton" type="button">印刷する</button>
-      <button class="button" id="resetButton" type="button">入力を消去</button>
-      <span class="toolbar-note" id="saveStatus" aria-live="polite">入力内容は外部へ送信されません。</span>
-    </div>
+  <header>
+    <p class="eyebrow">CAPEX ANALYSIS FRAMEWORK</p>
+    <h1>設備投資を読むための分析フレームワーク</h1>
+    <p class="lead">設備投資の発表から、追加調達の可能性と財務への影響までを確認する順序です。各項目は会社開示、過去実績、同業他社と比較します。</p>
+    <div class="principle"><b>読む順序</b><p>投資額の大きさだけで判断せず、支出の確度と時期、内部資金、調達余力、稼働後の利益貢献を順番に確認します。</p></div>
   </header>
-
-  <main class="layout">
-    <form class="inputs" id="analysisForm" autocomplete="off">
-      <section class="section">
-        <div class="section-head"><h2>案件を特定する</h2><span class="step">STEP 01</span></div>
-        <div class="grid">
-          <div class="field"><label for="company">会社名</label><input id="company" name="company" type="text" placeholder="例：〇〇株式会社"></div>
-          <div class="field"><label for="project">案件名</label><input id="project" name="project" type="text" placeholder="例：新工場建設"></div>
-          <div class="field"><label for="asOf">基準日</label><input id="asOf" name="asOf" type="date"></div>
-          <div class="field"><label for="stage">進捗段階</label><select id="stage" name="stage"><option value="announcement">計画発表</option><option value="contract">契約済み</option><option value="construction">建設中</option><option value="operation">稼働開始</option></select></div>
-          <div class="field full"><label for="memo">前提と情報源</label><textarea id="memo" name="memo" placeholder="会社資料名、対象期間、通貨換算の前提を記録"></textarea></div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>設備投資の残額を分ける</h2><span class="step">STEP 02</span></div>
-        <p class="section-note">金額の単位は自由です。全項目を同じ単位で入力してください。</p>
-        <div class="grid">
-          <div class="field"><label for="totalCapex">公表した投資総額 <span class="unit-label">［金額］</span></label><input id="totalCapex" name="totalCapex" type="number" min="0" step="any" inputmode="decimal"><span class="help">計画総額。土地取得費や運転資金を含むか確認します。</span></div>
-          <div class="field"><label for="futureCapex">今後の現金支出予定 <span class="unit-label">［金額］</span></label><input id="futureCapex" name="futureCapex" type="number" min="0" step="any" inputmode="decimal" required><span class="help">分析期間内に支払う額を直接入力します。</span></div>
-          <div class="field"><label for="paidCapex">支払済みの累計額 <span class="unit-label">［金額］</span></label><input id="paidCapex" name="paidCapex" type="number" min="0" step="any" inputmode="decimal"><span class="help">既に現金が流出した分です。</span></div>
-          <div class="field"><label for="cip">建設仮勘定 <span class="unit-label">［金額］</span></label><input id="cip" name="cip" type="number" min="0" step="any" inputmode="decimal"><span class="help">認識済みの工事原価であり、契約残額ではありません。</span></div>
-          <div class="field"><label for="recognizedUnpaid">認識済み未払額 <span class="unit-label">［金額］</span></label><input id="recognizedUnpaid" name="recognizedUnpaid" type="number" min="0" step="any" inputmode="decimal"><span class="help">工事未払金や設備未払金として負債に載った額です。</span></div>
-          <div class="field"><label for="unrecognizedCommitment">未認識の契約残額 <span class="unit-label">［金額］</span></label><input id="unrecognizedCommitment" name="unrecognizedCommitment" type="number" min="0" step="any" inputmode="decimal"><span class="help">契約済みでも、資産と負債にまだ計上していない分です。</span></div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>分析期間の資金源を入れる</h2><span class="step">STEP 03</span></div>
-        <div class="grid">
-          <div class="field"><label for="cash">現在の現預金 <span class="unit-label">［金額］</span></label><input id="cash" name="cash" type="number" min="0" step="any" inputmode="decimal" required></div>
-          <div class="field"><label for="minimumCash">維持したい最低現金 <span class="unit-label">［金額］</span></label><input id="minimumCash" name="minimumCash" type="number" min="0" step="any" inputmode="decimal"><span class="help">日常運転に残す現金です。ゼロ置きは資金余力を過大評価します。</span></div>
-          <div class="field"><label for="operatingCF">予想営業CF <span class="unit-label">［金額］</span></label><input id="operatingCF" name="operatingCF" type="number" step="any" inputmode="decimal" required><span class="help">設備が稼働するまでの分析期間に合わせます。</span></div>
-          <div class="field"><label for="otherInflows">資産売却、補助金、出資受入 <span class="unit-label">［金額］</span></label><input id="otherInflows" name="otherInflows" type="number" min="0" step="any" inputmode="decimal"></div>
-          <div class="field"><label for="unusedFacilities">未使用の確約融資枠 <span class="unit-label">［金額］</span></label><input id="unusedFacilities" name="unusedFacilities" type="number" min="0" step="any" inputmode="decimal"><span class="help">コミットメントラインなど、利用条件を満たす枠に限ります。</span></div>
-          <div class="field"><label for="analysisMonths">分析期間 <span class="unit-label">［月］</span></label><input id="analysisMonths" name="analysisMonths" type="number" min="1" step="1" inputmode="numeric" value="24"></div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>ほかの資金流出を入れる</h2><span class="step">STEP 04</span></div>
-        <div class="grid">
-          <div class="field"><label for="debtMaturities">借入金と社債の返済 <span class="unit-label">［金額］</span></label><input id="debtMaturities" name="debtMaturities" type="number" min="0" step="any" inputmode="decimal"></div>
-          <div class="field"><label for="shareholderReturns">配当と自社株買い <span class="unit-label">［金額］</span></label><input id="shareholderReturns" name="shareholderReturns" type="number" min="0" step="any" inputmode="decimal"></div>
-          <div class="field"><label for="workingCapital">運転資金の増加 <span class="unit-label">［金額］</span></label><input id="workingCapital" name="workingCapital" type="number" step="any" inputmode="decimal"><span class="help">在庫と売上債権の増加は正、運転資金の減少は負で入力します。</span></div>
-          <div class="field"><label for="otherOutflows">その他の確定的な支出 <span class="unit-label">［金額］</span></label><input id="otherOutflows" name="otherOutflows" type="number" min="0" step="any" inputmode="decimal"></div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>借入後の負担を試算する</h2><span class="step">STEP 05</span></div>
-        <p class="section-note">計算上の資金不足をすべて有利子負債で賄う仮定です。</p>
-        <div class="grid">
-          <div class="field"><label for="debt">現在の有利子負債 <span class="unit-label">［金額］</span></label><input id="debt" name="debt" type="number" min="0" step="any" inputmode="decimal"></div>
-          <div class="field"><label for="ebitda">現在の年間EBITDA <span class="unit-label">［金額］</span></label><input id="ebitda" name="ebitda" type="number" step="any" inputmode="decimal"></div>
-          <div class="field"><label for="operatingProfit">現在の年間営業利益 <span class="unit-label">［金額］</span></label><input id="operatingProfit" name="operatingProfit" type="number" step="any" inputmode="decimal"></div>
-          <div class="field"><label for="interestExpense">現在の年間支払利息 <span class="unit-label">［金額］</span></label><input id="interestExpense" name="interestExpense" type="number" min="0" step="any" inputmode="decimal"></div>
-          <div class="field"><label for="newDebtRate">追加借入の想定金利 <span class="unit-label">［％］</span></label><input id="newDebtRate" name="newDebtRate" type="number" min="0" step="any" inputmode="decimal" value="2"></div>
-          <div class="field"><label for="projectEbitda">設備の年間EBITDA貢献 <span class="unit-label">［金額］</span></label><input id="projectEbitda" name="projectEbitda" type="number" step="any" inputmode="decimal"><span class="help">安定稼働時の会社計画がなければ空欄にします。</span></div>
-          <div class="field"><label for="depreciableAmount">償却対象額 <span class="unit-label">［金額］</span></label><input id="depreciableAmount" name="depreciableAmount" type="number" min="0" step="any" inputmode="decimal"></div>
-          <div class="field"><label for="usefulLife">平均耐用年数 <span class="unit-label">［年］</span></label><input id="usefulLife" name="usefulLife" type="number" min="0" step="any" inputmode="decimal"></div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>数値に出にくい条件を確認する</h2><span class="step">STEP 06</span></div>
-        <div class="checks">
-          <div class="check"><input id="noFundingPlan" name="noFundingPlan" type="checkbox"><label for="noFundingPlan">会社が具体的な資金調達方法を説明していない。</label></div>
-          <div class="check"><input id="costOverrun" name="costOverrun" type="checkbox"><label for="costOverrun">建設費、資材費、為替による予算超過の可能性がある。</label></div>
-          <div class="check"><input id="rampDelay" name="rampDelay" type="checkbox"><label for="rampDelay">稼働開始や利益貢献が遅れる可能性がある。</label></div>
-          <div class="check"><input id="covenantRisk" name="covenantRisk" type="checkbox"><label for="covenantRisk">財務制限条項または格付け目標への余裕が小さい。</label></div>
-          <div class="check"><input id="refinancingRisk" name="refinancingRisk" type="checkbox"><label for="refinancingRisk">設備投資期間中に既存債務の返済が集中する。</label></div>
-          <div class="check"><input id="demandRisk" name="demandRisk" type="checkbox"><label for="demandRisk">増設後の需要、稼働率、販売価格の根拠が弱い。</label></div>
-          <div class="check"><input id="flexibleCapex" name="flexibleCapex" type="checkbox"><label for="flexibleCapex">投資を延期、縮小、分割できると会社が説明している。</label></div>
-        </div>
-      </section>
-    </form>
-
-    <aside class="results" aria-live="polite">
-      <div class="section-head"><h2>判定</h2><span class="step">LIVE RESULT</span></div>
-      <div class="status-card" id="statusCard">
-        <p class="status-kicker">追加調達の可能性</p>
-        <h3 class="status-title" id="statusTitle">主要3項目を入力してください</h3>
-        <p class="status-copy" id="statusCopy">今後の現金支出、現預金、予想営業CFを入れると判定します。</p>
+  <nav aria-label="ページ内目次"><a href="#amounts">金額の区別</a><a href="#plan">投資計画</a><a href="#funding">資金需要</a><a href="#finance">調達余力</a><a href="#impact">財務影響</a><a href="#sheet">一枚の整理表</a></nav>
+  <main>
+    <section id="amounts">
+      <div class="section-head"><span class="number">0</span><div><h2>最初に三つの金額を区別する</h2><p class="section-intro">発表額、貸借対照表の計上額、将来の支払額は一致しません。ここを分けると資金需要を二重計上しにくくなります。</p></div></div>
+      <div class="distinction">
+        <article class="term"><h3>公表した投資総額</h3><p>計画全体の予算です。未契約分を含む場合があり、金額や実施時期を会社が変更できます。</p></article>
+        <article class="term"><h3>建設仮勘定と設備未払金</h3><p>期末までに工事や納入が進み、資産または負債として認識した金額です。建設仮勘定は契約残額を表しません。</p></article>
+        <article class="term"><h3>今後の現金支出</h3><p>認識済み未払額と、未認識の契約残額、未契約の計画額のうち実行する部分です。追加調達の検討ではこの支払時期を使います。</p></article>
       </div>
-
-      <div class="metrics">
-        <div class="metric wide"><div class="metric-label">融資枠を使う前の資金不足</div><div class="metric-value" id="grossGap">未算定</div><div class="metric-sub">不足額が正、余剰額が負で表示されます。</div></div>
-        <div class="metric"><div class="metric-label">確約融資枠を使った後の未充足額</div><div class="metric-value" id="uncoveredGap">未算定</div></div>
-        <div class="metric"><div class="metric-label">全額借入時の有利子負債</div><div class="metric-value" id="proFormaDebt">未算定</div></div>
-        <div class="metric"><div class="metric-label">全額借入時の純有利子負債／EBITDA</div><div class="metric-value" id="netDebtEbitda">未算定</div></div>
-        <div class="metric"><div class="metric-label">借入後の営業利益／支払利息</div><div class="metric-value" id="interestCover">未算定</div></div>
-        <div class="metric"><div class="metric-label">年間の追加支払利息</div><div class="metric-value" id="incrementalInterest">未算定</div></div>
-        <div class="metric"><div class="metric-label">概算の年間減価償却費</div><div class="metric-value" id="depreciation">未算定</div></div>
+    </section>
+    <section id="plan">
+      <div class="section-head"><span class="number">1</span><div><h2>投資計画の確度と規模を確認する</h2><p class="section-intro">設備投資がどこまで確定し、会社の現在の事業規模に対してどれほど大きいかを見ます。</p></div></div>
+      <div class="table-wrap"><table class="framework"><thead><tr><th>見る項目</th><th>集める情報</th><th>比べる対象</th><th>読み方</th></tr></thead><tbody>
+        <tr><td><span class="tag">確度</span><p>進捗段階</p></td><td><p>取締役会決議、発注、着工、完成、稼働開始の各日付</p></td><td><p>前回発表と今回発表</p><p>計画と実績</p></td><td><p>発表だけなら変更余地が大きく、契約と着工が進むほど支出を避けにくくなります。</p></td></tr>
+        <tr><td><span class="tag">規模</span><p>投資総額</p></td><td><p>土地、建物、装置、立ち上げ費用、運転資金を含む範囲</p></td><td><p>年間設備投資</p><p>売上高、総資産、EBITDA、時価総額</p></td><td><p>平年の設備投資や年間営業CFを大きく上回る案件は、複数年度の資金負担として扱います。</p></td></tr>
+        <tr><td><span class="tag">目的</span><p>維持か成長か</p></td><td><p>更新、能力増強、新製品、内製化、規制対応の別</p></td><td><p>既存能力と増設能力</p><p>現在の稼働率と受注</p></td><td><p>成長投資では需要根拠を確認します。維持投資では支出後も売上が増えない点を織り込みます。</p></td></tr>
+        <tr><td><span class="tag">時期</span><p>支出予定</p></td><td><p>年度別の支出額、支払条件、完成時期、量産開始時期</p></td><td><p>債務返済年度</p><p>営業CFの発生年度</p></td><td><p>総額よりも、支払いが集中する年度に資金不足が生じるかを確認します。</p></td></tr>
+      </tbody></table></div>
+    </section>
+    <section id="funding">
+      <div class="section-head"><span class="number">2</span><div><h2>設備投資期間の資金需要を確認する</h2><p class="section-intro">手元現金を全額使えるとは限りません。日常運転に残す現金と、設備投資以外の支出を含めて見ます。</p></div></div>
+      <div class="table-wrap"><table class="framework"><thead><tr><th>見る項目</th><th>集める情報</th><th>比べる対象</th><th>読み方</th></tr></thead><tbody>
+        <tr><td>内部資金</td><td><p>現預金、予想営業CF、資産売却、補助金</p></td><td><p>今後の設備支出</p><p>最低限維持する現金</p></td><td><p>現預金と営業CFで支払えても、必要な運転資金を失うなら外部調達を検討します。</p></td></tr>
+        <tr><td>競合する支出</td><td><p>債務返済、配当、自社株買い、M&amp;A、運転資金増加</p></td><td><p>設備投資の支払年度</p><p>過去の株主還元方針</p></td><td><p>設備投資と既存債務の返済が重なる年度は、借換えと設備資金の調達が同時に必要になります。</p></td></tr>
+        <tr><td>計画の柔軟性</td><td><p>延期、縮小、分割、共同出資が可能な範囲</p></td><td><p>契約済み額</p><p>キャンセル費用</p></td><td><p>未契約分が多ければ、会社は資金不足時に投資額を抑えられます。契約済み額が多ければ調達の必要性が高まります。</p></td></tr>
+      </tbody></table></div>
+      <div class="equation"><b>資金不足の概算</b><p>今後の設備支出＋債務返済＋株主還元＋運転資金増加＋維持する現金－現預金－営業CF－資産売却や補助金</p></div>
+    </section>
+    <section id="finance">
+      <div class="section-head"><span class="number">3</span><div><h2>追加調達の可能性と手段を確認する</h2><p class="section-intro">資金不足があっても、すぐに新規社債や増資へ進むとは限りません。既存の融資枠と財務方針を先に見ます。</p></div></div>
+      <div class="table-wrap"><table class="framework"><thead><tr><th>見る項目</th><th>集める情報</th><th>比べる対象</th><th>読み方</th></tr></thead><tbody>
+        <tr><td>利用可能な枠</td><td><p>コミットメントライン、当座貸越、未使用融資枠</p></td><td><p>資金不足額</p><p>枠の期限と利用条件</p></td><td><p>資金不足が既存枠に収まるなら、新たな資本市場調達を急ぐ可能性は下がります。ただし枠の利用も有利子負債を増やします。</p></td></tr>
+        <tr><td>借入余力</td><td><p>有利子負債、ネットD/E、純有利子負債／EBITDA、利払い余力</p></td><td><p>会社目標</p><p>過去レンジ、同業他社、格付け基準</p></td><td><p>現在の数値だけでなく、必要額を借りた後の指標を比較します。</p></td></tr>
+        <tr><td>会社の選択肢</td><td><p>借入、社債、リース、増資、共同出資、資産売却、補助金</p></td><td><p>調達期間と設備の使用期間</p><p>金利、希薄化、担保</p></td><td><p>長期設備を短期借入だけで賄う場合は借換え負担が残ります。増資なら利払いは増えませんが、株式価値が希薄化します。</p></td></tr>
+        <tr><td>会社の説明</td><td><p>資金調達方針、格付け維持方針、株主還元方針</p></td><td><p>必要資金と説明済みの調達額</p></td><td><p>必要額が大きいのに調達方法を説明していない場合は、次回決算で確認する論点になります。</p></td></tr>
+      </tbody></table></div>
+      <div class="judgement">
+        <article class="case"><span class="case-no">CASE 1</span><h3>内部資金で支払える</h3><p><strong>追加調達の可能性は低めです。</strong>営業CFの下振れ、予算超過、最低現金の置き方を確認します。</p></article>
+        <article class="case"><span class="case-no">CASE 2</span><h3>内部資金では不足するが融資枠内</h3><p><strong>借入増加の可能性があります。</strong>融資枠の利用条件、期限、借入後のレバレッジを確認します。</p></article>
+        <article class="case"><span class="case-no">CASE 3</span><h3>融資枠を使っても不足する</h3><p><strong>新規借入、社債、増資、資産売却、投資縮小の検討が必要です。</strong>会社の優先順位を確認します。</p></article>
       </div>
-
-      <div class="result-section">
-        <h3>資金の構成</h3>
-        <div class="bar-row"><div class="bar-label"><span>内部資金で賄える割合</span><strong id="internalRatioLabel">未算定</strong></div><div class="bar"><span id="internalRatioBar"></span></div></div>
-        <div class="bar-row"><div class="bar-label"><span>設備投資の支払進捗</span><strong id="paidRatioLabel">未算定</strong></div><div class="bar"><span id="paidRatioBar"></span></div></div>
+    </section>
+    <section id="impact">
+      <div class="section-head"><span class="number">4</span><div><h2>財務諸表への影響を時間順に確認する</h2><p class="section-intro">設備投資は、建設中、支払い、稼働開始後で財務諸表への表れ方が変わります。</p></div></div>
+      <div class="timeline">
+        <article class="phase"><h3>発表と契約</h3><p>発表だけでは通常、貸借対照表は動きません。契約残額は注記や会社説明で確認します。</p></article>
+        <article class="phase"><h3>建設中</h3><p>工事の進行に応じて建設仮勘定が増えます。未払いなら設備未払金も増えます。</p></article>
+        <article class="phase"><h3>支払いと調達</h3><p>設備代金の支払いは投資CFを減らします。借入や社債の発行は財務CFと有利子負債を増やします。</p></article>
+        <article class="phase"><h3>稼働開始後</h3><p>建設仮勘定を機械装置などへ振り替え、減価償却を始めます。売上と利益の立ち上がりが遅ければ利益率が低下します。</p></article>
       </div>
-
-      <div class="result-section">
-        <h3>この案件で確認すること</h3>
-        <ul class="findings" id="findings"><li class="empty-result">入力に応じて確認事項を表示します。</li></ul>
+      <div class="table-wrap" style="margin-top:24px"><table class="framework"><thead><tr><th>財務への影響</th><th>見る指標</th><th>比べる対象</th><th>確認する問い</th></tr></thead><tbody>
+        <tr><td>流動性</td><td><p>現預金、短期借入、流動比率、融資枠</p></td><td><p>投資前</p><p>支出集中年度</p></td><td><p>最低限の現金を残して支払えるか。</p></td></tr>
+        <tr><td>レバレッジ</td><td><p>純有利子負債／EBITDA、ネットD/E</p></td><td><p>投資前、借入後</p><p>会社目標、同業他社</p></td><td><p>利益貢献前の一時的な悪化を会社が許容できるか。</p></td></tr>
+        <tr><td>利益</td><td><p>減価償却費、支払利息、設備のEBITDA貢献</p></td><td><p>稼働初年度</p><p>安定稼働年度</p></td><td><p>利益貢献が減価償却費と利息を上回るのはいつか。</p></td></tr>
+        <tr><td>投資効率</td><td><p>ROIC、投下資本回転率、稼働率</p></td><td><p>会社の資本コスト</p><p>既存事業、同業設備</p></td><td><p>増えた利益が投資額に見合うか。</p></td></tr>
+      </tbody></table></div>
+    </section>
+    <section id="sheet">
+      <div class="section-head"><span class="number">5</span><div><h2>一枚に整理する</h2><p class="section-intro">案件ごとに次の表を埋めます。金額を精密に予測するより、会社開示で判明している部分と不明な部分を分けることを優先します。</p></div></div>
+      <div class="sheet" role="table" aria-label="設備投資分析の記入用整理表">
+        <div class="sheet-row header" role="row"><div class="sheet-cell">論点</div><div class="sheet-cell">確認した事実</div><div class="sheet-cell">比較と判断</div></div>
+        <div class="sheet-row" role="row"><div class="sheet-cell">投資の確度</div><div class="sheet-cell"><span class="write-line">発表、契約、着工、稼働のどこか</span></div><div class="sheet-cell"><span class="write-line">前回計画から変更があるか</span></div></div>
+        <div class="sheet-row" role="row"><div class="sheet-cell">今後の支出</div><div class="sheet-cell"><span class="write-line">総額、支払済み、契約残、年度別支出</span></div><div class="sheet-cell"><span class="write-line">年間営業CFの何年分か</span></div></div>
+        <div class="sheet-row" role="row"><div class="sheet-cell">内部資金</div><div class="sheet-cell"><span class="write-line">現預金、営業CF、補助金、資産売却</span></div><div class="sheet-cell"><span class="write-line">最低現金を残した後に不足するか</span></div></div>
+        <div class="sheet-row" role="row"><div class="sheet-cell">競合する支出</div><div class="sheet-cell"><span class="write-line">債務返済、配当、自社株買い、運転資金</span></div><div class="sheet-cell"><span class="write-line">設備支出と同じ年度に集中するか</span></div></div>
+        <div class="sheet-row" role="row"><div class="sheet-cell">調達余力</div><div class="sheet-cell"><span class="write-line">未使用融資枠、借入余力、格付け方針</span></div><div class="sheet-cell"><span class="write-line">不足額を賄った後も目標内か</span></div></div>
+        <div class="sheet-row" role="row"><div class="sheet-cell">利益負担</div><div class="sheet-cell"><span class="write-line">減価償却、利息、稼働開始、利益貢献</span></div><div class="sheet-cell"><span class="write-line">費用先行期間は何年か</span></div></div>
+        <div class="sheet-row" role="row"><div class="sheet-cell">投資回収</div><div class="sheet-cell"><span class="write-line">能力増加、需要根拠、安定稼働時利益</span></div><div class="sheet-cell"><span class="write-line">ROICが資本コストを上回るか</span></div></div>
       </div>
-
-      <div class="formula">
-        <code>資金不足 ＝ 設備支出＋債務返済＋株主還元＋運転資金増加＋その他支出＋最低現金－現預金－営業CF－その他流入</code>
+    </section>
+    <section>
+      <div class="section-head"><span class="number">6</span><div><h2>追加確認が必要になる兆候</h2><p class="section-intro">次の兆候があれば、会社の資金調達方針と投資計画の変更余地を確認します。</p></div></div>
+      <div class="red-flags">
+        <div class="flag"><b>支出時期を開示していない</b>総額だけでは、資金不足が発生する年度を判断できません。</div><div class="flag"><b>建設仮勘定が急増している</b>工事進捗に対して支払いと借入が今後増える可能性があります。</div><div class="flag"><b>設備投資と債務返済が重なる</b>借換え需要を設備資金と一緒に見積もる必要があります。</div><div class="flag"><b>株主還元方針を維持している</b>配当や自社株買いを続けるなら、内部資金の設備投資への配分は減ります。</div><div class="flag"><b>稼働開始後の需要根拠が弱い</b>低稼働でも減価償却費と利息は発生します。</div><div class="flag"><b>調達方法を説明していない</b>資金不足が大きい場合、借入、社債、増資、資産売却の優先順位を確認します。</div>
       </div>
-    </aside>
+    </section>
+    <aside class="closing"><h2>最終的に答える問い</h2><p>この設備投資は、いつまでにいくら支払い、その期間の内部資金でどこまで賄え、残額を調達した後も財務目標を守れ、稼働後の利益が減価償却費と利息を上回るか。</p></aside>
   </main>
-
-  <section class="guide">
-    <div class="section-head"><h2>入力前に区別する三つの金額</h2><span class="step">READING GUIDE</span></div>
-    <div class="guide-grid">
-      <article><h3>建設仮勘定</h3><p>期末までに資産として認識した工事原価です。設備投資の契約総額や未払い残額とは一致しません。</p></article>
-      <article><h3>認識済み未払額</h3><p>工事が進み、資産と未払金を計上したものの、まだ支払っていない金額です。今後の資金流出に含めます。</p></article>
-      <article><h3>未認識の契約残額</h3><p>契約済みでも、工事や納入が進んでいないため貸借対照表に表れない金額です。注記や会社説明から確認します。</p></article>
-    </div>
-    <div class="guide-grid">
-      <article><h3>追加調達を疑う条件</h3><ul><li>資金不足が確約融資枠を上回る。</li><li>返済期日が建設期間中に集中する。</li><li>最低現金を考慮すると余力が消える。</li><li>会社が調達方法を示していない。</li></ul></article>
-      <article><h3>財務悪化を疑う条件</h3><ul><li>純有利子負債／EBITDAが同業他社や会社目標を超える。</li><li>営業利益／支払利息が低下する。</li><li>減価償却と利息が利益貢献に先行する。</li><li>格付け目標や財務制限条項に近づく。</li></ul></article>
-      <article><h3>判定を修正する条件</h3><ul><li>投資を延期または分割できる。</li><li>補助金、共同出資、資産売却を使える。</li><li>設備投資に含まれない運転資金が増える。</li><li>外貨建て契約額が為替で変動する。</li></ul></article>
-    </div>
-    <div class="sources">
-      <h3>会計上の参照先</h3>
-      <p>有形固定資産の認識と取得原価は <a href="https://www.ifrs.org/issued-standards/list-of-standards/ias-16-property-plant-and-equipment/" target="_blank" rel="noopener">IFRS FoundationのIAS 16</a>、設備取得支出と借入調達のキャッシュフロー区分は <a href="https://www.ifrs.org/issued-standards/list-of-standards/ias-7-statement-of-cash-flows.html/" target="_blank" rel="noopener">IAS 7</a>を参照しています。実際の開示科目と認識時期は採用会計基準と契約条件で確認してください。</p>
-    </div>
-  </section>
-
-  <footer>本シートは公表情報を整理する概算ツールです。会社の資金調達計画、信用力、投資判断を確定するものではありません。</footer>
+  <footer>このフレームワークは設備投資発表の初期整理を目的とします。個別企業では採用会計基準、契約条件、業界特性を確認してください。</footer>
 </div>
-
-<script>
-(() => {
-  'use strict';
-  const form = document.querySelector('#analysisForm');
-  const storageKey = 'capex-funding-check-v1';
-  const numberIds = ['totalCapex','futureCapex','paidCapex','cip','recognizedUnpaid','unrecognizedCommitment','cash','minimumCash','operatingCF','otherInflows','unusedFacilities','analysisMonths','debtMaturities','shareholderReturns','workingCapital','otherOutflows','debt','ebitda','operatingProfit','interestExpense','newDebtRate','projectEbitda','depreciableAmount','usefulLife'];
-  const qualitativeIds = ['noFundingPlan','costOverrun','rampDelay','covenantRisk','refinancingRisk','demandRisk','flexibleCapex'];
-  const yen = new Intl.NumberFormat('ja-JP',{maximumFractionDigits:1});
-
-  const el = id => document.getElementById(id);
-  const raw = id => el(id).value.trim();
-  const num = id => raw(id) === '' ? 0 : Number(raw(id));
-  const has = id => raw(id) !== '' && Number.isFinite(Number(raw(id)));
-  const checked = id => el(id).checked;
-  const money = value => `${value < 0 ? '▲' : ''}${yen.format(Math.abs(value))}`;
-  const multiple = value => Number.isFinite(value) ? `${value.toFixed(1)}倍` : '未算定';
-  const pct = value => Number.isFinite(value) ? `${Math.round(value)}%` : '未算定';
-  const clamp = value => Math.max(0,Math.min(100,value));
-
-  function setMetric(id,value) { el(id).textContent = value; }
-  function finding(text,tone='') { return `<li class="finding ${tone}">${text}</li>`; }
-
-  function calculate() {
-    const ready = has('futureCapex') && has('cash') && has('operatingCF');
-    const futureCapex = num('futureCapex');
-    const uses = futureCapex + num('debtMaturities') + num('shareholderReturns') + num('workingCapital') + num('otherOutflows') + num('minimumCash');
-    const internalSources = num('cash') + num('operatingCF') + num('otherInflows');
-    const grossGap = uses - internalSources;
-    const financingRequired = Math.max(0,grossGap);
-    const uncovered = Math.max(0,financingRequired - num('unusedFacilities'));
-    const proFormaDebt = num('debt') + financingRequired;
-    const endingCash = ready ? Math.max(num('minimumCash'), internalSources - (uses - num('minimumCash'))) : 0;
-    const projectEbitdaIncluded = has('projectEbitda') ? num('projectEbitda') : 0;
-    const proFormaEbitda = num('ebitda') + projectEbitdaIncluded;
-    const netDebtEbitda = has('debt') && has('ebitda') && proFormaEbitda > 0 ? (proFormaDebt - endingCash) / proFormaEbitda : NaN;
-    const incrementalInterest = financingRequired * num('newDebtRate') / 100;
-    const totalInterest = num('interestExpense') + incrementalInterest;
-    const interestCover = has('operatingProfit') && has('interestExpense') && totalInterest > 0 ? num('operatingProfit') / totalInterest : NaN;
-    const depreciation = has('depreciableAmount') && has('usefulLife') && num('usefulLife') > 0 ? num('depreciableAmount') / num('usefulLife') : NaN;
-    const internalRatio = futureCapex > 0 ? clamp(internalSources / futureCapex * 100) : NaN;
-    const paidRatio = num('totalCapex') > 0 && has('paidCapex') ? clamp(num('paidCapex') / num('totalCapex') * 100) : NaN;
-
-    if (!ready) {
-      el('statusCard').className = 'status-card';
-      el('statusTitle').textContent = '主要3項目を入力してください';
-      el('statusCopy').textContent = '今後の現金支出、現預金、予想営業CFを入れると判定します。';
-      ['grossGap','uncoveredGap','proFormaDebt','netDebtEbitda','interestCover','incrementalInterest','depreciation'].forEach(id => setMetric(id,'未算定'));
-      el('internalRatioLabel').textContent = '未算定'; el('internalRatioBar').style.width = '0';
-      el('paidRatioLabel').textContent = '未算定'; el('paidRatioBar').style.width = '0';
-      el('findings').innerHTML = '<li class="empty-result">入力に応じて確認事項を表示します。</li>';
-      return;
-    }
-
-    if (uncovered > 0) {
-      el('statusCard').className = 'status-card bad';
-      el('statusTitle').textContent = '新たな資金調達が必要になる計算です';
-      el('statusCopy').textContent = `既存の確約融資枠を使っても ${money(uncovered)} の資金が不足します。借入、社債、増資、資産売却、投資計画の変更を確認してください。`;
-    } else if (financingRequired > 0) {
-      el('statusCard').className = 'status-card warn';
-      el('statusTitle').textContent = '既存の融資枠を使う可能性があります';
-      el('statusCopy').textContent = `内部資金だけでは ${money(financingRequired)} 不足します。入力した確約融資枠の範囲内ですが、利用条件と返済期限を確認してください。`;
-    } else {
-      el('statusCard').className = 'status-card good';
-      el('statusTitle').textContent = '入力した前提では内部資金で賄えます';
-      el('statusCopy').textContent = `最低現金を残した後も ${money(Math.abs(grossGap))} の余裕があります。営業CFの下振れと投資額の超過は別途確認してください。`;
-    }
-
-    setMetric('grossGap',money(grossGap));
-    setMetric('uncoveredGap',money(uncovered));
-    setMetric('proFormaDebt',has('debt') ? money(proFormaDebt) : '未算定');
-    setMetric('netDebtEbitda',multiple(netDebtEbitda));
-    setMetric('interestCover',multiple(interestCover));
-    setMetric('incrementalInterest',has('newDebtRate') ? money(incrementalInterest) : '未算定');
-    setMetric('depreciation',Number.isFinite(depreciation) ? money(depreciation) : '未算定');
-    el('internalRatioLabel').textContent = pct(internalRatio); el('internalRatioBar').style.width = `${Number.isFinite(internalRatio) ? internalRatio : 0}%`;
-    el('paidRatioLabel').textContent = pct(paidRatio); el('paidRatioBar').style.width = `${Number.isFinite(paidRatio) ? paidRatio : 0}%`;
-
-    const items = [];
-    if (financingRequired > 0) items.push(finding(`内部資金だけでは支出を賄えません。必要な外部資金は ${money(financingRequired)} です。`,'bad'));
-    else items.push(finding('入力した期間では最低現金を維持したまま支出を賄えます。','good'));
-    if (num('minimumCash') === 0) items.push(finding('最低現金がゼロです。日常運転に必要な現金を入れると資金不足が増える可能性があります。','warn'));
-    if (num('recognizedUnpaid') > futureCapex) items.push(finding('認識済み未払額が今後の設備支出を上回っています。分析期間または支出予定額を確認してください。','warn'));
-    if (has('totalCapex') && has('paidCapex') && num('paidCapex') > num('totalCapex')) items.push(finding('支払済み累計額が公表投資総額を上回っています。投資範囲または単位を確認してください。','warn'));
-    if (has('totalCapex') && has('paidCapex') && has('unrecognizedCommitment')) {
-      const bridge = num('paidCapex') + num('recognizedUnpaid') + num('unrecognizedCommitment');
-      const diff = Math.abs(num('totalCapex') - bridge);
-      if (num('totalCapex') > 0 && diff / num('totalCapex') > .1) items.push(finding('投資総額と、支払済み、認識済み未払、未認識契約残額の合計に10％超の差があります。契約範囲と見積更新を確認してください。','warn'));
-    }
-    if (has('projectEbitda') && Number.isFinite(depreciation)) {
-      const operatingContribution = num('projectEbitda') - depreciation;
-      items.push(finding(`安定稼働時の概算営業利益貢献は ${money(operatingContribution)} です。立ち上げ期の低稼働は反映していません。`, operatingContribution < 0 ? 'bad' : ''));
-    }
-    if (Number.isFinite(netDebtEbitda)) items.push(finding(`全額借入時の純有利子負債／EBITDAは ${multiple(netDebtEbitda)} です。同業他社、会社目標、格付け方針と比較してください。`, netDebtEbitda >= 4 ? 'bad' : netDebtEbitda >= 3 ? 'warn' : ''));
-    if (Number.isFinite(interestCover)) items.push(finding(`借入後の営業利益／支払利息は ${multiple(interestCover)} です。利益の下振れ時にも利払い余力が残るか確認してください。`, interestCover < 2 ? 'bad' : interestCover < 4 ? 'warn' : ''));
-    if (checked('noFundingPlan')) items.push(finding('会社が調達方法を説明していません。決算説明資料、社債発行登録、借入契約、増資方針を確認してください。','bad'));
-    if (checked('costOverrun')) items.push(finding('予算超過の可能性があります。工事進捗、発注通貨、固定価格契約の範囲を確認してください。','warn'));
-    if (checked('rampDelay')) items.push(finding('利益貢献の遅れが見込まれます。減価償却費と利息が先に発生する期間を確認してください。','warn'));
-    if (checked('covenantRisk')) items.push(finding('財務制限条項または格付け目標への抵触余地を数値で確認する必要があります。','bad'));
-    if (checked('refinancingRisk')) items.push(finding('既存債務の借換えと設備資金の調達が重なります。年度別の返済予定を確認してください。','bad'));
-    if (checked('demandRisk')) items.push(finding('完成後の稼働率が低いと、営業CFとEBITDAの前提が同時に下振れします。','warn'));
-    if (checked('flexibleCapex')) items.push(finding('会社は投資時期や規模を変更できます。資金不足が生じた場合の削減余地として扱えます。','good'));
-    el('findings').innerHTML = items.join('');
-  }
-
-  function serialize() {
-    const data = {};
-    [...form.elements].forEach(node => {
-      if (!node.name) return;
-      data[node.name] = node.type === 'checkbox' ? node.checked : node.value;
-    });
-    return data;
-  }
-  function restore(data) {
-    Object.entries(data || {}).forEach(([name,value]) => {
-      const node = form.elements.namedItem(name);
-      if (!node) return;
-      if (node.type === 'checkbox') node.checked = Boolean(value); else node.value = value;
-    });
-    calculate();
-  }
-  function flash(message) { el('saveStatus').textContent = message; window.setTimeout(() => { el('saveStatus').textContent = '入力内容は外部へ送信されません。'; },2400); }
-
-  form.addEventListener('input',calculate);
-  form.addEventListener('change',calculate);
-  el('saveButton').addEventListener('click',() => { localStorage.setItem(storageKey,JSON.stringify(serialize())); flash('この端末のブラウザーに保存しました。'); });
-  el('printButton').addEventListener('click',() => window.print());
-  el('resetButton').addEventListener('click',() => {
-    if (!window.confirm('入力内容を消去しますか。')) return;
-    form.reset(); localStorage.removeItem(storageKey); calculate(); flash('入力内容を消去しました。');
-  });
-  el('exampleButton').addEventListener('click',() => {
-    restore({company:'記入例株式会社',project:'新工場建設',asOf:'2026-09-01',stage:'construction',memo:'単位：億円、分析期間：建設完了までの2年間',totalCapex:'1000',futureCapex:'700',paidCapex:'300',cip:'300',recognizedUnpaid:'80',unrecognizedCommitment:'620',cash:'260',minimumCash:'100',operatingCF:'300',otherInflows:'40',unusedFacilities:'150',analysisMonths:'24',debtMaturities:'120',shareholderReturns:'60',workingCapital:'50',otherOutflows:'0',debt:'500',ebitda:'260',operatingProfit:'180',interestExpense:'15',newDebtRate:'2.5',projectEbitda:'140',depreciableAmount:'900',usefulLife:'15',noFundingPlan:true,costOverrun:true,rampDelay:false,covenantRisk:false,refinancingRisk:true,demandRisk:false,flexibleCapex:false});
-    flash('記入例を反映しました。');
-  });
-
-  try {
-    const saved = localStorage.getItem(storageKey);
-    if (saved) restore(JSON.parse(saved)); else calculate();
-  } catch (_) { calculate(); }
-})();
-</script>
 </body>
 </html>
