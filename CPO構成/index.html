@@ -30,6 +30,7 @@
     figure { margin:28px 0; }
     .diagram { padding:22px; border:1px solid var(--rule); background:#fafbfb; overflow:hidden; }
     .diagram svg { display:block; width:100%; height:auto; }
+    .diagram img { display:block; width:100%; height:auto; }
     figcaption { margin-top:11px; color:var(--muted); font-size:.75rem; line-height:1.65; }
     .legend { display:flex; flex-wrap:wrap; gap:12px 20px; margin:13px 0 0; color:var(--muted); font-size:.73rem; }
     .legend span::before { content:""; display:inline-block; width:16px; height:7px; margin-right:6px; vertical-align:1px; }
@@ -83,60 +84,19 @@
       <p>CPOパッケージの内部では、スイッチASICと光ファイバーを光エンジンがつなぐ。光ファイバーは装置の外へ延び、GPUサーバーや別のネットワークスイッチに接続する。</p>
 
       <figure class="diagram" aria-labelledby="cpo-caption">
-        <svg viewBox="0 0 920 390" role="img" aria-label="GPUサーバー、CPOスイッチ、別のGPUサーバーの接続模式図">
-          <defs>
-            <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#17658c"/></marker>
-            <marker id="arrowGold" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b47a21"/></marker>
-          </defs>
-          <rect x="20" y="65" width="175" height="250" rx="5" fill="#f3f5f6" stroke="#8b9297"/>
-          <text x="107" y="95" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2023">GPUサーバー A</text>
-          <rect x="52" y="125" width="110" height="62" rx="4" fill="#fff" stroke="#1c2023"/>
-          <text x="107" y="162" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#1c2023">GPU</text>
-          <rect x="52" y="220" width="110" height="62" rx="4" fill="#eaf4f7" stroke="#17658c"/>
-          <text x="107" y="247" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1c2023">NIC /</text>
-          <text x="107" y="267" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1c2023">光モジュール</text>
-          <path d="M107 187 L107 218" stroke="#b47a21" stroke-width="5" marker-end="url(#arrowGold)"/>
-
-          <rect x="268" y="28" width="384" height="326" rx="6" fill="#fff" stroke="#1c2023" stroke-width="2"/>
-          <text x="460" y="57" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2023">CPOスイッチ</text>
-          <rect x="366" y="129" width="188" height="126" rx="5" fill="#fbf3e5" stroke="#b47a21" stroke-width="2"/>
-          <text x="460" y="183" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1c2023">スイッチASIC</text>
-          <text x="460" y="211" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#646b70">データの送り先を決める</text>
-          <rect x="287" y="145" width="63" height="94" rx="4" fill="#eaf4f7" stroke="#17658c"/>
-          <text x="318" y="184" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#1c2023">光</text>
-          <text x="318" y="202" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#1c2023">エンジン</text>
-          <rect x="570" y="145" width="63" height="94" rx="4" fill="#eaf4f7" stroke="#17658c"/>
-          <text x="601" y="184" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#1c2023">光</text>
-          <text x="601" y="202" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#1c2023">エンジン</text>
-          <path d="M351 192 L364 192" stroke="#b47a21" stroke-width="5" marker-end="url(#arrowGold)"/>
-          <path d="M555 192 L568 192" stroke="#b47a21" stroke-width="5" marker-end="url(#arrowGold)"/>
-          <rect x="395" y="286" width="130" height="42" rx="21" fill="#f3f5f6" stroke="#8b9297"/>
-          <text x="460" y="312" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#1c2023">外部レーザー</text>
-          <path d="M395 307 C342 307 318 272 318 241" fill="none" stroke="#17658c" stroke-width="4" marker-end="url(#arrowBlue)"/>
-          <path d="M525 307 C578 307 601 272 601 241" fill="none" stroke="#17658c" stroke-width="4" marker-end="url(#arrowBlue)"/>
-
-          <rect x="725" y="65" width="175" height="250" rx="5" fill="#f3f5f6" stroke="#8b9297"/>
-          <text x="812" y="95" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#1c2023">GPUサーバー B</text>
-          <rect x="757" y="125" width="110" height="62" rx="4" fill="#fff" stroke="#1c2023"/>
-          <text x="812" y="162" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#1c2023">GPU</text>
-          <rect x="757" y="220" width="110" height="62" rx="4" fill="#eaf4f7" stroke="#17658c"/>
-          <text x="812" y="247" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1c2023">NIC /</text>
-          <text x="812" y="267" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#1c2023">光モジュール</text>
-          <path d="M812 187 L812 218" stroke="#b47a21" stroke-width="5" marker-end="url(#arrowGold)"/>
-
-          <path d="M162 251 C215 251 235 192 286 192" fill="none" stroke="#17658c" stroke-width="6" marker-end="url(#arrowBlue)"/>
-          <path d="M634 192 C685 192 705 251 756 251" fill="none" stroke="#17658c" stroke-width="6" marker-end="url(#arrowBlue)"/>
-          <text x="235" y="236" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#17658c">光ファイバー</text>
-          <text x="685" y="236" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#17658c">光ファイバー</text>
-        </svg>
-        <div class="legend"><span class="electric">電気信号</span><span class="optical">光信号またはレーザー光</span></div>
-        <figcaption id="cpo-caption">図1　CPOスイッチを介したGPUサーバー間通信の模式図。NICはNetwork Interface Cardの略である。構成を説明するための自作図であり、製品内部の寸法と配置は示していない。</figcaption>
+        <img src="cpo-connection-generated-v2.png" alt="左右のGPUサーバーを、中央のCPOスイッチと光ファイバーで接続する構成図。CPOスイッチ内ではスイッチASICの周囲に4個の光エンジンがあり、外部レーザーが光を供給する。">
+        <figcaption id="cpo-caption">図1　CPOスイッチを介したGPUサーバー間通信。青線は光ファイバー、銅色の線はスイッチASICと光エンジンの電気接続を示す。構成説明用の生成画像であり、製品の寸法と端子数は示していない。</figcaption>
       </figure>
     </section>
 
     <section>
       <h2>光エンジンを構成する部品</h2>
       <p><strong>光エンジン</strong>は、電気信号と光信号を相互変換する小型モジュールである。送信側はレーザー光へデータを書き込み、受信側は到着した光を電気信号へ戻す。</p>
+
+      <figure class="diagram" aria-labelledby="engine-caption">
+        <img src="optical-engine-components-generated-v2.png" alt="光エンジンの送信経路と受信経路を上下に分けた構成図。送信はスイッチASIC、ドライバー、変調器、導波路、レンズアレイ、ファイバーアレイの順。受信は逆方向に受光素子とTIAを通る。">
+        <figcaption id="engine-caption">図2　光エンジンの送信経路と受信経路。EICは電気回路、PICは光回路を集積する。橙色は電気信号、青色は光信号を示す。構成説明用の生成画像である。</figcaption>
+      </figure>
 
       <dl class="parts">
         <div class="part"><dt>レーザー</dt><dd>データを運ぶ連続光を発生させる。交換しやすい外部配置と、光エンジンへの内蔵がある。</dd></div>
@@ -154,7 +114,7 @@
 
       <figure class="photo">
         <img src="intel-oci-chiplet.jpg" alt="Intelの光I/Oチップレット。大型の電気ICの横に光回路とファイバー接続部が配置されている。">
-        <figcaption>図2　Intel Optical Compute Interconnect chiplet。Intel Corporation提供。原典はIntel Newsroomの<a href="https://www.intel.com/content/www/us/en/newsroom/news/intel-unveils-first-integrated-optical-io-chiplet.html">製品発表</a>である。</figcaption>
+        <figcaption>図3　Intel Optical Compute Interconnect chiplet。Intel Corporation提供。原典はIntel Newsroomの<a href="https://www.intel.com/content/www/us/en/newsroom/news/intel-unveils-first-integrated-optical-io-chiplet.html">製品発表</a>である。</figcaption>
       </figure>
 
       <aside class="note">現在の商用化はネットワークスイッチ向けCPOが先行する。次の段階では、GPUやCPUと同じパッケージに光I/Oチップレットを載せ、GPU間やCPU間を光ファイバーで直接接続する。</aside>
