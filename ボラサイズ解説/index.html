@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Time Series Momentumを基に、予想ボラティリティから先物のポジション量を決める方法を説明します。">
+  <title>ボラティリティからポジション量を決める</title>
+  <style>
+    :root {
+      --ink:#181b1f;
+      --muted:#666c73;
+      --rule:#cfd4d8;
+      --paper:#ffffff;
+      --back:#e9ecee;
+      --warm:#155d91;
+      --warm-soft:#f3f5f6;
+      --blue:#155d91;
+      --blue-soft:#f3f5f6;
+      --gold:#155d91;
+    }
+    * { box-sizing:border-box; }
+    html { color:var(--ink); background:var(--back); scroll-behavior:smooth; }
+    body {
+      max-width:1180px;
+      min-height:100vh;
+      margin:0 auto;
+      background:var(--paper);
+      font:17px/1.82 "Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;
+      letter-spacing:.012em;
+    }
+    header, main, footer { padding-left:clamp(22px,7vw,94px); padding-right:clamp(22px,7vw,94px); }
+    header { padding-top:58px; padding-bottom:34px; border-top:7px solid var(--blue); }
+    h1, h2, h3, nav, .kicker, .meta, .takeaway, .formula, figure, .calculator, .note, footer {
+      font-family:"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    }
+    .home { color:var(--muted); font:700 .74rem "Yu Gothic",sans-serif; letter-spacing:.08em; text-decoration:none; }
+    .home:hover { color:var(--blue); text-decoration:underline; }
+    .kicker { margin:25px 0 9px; color:var(--blue); font-size:.76rem; font-weight:700; letter-spacing:.12em; }
+    h1 { max-width:18em; margin:0; font-size:clamp(2rem,4.8vw,3.6rem); line-height:1.2; letter-spacing:-.035em; }
+    .deck { max-width:40em; margin:24px 0 0; font-size:1.13rem; line-height:1.75; }
+    .meta { margin:26px 0 0; color:var(--muted); font-size:.78rem; }
+    .takeaway { display:grid; grid-template-columns:repeat(3,1fr); max-width:52em; margin-top:28px; border-top:1px solid var(--ink); border-bottom:1px solid var(--rule); }
+    .takeaway div { padding:15px 18px 16px 0; }
+    .takeaway div + div { padding-left:18px; border-left:1px solid var(--rule); }
+    .takeaway b { display:block; margin-bottom:4px; color:var(--blue); font-size:.72rem; letter-spacing:.08em; }
+    .takeaway span { display:block; font-size:.86rem; line-height:1.65; }
+    nav { display:flex; gap:20px; overflow-x:auto; padding:13px clamp(22px,7vw,94px); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); background:#fff; font-size:.75rem; white-space:nowrap; }
+    nav a { color:var(--muted); text-decoration:none; }
+    nav a:hover { color:var(--blue); }
+    main { padding-bottom:88px; }
+    section { margin-top:72px; scroll-margin-top:20px; }
+    h2 { margin:0 0 26px; padding-top:13px; border-top:2px solid var(--ink); font-size:1.46rem; line-height:1.45; }
+    h3 { max-width:42em; margin:42px 0 13px; font-size:1.04rem; line-height:1.55; }
+    p { max-width:42em; margin:0 0 1.18em; }
+    .lead { font-size:1.08rem; }
+    .formula {
+      max-width:42em;
+      margin:28px 0;
+      padding:23px 25px;
+      border-top:1px solid var(--ink);
+      border-bottom:1px solid var(--rule);
+      background:#fff;
+      text-align:center;
+      font-size:clamp(1rem,2.4vw,1.28rem);
+      line-height:1.7;
+      font-variant-numeric:tabular-nums;
+    }
+    .formula .fraction { display:inline-grid; grid-template-rows:auto auto; vertical-align:middle; margin:0 .25em; }
+    .formula .fraction span:first-child { padding:0 .4em .08em; border-bottom:1px solid currentColor; }
+    .formula .fraction span:last-child { padding:.08em .4em 0; }
+    .formula small { display:block; margin-top:12px; color:var(--muted); font-size:.72rem; line-height:1.55; }
+    .flow { max-width:50em; margin:32px 0; }
+    .flow-grid { display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:stretch; gap:12px; }
+    .flow-box { min-height:132px; padding:18px 0; border-top:1px solid var(--ink); border-bottom:1px solid var(--rule); background:#fff; }
+    .flow-box b { display:block; margin-bottom:7px; color:var(--blue); font-size:.76rem; }
+    .flow-box span { display:block; font-size:.79rem; line-height:1.65; }
+    .arrow { align-self:center; color:var(--gold); font-size:1.5rem; }
+    figcaption { margin-top:11px; color:var(--muted); font-size:.72rem; line-height:1.6; }
+    .inverse-chart { max-width:44em; margin:32px 0; padding:22px 0 5px; border-top:1px solid var(--ink); border-bottom:1px solid var(--rule); }
+    .bar-row { display:grid; grid-template-columns:7em 1fr 5.3em; gap:12px; align-items:center; margin:14px 0; font-size:.78rem; }
+    .bar-track { height:12px; background:var(--blue-soft); }
+    .bar { height:100%; background:var(--blue); }
+    .bar-value { text-align:right; font-variant-numeric:tabular-nums; }
+    .paper-box { display:grid; grid-template-columns:minmax(0,1fr) minmax(240px,.68fr); gap:clamp(28px,5vw,60px); align-items:start; }
+    .paper-facts { margin:0; border-top:1px solid var(--ink); font-family:"Yu Gothic",sans-serif; font-size:.78rem; }
+    .paper-facts div { display:grid; grid-template-columns:7em 1fr; gap:12px; padding:11px 0; border-bottom:1px solid var(--rule); }
+    .paper-facts dt { color:var(--muted); }
+    .paper-facts dd { margin:0; }
+    .note { max-width:50em; margin:28px 0; padding:16px 18px; border-left:3px solid var(--blue); background:var(--blue-soft); font-size:.8rem; line-height:1.75; }
+    .calculator { max-width:50em; margin:34px 0; padding:24px 26px; border-top:1px solid var(--ink); border-bottom:1px solid var(--rule); background:var(--blue-soft); }
+    .calculator h3 { margin:0 0 6px; }
+    .calculator .intro { margin:0 0 22px; color:var(--muted); font-size:.78rem; }
+    .controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 24px; }
+    label { display:block; font-size:.76rem; font-weight:700; }
+    input[type="range"] { width:100%; margin-top:9px; accent-color:var(--blue); }
+    output { color:var(--blue); font-variant-numeric:tabular-nums; }
+    .calc-result { display:grid; grid-template-columns:repeat(3,1fr); margin-top:24px; border-top:1px solid var(--ink); }
+    .calc-result div { padding:17px 12px 0 0; }
+    .calc-result div + div { padding-left:14px; border-left:1px solid var(--rule); }
+    .calc-result small { display:block; color:var(--muted); font-size:.68rem; }
+    .calc-result strong { display:block; margin-top:5px; font-size:1.16rem; font-variant-numeric:tabular-nums; }
+    .calc-explain { margin:18px 0 0; font-size:.75rem; color:var(--muted); }
+    .risk-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:50em; margin:30px 0; }
+    .risk-grid article { padding:18px 0; border-top:1px solid var(--ink); border-bottom:1px solid var(--rule); background:#fff; }
+    .risk-grid h3 { margin:0 0 8px; font-size:.9rem; }
+    .risk-grid p { margin:0; font: .77rem/1.75 "Yu Gothic",sans-serif; }
+    footer { padding-top:38px; padding-bottom:54px; border-top:1px solid var(--ink); }
+    footer h2 { margin:0 0 15px; border:0; padding:0; font-size:1rem; }
+    footer ol { max-width:64em; margin:0; padding-left:1.5em; font-size:.74rem; line-height:1.7; }
+    footer li { margin-bottom:9px; }
+    a { color:var(--blue); text-underline-offset:3px; overflow-wrap:anywhere; }
+    @media (max-width:760px) {
+      body { font-size:16px; }
+      header { padding-top:38px; }
+      .takeaway, .paper-box, .risk-grid { grid-template-columns:1fr; }
+      .takeaway div + div { padding-left:0; border-left:0; border-top:1px solid var(--rule); }
+      .flow-grid { grid-template-columns:1fr; }
+      .arrow { justify-self:center; transform:rotate(90deg); }
+      .controls, .calc-result { grid-template-columns:1fr; }
+      .calc-result div + div { padding-left:0; border-left:0; }
+      .bar-row { grid-template-columns:6.3em 1fr 4.6em; gap:8px; }
+      section { margin-top:58px; }
+    }
+    @media print {
+      html { background:#fff; }
+      body { max-width:none; font-size:10.5pt; }
+      nav, .calculator { display:none; }
+      header, main, footer { padding-left:17mm; padding-right:17mm; }
+      section { break-inside:avoid-page; }
+      a { color:inherit; text-decoration:none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="home" href="../index.html">HOME</a>
+    <p class="kicker">POSITION SIZING FROM TIME SERIES MOMENTUM</p>
+    <h1>ボラティリティから<br>ポジション量を決める</h1>
+    <p class="deck">Moskowitz、Ooi、Pedersen（2012）“Time Series Momentum”は、株価指数、債券、為替、商品という値動きの異なる先物を一つの戦略にまとめた。本稿は、その土台となるポジション設計だけを説明する。</p>
+    <p class="meta">作成日　2026年9月2日　原論文　Journal of Financial Economics 104（2012）228–250</p>
+    <div class="takeaway" aria-label="持ち帰る内容">
+      <div><b>関係</b><span>予想ボラティリティが2倍になると、ポジション量は半分になる。</span></div>
+      <div><b>目的</b><span>各商品が持ち込む事前のリスクをそろえ、特定の商品や時期への偏りを抑える。</span></div>
+      <div><b>限界</b><span>計算が一定にするのは予想リスクであり、実際の損失額ではない。</span></div>
+    </div>
+  </header>
+
+  <nav aria-label="ページ内目次">
+    <a href="#paper">論文の設定</a>
+    <a href="#estimate">ボラの推定</a>
+    <a href="#sizing">サイズの計算</a>
+    <a href="#portfolio">全体への集約</a>
+    <a href="#practice">実務上の留保</a>
+  </nav>
+
+  <main>
+    <section id="paper">
+      <h2>論文は何をそろえようとしたか</h2>
+      <div class="paper-box">
+        <div>
+          <p class="lead">論文が扱う58の先物は、値動きの大きさが大幅に異なる。1985年から2009年の戦略検証では、過去12か月の超過収益率が正なら買い、負なら売りとした。そのうえで、売買方向とは別にポジション量を決めた。<sup><a href="#src1">1</a></sup></p>
+          <p>同じ1億円を各商品へ配分すると、値動きの大きい商品が損益を支配する。論文は各商品の予想ボラティリティに応じて保有額を変え、商品ごとの事前リスクをそろえた。</p>
+        </div>
+        <dl class="paper-facts">
+          <div><dt>対象</dt><dd>58先物</dd></div>
+          <div><dt>資産群</dt><dd>株価指数、債券、為替、商品</dd></div>
+          <div><dt>方向</dt><dd>過去収益率の符号</dd></div>
+          <div><dt>商品別目標</dt><dd>年率40％</dd></div>
+          <div><dt>全体の実現値</dt><dd>年率12％</dd></div>
+        </dl>
+      </div>
+      <figure class="flow" aria-labelledby="flow-caption">
+        <div class="flow-grid">
+          <div class="flow-box"><b>方向を決める</b><span>過去12か月の超過収益率が正なら買い、負なら売りとする。</span></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="flow-box"><b>大きさを決める</b><span>直前までの日次収益率から予想ボラティリティを計算し、その逆数を使う。</span></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="flow-box"><b>全体を作る</b><span>利用できる全商品について、リスク調整後の収益率を等ウェイトで平均する。</span></div>
+        </div>
+        <figcaption id="flow-caption">図1　論文の戦略構築。ボラティリティは売買方向ではなく、ポジション量を決める。</figcaption>
+      </figure>
+    </section>
+
+    <section id="estimate">
+      <h2>予想ボラティリティをどう求めるか</h2>
+      <p>論文は、各商品について過去の日次収益率を使い、翌月の値動きの大きさを推定した。直近の観測ほど重く扱う指数加重方式で、重みの中心を60取引日に設定している。分散を261倍して年率へ換算し、その平方根を年率ボラティリティとする。<sup><a href="#src1">1</a></sup></p>
+      <div class="formula" role="math" aria-label="予想分散の式">
+        σ<sub>t</sub><sup>2</sup> = 261 × Σ (1 − δ)δ<sup>i</sup>(r<sub>t−1−i</sub> − r̄<sub>t</sub>)<sup>2</sup>
+        <small>σは予想年率ボラティリティ、rは日次収益率、δは時間減衰を決める係数である。</small>
+      </div>
+      <p>この式が測るのは上昇か下落かではなく、日々の振れ幅である。大きな変動が直近に続くとσが上がり、静かな日が続くとσが下がる。論文は時点tの収益率へt−1時点の推定値を適用し、将来の情報を計算に混ぜていない。</p>
+      <aside class="note">60日は保有期間ではない。過去データへ付ける重みの中心を表す。古いデータも計算に残るが、直近のデータほど大きな重みを持つ。</aside>
+    </section>
+
+    <section id="sizing">
+      <h2>ボラティリティをポジション量へ変換する</h2>
+      <p class="lead">論文のポジション倍率は、商品別の目標ボラティリティを予想ボラティリティで割って求める。分母の予想ボラティリティが上がれば、倍率は同じ比率で下がる。</p>
+      <div class="formula" role="math" aria-label="ポジション倍率の式">
+        ポジション倍率 = 売買方向 ×
+        <span class="fraction"><span>40％</span><span>予想年率ボラティリティ</span></span>
+        <small>売買方向は買いが＋1、売りが−1である。40％は論文が比較のために選んだ商品別の目標値である。</small>
+      </div>
+      <figure class="inverse-chart" aria-labelledby="inverse-caption">
+        <div class="bar-row"><span>予想ボラ 10％</span><div class="bar-track"><div class="bar" style="width:100%"></div></div><span class="bar-value">4.0倍</span></div>
+        <div class="bar-row"><span>予想ボラ 20％</span><div class="bar-track"><div class="bar" style="width:50%"></div></div><span class="bar-value">2.0倍</span></div>
+        <div class="bar-row"><span>予想ボラ 40％</span><div class="bar-track"><div class="bar" style="width:25%"></div></div><span class="bar-value">1.0倍</span></div>
+        <div class="bar-row"><span>予想ボラ 80％</span><div class="bar-track"><div class="bar" style="width:12.5%"></div></div><span class="bar-value">0.5倍</span></div>
+        <figcaption id="inverse-caption">図2　商品別目標を年率40％とした場合。予想ボラティリティとポジション倍率は反比例する。</figcaption>
+      </figure>
+      <p>たとえば予想ボラティリティが20％なら倍率は2.0倍となる。翌月に予想値が40％へ上がれば、倍率は1.0倍へ下がる。売買シグナルが買いのままでも、保有額だけを半分にする。</p>
+
+      <div class="calculator" aria-labelledby="calc-title">
+        <h3 id="calc-title">論文の式を金額へ置き換える</h3>
+        <p class="intro">資金を商品数で等分し、各商品の配分額へ倍率を掛ける簡略例である。</p>
+        <div class="controls">
+          <label>運用資金　<output id="capitalOut">1.0億円</output><input id="capital" type="range" min="10000000" max="500000000" step="10000000" value="100000000"></label>
+          <label>商品数　<output id="assetsOut">10商品</output><input id="assets" type="range" min="1" max="50" step="1" value="10"></label>
+          <label>商品別目標ボラ　<output id="targetOut">40％</output><input id="target" type="range" min="5" max="50" step="1" value="40"></label>
+          <label>この商品の予想ボラ　<output id="volOut">20％</output><input id="vol" type="range" min="5" max="80" step="1" value="20"></label>
+        </div>
+        <div class="calc-result" aria-live="polite">
+          <div><small>等ウェイト配分額</small><strong id="allocationResult">1,000万円</strong></div>
+          <div><small>ポジション倍率</small><strong id="multipleResult">2.00倍</strong></div>
+          <div><small>この商品の想定元本</small><strong id="notionalResult">2,000万円</strong></div>
+        </div>
+        <p class="calc-explain" id="calcExplain">1億円 ÷ 10商品 × 40％ ÷ 20％ = 2,000万円</p>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <h2>商品別40％は全体の目標ではない</h2>
+      <p>論文は各商品を年率40％の事前ボラティリティに調整した後、利用できる商品数で割って平均した。商品sの戦略収益率は、売買方向、40％÷予想ボラティリティ、翌月の収益率を掛けて求める。全体は各商品の戦略収益率の平均である。<sup><a href="#src1">1</a></sup></p>
+      <div class="formula" role="math" aria-label="ポートフォリオ収益率の式">
+        全体の収益率 =
+        <span class="fraction"><span>1</span><span>商品数</span></span>
+        × Σ［売買方向 ×
+        <span class="fraction"><span>40％</span><span>各商品の予想ボラ</span></span>
+        × 各商品の翌月収益率］
+      </div>
+      <p>全商品の値動きが完全に同じなら、全体の予想ボラティリティも40％に近づく。相関が低ければ、損益が打ち消し合うため全体は40％を下回る。論文の分散ポートフォリオは、1985年から2009年に年率12％の実現ボラティリティとなった。</p>
+      <aside class="note">この論文の40％は、各商品を比較可能にするための基準である。運用資金全体を年率10％や15％へ調整する一般的なボラティリティターゲットとは、計算の段階が異なる。実運用では商品別調整の後、相関を含むポートフォリオ予想ボラティリティを計算し、全体へもう一度倍率を掛ける方法が多い。</aside>
+    </section>
+
+    <section id="practice">
+      <h2>この式だけでは損失上限を決められない</h2>
+      <p>逆ボラティリティ方式は、異なる商品を同じリスク尺度へそろえる規則として使える。一方、予想値と実現値が一致する保証はなく、必要証拠金や売買可能枚数も式に入っていない。実際のサイズ決定では、次の3点を別に設定する必要がある。</p>
+      <div class="risk-grid">
+        <article><h3>倍率の上限</h3><p>低ボラティリティ期に倍率が過大にならないよう、商品別と全体の最大倍率を置く。</p></article>
+        <article><h3>急変への備え</h3><p>過去の変動が小さくても価格は急変する。ストレス損失、窓開け、流動性を別に検査する。</p></article>
+        <article><h3>先物枚数への変換</h3><p>想定元本を一枚当たりの契約金額で割り、整数へ丸める。証拠金は想定元本と同じではない。</p></article>
+      </div>
+      <p>この方法から得られる実務上の規則は、予想ボラティリティが上がったら機械的に保有額を減らし、下がったら上限の範囲で増やすことである。売買方向の判断と、取るリスク量の判断を分離できる。</p>
+    </section>
+  </main>
+
+  <footer>
+    <h2>出典</h2>
+    <ol>
+      <li id="src1">Tobias J. Moskowitz, Yao Hua Ooi and Lasse Heje Pedersen, “Time Series Momentum,” <em>Journal of Financial Economics</em>, Vol. 104, No. 2, 2012, pp. 228–250. 予想ボラティリティはp. 233の2.4節、ポジション量はp. 233の3.2節、商品別40％と全体の式はp. 236の4.1節を参照した。<a href="https://doi.org/10.1016/j.jfineco.2011.11.003">DOI</a></li>
+      <li>本稿の金額計算は、論文の収益率ベースの式を説明用に想定元本へ置き換えた。手数料、証拠金、相関、売買単位は計算例から除いている。</li>
+    </ol>
+  </footer>
+
+  <script>
+    const yen = new Intl.NumberFormat('ja-JP', { maximumFractionDigits: 0 });
+    const capital = document.querySelector('#capital');
+    const assets = document.querySelector('#assets');
+    const target = document.querySelector('#target');
+    const vol = document.querySelector('#vol');
+    function moneyLabel(value) {
+      if (value >= 100000000) return `${(value / 100000000).toFixed(value % 100000000 ? 1 : 0)}億円`;
+      return `${yen.format(Math.round(value / 10000))}万円`;
+    }
+    function updateCalc() {
+      const c = Number(capital.value);
+      const n = Number(assets.value);
+      const t = Number(target.value);
+      const v = Number(vol.value);
+      const allocation = c / n;
+      const multiple = t / v;
+      const notional = allocation * multiple;
+      document.querySelector('#capitalOut').textContent = moneyLabel(c);
+      document.querySelector('#assetsOut').textContent = `${n}商品`;
+      document.querySelector('#targetOut').textContent = `${t}％`;
+      document.querySelector('#volOut').textContent = `${v}％`;
+      document.querySelector('#allocationResult').textContent = moneyLabel(allocation);
+      document.querySelector('#multipleResult').textContent = `${multiple.toFixed(2)}倍`;
+      document.querySelector('#notionalResult').textContent = moneyLabel(notional);
+      document.querySelector('#calcExplain').textContent = `${moneyLabel(c)} ÷ ${n}商品 × ${t}％ ÷ ${v}％ = ${moneyLabel(notional)}`;
+    }
+    for (const control of [capital, assets, target, vol]) control.addEventListener('input', updateCalc);
+    updateCalc();
+  </script>
+</body>
+</html>
