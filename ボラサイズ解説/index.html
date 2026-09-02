@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Time Series Momentumを基に、予想ボラティリティから先物のポジション量を決める方法を説明します。">
-  <title>ボラティリティからポジション量を決める</title>
+  <meta name="description" content="CTAのポジション設計と機械的フローを、Time Series Momentum、AQR、Man AHL、Aspect Capitalの公開資料から説明します。">
+  <title>CTAのポジションと機械的フロー</title>
   <style>
     :root {
       --ink:#181b1f;
@@ -104,6 +104,14 @@
     .risk-grid article { padding:18px 0; border-top:1px solid var(--ink); border-bottom:1px solid var(--rule); background:#fff; }
     .risk-grid h3 { margin:0 0 8px; font-size:.9rem; }
     .risk-grid p { margin:0; font: .77rem/1.75 "Yu Gothic",sans-serif; }
+    .table-wrap { width:100%; max-width:55em; margin:30px 0; overflow-x:auto; }
+    table { width:100%; min-width:760px; border-collapse:collapse; font: .78rem/1.65 "Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif; }
+    caption { padding:0 0 10px; color:var(--muted); text-align:left; font-size:.72rem; }
+    th, td { padding:12px 11px; border-bottom:1px solid var(--rule); text-align:left; vertical-align:top; }
+    thead th { border-top:1px solid var(--ink); border-bottom:2px solid var(--ink); }
+    tbody th { color:var(--blue); white-space:nowrap; }
+    .disclosure { color:var(--muted); font-size:.69rem; white-space:nowrap; }
+    .flow-case { font-weight:700; }
     footer { padding-top:38px; padding-bottom:54px; border-top:1px solid var(--ink); }
     footer h2 { margin:0 0 15px; border:0; padding:0; font-size:1rem; }
     footer ol { max-width:64em; margin:0; padding-left:1.5em; font-size:.74rem; line-height:1.7; }
@@ -134,14 +142,14 @@
 <body>
   <header>
     <a class="home" href="../index.html">HOME</a>
-    <p class="kicker">POSITION SIZING FROM TIME SERIES MOMENTUM</p>
-    <h1>ボラティリティから<br>ポジション量を決める</h1>
-    <p class="deck">Moskowitz、Ooi、Pedersen（2012）“Time Series Momentum”は、株価指数、債券、為替、商品という値動きの異なる先物を一つの戦略にまとめた。本稿は、その土台となるポジション設計だけを説明する。</p>
-    <p class="meta">作成日　2026年9月2日　原論文　Journal of Financial Economics 104（2012）228–250</p>
+    <p class="kicker">CTA POSITIONING AND SYSTEMATIC FLOWS</p>
+    <h1>CTAのポジションと<br>機械的フロー</h1>
+    <p class="deck">Time Series Momentumの基本式から、AQR、Man AHL、Aspect Capitalが公開する実運用の構造までを確認する。価格、ボラティリティ、相関の変化が、先物の売買フローへどう変わるかを説明する。</p>
+    <p class="meta">更新日　2026年9月2日　対象　トレンドフォロー型CTA</p>
     <div class="takeaway" aria-label="持ち帰る内容">
       <div><b>関係</b><span>予想ボラティリティが2倍になると、ポジション量は半分になる。</span></div>
-      <div><b>目的</b><span>各商品が持ち込む事前のリスクをそろえ、特定の商品や時期への偏りを抑える。</span></div>
-      <div><b>限界</b><span>計算が一定にするのは予想リスクであり、実際の損失額ではない。</span></div>
+      <div><b>実運用</b><span>AQRとMan AHLは、トレンド、個別市場のボラティリティ、全体リスクを段階的に処理する。</span></div>
+      <div><b>フロー</b><span>ボラ上昇はグロス縮小を生む。買い持ちは売却、売り持ちは買い戻しとなる。</span></div>
     </div>
   </header>
 
@@ -150,6 +158,8 @@
     <a href="#estimate">ボラの推定</a>
     <a href="#sizing">サイズの計算</a>
     <a href="#portfolio">全体への集約</a>
+    <a href="#managers">運用会社の実装</a>
+    <a href="#flows">機械的フロー</a>
     <a href="#practice">実務上の留保</a>
   </nav>
 
@@ -241,6 +251,67 @@
       <aside class="note">この論文の40％は、各商品を比較可能にするための基準である。運用資金全体を年率10％や15％へ調整する一般的なボラティリティターゲットとは、計算の段階が異なる。実運用では商品別調整の後、相関を含むポートフォリオ予想ボラティリティを計算し、全体へもう一度倍率を掛ける方法が多い。</aside>
     </section>
 
+    <section id="managers">
+      <h2>AQR、Man AHL、Aspectはどう決めているか</h2>
+      <p class="lead">公開資料から確認できる共通構造は、方向の判定、商品別リスクの調整、ポートフォリオ全体の調整、売買制約の適用という順序である。現在のファンドが使う係数とリスクモデルは各社とも公開していない。</p>
+
+      <h3>AQRは簡易モデルの計算条件を公開している</h3>
+      <p>AQRの“Understanding Managed Futures”は、60の先物と為替フォワードについて、過去12か月の超過収益率が正なら買い、負なら売りとする。各商品の将来ボラティリティは直近60日から推定し、商品ごとのリスクをそろえる。ポートフォリオは月末にリバランスする。資料中の商品別目標は年率0.60％で、ポートフォリオ全体が年率9％から10％程度になるよう選ばれた。これは説明用の仮想戦略で、AQRの現行ファンドそのものではない。<sup><a href="#src2">2</a></sup></p>
+      <p>AQRの実運用コンポジットは、株式、債券、為替、商品をロングとショートで保有し、事前ボラティリティを年率17％に設定している。レバレッジは市場環境、リスク環境、取引対象、投資機会に応じて変わる。現在のManaged Futures Strategy Fundは数百の先物関連商品を売買し、価格トレンドと経済トレンドを併用する。個別シグナルとボラティリティモデルは独自仕様である。<sup><a href="#src3">3</a></sup><sup><a href="#src4">4</a></sup></p>
+
+      <h3>Man AHLは複数速度とリアルタイムのリスク調整を使う</h3>
+      <p>AHL Diversified Programmeは約300商品について、価格モメンタムとブレイクアウトをリアルタイムで測る。システムの時間軸は2日から3日程度の短期から数か月まで広がる。運用会社は相関、期待収益、取引市場へのアクセス費用、流動性を配分に反映し、個別市場のボラティリティ変化に応じて市場リスクをリアルタイムで調整する。ファンド全体のリバランスは通常日次である。<sup><a href="#src5">5</a></sup></p>
+      <p>同プログラムの通常レバレッジはNAVの200％から1,000％である。強いトレンドはポジションとレバレッジを増やす。市場ストレスが強まった場合と、複数市場でトレンドが弱い場合にはポジションを減らす。AQRの説明用モデルより、シグナルとリスク調整の反応が速い。</p>
+
+      <h3>Aspectは中期トレンドと全体12％を公表している</h3>
+      <p>Aspect Core Diversified Programmeは100を超える流動性の高い金融市場と商品市場で中期トレンドを追い、ポートフォリオ全体のボラティリティを年率12％に設定する。商品別のボラティリティ推定期間、シグナルの合成方法、リスク予算は公開資料から確認できない。<sup><a href="#src6">6</a></sup></p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>表1　各社が公開しているポジション決定要素。現行モデルの完全な仕様を示す表ではない。</caption>
+          <thead><tr><th>主体</th><th>方向シグナル</th><th>商品別サイズ</th><th>全体調整と頻度</th></tr></thead>
+          <tbody>
+            <tr><th>AQR</th><td>説明用モデルは過去12か月。現行商品は価格と経済の複数トレンド。</td><td>説明用モデルは直近60日の予想ボラで等リスク化。</td><td>説明用モデルは月末。実運用コンポジットは事前17％目標。<span class="disclosure">一部は説明用モデル</span></td></tr>
+            <tr><th>Man AHL</th><td>モメンタムとブレイクアウト。2日から数か月の複数速度。</td><td>個別市場のボラ変化をリアルタイムで反映。</td><td>相関、期待収益、費用、流動性を反映。ファンドは通常日次。<span class="disclosure">実運用開示</span></td></tr>
+            <tr><th>Aspect</th><td>100超の市場に対する中期トレンド。</td><td>詳細は非公開。</td><td>全体の年率12％目標。調整頻度は非公開。<span class="disclosure">商品資料</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>公開情報を一つの式へ置き換えると、各商品の目標枚数は次の形になる。シグナル強度、リスク予算、契約金額、予想ボラティリティを商品別に計算し、最後に全体倍率と制約を掛ける。</p>
+      <div class="formula" role="math" aria-label="CTAの目標枚数を表す代理式">
+        目標枚数<sub>i</sub> ≈ シグナル<sub>i</sub> ×
+        <span class="fraction"><span>NAV × 商品別リスク予算<sub>i</sub></span><span>契約金額<sub>i</sub> × 予想ボラ<sub>i</sub></span></span>
+        × 全体倍率 × 制約
+        <small>全体倍率はポートフォリオの目標ボラティリティから求める。制約には最大枚数、流動性、取引費用、セクター上限を含む。</small>
+      </div>
+    </section>
+
+    <section id="flows">
+      <h2>ポジション変化を売買フローへ変換する</h2>
+      <p class="lead">市場へ出る注文は、新しい目標枚数と現在の枚数との差である。同じボラティリティ上昇でも、現在のポジションが買いか売りかによって注文方向が逆になる。</p>
+      <div class="formula" role="math" aria-label="CTAの推定注文を表す式">
+        推定注文<sub>i,t</sub> = 目標枚数<sub>i,t</sub> − 現在枚数<sub>i,t−1</sub>
+        <small>正なら買い、負なら売りとなる。実際の注文は複数日に分割される場合がある。</small>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <caption>表2　市場状態と機械的フローの対応。ほかの調整項目が変わらない場合を示す。</caption>
+          <thead><tr><th>現在の状態</th><th>変化</th><th>目標ポジション</th><th>推定注文</th></tr></thead>
+          <tbody>
+            <tr><td class="flow-case">買い持ち</td><td>ボラ上昇、シグナル不変</td><td>買いを縮小</td><td>売り</td></tr>
+            <tr><td class="flow-case">売り持ち</td><td>ボラ上昇、シグナル不変</td><td>売りを縮小</td><td>買い戻し</td></tr>
+            <tr><td class="flow-case">買い持ち</td><td>上昇トレンドが下落へ反転</td><td>買いから売りへ転換</td><td>大きな売り</td></tr>
+            <tr><td class="flow-case">複数市場</td><td>相関上昇、全体予想ボラ上昇</td><td>グロスを縮小</td><td>買いを売却し、売りを買い戻す</td></tr>
+            <tr><td class="flow-case">トレンド不在</td><td>シグナル強度が低下</td><td>ロングとショートを縮小</td><td>両側で手仕舞い</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>株価指数先物を買い持ちしているCTAでは、予想ボラティリティが15％から30％へ上がると、逆ボラティリティ部分だけで目標元本は半分になる。上昇トレンドも同時に崩れれば、ボラ調整による売りとシグナル反転による売りが重なる。</p>
+      <p>すでに株価指数先物を売り持ちしている場合、ボラ上昇によるリスク縮小は買い戻しを生む。下落トレンドの強まりは売りを増やすため、二つの効果は反対方向になる。「ボラ上昇ならCTAは売る」という推定は、現在の符号を確認しない限り成立しない。</p>
+      <aside class="note">フロー推定では、少なくとも現在の方向、シグナル強度、個別市場の予想ボラティリティ、ポートフォリオ相関、運用資産額、調整速度を必要とする。単一の移動平均だけでは、各社の合計注文を再現できない。</aside>
+    </section>
+
     <section id="practice">
       <h2>この式だけでは損失上限を決められない</h2>
       <p>逆ボラティリティ方式は、異なる商品を同じリスク尺度へそろえる規則として使える。一方、予想値と実現値が一致する保証はなく、必要証拠金や売買可能枚数も式に入っていない。実際のサイズ決定では、次の3点を別に設定する必要がある。</p>
@@ -249,7 +320,7 @@
         <article><h3>急変への備え</h3><p>過去の変動が小さくても価格は急変する。ストレス損失、窓開け、流動性を別に検査する。</p></article>
         <article><h3>先物枚数への変換</h3><p>想定元本を一枚当たりの契約金額で割り、整数へ丸める。証拠金は想定元本と同じではない。</p></article>
       </div>
-      <p>この方法から得られる実務上の規則は、予想ボラティリティが上がったら機械的に保有額を減らし、下がったら上限の範囲で増やすことである。売買方向の判断と、取るリスク量の判断を分離できる。</p>
+      <p>CTAフローの代理モデルには、複数速度のトレンドシグナル、短期予想ボラティリティ、ポートフォリオ全体の目標ボラティリティを使う。AQRの単一12か月モデルは構造の理解に適するが、数日から数週間で反応するMan AHL型のフローを捉えにくい。</p>
     </section>
   </main>
 
@@ -257,7 +328,12 @@
     <h2>出典</h2>
     <ol>
       <li id="src1">Tobias J. Moskowitz, Yao Hua Ooi and Lasse Heje Pedersen, “Time Series Momentum,” <em>Journal of Financial Economics</em>, Vol. 104, No. 2, 2012, pp. 228–250. 予想ボラティリティはp. 233の2.4節、ポジション量はp. 233の3.2節、商品別40％と全体の式はp. 236の4.1節を参照した。<a href="https://doi.org/10.1016/j.jfineco.2011.11.003">DOI</a></li>
-      <li>本稿の金額計算は、論文の収益率ベースの式を説明用に想定元本へ置き換えた。手数料、証拠金、相関、売買単位は計算例から除いている。</li>
+      <li id="src2">Brian K. Hurst, Yao Hua Ooi and Lasse Heje Pedersen, “Understanding Managed Futures,” AQR, 2010. p. 4の“Identifying Trends and Sizing of Positions”を参照した。<a href="https://www.aqr.com/-/media/AQR/Documents/Insights/White-Papers/Understanding-Managed-Futures.pdf">AQR公式PDF</a></li>
+      <li id="src3">AQR, “The Raison d'être of Managed Futures,” Managed Futures Full Volatility Private CompositeのData Information。事前年率17％目標とレバレッジの変動要因を参照した。<a href="https://www.aqr.com/-/media/AQR/Images/Perspectives/raisons-detre-managed-futures/CP-081722The-Raisons-detre-of-Managed-Futures819.pdf">AQR公式PDF</a></li>
+      <li id="src4">AQR Managed Futures Strategy Fund。取引対象、価格と経済のトレンド、資産群別リスク配分を参照した。<a href="https://funds.aqr.com/funds/alternatives/aqr-managed-futures-strategy-fund/">AQR公式ページ</a></li>
+      <li id="src5">Man AHL Diversified Futures Ltd, Annual Report for the year ended 30 September 2025, pp. 25–26. 商品数、シグナルの時間軸、配分項目、リアルタイムのボラ調整、レバレッジ、日次リバランスを参照した。<a href="https://www.man.com/document?doc-type=ARP&amp;instrument=le69108&amp;locale=en">Man公式PDF</a></li>
+      <li id="src6">Aspect Capital, “Aspect Capital announces new UCITS investment offering,” 21 July 2021. 100超の市場、中期トレンド、年率12％目標を参照した。<a href="https://www.aspectcapital.com/about/news/aspect-capital-announces-new-ucits-investment-offering/">Aspect公式ページ</a></li>
+      <li>本稿の金額計算とCTA目標枚数の式は、公開情報を説明用の代理モデルへ置き換えた。各社の現行モデル、注文分割、取引費用、運用資産額は完全には公開されていない。</li>
     </ol>
   </footer>
 
