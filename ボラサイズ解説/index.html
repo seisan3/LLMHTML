@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="CTAのポジション設計と機械的フローを、Time Series Momentum、AQR、Man AHL、Aspect Capitalの公開資料から説明します。">
-  <title>CTAのポジションと機械的フロー</title>
+  <meta name="description" content="CTAが価格、ボラティリティ、相関の変化を目標ポジションと先物注文へ変換する仕組みを、AQRの研究に基づいて説明します。">
+  <title>CTAフローはどう生まれるか</title>
   <style>
     :root {
       --ink:#181b1f;
@@ -143,13 +143,13 @@
   <header>
     <a class="home" href="../index.html">HOME</a>
     <p class="kicker">CTA POSITIONING AND SYSTEMATIC FLOWS</p>
-    <h1>CTAのポジションと<br>機械的フロー</h1>
-    <p class="deck">Time Series Momentumの基本式から、AQR、Man AHL、Aspect Capitalが公開する実運用の構造までを確認する。価格、ボラティリティ、相関の変化が、先物の売買フローへどう変わるかを説明する。</p>
+    <h1>CTAフローは<br>どう生まれるか</h1>
+    <p class="deck">AQRのトレンドフォロー研究を手掛かりに、価格、ボラティリティ、相関の変化が目標ポジションを動かし、先物の注文へ変わるまでを説明する。</p>
     <p class="meta">更新日　2026年9月2日　対象　トレンドフォロー型CTA</p>
     <div class="takeaway" aria-label="持ち帰る内容">
       <div><b>関係</b><span>予想ボラティリティが2倍になると、ポジション量は半分になる。</span></div>
-      <div><b>実運用</b><span>AQRとMan AHLは、トレンド、個別市場のボラティリティ、全体リスクを段階的に処理する。</span></div>
-      <div><b>フロー</b><span>ボラ上昇はグロス縮小を生む。買い持ちは売却、売り持ちは買い戻しとなる。</span></div>
+      <div><b>速度</b><span>1、3、12カ月のシグナルは異なる日に反転するため、CTAの売買は時間差を伴う。</span></div>
+      <div><b>注文</b><span>ボラ上昇はグロスを縮小する。買い持ちは売却し、売り持ちは買い戻す。</span></div>
     </div>
   </header>
 
@@ -158,8 +158,8 @@
     <a href="#estimate">ボラの推定</a>
     <a href="#sizing">サイズの計算</a>
     <a href="#portfolio">全体への集約</a>
-    <a href="#managers">運用会社の実装</a>
-    <a href="#flows">機械的フロー</a>
+    <a href="#mechanism">目標ポジション</a>
+    <a href="#flows">フローの種類</a>
     <a href="#practice">実務上の留保</a>
   </nav>
 
@@ -251,39 +251,32 @@
       <aside class="note">この論文の40％は、各商品を比較可能にするための基準である。運用資金全体を年率10％や15％へ調整する一般的なボラティリティターゲットとは、計算の段階が異なる。実運用では商品別調整の後、相関を含むポートフォリオ予想ボラティリティを計算し、全体へもう一度倍率を掛ける方法が多い。</aside>
     </section>
 
-    <section id="managers">
-      <h2>AQR、Man AHL、Aspectはどう決めているか</h2>
-      <p class="lead">公開資料から確認できる共通構造は、方向の判定、商品別リスクの調整、ポートフォリオ全体の調整、売買制約の適用という順序である。現在のファンドが使う係数とリスクモデルは各社とも公開していない。</p>
+    <section id="mechanism">
+      <h2>複数の計算が一つの目標ポジションを作る</h2>
+      <p class="lead">AQRの“Demystifying Managed Futures”は、1カ月、3カ月、12カ月のトレンドを組み合わせ、各市場を予想ボラティリティで調整する。その後、分散共分散行列を使ってポートフォリオ全体を年率10％の事前ボラティリティへ合わせる。研究は週次リバランスを基本とし、単一の12カ月シグナルを月次で動かすモデルよりCTAの挙動に近い。<sup><a href="#src3">3</a></sup></p>
 
-      <h3>AQRは簡易モデルの計算条件を公開している</h3>
-      <p>AQRの“Understanding Managed Futures”は、60の先物と為替フォワードについて、過去12か月の超過収益率が正なら買い、負なら売りとする。各商品の将来ボラティリティは直近60日から推定し、商品ごとのリスクをそろえる。ポートフォリオは月末にリバランスする。資料中の商品別目標は年率0.60％で、ポートフォリオ全体が年率9％から10％程度になるよう選ばれた。これは説明用の仮想戦略で、AQRの現行ファンドそのものではない。<sup><a href="#src2">2</a></sup></p>
-      <p>AQRの実運用コンポジットは、株式、債券、為替、商品をロングとショートで保有し、事前ボラティリティを年率17％に設定している。レバレッジは市場環境、リスク環境、取引対象、投資機会に応じて変わる。現在のManaged Futures Strategy Fundは数百の先物関連商品を売買し、価格トレンドと経済トレンドを併用する。個別シグナルとボラティリティモデルは独自仕様である。<sup><a href="#src3">3</a></sup><sup><a href="#src4">4</a></sup></p>
-
-      <h3>Man AHLは複数速度とリアルタイムのリスク調整を使う</h3>
-      <p>AHL Diversified Programmeは約300商品について、価格モメンタムとブレイクアウトをリアルタイムで測る。システムの時間軸は2日から3日程度の短期から数か月まで広がる。運用会社は相関、期待収益、取引市場へのアクセス費用、流動性を配分に反映し、個別市場のボラティリティ変化に応じて市場リスクをリアルタイムで調整する。ファンド全体のリバランスは通常日次である。<sup><a href="#src5">5</a></sup></p>
-      <p>同プログラムの通常レバレッジはNAVの200％から1,000％である。強いトレンドはポジションとレバレッジを増やす。市場ストレスが強まった場合と、複数市場でトレンドが弱い場合にはポジションを減らす。AQRの説明用モデルより、シグナルとリスク調整の反応が速い。</p>
-
-      <h3>Aspectは中期トレンドと全体12％を公表している</h3>
-      <p>Aspect Core Diversified Programmeは100を超える流動性の高い金融市場と商品市場で中期トレンドを追い、ポートフォリオ全体のボラティリティを年率12％に設定する。商品別のボラティリティ推定期間、シグナルの合成方法、リスク予算は公開資料から確認できない。<sup><a href="#src6">6</a></sup></p>
-
-      <div class="table-wrap">
-        <table>
-          <caption>表1　各社が公開しているポジション決定要素。現行モデルの完全な仕様を示す表ではない。</caption>
-          <thead><tr><th>主体</th><th>方向シグナル</th><th>商品別サイズ</th><th>全体調整と頻度</th></tr></thead>
-          <tbody>
-            <tr><th>AQR</th><td>説明用モデルは過去12か月。現行商品は価格と経済の複数トレンド。</td><td>説明用モデルは直近60日の予想ボラで等リスク化。</td><td>説明用モデルは月末。実運用コンポジットは事前17％目標。<span class="disclosure">一部は説明用モデル</span></td></tr>
-            <tr><th>Man AHL</th><td>モメンタムとブレイクアウト。2日から数か月の複数速度。</td><td>個別市場のボラ変化をリアルタイムで反映。</td><td>相関、期待収益、費用、流動性を反映。ファンドは通常日次。<span class="disclosure">実運用開示</span></td></tr>
-            <tr><th>Aspect</th><td>100超の市場に対する中期トレンド。</td><td>詳細は非公開。</td><td>全体の年率12％目標。調整頻度は非公開。<span class="disclosure">商品資料</span></td></tr>
-          </tbody>
-        </table>
+      <h3>一つ目の計算は速度別の方向判定である</h3>
+      <p>各速度は、対応する期間の超過収益率が正なら買い、負なら売りと判定する。1カ月シグナルは直近の反転を早く捉える。3カ月シグナルは短期的な往復をある程度除き、12カ月シグナルは長く続いた方向を保持する。</p>
+      <p>三つの判定がすべて買いなら、合成シグナルは強い買いとなる。1カ月だけが売りへ変わった段階では、短期部分のロングを閉じるが、中長期部分は買いを残す。下落が続くと3カ月、12カ月の順に反転し、売り注文が複数回に分かれて発生する。AQRがCTA指数を回帰した結果では、推定配分は1カ月24％、3カ月54％、12カ月22％だった。これは業界全体の固定配分ではなく、当時の指数収益率から得た推定値である。<sup><a href="#src3">3</a></sup></p>
+      <div class="formula" role="math" aria-label="速度別シグナルを合成する説明用の式">
+        合成シグナル<sub>i,t</sub> = w<sub>1</sub>sign(R<sub>1カ月</sub>) + w<sub>3</sub>sign(R<sub>3カ月</sub>) + w<sub>12</sub>sign(R<sub>12カ月</sub>)
+        <small>wは速度別の配分で、合計を1とする。AQRの長期検証は三つの速度を等ウェイトで合成した。</small>
       </div>
 
-      <p>公開情報を一つの式へ置き換えると、各商品の目標枚数は次の形になる。シグナル強度、リスク予算、契約金額、予想ボラティリティを商品別に計算し、最後に全体倍率と制約を掛ける。</p>
+      <h3>二つ目の計算は個別市場の逆ボラ調整である</h3>
+      <p>合成シグナルが変わらなくても、予想ボラティリティが上がれば目標元本は減る。買い持ちでは売却となり、売り持ちでは買い戻しとなる。価格の方向と注文方向が一致するとは限らない。</p>
+      <p>予想ボラティリティが15％から30％へ上がった場合、逆ボラ部分が指定する元本は半分になる。現物価格が下落している最中でも、すでにショートを持つCTAには買い戻しが必要になる。市場参加者が推定すべき対象は価格変化そのものではなく、現在ポジションから新しい目標までの差である。</p>
+
+      <h3>三つ目の計算は相関を含む全体調整である</h3>
+      <p>株式、債券、通貨、商品が独立して動けば、各市場の損益は分散する。市場間の相関が上がると、商品別ボラティリティが変わらなくてもポートフォリオの予想ボラティリティは上がる。運用者は全ポジションへ共通倍率を掛け、全体のグロスを縮小する。</p>
+      <p>この調整は複数市場へ同時に注文を生む。ロング市場では売却し、ショート市場では買い戻すため、市場ごとの注文方向は現在ポジションに依存する。AQRの長期検証は1、3、12カ月を合成し、全体を長期的な年率10％目標へ調整している。これは実在するAQRファンドの仕様ではなく、研究用の仮想戦略である。<sup><a href="#src4">4</a></sup></p>
+
+      <p>以上を一つの代理式へ置き換えると、各商品の目標枚数は次の形になる。</p>
       <div class="formula" role="math" aria-label="CTAの目標枚数を表す代理式">
-        目標枚数<sub>i</sub> ≈ シグナル<sub>i</sub> ×
+        目標枚数<sub>i,t</sub> ≈ 合成シグナル<sub>i,t</sub> ×
         <span class="fraction"><span>NAV × 商品別リスク予算<sub>i</sub></span><span>契約金額<sub>i</sub> × 予想ボラ<sub>i</sub></span></span>
-        × 全体倍率 × 制約
-        <small>全体倍率はポートフォリオの目標ボラティリティから求める。制約には最大枚数、流動性、取引費用、セクター上限を含む。</small>
+        × <span class="fraction"><span>全体の目標ボラ</span><span>全体の予想ボラ</span></span> × 制約
+        <small>制約には最大枚数、流動性、取引費用、証拠金、資産群別上限を含む。</small>
       </div>
     </section>
 
@@ -294,9 +287,23 @@
         推定注文<sub>i,t</sub> = 目標枚数<sub>i,t</sub> − 現在枚数<sub>i,t−1</sub>
         <small>正なら買い、負なら売りとなる。実際の注文は複数日に分割される場合がある。</small>
       </div>
+      <h3>個別ボラ上昇による縮小フロー</h3>
+      <p>個別市場の予想ボラティリティが上がると、方向シグナルが不変でも目標枚数の絶対値が小さくなる。現在が100枚のロングで、新しい目標が50枚なら50枚を売る。現在が100枚のショートで、新しい目標が50枚のショートなら50枚を買い戻す。</p>
+
+      <h3>速度別シグナルの反転フロー</h3>
+      <p>価格が反転しても、三つの速度は同時には反転しない。最初に1カ月部分が反転し、その状態が続けば3カ月部分、最後に12カ月部分が反転する。このためCTAのシグナル由来フローは、一日に集中せず数週間から数カ月にわたって続くことがある。</p>
+      <p>ロングからショートへの転換では、ゼロまでの手仕舞いと新規ショートが同じ売り注文に含まれる。現在100枚のロングから目標50枚のショートへ変われば、注文は150枚の売りとなる。単なるポジション解消より注文量が大きい。</p>
+
+      <h3>相関上昇による一斉縮小フロー</h3>
+      <p>複数市場が同じ方向へ動き始めると、分散効果が低下する。全体予想ボラティリティが目標を上回れば、各市場の目標枚数へ共通の縮小倍率が掛かる。その結果、トレンド判定も個別ボラも変わっていない市場に注文が出る。</p>
+
+      <h3>取引費用による執行の遅れ</h3>
+      <p>AQRの検証では日次と週次のリバランス成績は近く、月次と四半期では短期シグナルの情報が失われた。一方、頻繁な機械的売買は費用を増やす。運用者は目標との差が小さい間は取引を見送り、差が広がったときに発注するか、注文を複数日に分ける。</p>
+      <p>同論文は、大規模運用者ほど費用に弱い短期シグナルを減らし、中長期シグナルの配分を増やす可能性を指摘している。したがって推定フローには、理論上の目標到達日と実際の執行日とのずれが残る。<sup><a href="#src3">3</a></sup></p>
+
       <div class="table-wrap">
         <table>
-          <caption>表2　市場状態と機械的フローの対応。ほかの調整項目が変わらない場合を示す。</caption>
+          <caption>表1　市場状態と機械的フローの対応。ほかの調整項目が変わらない場合を示す。</caption>
           <thead><tr><th>現在の状態</th><th>変化</th><th>目標ポジション</th><th>推定注文</th></tr></thead>
           <tbody>
             <tr><td class="flow-case">買い持ち</td><td>ボラ上昇、シグナル不変</td><td>買いを縮小</td><td>売り</td></tr>
@@ -307,9 +314,8 @@
           </tbody>
         </table>
       </div>
-      <p>株価指数先物を買い持ちしているCTAでは、予想ボラティリティが15％から30％へ上がると、逆ボラティリティ部分だけで目標元本は半分になる。上昇トレンドも同時に崩れれば、ボラ調整による売りとシグナル反転による売りが重なる。</p>
-      <p>すでに株価指数先物を売り持ちしている場合、ボラ上昇によるリスク縮小は買い戻しを生む。下落トレンドの強まりは売りを増やすため、二つの効果は反対方向になる。「ボラ上昇ならCTAは売る」という推定は、現在の符号を確認しない限り成立しない。</p>
-      <aside class="note">フロー推定では、少なくとも現在の方向、シグナル強度、個別市場の予想ボラティリティ、ポートフォリオ相関、運用資産額、調整速度を必要とする。単一の移動平均だけでは、各社の合計注文を再現できない。</aside>
+      <p>同じ日に複数の調整が重なることもある。株価指数をロングしている最中に価格が下がり、個別ボラと市場間相関が同時に上がれば、短期シグナルの反転、逆ボラ調整、全体倍率の低下がすべて売りを指示する。すでにショートなら、ボラ調整と相関調整は買い戻しを指示するため、下落シグナルによる追加売りと相殺する。</p>
+      <aside class="note">フロー推定には、現在の方向、速度別シグナル、個別市場の予想ボラティリティ、ポートフォリオ相関、運用資産額、契約金額、調整速度を使う。単一の移動平均からCTA全体の注文量は算出できない。</aside>
     </section>
 
     <section id="practice">
@@ -320,7 +326,7 @@
         <article><h3>急変への備え</h3><p>過去の変動が小さくても価格は急変する。ストレス損失、窓開け、流動性を別に検査する。</p></article>
         <article><h3>先物枚数への変換</h3><p>想定元本を一枚当たりの契約金額で割り、整数へ丸める。証拠金は想定元本と同じではない。</p></article>
       </div>
-      <p>CTAフローの代理モデルには、複数速度のトレンドシグナル、短期予想ボラティリティ、ポートフォリオ全体の目標ボラティリティを使う。AQRの単一12か月モデルは構造の理解に適するが、数日から数週間で反応するMan AHL型のフローを捉えにくい。</p>
+      <p>CTAフローの代理モデルには、1、3、12カ月のトレンドシグナル、短期予想ボラティリティ、相関を含む全体予想ボラティリティを使う。各計算後の目標枚数と前回の目標枚数を比較し、取引費用を考慮して執行量を決める。</p>
     </section>
   </main>
 
@@ -329,11 +335,10 @@
     <ol>
       <li id="src1">Tobias J. Moskowitz, Yao Hua Ooi and Lasse Heje Pedersen, “Time Series Momentum,” <em>Journal of Financial Economics</em>, Vol. 104, No. 2, 2012, pp. 228–250. 予想ボラティリティはp. 233の2.4節、ポジション量はp. 233の3.2節、商品別40％と全体の式はp. 236の4.1節を参照した。<a href="https://doi.org/10.1016/j.jfineco.2011.11.003">DOI</a></li>
       <li id="src2">Brian K. Hurst, Yao Hua Ooi and Lasse Heje Pedersen, “Understanding Managed Futures,” AQR, 2010. p. 4の“Identifying Trends and Sizing of Positions”を参照した。<a href="https://www.aqr.com/-/media/AQR/Documents/Insights/White-Papers/Understanding-Managed-Futures.pdf">AQR公式PDF</a></li>
-      <li id="src3">AQR, “The Raison d'être of Managed Futures,” Managed Futures Full Volatility Private CompositeのData Information。事前年率17％目標とレバレッジの変動要因を参照した。<a href="https://www.aqr.com/-/media/AQR/Images/Perspectives/raisons-detre-managed-futures/CP-081722The-Raisons-detre-of-Managed-Futures819.pdf">AQR公式PDF</a></li>
-      <li id="src4">AQR Managed Futures Strategy Fund。取引対象、価格と経済のトレンド、資産群別リスク配分を参照した。<a href="https://funds.aqr.com/funds/alternatives/aqr-managed-futures-strategy-fund/">AQR公式ページ</a></li>
-      <li id="src5">Man AHL Diversified Futures Ltd, Annual Report for the year ended 30 September 2025, pp. 25–26. 商品数、シグナルの時間軸、配分項目、リアルタイムのボラ調整、レバレッジ、日次リバランスを参照した。<a href="https://www.man.com/document?doc-type=ARP&amp;instrument=le69108&amp;locale=en">Man公式PDF</a></li>
-      <li id="src6">Aspect Capital, “Aspect Capital announces new UCITS investment offering,” 21 July 2021. 100超の市場、中期トレンド、年率12％目標を参照した。<a href="https://www.aspectcapital.com/about/news/aspect-capital-announces-new-ucits-investment-offering/">Aspect公式ページ</a></li>
-      <li>本稿の金額計算とCTA目標枚数の式は、公開情報を説明用の代理モデルへ置き換えた。各社の現行モデル、注文分割、取引費用、運用資産額は完全には公開されていない。</li>
+      <li id="src3">Brian K. Hurst, Yao Hua Ooi and Lasse Heje Pedersen, “Demystifying Managed Futures,” <em>Journal of Investment Management</em>, Vol. 11, No. 3, 2013, pp. 42–58. 1、3、12カ月シグナル、週次リバランス、年率10％目標、CTA指数の推定配分、取引費用を参照した。<a href="https://www.aqr.com/-/media/AQR/Documents/Insights/Journal-Article/Demystifying-Managed-Futures.pdf">AQR公式PDF</a></li>
+      <li id="src4">Brian K. Hurst, Yao Hua Ooi and Lasse Heje Pedersen, “A Century of Evidence on Trend-Following Investing,” AQR, 2017. 1、3、12カ月の等ウェイト合成、市場分散、長期的な年率10％目標を参照した。<a href="https://www.aqr.com/insights/research/journal-article/a-century-of-evidence-on-trend-following-investing">AQR公式ページ</a></li>
+      <li id="src5">Ari Levine and Lasse Heje Pedersen, “Which Trend Is Your Friend?,” AQR, 2016. トレンド抽出法の関係と、動的売買、サイズ決定、費用管理の位置付けを参照した。<a href="https://www.aqr.com/insights/research/journal-article/which-trend-is-your-friend">AQR公式ページ</a></li>
+      <li>本稿の合成シグナルと目標枚数の式は、公開研究をフロー推定用の代理モデルへ置き換えた。各ファンドの現行シグナル、注文分割、取引費用、運用資産額は公開されていない。</li>
     </ol>
   </footer>
 
