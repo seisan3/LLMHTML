@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="日米半導体関連18銘柄の2026年初来と8月騰落率を比較する散布図。市場とテーマの絞り込み、拡大表示、銘柄別数値を収録。">
+<title>日米半導体株のパフォーマンス | 2026年8月末</title>
+<style>
+:root{--ink:#242820;--sub:#666b64;--rule:#d8dcd2;--paper:#fffdf8;--blue:#245b76;--soft:#f2f3ed}
+*{box-sizing:border-box}html{background:#eceee7;color:var(--ink)}body{max-width:1220px;margin:0 auto;background:var(--paper);font:17px/1.85 "Yu Mincho","Hiragino Mincho ProN",serif}
+header,main,footer{padding-left:clamp(20px,5vw,66px);padding-right:clamp(20px,5vw,66px)}
+header{border-top:6px solid var(--blue);padding-top:32px;padding-bottom:28px}.home{font:13px "Yu Gothic",sans-serif}a{color:var(--blue);text-underline-offset:4px}
+h1,h2,h3,.meta,nav,form,figcaption,table,.legend,#selection,#count,button,svg{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}
+h1{font-size:clamp(27px,4vw,44px);line-height:1.4;letter-spacing:-.035em;margin:23px 0 14px}h1 span{display:block;font-size:.52em;letter-spacing:0;color:var(--sub);margin-top:8px}
+p{max-width:41em;margin:0 0 18px}.meta{font-size:12px;color:var(--sub);margin-top:20px}nav{display:flex;gap:24px;font-size:13px;flex-wrap:wrap;margin-top:22px}
+section{margin:32px 0 50px}h2{font-size:21px;border-top:2px solid var(--ink);padding-top:15px;margin:0 0 20px}
+form{display:flex;gap:16px;align-items:end;flex-wrap:wrap;background:var(--soft);padding:16px;font-size:13px}
+label{display:flex;flex-direction:column;gap:4px}select{font:inherit;padding:8px 28px 8px 10px;border:1px solid #b8bfb1;background:white;min-height:42px}.zoom{flex-direction:row;align-items:center;min-height:42px;gap:7px}input{width:18px;height:18px}button{padding:9px 16px;border:1px solid var(--blue);background:transparent;color:var(--blue);font-size:13px;min-height:42px;cursor:pointer}button:hover{background:#e7edf0}
+.legend{display:flex;gap:10px 22px;flex-wrap:wrap;font-size:12px;margin:16px 0 4px}.swatch{width:10px;height:10px;display:inline-block;margin-right:6px}
+figure{margin:0}svg{width:100%;height:auto;display:block;overflow:visible;touch-action:manipulation}.point{cursor:pointer;outline:none}.point:hover .mark,.point:focus .mark,.point.active .mark{stroke:#242820;stroke-width:2.5}
+#count,figcaption{font-size:12px;color:var(--sub)}#selection{min-height:70px;border-left:3px solid var(--blue);background:var(--soft);padding:12px 16px;font-size:14px;margin-top:12px}#selection strong{display:block}.table-wrap{max-width:100%;overflow-x:auto}
+table{width:100%;min-width:670px;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}th,td{padding:12px 10px;border-bottom:1px solid var(--rule);text-align:right;white-space:nowrap}th:first-child,td:nth-child(2),td:nth-child(3){text-align:left}thead{border-top:1px solid var(--ink);border-bottom:2px solid var(--ink)}small{display:block;font-size:11px;font-weight:400;color:var(--sub)}
+tr.selected{background:#edf1e8}tr[hidden]{display:none}details{margin-top:20px;font-size:14px}summary{font-family:"Yu Gothic",sans-serif;cursor:pointer}footer{border-top:1px solid var(--rule);padding-top:24px;padding-bottom:34px;font-size:12px;color:var(--sub)}
+.note{font-size:14px;color:var(--sub)}@media(max-width:600px){header{padding-top:22px}section{margin-top:25px}form{gap:10px}select{max-width:230px}.legend{gap:6px 14px}#selection{font-size:13px}svg .tick{font-size:16px}svg .axis-label{font-size:17px}}
+</style></head><body>
+<header><a class="home" href="../index.html">← レポート一覧</a>
+<h1>日米半導体株のパフォーマンス<span>2026年初来 × 8月</span></h1>
+<p>年初からの上昇率と直近1か月の動きを重ね、同業の中で相対的に上昇が小さい銘柄を探します。メモリ、製造装置、検査、半導体デバイスの18銘柄を比較します。</p>
+<p class="meta">基準日：2026年8月31日 ／ 取得日：2026年9月7日 ／ 現地通貨、分割と配当調整済終値比</p>
+<nav aria-label="ページ内目次"><a href="#scatter">散布図</a><a href="#table">銘柄別の騰落率</a><a href="#reading">読み取りと定義</a></nav></header>
+<main><section id="scatter"><h2>1. 年初来の上昇率と8月の動き</h2>
+<p>右ほど年初からの上昇が大きく、上ほど8月の上昇が大きい配置です。点を選ぶと会社名と騰落率を確認できます。近接した点は市場やテーマを絞ると比較しやすくなります。</p>
+<form onsubmit="return false" aria-label="散布図の表示設定">
+<label>市場<select id="market"><option value="all">日米すべて</option><option value="JP">日本</option><option value="US">米国</option></select></label>
+<label>テーマ<select id="theme"><option value="all">すべてのテーマ</option><option>メモリ</option><option>製造装置</option><option>検査</option><option>半導体デバイス</option></select></label>
+<label class="zoom"><input type="checkbox" id="zoom">年初来0〜150%を拡大</label>
+<button type="button" id="reset">表示を戻す</button></form>
+<div class="legend"><span><i class="swatch" style="background:#bf594d"></i>メモリ</span><span><i class="swatch" style="background:#497b97"></i>製造装置</span><span><i class="swatch" style="background:#478662"></i>検査</span><span><i class="swatch" style="background:#8d877e"></i>半導体デバイス</span><span>● 日本　▲ 米国</span></div>
+<figure><svg id="chart" viewBox="0 0 1000 530" role="group" aria-label="2026年初来と8月騰落率の散布図"><title>年初来と8月の騰落率</title></svg>
+<div id="count" aria-live="polite"></div>
+<figcaption>図1：横軸は前年末から8月末、縦軸は7月末から8月末。年初来には8月を含みます。色は便宜的なテーマ分類、形は上場市場です。出所：Yahoo Financeの調整済終値から計算。</figcaption></figure>
+<div id="selection" aria-live="polite">点をクリック、タップ、またはキーボードで選択してください。</div>
+<noscript><p>散布図の操作にはJavaScriptが必要です。下の数値表はそのまま読めます。</p></noscript>
+</section>
+<section id="table"><h2>2. 銘柄別の騰落率</h2>
+<p class="note">年初来の上昇率順です。市場とテーマの選択が表にも反映されます。拡大表示で図の範囲外になった銘柄も表には残ります。</p>
+<div class="table-wrap"><table><caption>2026年8月末時点。騰落率の単位は%。</caption><thead><tr><th scope="col">会社／銘柄</th><th scope="col">市場</th><th scope="col">テーマ</th><th scope="col">年初来</th><th scope="col">8月</th><th scope="col">出所</th></tr></thead><tbody><tr data-ticker="SNDK"><th scope="row">Sandisk<small>SNDK</small></th><td>米国</td><td>メモリ</td><td>+560.0%</td><td>+29.0%</td><td><a href="https://finance.yahoo.com/quote/SNDK/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="285A.T"><th scope="row">キオクシア<small>285A.T</small></th><td>日本</td><td>メモリ</td><td>+379.1%</td><td>+7.5%</td><td><a href="https://finance.yahoo.com/quote/285A.T/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="MU"><th scope="row">Micron<small>MU</small></th><td>米国</td><td>メモリ</td><td>+236.1%</td><td>+16.5%</td><td><a href="https://finance.yahoo.com/quote/MU/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="6963.T"><th scope="row">ローム<small>6963.T</small></th><td>日本</td><td>半導体デバイス</td><td>+121.0%</td><td>+12.4%</td><td><a href="https://finance.yahoo.com/quote/6963.T/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="AMD"><th scope="row">AMD<small>AMD</small></th><td>米国</td><td>半導体デバイス</td><td>+119.8%</td><td>-1.1%</td><td><a href="https://finance.yahoo.com/quote/AMD/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="6871.T"><th scope="row">日本マイクロニクス<small>6871.T</small></th><td>日本</td><td>検査</td><td>+82.1%</td><td>-5.4%</td><td><a href="https://finance.yahoo.com/quote/6871.T/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="TER"><th scope="row">Teradyne<small>TER</small></th><td>米国</td><td>検査</td><td>+80.9%</td><td>-4.9%</td><td><a href="https://finance.yahoo.com/quote/TER/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="7735.T"><th scope="row">SCREEN<small>7735.T</small></th><td>日本</td><td>製造装置</td><td>+80.1%</td><td>+7.9%</td><td><a href="https://finance.yahoo.com/quote/7735.T/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="AMAT"><th scope="row">Applied Materials<small>AMAT</small></th><td>米国</td><td>製造装置</td><td>+79.0%</td><td>-9.6%</td><td><a href="https://finance.yahoo.com/quote/AMAT/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="LRCX"><th scope="row">Lam Research<small>LRCX</small></th><td>米国</td><td>製造装置</td><td>+76.5%</td><td>+2.9%</td><td><a href="https://finance.yahoo.com/quote/LRCX/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="6857.T"><th scope="row">アドバンテスト<small>6857.T</small></th><td>日本</td><td>検査</td><td>+71.8%</td><td>+3.7%</td><td><a href="https://finance.yahoo.com/quote/6857.T/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="8035.T"><th scope="row">東京エレクトロン<small>8035.T</small></th><td>日本</td><td>製造装置</td><td>+66.0%</td><td>+1.7%</td><td><a href="https://finance.yahoo.com/quote/8035.T/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="7729.T"><th scope="row">東京精密<small>7729.T</small></th><td>日本</td><td>検査</td><td>+61.6%</td><td>+3.5%</td><td><a href="https://finance.yahoo.com/quote/7729.T/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="6723.T"><th scope="row">ルネサス<small>6723.T</small></th><td>日本</td><td>半導体デバイス</td><td>+58.5%</td><td>-1.5%</td><td><a href="https://finance.yahoo.com/quote/6723.T/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="KLAC"><th scope="row">KLA<small>KLAC</small></th><td>米国</td><td>製造装置</td><td>+44.9%</td><td>-3.9%</td><td><a href="https://finance.yahoo.com/quote/KLAC/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="6146.T"><th scope="row">ディスコ<small>6146.T</small></th><td>日本</td><td>製造装置</td><td>+21.3%</td><td>-0.6%</td><td><a href="https://finance.yahoo.com/quote/6146.T/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="NVDA"><th scope="row">NVIDIA<small>NVDA</small></th><td>米国</td><td>半導体デバイス</td><td>+18.5%</td><td>+10.0%</td><td><a href="https://finance.yahoo.com/quote/NVDA/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+<tr data-ticker="AVGO"><th scope="row">Broadcom<small>AVGO</small></th><td>米国</td><td>半導体デバイス</td><td>+7.4%</td><td>-4.9%</td><td><a href="https://finance.yahoo.com/quote/AVGO/history/" target="_blank" rel="noopener noreferrer">株価履歴</a></td></tr>
+</tbody></table></div>
+</section>
+<section id="reading"><h2>3. 出遅れ候補をどう読むか</h2>
+<p>メモリ3社は年初来の上昇率が他の掲載銘柄を上回り、8月も上昇しています。一方、製造装置では同じ年初来上昇でも8月の方向が分かれました。年初来の順位に月間の動きを重ねると、上昇が続く銘柄と直近で下落した銘柄を分けて確認できます。</p>
+<p>左側にある銘柄を調査候補にする際は、同じテーマの企業と比較し、業績や受注の変化を確認します。この図には利益成長率や評価倍率を含めていないため、上昇が小さいことだけでは割安とは判断できません。</p>
+<details><summary>期間、計算式、対象範囲</summary>
+<p>年初来＝8月末の調整済終値 ÷ 前年末の調整済終値 − 1。8月＝8月末の調整済終値 ÷ 7月末の調整済終値 − 1。計算後に小数第1位へ丸めています。</p>
+<p>日本の前年末は2025年12月30日、米国は12月31日です。7月末と8月末は両市場とも2026年7月31日、8月31日を使っています。</p>
+<p>日本株は円、米国株は米ドルのまま比較します。為替変動、税金、取引費用は含みません。調整済終値の比率は配当再投資を近似する比較指標です。</p>
+<p>現在選んだ18銘柄の比較であり、各市場やテーマの指数ではありません。市場平均に対する超過騰落率も示していません。全18銘柄の基準価格を確認し、欠損による除外はありません。</p>
+</details></section></main>
+<footer>株価データ：各銘柄のYahoo Finance履歴ページ（表の出所リンク）。過去のパフォーマンスを比較するための2026年8月末スナップショットです。</footer>
+<script>
+"use strict";
+const data=[{"ticker": "285A.T", "name": "キオクシア", "market": "JP", "theme": "メモリ", "ytd": 3.7906085289889795, "month": 0.07505376344086012}, {"ticker": "MU", "name": "Micron", "market": "US", "theme": "メモリ", "ytd": 2.361060452875002, "month": 0.16487849330091287}, {"ticker": "SNDK", "name": "Sandisk", "market": "US", "theme": "メモリ", "ytd": 5.59996595730676, "month": 0.2896454712558534}, {"ticker": "8035.T", "name": "東京エレクトロン", "market": "JP", "theme": "製造装置", "ytd": 0.659900261048193, "month": 0.016936936936936986}, {"ticker": "7735.T", "name": "SCREEN", "market": "JP", "theme": "製造装置", "ytd": 0.8008219586382759, "month": 0.0793650793650793}, {"ticker": "6146.T", "name": "ディスコ", "market": "JP", "theme": "製造装置", "ytd": 0.2134178699471132, "month": -0.006155950752393946}, {"ticker": "AMAT", "name": "Applied Materials", "market": "US", "theme": "製造装置", "ytd": 0.7900450510734951, "month": -0.09610543351666145}, {"ticker": "LRCX", "name": "Lam Research", "market": "US", "theme": "製造装置", "ytd": 0.7645979030893517, "month": 0.028905881981682535}, {"ticker": "KLAC", "name": "KLA", "market": "US", "theme": "製造装置", "ytd": 0.44929550933324336, "month": -0.039228210112748685}, {"ticker": "6857.T", "name": "アドバンテスト", "market": "JP", "theme": "検査", "ytd": 0.7181490429510367, "month": 0.036615384615384716}, {"ticker": "7729.T", "name": "東京精密", "market": "JP", "theme": "検査", "ytd": 0.6160258647761219, "month": 0.03467365967365965}, {"ticker": "6871.T", "name": "日本マイクロニクス", "market": "JP", "theme": "検査", "ytd": 0.8212765957446808, "month": -0.05449189985272462}, {"ticker": "TER", "name": "Teradyne", "market": "US", "theme": "検査", "ytd": 0.8087850602421811, "month": -0.04857362768020834}, {"ticker": "NVDA", "name": "NVIDIA", "market": "US", "theme": "半導体デバイス", "ytd": 0.18525089423992025, "month": 0.09977583451704541}, {"ticker": "AMD", "name": "AMD", "market": "US", "theme": "半導体デバイス", "ytd": 1.1979827847004567, "month": -0.011403954101408043}, {"ticker": "AVGO", "name": "Broadcom", "market": "US", "theme": "半導体デバイス", "ytd": 0.07397927373189739, "month": -0.04865393161939546}, {"ticker": "6723.T", "name": "ルネサス", "market": "JP", "theme": "半導体デバイス", "ytd": 0.5850467289719625, "month": -0.014526438117373641}, {"ticker": "6963.T", "name": "ローム", "market": "JP", "theme": "半導体デバイス", "ytd": 1.210313943689008, "month": 0.1242207342415147}];
+const colors={"メモリ":"#bf594d","製造装置":"#497b97","検査":"#478662","半導体デバイス":"#8d877e"};
+const $=id=>document.getElementById(id),svg=$("chart"),ns="http://www.w3.org/2000/svg";
+const fmt=v=>(v>=0?"+":"")+(v*100).toFixed(1)+"%";
+function add(tag,attrs,text,parent=svg){const e=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;parent.appendChild(e);return e;}
+function select(r){$("selection").replaceChildren();const title=document.createElement("strong");title.textContent=r.name+" ("+r.ticker+")";$("selection").append(title,document.createTextNode("年初来 "+fmt(r.ytd)+" ／ 8月 "+fmt(r.month)+" ／ "+r.theme));document.querySelectorAll(".point").forEach(g=>g.classList.toggle("active",g.dataset.ticker===r.ticker));document.querySelectorAll("tbody tr").forEach(tr=>tr.classList.toggle("selected",tr.dataset.ticker===r.ticker));}
+function render(){
+ const filtered=data.filter(r=>($("market").value==="all"||r.market===$("market").value)&&($("theme").value==="all"||r.theme===$("theme").value));
+ const zoom=$("zoom").checked,xmin=zoom?0:-.2,xmax=zoom?1.5:6.2,ymin=zoom?-.15:-.15,ymax=zoom?.18:.35;
+ const shown=filtered.filter(r=>r.ytd>=xmin&&r.ytd<=xmax&&r.month>=ymin&&r.month<=ymax);
+ svg.replaceChildren();add("title",{},"2026年初来と8月の騰落率");
+ const W=Math.max(360,Math.min(1000,svg.clientWidth));svg.setAttribute("viewBox","0 0 "+W+" 530");const L=62,R=W-24,T=24,B=455,X=v=>L+(v-xmin)/(xmax-xmin)*(R-L),Y=v=>B-(v-ymin)/(ymax-ymin)*(B-T);
+ for(let v=Math.ceil(ymin/.05)*.05;v<=ymax+.001;v+=.05){const y=Y(v);add("line",{x1:L,x2:R,y1:y,y2:y,stroke:Math.abs(v)<.001?"#969b90":"#e0e2d9"});add("text",{x:L-12,y:y+5,"text-anchor":"end",fill:"#666b64",class:"tick","font-size":14},Math.round(v*100)+"%");}
+ const step=zoom?(W<600?.5:.25):(W<600?2:1);
+ for(let v=0;v<=xmax;v+=step){add("text",{x:X(v),y:B+28,"text-anchor":"middle",fill:"#666b64",class:"tick","font-size":14},Math.round(v*100)+"%");}
+ add("line",{x1:X(0),x2:X(0),y1:T,y2:B,stroke:"#969b90"});
+ add("text",{x:(L+R)/2,y:516,"text-anchor":"middle",class:"axis-label","font-size":16},"年初来：前年末 → 8月末（%）");
+ add("text",{transform:"translate(19 240) rotate(-90)","text-anchor":"middle",class:"axis-label","font-size":16},"8月：7月末 → 8月末（%）");
+ shown.forEach(r=>{const x=X(r.ytd),y=Y(r.month),g=add("g",{class:"point",tabindex:"0",role:"button","aria-label":r.name+" "+r.ticker+" 年初来 "+fmt(r.ytd)+" 8月 "+fmt(r.month),"data-ticker":r.ticker});
+ add("circle",{cx:x,cy:y,r:15,fill:"transparent"},undefined,g);
+ if(r.market==="JP")add("circle",{class:"mark",cx:x,cy:y,r:6,fill:colors[r.theme],stroke:"#fffdf8","stroke-width":1},undefined,g);
+ else add("path",{class:"mark",d:"M"+x+" "+(y-7)+" L"+(x-7)+" "+(y+6)+" L"+(x+7)+" "+(y+6)+" Z",fill:colors[r.theme],stroke:"#fffdf8","stroke-width":1},undefined,g);
+ add("title",{},r.name+" / 年初来 "+fmt(r.ytd)+" / 8月 "+fmt(r.month),g);
+ if((zoom&&W>=600)||filtered.length<=9||r.ytd>1.5)add("text",{x:x>R-55?x-10:x+10,"text-anchor":x>R-55?"end":"start",y:y-10,"font-size":13,fill:"#454a41","pointer-events":"none"},r.ticker.replace(".T",""),g);
+ g.addEventListener("click",()=>select(r));g.addEventListener("focus",()=>select(r));g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(r);}});
+ });
+ const inFilter=new Set(filtered.map(r=>r.ticker));document.querySelectorAll("tbody tr").forEach(tr=>{tr.hidden=!inFilter.has(tr.dataset.ticker);tr.classList.remove("selected");});
+ $("count").textContent="図に表示 "+shown.length+" / 選択中 "+filtered.length+"銘柄"+(zoom?"（年初来0〜150%、8月−15〜18%。範囲外 "+(filtered.length-shown.length)+"銘柄）":"（全18銘柄が収まる固定尺度）");
+ $("selection").textContent=shown.length?"点をクリック、タップ、またはキーボードで選択してください。":"この表示範囲に銘柄はありません。拡大を解除すると全範囲を確認できます。";
+}
+["market","theme","zoom"].forEach(id=>$(id).addEventListener("change",render));$("reset").addEventListener("click",()=>{$("market").value="all";$("theme").value="all";$("zoom").checked=false;render();});window.addEventListener("resize",render);render();
+</script></body></html>
