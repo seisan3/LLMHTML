@@ -169,38 +169,39 @@ function renderBarChart(chart, figure) {
 
 function renderCharts(items) {
   if (!array(items).length) return;
-  replace("chart-grid", items.map(chart => {
+  const groups = {"price-charts": ["spx", "ndx"], "internal-charts": ["participation", "leadership", "breadth"],
+                  "options-charts": ["vol", "tail", "cor", "dispersion"]};
+  const figures = items.map(chart => {
     const figure = el("figure", "chart-card");
     figure.append(el("h3", "", chart.title));
     if (chart.bars) renderBarChart(chart, figure);
     else renderLineChart(chart, figure);
     figure.append(el("figcaption", "", chart.explanation || ""));
+    figure.dataset.chart = chart.key;
     return figure;
-  }));
+  });
+  Object.entries(groups).forEach(([id, keys]) => replace(id, keys.map(key => figures.find(figure => figure.dataset.chart === key)).filter(Boolean)));
 }
 
 function render(report) {
   if (!report || typeof report !== "object" || Array.isArray(report)) throw new Error("日次データの形式が不正です。");
-  byId("report-date").textContent = `対象日：${shown(report.reportDate)}`;
+  byId("report-date").textContent = shown(report.reportDate);
   byId("generated-at").textContent = `生成日時：${shown(report.generatedAt)}`;
   const status = ["ready", "partial", "unavailable"].includes(report.status) ? report.status : "unavailable";
   const state = byId("data-state");
   state.classList.toggle("ready", status === "ready");
   state.textContent = status === "ready" ? "観測値と判定を掲載しています。各数値の対象時点を確認してください。" : status === "partial" ? "一部の系列が未取得です。取得済みの観測だけで判定し、欠測を表に明示しています。" : "日次データは未取得です。現在の市況判断は掲載していません。";
   if (status === "unavailable") return;
-  replace("indices", [renderIndex(report.indices?.spx, "spx", "SPX"), renderIndex(report.indices?.ndx, "ndx", "NDX")]);
   byId("change-reason").textContent = `前回からの判断変更：${shown(report.changeReason, "比較する前回判定がありません")}`;
   const primary = report.primary ?? {};
   byId("primary-title").textContent = shown(primary.title, "判定保留");
-  byId("primary-body").textContent = shown(primary.body, "判定根拠は未記録です。");
-  renderList("support", primary.support, "支持する観測は未記録です。");
-  renderList("conflicts", primary.conflicts, "反する観測は未記録です。");
+  const article = report.article ?? {};
+  for (const key of ["price", "volatility", "internal", "options", "conclusion"])
+    byId(`article-${key}`).textContent = shown(article[key], "説明は未取得です。");
+  replace("key-data", array(article.keyData).map(item => el("li", "", `${item.label} ${item.value}`)));
   byId("alternative").textContent = typeof report.alternative === "string" ? report.alternative : shown(report.alternative?.body ?? report.alternative?.title, "代替仮説は未記録です。");
-  renderScenarios(report.scenarios);
   renderCharts(report.charts);
   renderObservations(report.observations);
-  renderWeekly(report.weekly);
-  renderHistory(report.history);
 }
 
 fetch("daily-data.json", {cache: "no-store"})
