@@ -9,7 +9,9 @@ function filter() {
   for (const row of rows) {
     const visible = (!year.value || row.dataset.year === year.value) &&
       (!layer.value || row.dataset.known.split(' ').includes(layer.value)) &&
-      terms.every(term => row.dataset.search.toLocaleLowerCase().includes(term));
+      terms.every(term => /^202[45]-\d{2}$/.test(term)
+        ? row.dataset.id === term
+        : row.dataset.search.toLocaleLowerCase().includes(term));
     row.hidden = !visible;
     if (visible) count++;
   }
