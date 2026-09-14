@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SPX・NDXの日次市場観測と条件付きシナリオ。観測値、仮説、反証条件を分けて表示します。">
+  <title>指数の日次チェック | himagyo市場観測</title>
+  <link rel="stylesheet" href="daily.css">
+  <script src="daily.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="back" href="index.html">← 指標の用語集</a>
+    <p class="eyebrow">SPX / NDX · DAILY MARKET CHECK</p>
+    <h1>指数の日次チェック</h1>
+    <p class="deck">価格、市場内部、ボラティリティ、機械的フローを合わせて、現在の局面と次の1～3営業日の条件付きシナリオを読む。</p>
+    <div class="meta" aria-live="polite"><span id="report-date">対象日：未取得</span><span id="generated-at">生成日時：未取得</span></div>
+    <p class="data-state" id="data-state" role="status">日次データを読み込んでいます。</p>
+  </header>
+  <main>
+    <nav class="contents" aria-label="ページ内目次"><a href="#judgment">判断</a><a href="#scenarios">次の分岐</a><a href="#observations">観測値</a><a href="#weekly">週次確認</a><a href="#history">判断履歴</a></nav>
+    <section id="judgment" aria-labelledby="judgment-title">
+      <h2 id="judgment-title">現在の判断</h2>
+      <p class="section-question">指数の下落や反発は、市場全体に広がっているか。</p>
+      <div class="indices" id="indices"><p class="no-data">SPX・NDXの観測値は未取得です。</p></div>
+      <p class="change" id="change-reason">前回からの判断変更：未判定</p>
+      <div class="judgment-grid">
+        <article class="main-thesis"><p class="small-label">主仮説</p><h3 id="primary-title">判定待ち</h3><p id="primary-body">観測値の入力後に表示します。</p><div class="evidence"><div><h4>支持する観測</h4><ul id="support"><li>未判定</li></ul></div><div><h4>反する観測</h4><ul id="conflicts"><li>未判定</li></ul></div></div></article>
+        <aside class="alternative"><p class="small-label">代替仮説</p><p id="alternative">観測値の入力後に表示します。</p></aside>
+      </div>
+      <p class="scope-note">ここで示すのは条件付きの市場仮説です。ディーラー需給は直接測定していません。</p>
+    </section>
+    <section id="scenarios" aria-labelledby="scenarios-title">
+      <h2 id="scenarios-title">次の1～3営業日の分岐</h2>
+      <p class="section-question">どの変化で主仮説を維持し、どこで撤回するか。</p>
+      <div id="scenarios-list" class="scenario-list"><p class="no-data">シナリオは未判定です。</p></div>
+    </section>
+    <section id="observations" aria-labelledby="observations-title">
+      <h2 id="observations-title">判断に使う観測値</h2>
+      <p class="section-question">価格と市場内部の変化を、ボラ・相関・フロー・クレジットが裏付けるか。</p>
+      <p class="table-note">値ごとに対象時点と出典を記載します。欠測は推定で補いません。期間・単位の異なる値を同列の強弱として比較しません。</p>
+      <div class="table-scroll"><table><thead><tr><th scope="col">区分・観測値</th><th scope="col">値</th><th scope="col">対象時点</th><th scope="col">出典・計算方法</th></tr></thead><tbody id="observation-rows"><tr><td colspan="4" class="no-data">観測値は未取得です。</td></tr></tbody></table></div>
+    </section>
+    <section id="weekly" aria-labelledby="weekly-title"><h2 id="weekly-title">週次の評価水準とイベント</h2><p class="section-question">日次の価格・ボラ判定とは更新頻度を分けて確認する。</p><div id="weekly-list" class="weekly-list"><p class="no-data">週次F-PER・イベント情報は未取得です。</p></div></section>
+    <section id="history" aria-labelledby="history-title"><h2 id="history-title">判断履歴と答え合わせ</h2><p class="section-question">前回の仮説は、何を受けて維持または撤回したか。</p><ol id="history-list" class="history-list"><li class="no-data">過去日の判定はまだありません。</li></ol></section>
+  </main>
+  <footer><p>数値は表示された対象時点の観測です。将来の分岐は予測の確定値ではありません。</p><p><a href="index.html">指標の用語集へ戻る</a></p></footer>
+</body>
+</html>

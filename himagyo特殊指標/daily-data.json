@@ -1,0 +1,507 @@
+{
+  "reportDate": "2026-09-11",
+  "generatedAt": "2026-09-14T13:59:38.984062+00:00",
+  "status": "partial",
+  "indices": {
+    "spx": {
+      "label": "S&P 500",
+      "close": 7656.98,
+      "changePct": 0.86,
+      "regime": "集中上昇",
+      "asOf": "2026-09-11"
+    },
+    "ndx": {
+      "label": "NASDAQ 100",
+      "close": 29368.44,
+      "changePct": 0.91,
+      "regime": "集中上昇",
+      "asOf": "2026-09-11"
+    }
+  },
+  "changeReason": "比較する前回判定がありません。",
+  "primary": {
+    "title": "指数高に均等加重が追随していない",
+    "body": "上昇の裾野は狭い。ただし、これだけで下落を予測しない。先導群とヘッジ需要の変化を待つ。",
+    "support": [
+      "SPX前日比 +0.86%",
+      "VIX前日差 -2.00pt"
+    ],
+    "conflicts": [
+      "RSP/SPY前日比 -0.05%",
+      "QQQE/QQQ前日比 -0.30%"
+    ],
+    "regime": "集中上昇"
+  },
+  "alternative": "取得できていないブレッド、相関、CTA、クレジットの直接系列が別方向を示す可能性がある。",
+  "scenarios": [
+    {
+      "title": "正常化",
+      "watch": "RSP/SPYとQQQE/QQQが改善し、VIXが低下する",
+      "reject": "均等加重の弱さが続き、VIXが上がる"
+    },
+    {
+      "title": "悪化",
+      "watch": "均等加重の弱さが続き、VIX上昇と長期ブレッド悪化が重なる",
+      "reject": "均等加重が回復し、VIXが低下する"
+    },
+    {
+      "title": "判定保留",
+      "watch": "価格・内部構造・VIXの方向が食い違う、または重要系列が欠ける",
+      "reject": "複数系列が同じ方向へそろう"
+    }
+  ],
+  "observations": [
+    {
+      "group": "価格",
+      "label": "S&P 500 終値",
+      "value": 7656.98,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "S&P 500 前日比",
+      "value": 0.86,
+      "unit": "%",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "S&P 500 5日線",
+      "value": 7655.432,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近5営業日の終値平均",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "S&P 500 20日線",
+      "value": 7685.188,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近20営業日の終値平均",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "S&P 500 50日線",
+      "value": 7607.339,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近50営業日の終値平均",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "S&P 500 100日線",
+      "value": 7496.85,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近100営業日の終値平均",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "S&P 500 200日線",
+      "value": 7162.552,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近200営業日の終値平均",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "S&P 500 20日ATR",
+      "value": 55.102,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近20営業日のTrue Rangeの単純平均",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "NASDAQ 100 終値",
+      "value": 29368.439,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "NASDAQ 100 前日比",
+      "value": 0.91,
+      "unit": "%",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "NASDAQ 100 5日線",
+      "value": 29389.07,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近5営業日の終値平均",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "NASDAQ 100 20日線",
+      "value": 29405.882,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近20営業日の終値平均",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "NASDAQ 100 50日線",
+      "value": 29197.551,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近50営業日の終値平均",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "NASDAQ 100 100日線",
+      "value": 29141.918,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近100営業日の終値平均",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "NASDAQ 100 200日線",
+      "value": 27129.309,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近200営業日の終値平均",
+      "status": "observed"
+    },
+    {
+      "group": "価格",
+      "label": "NASDAQ 100 20日ATR",
+      "value": 321.711,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "直近20営業日のTrue Rangeの単純平均",
+      "status": "observed"
+    },
+    {
+      "group": "市場内部",
+      "label": "RSP/SPY 比率前日比",
+      "value": -0.054,
+      "unit": "%",
+      "asOf": "2026-09-11",
+      "source": [
+        "https://query1.finance.yahoo.com/v8/finance/chart/RSP?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+        "https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+      ],
+      "definition": "両ETFの終値比率の前日比",
+      "status": "observed"
+    },
+    {
+      "group": "市場内部",
+      "label": "QQQE/QQQ 比率前日比",
+      "value": -0.301,
+      "unit": "%",
+      "asOf": "2026-09-11",
+      "source": [
+        "https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+        "https://query1.finance.yahoo.com/v8/finance/chart/QQQE?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+      ],
+      "definition": "両ETFの終値比率の前日比",
+      "status": "observed"
+    },
+    {
+      "group": "市場内部",
+      "label": "SPHB/SPLV 比率前日比",
+      "value": 1.922,
+      "unit": "%",
+      "asOf": "2026-09-11",
+      "source": [
+        "https://query1.finance.yahoo.com/v8/finance/chart/SPHB?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+        "https://query1.finance.yahoo.com/v8/finance/chart/SPLV?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+      ],
+      "definition": "両ETFの終値比率の前日比",
+      "status": "observed"
+    },
+    {
+      "group": "市場内部",
+      "label": "XSD/SOXX 比率前日比",
+      "value": 1.193,
+      "unit": "%",
+      "asOf": "2026-09-11",
+      "source": [
+        "https://query1.finance.yahoo.com/v8/finance/chart/SOXX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+        "https://query1.finance.yahoo.com/v8/finance/chart/XSD?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+      ],
+      "definition": "両ETFの終値比率の前日比",
+      "status": "observed"
+    },
+    {
+      "group": "ボラティリティ",
+      "label": "S&P 500 20日RV",
+      "value": 8.992,
+      "unit": "%",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "日次対数リターンの標本標準偏差×√252",
+      "status": "observed"
+    },
+    {
+      "group": "ボラティリティ",
+      "label": "NASDAQ 100 20日RV",
+      "value": 12.832,
+      "unit": "%",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "日次対数リターンの標本標準偏差×√252",
+      "status": "observed"
+    },
+    {
+      "group": "ボラティリティ",
+      "label": "VIX",
+      "value": 15.84,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "ボラティリティ",
+      "label": "VIX 前日差",
+      "value": -2.0,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "ボラティリティ",
+      "label": "VXN",
+      "value": 21.02,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVXN?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "ボラティリティ",
+      "label": "VXN 前日差",
+      "value": -2.31,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVXN?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "ボラティリティ",
+      "label": "VVIX",
+      "value": 91.28,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVVIX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "ボラティリティ",
+      "label": "VVIX 前日差",
+      "value": -11.38,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVVIX?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "ボラティリティ",
+      "label": "SKEW",
+      "value": 154.49,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESKEW?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "ボラティリティ",
+      "label": "SKEW 前日差",
+      "value": 7.47,
+      "unit": "pt",
+      "asOf": "2026-09-11",
+      "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESKEW?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "definition": "",
+      "status": "observed"
+    },
+    {
+      "group": "クレジット代替指標",
+      "label": "HYG/LQD 比率前日比",
+      "value": 0.013,
+      "unit": "%",
+      "asOf": "2026-09-11",
+      "source": [
+        "https://query1.finance.yahoo.com/v8/finance/chart/HYG?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+        "https://query1.finance.yahoo.com/v8/finance/chart/LQD?period1=1735689600&period2=1789430400&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+      ],
+      "definition": "両ETFの終値比率の前日比。クレジットスプレッドの代替ではない",
+      "status": "observed"
+    },
+    {
+      "group": "未接続",
+      "label": "SPX 20日ブレッド",
+      "value": null,
+      "unit": "",
+      "asOf": null,
+      "source": [],
+      "definition": "",
+      "status": "missing"
+    },
+    {
+      "group": "未接続",
+      "label": "SPX 200日ブレッド",
+      "value": null,
+      "unit": "",
+      "asOf": null,
+      "source": [],
+      "definition": "",
+      "status": "missing"
+    },
+    {
+      "group": "未接続",
+      "label": "NDX 20日ブレッド",
+      "value": null,
+      "unit": "",
+      "asOf": null,
+      "source": [],
+      "definition": "",
+      "status": "missing"
+    },
+    {
+      "group": "未接続",
+      "label": "NDX 200日ブレッド",
+      "value": null,
+      "unit": "",
+      "asOf": null,
+      "source": [],
+      "definition": "",
+      "status": "missing"
+    },
+    {
+      "group": "未接続",
+      "label": "COR1M",
+      "value": null,
+      "unit": "",
+      "asOf": null,
+      "source": [],
+      "definition": "",
+      "status": "missing"
+    },
+    {
+      "group": "未接続",
+      "label": "VIXEQ",
+      "value": null,
+      "unit": "",
+      "asOf": null,
+      "source": [],
+      "definition": "",
+      "status": "missing"
+    },
+    {
+      "group": "未接続",
+      "label": "DSPX",
+      "value": null,
+      "unit": "",
+      "asOf": null,
+      "source": [],
+      "definition": "",
+      "status": "missing"
+    },
+    {
+      "group": "未接続",
+      "label": "CTA推計",
+      "value": null,
+      "unit": "",
+      "asOf": null,
+      "source": [],
+      "definition": "",
+      "status": "missing"
+    },
+    {
+      "group": "未接続",
+      "label": "VCF推計",
+      "value": null,
+      "unit": "",
+      "asOf": null,
+      "source": [],
+      "definition": "",
+      "status": "missing"
+    },
+    {
+      "group": "未接続",
+      "label": "HYスプレッド",
+      "value": null,
+      "unit": "",
+      "asOf": null,
+      "source": [],
+      "definition": "",
+      "status": "missing"
+    },
+    {
+      "group": "未接続",
+      "label": "F-PER",
+      "value": null,
+      "unit": "",
+      "asOf": null,
+      "source": [],
+      "definition": "",
+      "status": "missing"
+    }
+  ],
+  "weekly": [
+    {
+      "label": "S&P 500 12カ月先F-PER",
+      "value": null,
+      "description": "週次の評価水準。データ接続前のため未取得",
+      "asOf": null,
+      "source": null
+    }
+  ],
+  "history": [],
+  "limitations": [
+    "ブレッド",
+    "COR1M/VIXEQ/DSPX",
+    "CTA/VCF",
+    "HYスプレッド"
+  ],
+  "method": "価格・ETF相対成績・VIXを用いた条件付き判定。売買シグナルではない。"
+}
