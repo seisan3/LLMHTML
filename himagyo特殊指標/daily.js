@@ -186,6 +186,9 @@ function renderCharts(items) {
 function render(report) {
   if (!report || typeof report !== "object" || Array.isArray(report)) throw new Error("日次データの形式が不正です。");
   byId("report-date").textContent = shown(report.reportDate);
+  document.querySelectorAll("[data-report-date]").forEach(node => {
+    node.hidden = node.dataset.reportDate !== report.reportDate;
+  });
   byId("generated-at").textContent = `生成日時：${shown(report.generatedAt)}`;
   const status = ["ready", "partial", "unavailable"].includes(report.status) ? report.status : "unavailable";
   const state = byId("data-state");
