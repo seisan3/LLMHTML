@@ -30,3 +30,12 @@ document.querySelectorAll('.detail-button').forEach(button => button.addEventLis
 }));
 document.querySelector('#close-dialog').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
+const shareLayer = document.querySelector('#share-layer');
+const shareMode = document.querySelector('#share-mode');
+function updateShare() {
+  document.querySelectorAll('.share-panel').forEach(panel => {
+    panel.hidden = panel.dataset.shareLayer !== shareLayer.value || panel.dataset.shareMode !== shareMode.value;
+  });
+}
+shareLayer.addEventListener('change', updateShare);
+shareMode.addEventListener('change', updateShare);
