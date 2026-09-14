@@ -23,3 +23,10 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File projects/20260901_himagy
 `-NoPush` はデータ取得・候補JSONの生成と検証だけを行い、公開ファイルを変えません。通常実行では `daily-data.json` だけをコミットして `origin/main` に push します。主要価格が4暦日を超えて古い、SPX/NDXの観測日が食い違う、生成結果の `status` が `ok` / `partial` 以外の場合は公開を止めます。`partial` は欠測を明示した有効版です。実行前にローカル `main` と `origin/main` が一致すること、および公開ファイルに未コミット変更がないことを確認します。push に失敗した場合はログを確認し、ローカルに残ったコミットを同期してから再実行してください。
 
 PythonはPJ内 `.venv/Scripts/python.exe` を使用します。仮想環境がない場合は作成して `requests` と `tzdata` をインストールするか、ランナーへ `-Python` で実行ファイルを指定してください。
+
+
+## TradingViewの追加画像（2026-09-15）
+
+日次ページの「TradingViewで確認する市場指標」に71系列の撮影画像を追加。各画像は撮影時点の静止画で、日次JSONの数値とは独立している。撮影時刻・銘柄・実配信元・画像ハッシュは`tradingview-captures.json`に保存した。画像は原寸表示と元チャートへのリンクを持つ。
+
+取得対象はローカルPJの`tradingview_targets.json`、HTML生成は`build_tradingview_gallery.py`。CTAインジケータはユーザー指定で除外した。本人の非公開インジや、同一の定義を確認できない外部推計は欠測理由を表示する。既存の日次ランナーはこの画像群を更新しない。
