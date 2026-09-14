@@ -18,7 +18,7 @@
     <p class="data-state" id="data-state" role="status">日次データを読み込んでいます。</p>
   </header>
   <main>
-    <nav class="contents" aria-label="ページ内目次"><a href="#judgment">判断</a><a href="#scenarios">次の分岐</a><a href="#observations">観測値</a><a href="#weekly">週次確認</a><a href="#history">判断履歴</a></nav>
+    <nav class="contents" aria-label="ページ内目次"><a href="#judgment">判断</a><a href="#charts">グラフ</a><a href="#scenarios">次の分岐</a><a href="#observations">観測値</a><a href="#weekly">週次確認</a><a href="#history">判断履歴</a></nav>
     <section id="judgment" aria-labelledby="judgment-title">
       <h2 id="judgment-title">現在の判断</h2>
       <p class="section-question">指数の下落や反発は、市場全体に広がっているか。</p>
@@ -29,6 +29,12 @@
         <aside class="alternative"><p class="small-label">代替仮説</p><p id="alternative">観測値の入力後に表示します。</p></aside>
       </div>
       <p class="scope-note">ここで示すのは条件付きの市場仮説です。ディーラー需給は直接測定していません。</p>
+    </section>
+    <section id="charts" aria-labelledby="charts-title">
+      <h2 id="charts-title">数字の動きを見る</h2>
+      <p class="section-question">価格・市場内部・オプション市場は、同じ方向に動いているか。</p>
+      <p class="chart-intro">折れ線は直近60営業日です。「初日=100」は各系列の開始時点をそろえた変化率の比較で、元の値ではありません。終値と移動平均線、CORの水準はそれぞれ同じ単位で表示します。</p>
+      <div id="chart-grid" class="chart-grid"><p class="no-data">グラフ用データは未取得です。</p></div>
     </section>
     <section id="scenarios" aria-labelledby="scenarios-title">
       <h2 id="scenarios-title">次の1～3営業日の分岐</h2>

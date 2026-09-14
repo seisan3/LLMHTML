@@ -103,6 +103,82 @@ function renderHistory(items) {
   }));
 }
 
+const svgNode = (tag, attrs = {}, label = "") => {
+  const node = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, String(value)));
+  if (label) node.textContent = label;
+  return node;
+};
+
+function renderLineChart(chart, figure) {
+  const series = array(chart.series).filter(item => array(item.points).length >= 2);
+  if (!series.length) { figure.append(el("p", "no-data", "推移データは未取得です。")); return; }
+  const all = series.flatMap(item => item.points);
+  const dates = [...new Set(all.map(point => point[0]))].sort();
+  const values = all.map(point => Number(point[1])).filter(Number.isFinite);
+  if (dates.length < 2 || !values.length) { figure.append(el("p", "no-data", "グラフを描けるデータがありません。")); return; }
+  const width = 720, height = 286, left = 64, right = 20, top = 22, bottom = 46;
+  let low = Math.min(...values), high = Math.max(...values);
+  const pad = Math.max((high - low) * 0.12, Math.abs(high) * 0.005, 0.5);
+  low -= pad; high += pad;
+  const x = date => left + dates.indexOf(date) * (width - left - right) / (dates.length - 1);
+  const y = value => top + (high - value) * (height - top - bottom) / (high - low);
+  const svg = svgNode("svg", {viewBox: `0 0 ${width} ${height}`, role: "img", "aria-label": `${chart.title}。${series.map(item => `${item.label}最新${item.points.at(-1)[1]}`).join("、")}`});
+  [0, 0.5, 1].forEach(tick => {
+    const value = high - (high - low) * tick;
+    const yy = y(value);
+    svg.append(svgNode("line", {x1: left, x2: width - right, y1: yy, y2: yy, class: "chart-gridline"}));
+    svg.append(svgNode("text", {x: left - 9, y: yy + 4, "text-anchor": "end", class: "chart-axis"}, value.toFixed(Math.abs(value) < 100 ? 1 : 0)));
+  });
+  svg.append(svgNode("text", {x: left, y: height - 13, class: "chart-axis"}, dates[0]));
+  svg.append(svgNode("text", {x: width - right, y: height - 13, "text-anchor": "end", class: "chart-axis"}, dates.at(-1)));
+  series.forEach((item, index) => {
+    const points = item.points.filter(point => dates.includes(point[0]) && Number.isFinite(Number(point[1])));
+    const d = points.map((point, i) => `${i ? "L" : "M"}${x(point[0]).toFixed(1)},${y(Number(point[1])).toFixed(1)}`).join(" ");
+    svg.append(svgNode("path", {d, class: `chart-line chart-line-${index}`}));
+    const latest = points.at(-1);
+    svg.append(svgNode("circle", {cx: x(latest[0]), cy: y(Number(latest[1])), r: 4.2, class: `chart-dot chart-dot-${index}`}));
+  });
+  figure.append(svg);
+  const legend = el("ul", "chart-legend");
+  series.forEach((item, index) => {
+    const latest = item.points.at(-1);
+    const row = el("li");
+    row.append(el("span", `chart-key chart-key-${index}`), el("span", "", `${item.label} ${Number(latest[1]).toFixed(chart.unit === "pt" ? 1 : 2)} ${chart.unit}`));
+    legend.append(row);
+  });
+  figure.append(legend);
+}
+
+function renderBarChart(chart, figure) {
+  const bars = array(chart.bars);
+  if (!bars.length) { figure.append(el("p", "no-data", "ブレッドは未取得です。")); return; }
+  const box = el("div", "breadth-bars");
+  bars.forEach(item => {
+    const row = el("div", "breadth-row");
+    row.append(el("span", "", item.label));
+    const track = el("div", "breadth-track");
+    const fill = el("span", "breadth-fill");
+    fill.style.width = `${Math.max(0, Math.min(100, Number(item.value)))}%`;
+    track.append(fill);
+    row.append(track, el("strong", "", `${Number(item.value).toFixed(1)}%`));
+    box.append(row);
+  });
+  figure.append(box);
+}
+
+function renderCharts(items) {
+  if (!array(items).length) return;
+  replace("chart-grid", items.map(chart => {
+    const figure = el("figure", "chart-card");
+    figure.append(el("h3", "", chart.title));
+    if (chart.bars) renderBarChart(chart, figure);
+    else renderLineChart(chart, figure);
+    figure.append(el("figcaption", "", chart.explanation || ""));
+    return figure;
+  }));
+}
+
 function render(report) {
   if (!report || typeof report !== "object" || Array.isArray(report)) throw new Error("日次データの形式が不正です。");
   byId("report-date").textContent = `対象日：${shown(report.reportDate)}`;
@@ -121,6 +197,7 @@ function render(report) {
   renderList("conflicts", primary.conflicts, "反する観測は未記録です。");
   byId("alternative").textContent = typeof report.alternative === "string" ? report.alternative : shown(report.alternative?.body ?? report.alternative?.title, "代替仮説は未記録です。");
   renderScenarios(report.scenarios);
+  renderCharts(report.charts);
   renderObservations(report.observations);
   renderWeekly(report.weekly);
   renderHistory(report.history);
