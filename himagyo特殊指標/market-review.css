@@ -5,4 +5,5 @@
 .controls{display:none}.chart-grid>.pair-grid{grid-column:1 / -1}.pair-section>.small{margin:16px 0 8px;font-weight:700;color:var(--ink)}.pair-section>.chart-grid{margin-bottom:24px}.chart,.tip{background:transparent}.grid{stroke:#d5dce0}.rank-connector{stroke:#8c989e}.tip{background:#fff;border-color:#b8c4ca}.caveat{background:#f3f5f6}.chart-period .history-gap{color:var(--red)}
 #pair-returns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}#pair-returns>.chart{min-width:0}.chart-title{letter-spacing:.04em}.chart-period{font-variant-numeric:tabular-nums}
 .series-guide{max-width:41em;margin:26px 0 32px}.series-guide>div{margin:0 0 12px}.series-guide dt{font:700 12px/1.6 var(--sans);letter-spacing:.035em;color:var(--ink)}.series-guide dd{margin:2px 0 0;max-width:41em;font:inherit;line-height:inherit}
+@media(min-width:701px){.series-guide{max-width:64em}.series-guide>div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:baseline}.series-guide dd{margin:0;max-width:none}}
 @media(max-width:700px){#pair-returns{grid-template-columns:1fr;gap:24px}}
