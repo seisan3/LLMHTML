@@ -6,7 +6,7 @@
 <meta name="description" content="指数の動きを分解し、半年・1年と過去5年で比較。取得済み72系列の読み方を解説。">
 <title>市況｜動きの分解と歴史的位置</title>
 <link rel="stylesheet" href="market-review.css?v=20260924r1">
-<script src="market-review.js?v=20260924r1" defer>
+<script src="market-review.js?v=20260924r2" defer>
 </script>
 </head>
 <body data-market-asof="2026-09-23">
@@ -407,6 +407,13 @@
 </div>
 <figcaption>短期、対象別、先物、歪みを並べる。 出所：TradingView MCP。</figcaption>
 </figure>
+<figure>
+<div class="figure-heading">
+<h3>図14　VIX先物の期間構造</h3>
+</div>
+<div class="chart" id="chart-vix-futures-curve"></div>
+<figcaption>VIX先物の第1・第2限月だけを結んだ2点の比較であり、全限月カーブではない。半年前・14日前・7日前・最新の各対象日以前で、VX1!とVX2!がともに観測された最新共通日を採用する。VIX現物は含めない。出所：TradingView MCP。</figcaption>
+</figure>
 </section>
 <!-- CFTC_SECTION_START -->
 <section class="cftc-section" id="cftc" data-cftc-asof="2026-09-15"><p class="section-no">CFTC</p><h2>主体別先物ポジション</h2>
@@ -420,7 +427,7 @@
 <p class="section-no">06</p>
 <h2>金利・信用</h2><p>US10Yは5.11%と過去5年の最高圏です。1週間でUS02Yは+16.1bp、US10Yは+9.0bp、US30Yは+3.6bpとなり、カーブは平坦化しました。AGGは-0.4%、DXYは+0.8%です。</p><p>BAMLH0A0HYM2は9月22日時点で2.68%、1週間で-2bpと、過去5年の下位5.2%です。一方、MOVEとVXHYGは1週間で+18.2%、+15.6%上昇しました。信用コストはまだ低いものの、金利・信用商品の予想変動は先に悪化しています。</p><figure>
 <div class="figure-heading">
-<h3>図14　米国債イールドカーブ</h3>
+<h3>図15　米国債イールドカーブ</h3>
 </div>
 <div class="chart" id="chart-yield-curve"></div>
 <div id="pair-yields" data-pair-series='["TVC:US02Y", "TVC:US10Y", "TVC:US30Y"]' data-pair-unit="%"></div>
@@ -428,7 +435,7 @@
 </figure>
 <figure>
 <div class="figure-heading">
-<h3>図15　歴史的位置スコアカード</h3>
+<h3>図16　歴史的位置スコアカード</h3>
 </div>
 <div class="chart" id="chart-risk-rank">
 </div>
@@ -466,7 +473,7 @@
 </dl>
 <figure>
 <div class="figure-heading">
-<h3>図16　国債ボラと債券価格</h3>
+<h3>図17　国債ボラと債券価格</h3>
 </div>
 <div id="pair-move" data-pair-series='["TVC:MOVE"]' data-pair-unit="指数ポイント">
 </div>
@@ -476,7 +483,7 @@
 </figure>
 <figure>
 <div class="figure-heading">
-<h3>図17　HY信用</h3>
+<h3>図18　HY信用</h3>
 </div>
 <div id="pair-credit" data-pair-series='["FRED:BAMLH0A0HYM2"]' data-pair-unit="%"></div>
 <div id="pair-vxhyg" data-pair-series='["CBOE:VXHYG"]' data-pair-unit="年率 %"></div>
@@ -487,7 +494,7 @@
 <p class="section-no">07</p>
 <h2>金・原油・ビットコイン</h2><p>CL1!は1か月で+8.4%ですが、直近1週間は-10.0%です。GLDとSILVERは週間上昇しているため、商品バスケットを一括で持たず、原油のロングを減らして貴金属の相対強度を優先します。</p><p>GDX/GLDは半年で+15.4%と高水準ですが、直近1週間は+0.5%。BTCUSD（Coinbase）は1か月で+6.9%と反発する一方、1年前比では-24.6%です。BTCは長期トレンド転換とみなさず、直近安値を基準にした短期ポジションに限定します。</p><figure>
 <div class="figure-heading">
-<h3>図18　商品・ドルとBTC</h3>
+<h3>図19　商品・ドルとBTC</h3>
 </div>
 <div id="pair-gold" data-pair-series='["TVC:GOLD"]' data-pair-unit="USD/トロイオンス">
 </div>
@@ -545,7 +552,7 @@
 <p>GDX/GLDは金鉱株と金の相対強度として同じ期間で読む。</p>
 <figure>
 <div class="figure-heading">
-<h3>図19　GDX / GLD</h3>
+<h3>図20　GDX / GLD</h3>
 </div>
 <div class="chart" id="chart-rank-gold" data-rank-series='["GDX/GLD"]'>
 </div>
