@@ -10,19 +10,23 @@ h2{margin:9px 0 7px;font:700 clamp(19px,3vw,24px)/1.5 var(--sans)}
 .context{margin:0 0 25px;color:var(--muted);font:12px/1.8 var(--sans)}
 table{width:100%;border-collapse:collapse;table-layout:fixed;font-family:var(--sans);font-variant-numeric:tabular-nums}
 thead th{padding:8px 8px;text-align:right;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);font-size:12px}
-thead th:first-child{width:13%;text-align:left}thead th:not(:first-child){width:29%}
-tbody th,tbody td{padding:8px;border-bottom:1px solid var(--line);text-align:right;vertical-align:middle}
-tbody th{text-align:left;font-size:13px;font-weight:700;white-space:nowrap}
-tbody tr.quarter-divider>*{border-top:2px solid var(--ink)}
-tbody tr.latest{background:#edf4f8}tbody tr.latest>*{border-bottom:2px solid var(--blue)}
-.amount,.change{display:block;line-height:1.35}.amount{font-size:15px;font-weight:700;white-space:nowrap}.change{margin-top:1px;color:#394249;font-size:11px;font-weight:600;white-space:nowrap}
-.latest .amount{color:var(--blue)}.note{margin:12px 0 0;color:var(--muted);font:12px/1.8 var(--sans)}
-@media(max-width:600px){body{padding:26px 18px 45px}.preview-label{margin-bottom:28px}thead th{padding:7px 4px;font-size:11px}tbody th,tbody td{padding:7px 4px}tbody th{font-size:12px}.amount{font-size:12px}.change{font-size:10px;letter-spacing:-.02em}.note{font-size:11px}}
+thead th:first-child{width:9%;text-align:left}thead th:nth-child(2){width:19%;text-align:left}thead th:nth-child(n+3){width:24%}
+tbody th,tbody td{vertical-align:middle;white-space:nowrap}
+tbody tr:first-child>*{padding:7px 8px 2px;border-bottom:0}
+tbody tr:last-child>*{padding:2px 8px 7px;border-bottom:1px solid var(--line)}
+tbody .month{padding:7px 8px!important;border-bottom:1px solid var(--line)!important;text-align:left;font-size:13px;font-weight:700}
+tbody .metric{text-align:left;font-size:12px;font-weight:600}
+tbody td{text-align:right;font-size:13px;font-weight:600}
+tbody.quarter-divider tr:first-child>*{border-top:2px solid var(--ink)}
+tbody.latest tr{background:#edf4f8}tbody.latest td{color:var(--blue)}
+tbody.latest tr:last-child>*,tbody.latest .month{border-bottom:2px solid var(--blue)!important}
+.note{margin:12px 0 0;color:var(--muted);font:12px/1.8 var(--sans)}
+@media(max-width:600px){body{padding:26px 18px 45px}.preview-label{margin-bottom:28px}thead th{padding:7px 4px;font-size:10px}thead th:first-child{width:11%}thead th:nth-child(2){width:26%}thead th:nth-child(n+3){width:21%}tbody tr:first-child>*{padding:6px 4px 1px}tbody tr:last-child>*{padding:1px 4px 6px}tbody .month{padding:6px 4px!important;font-size:11px}tbody .metric{font-size:10px}tbody td{font-size:11px}.note{font-size:11px}}
 </style></head><body>
 <p class="preview-label">東アジア半導体貿易統計 · 表の試作</p>
 <section aria-labelledby="period-title"><h1 id="period-title">FY27/3</h1><h2>製造装置の輸入総額</h2>
 <p class="context">HS8486｜2026年4月〜8月｜中国は世界計、韓国・台湾は全相手国の合計</p>
-<table><thead><tr><th scope="col">月</th><th scope="col">中国</th><th scope="col">韓国</th><th scope="col">台湾</th></tr></thead>
-<tbody><tr><th scope="row">4月</th><td><span class="amount">$3,403.1m</span><span class="change">前年比 -4.6%</span></td><td><span class="amount">$2,510.3m</span><span class="change">前年比 +59.9%</span></td><td><span class="amount">$3,391.0m</span><span class="change">前年比 +32.1%</span></td></tr><tr><th scope="row">5月</th><td><span class="amount">$2,870.9m</span><span class="change">前年比 -8.5%</span></td><td><span class="amount">$2,561.2m</span><span class="change">前年比 +71.0%</span></td><td><span class="amount">$2,864.2m</span><span class="change">前年比 +19.0%</span></td></tr><tr><th scope="row">6月</th><td><span class="amount">$4,171.6m</span><span class="change">前年比 -2.4%</span></td><td><span class="amount">$2,706.8m</span><span class="change">前年比 +41.3%</span></td><td><span class="amount">$4,454.9m</span><span class="change">前年比 +60.5%</span></td></tr><tr class="quarter-divider"><th scope="row">7月</th><td><span class="amount">$4,494.1m</span><span class="change">前年比 -5.1%</span></td><td><span class="amount">$2,540.0m</span><span class="change">前年比 +55.4%</span></td><td><span class="amount">$3,431.4m</span><span class="change">前年比 +45.5%</span></td></tr><tr class="latest"><th scope="row">8月</th><td><span class="amount">$4,616.3m</span><span class="change">前年比 +20.8%</span></td><td><span class="amount">$2,569.8m</span><span class="change">前年比 +117.3%</span></td><td><span class="amount">$2,773.2m</span><span class="change">前年比 -1.4%</span></td></tr></tbody></table>
-<p class="note">金額は百万米ドル。前年比は同じ月との比較。7〜8月は四半期途中の実績で、9月は未収録。</p>
+<table><thead><tr><th scope="col">月</th><th scope="col">項目</th><th scope="col">中国</th><th scope="col">韓国</th><th scope="col">台湾</th></tr></thead>
+<tbody class=""><tr><th class="month" scope="rowgroup" rowspan="2">4月</th><th class="metric" scope="row">数値（USDmn）</th><td>3,403.1</td><td>2,510.3</td><td>3,391.0</td></tr><tr><th class="metric" scope="row">YoY</th><td>-4.6</td><td>+59.9</td><td>+32.1</td></tr></tbody><tbody class=""><tr><th class="month" scope="rowgroup" rowspan="2">5月</th><th class="metric" scope="row">数値（USDmn）</th><td>2,870.9</td><td>2,561.2</td><td>2,864.2</td></tr><tr><th class="metric" scope="row">YoY</th><td>-8.5</td><td>+71.0</td><td>+19.0</td></tr></tbody><tbody class=""><tr><th class="month" scope="rowgroup" rowspan="2">6月</th><th class="metric" scope="row">数値（USDmn）</th><td>4,171.6</td><td>2,706.8</td><td>4,454.9</td></tr><tr><th class="metric" scope="row">YoY</th><td>-2.4</td><td>+41.3</td><td>+60.5</td></tr></tbody><tbody class="quarter-divider"><tr><th class="month" scope="rowgroup" rowspan="2">7月</th><th class="metric" scope="row">数値（USDmn）</th><td>4,494.1</td><td>2,540.0</td><td>3,431.4</td></tr><tr><th class="metric" scope="row">YoY</th><td>-5.1</td><td>+55.4</td><td>+45.5</td></tr></tbody><tbody class="latest"><tr><th class="month" scope="rowgroup" rowspan="2">8月</th><th class="metric" scope="row">数値（USDmn）</th><td>4,616.3</td><td>2,569.8</td><td>2,773.2</td></tr><tr><th class="metric" scope="row">YoY</th><td>+20.8</td><td>+117.3</td><td>-1.4</td></tr></tbody></table>
+<p class="note">YoYは前年同月比（%）。7〜8月は四半期途中の実績で、9月は未収録。</p>
 </section></body></html>
