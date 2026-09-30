@@ -18,136 +18,172 @@
     [hidden] { display:none !important; }
     nav { display:flex; flex-wrap:wrap; gap:12px 24px; margin-top:20px; }
     nav a { color:var(--blue); text-underline-offset:4px; font-size:.9rem; }
-    section { margin-top:32px; scroll-margin-top:20px; }
-    h2 { margin:0; padding-bottom:10px; border-bottom:2px solid var(--ink); font-size:1.2rem; }
-    article { display:grid; grid-template-columns:7.5em 1fr; gap:18px; padding:14px 0; border-bottom:1px solid var(--rule); }
+    section { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:32px; scroll-margin-top:20px; }
+    h2 { grid-column:1/-1; margin:0 0 2px; padding-bottom:10px; border-bottom:2px solid var(--ink); font-size:1.2rem; }
+    article { min-width:0; }
+    .card-link { display:flex; flex-direction:column; gap:10px; height:100%; min-height:148px; padding:18px 20px; border:1px solid var(--rule); color:inherit; background:#fff; text-decoration:none; transition:border-color .15s, box-shadow .15s, transform .15s; }
+    .card-link:hover { border-color:var(--blue); box-shadow:0 5px 16px rgba(21,93,145,.12); transform:translateY(-2px); }
+    .card-link:focus-visible { outline:3px solid var(--blue); outline-offset:2px; }
     time { color:var(--muted); font-size:.82rem; font-variant-numeric:tabular-nums; }
     h3 { margin:0 0 4px; font-size:1.1rem; line-height:1.5; }
-    h3 a { color:var(--ink); text-decoration:none; }
-    h3 a:hover { color:var(--blue); text-decoration:underline; text-underline-offset:3px; }
+    .card-link:hover h3 { color:var(--blue); }
     p { margin:0; color:var(--muted); font-family:"Yu Mincho","Hiragino Mincho ProN",serif; line-height:1.75; }
     .empty { margin-top:30px; color:var(--muted); }
-    @media (max-width:600px) { body { padding-top:34px; } article { grid-template-columns:1fr; gap:6px; } }
+    @media (max-width:600px) { body { padding-top:34px; } section { grid-template-columns:1fr; } .card-link { min-height:0; } }
+    @media (prefers-reduced-motion:reduce) { .card-link { transition:none; } }
   </style>
 </head>
 <body>
   <header>
     <h1>HTMLレポート</h1>
-    <p class="description">データ、企業分析、業界分析、市場のノートをまとめています。</p>
+    <p class="description">データ、企業分析、業界分析、市場、学習のノートをまとめています。</p>
     <label for="search">レポートを検索</label>
     <input id="search" type="search" placeholder="例：ユニオンツール、PCB" autocomplete="off">
 
-    <nav aria-label="分類"><a href="#data">データ</a><a href="#companies">企業分析</a><a href="#industries">業界分析</a><a href="#markets">市場</a></nav>
+    <nav aria-label="分類"><a href="#frequent">よく使う</a><a href="#learning">学習</a><a href="#data">データ</a><a href="#companies">企業分析</a><a href="#industries">業界分析</a><a href="#markets">市場</a></nav>
   </header>
   <main id="reports">
+    <section id="frequent" aria-labelledby="frequent-heading">
+      <h2 id="frequent-heading">よく使う</h2>
+      <article data-search="himagyo 指数 日次 SPX NDX S&P500 Nasdaq100 市況 判定 押し目 VIX モメンタム ボラティリティ TradingView スクリーンショット ブレッド 相関 信用 金利">
+      <a class="card-link" href="himagyo特殊指標/daily.html">
+        <time datetime="2026-09-17">2026年9月17日</time>
+        <div>
+          <h3>市況</h3>
+          <p>加重・規模・値動き特性と業種を分け、半年・1週間と前後半年の2本棒で比較。市場参加の期間別一覧と全72系列の短い定義・解説を掲載。</p>
+        </div>
+      </a>
+    </article>
+      <article data-search="台湾 半導体 月次売上 yoy tsmc umc nanya kyec chpt pti 基板 材料">
+      <a class="card-link" href="台湾月次売上/index.html">
+        <time datetime="2026-09-07">2026年9月7日</time>
+        <div>
+          <h3>台湾企業の月次売上</h3>
+          <p>台湾19社の月次売上高と前年比を確認できます。</p>
+        </div>
+      </a>
+    </article>
+    </section>
     <section id="learning" aria-labelledby="learning-heading">
       <h2 id="learning-heading">学習</h2>
       <article data-search="英語 英会話 日常会話 スピーキング speaking day1 音読 例文 暗記">
+      <a class="card-link" href="daily-speaking/index.html">
         <time datetime="2026-09-09">2026年9月9日</time>
-        <div><h3><a href="daily-speaking/index.html">Daily Speaking 日常会話の練習帳</a></h3>
+        <div><h3>Daily Speaking 日常会話の練習帳</h3>
         <p>Day 1の8会話を音読し、返答を隠して練習できます。日別に教材を追加していきます。</p></div>
-      </article>
+      </a>
+    </article>
     </section>
     <section id="data" aria-labelledby="data-heading">
       <h2 id="data-heading">データ</h2>
     <article data-search="日本株 米国株 日米 テック 半導体 ファブレス メモリ 製造装置 検査 パワー MAG7 光関連 ネオクラウド 材料 NVIDIA 年初来 直近30日 予想EPS 成長率 来期PER バリュエーション 散布図 S&amp;P500 FactSet">
-      <time datetime="2026-09-21">2026年9月21日</time>
-      <div><h3><a href="日米株散布図/index.html">株価パフォーマンス</a></h3>
+      <a class="card-link" href="日米株散布図/index.html">
+        <time datetime="2026-09-21">2026年9月21日</time>
+      <div><h3>株価パフォーマンス</h3>
       <p>64社のリターンと52社の予想EPS成長率、来期PERをS&amp;P 500とテーマ別に比較します。</p></div>
-    </article>
-    <article data-search="台湾 半導体 月次売上 yoy tsmc umc nanya kyec chpt pti 基板 材料">
-      <time datetime="2026-09-07">2026年9月7日</time>
-      <div>
-        <h3><a href="台湾月次売上/index.html">台湾企業の月次売上</a></h3>
-        <p>台湾19社の月次売上高と前年比を確認できます。</p>
-      </div>
+      </a>
     </article>
     <article data-search="中国 韓国 台湾 日本 半導体 製造装置 ウェハ hs8486 hs3818 貿易統計">
-      <time datetime="2026-09-14">2026年9月14日</time>
+      <a class="card-link" href="半導体貿易3国/index.html">
+        <time datetime="2026-09-14">2026年9月14日</time>
       <div>
-        <h3><a href="半導体貿易3国/index.html">東アジア半導体貿易統計</a></h3>
+        <h3>東アジア半導体貿易統計</h3>
         <p>中国、韓国、台湾の製造装置とウェハ輸入を比較します。</p>
       </div>
+      </a>
     </article>
     </section>
     <section id="companies" aria-labelledby="companies-heading">
       <h2 id="companies-heading">企業分析</h2>
     <article data-search="GSユアサ 6674 業績 売上 OP 営業利益 セグメント ガイダンス 会社予想 修正 電池 株価 バリュエーション PER EV EBITDA 同業比較 季節性 四半期 進捗率">
-      <time datetime="2026-09-08">2026年9月8日</time>
-      <div><h3><a href="GSユアサ/index.html">GSユアサ 業績とガイダンス</a></h3>
+      <a class="card-link" href="GSユアサ/index.html">
+        <time datetime="2026-09-08">2026年9月8日</time>
+      <div><h3>GSユアサ 業績とガイダンス</h3>
       <p>全社とセグメントの業績、今期予想と中計、株価とバリュエーション、同業比較、過去5年の四半期単期の対通期比率を確認できます。</p></div>
+      </a>
     </article>
     <article data-search="GSユアサ 6674 茨城 新工場 定置用 リチウムイオン 電池 設備投資 CP 建設仮勘定 capex">
-      <time datetime="2026-09-01">2026年9月1日</time>
+      <a class="card-link" href="GSユアサ新工場/index.html">
+        <time datetime="2026-09-01">2026年9月1日</time>
       <div>
-        <h3><a href="GSユアサ新工場/index.html">GSユアサ 茨城新工場 財務整理表</a></h3>
+        <h3>GSユアサ 茨城新工場 財務整理表</h3>
         <p>茨城新工場の投資計画と財務余力を比較します。</p>
       </div>
+      </a>
     </article>
     <article data-search="設備投資 資金調達 借入 社債 財務分析 建設仮勘定 資金不足 capex financing">
-      <time datetime="2026-09-01">2026年9月1日</time>
+      <a class="card-link" href="設備投資分析/index.html">
+        <time datetime="2026-09-01">2026年9月1日</time>
       <div>
-        <h3><a href="設備投資分析/index.html">設備投資 財務整理表</a></h3>
+        <h3>設備投資 財務整理表</h3>
         <p>投資計画と発表前後の財務変化を整理します。</p>
       </div>
+      </a>
     </article>
     <article data-search="guangdong d-tech 鼎泰高科 ユニオンツール pcb ドリル 工具 比較">
-      <time datetime="2026-08-27">2026年8月27日</time>
+      <a class="card-link" href="工具2社比較/index.html">
+        <time datetime="2026-08-27">2026年8月27日</time>
       <div>
-        <h3><a href="工具2社比較/index.html">Guangdong D-Techとユニオンツールの比較</a></h3>
+        <h3>Guangdong D-Techとユニオンツールの比較</h3>
         <p>PCB用ドリル2社の事業、業績、財務を比較します。</p>
       </div>
+      </a>
     </article>
     </section>
     <section id="industries" aria-labelledby="industries-heading">
       <h2 id="industries-heading">業界分析</h2>
     <article data-search="業務産業用 蓄電池 BESS 補助金 令和6年度補正 36案件 ローソン レジル 今治造船 パワーエックス NGK 日本ガイシ セル PCS EMS EPC">
-      <time datetime="2026-09-14">2026年9月14日</time>
-      <div><h3><a href="業務産業用蓄電池案件/index.html">業務産業用蓄電池 交付決定36案件の供給者・製品一覧</a></h3>
+      <a class="card-link" href="業務産業用蓄電池案件/index.html">
+        <time datetime="2026-09-14">2026年9月14日</time>
+      <div><h3>業務産業用蓄電池 交付決定36案件の供給者・製品一覧</h3>
       <p>工場・マンション・店舗の36案件を調査。判明した供給者・製品と、採択への対応が未確定な候補情報を分けて確認できます。</p></div>
+      </a>
     </article>
     <article data-search="系統用蓄電池 採択 補助金 セル パック バッテリー システム PCS EMS EPC パワーエックス GSユアサ Tesla 住友電工 日新電機">
-      <time datetime="2026-09-14">2026年9月14日</time>
-      <div><h3><a href="系統蓄電池案件/index.html">系統用蓄電池 採択64案件の供給者・製品一覧</a></h3>
+      <a class="card-link" href="系統蓄電池案件/index.html">
+        <time datetime="2026-09-14">2026年9月14日</time>
+      <div><h3>系統用蓄電池 採択64案件の供給者・製品一覧</h3>
       <p>容量ベースの供給者構成を確度別に切替。セル、製品、システム、PCS・EMS・EPCの判明情報と出典も案件別に確認できます。</p></div>
+      </a>
     </article>
     <article data-search="cpo co-packaged optics 光エンジン スイッチasic レーザー シリコンフォトニクス gpu 光ファイバー">
-      <time datetime="2026-09-01">2026年9月1日</time>
+      <a class="card-link" href="CPO構成/index.html">
+        <time datetime="2026-09-01">2026年9月1日</time>
       <div>
-        <h3><a href="CPO構成/index.html">CPOは何と何をつなぐのか</a></h3>
+        <h3>CPOは何と何をつなぐのか</h3>
         <p>CPOの接続構成と光部品の役割を図で説明します。</p>
       </div>
+      </a>
     </article>
     <article data-search="電池 リチウムイオン セル 正極 正極材 lfp ncm nca catl byd gsユアサ サプライチェーン データセンター ups 系統用蓄電池 bess 民生">
-      <time datetime="2026-08-31">2026年8月31日</time>
+      <a class="card-link" href="電池サプライチェーン/index.html">
+        <time datetime="2026-08-31">2026年8月31日</time>
       <div>
-        <h3><a href="電池サプライチェーン/index.html">電池の構成とサプライチェーン</a></h3>
+        <h3>電池の構成とサプライチェーン</h3>
         <p>電池の材料、製造工程、用途と主要企業を整理します。</p>
       </div>
+      </a>
     </article>
     </section>
     <section id="markets" aria-labelledby="markets-heading">
       <h2 id="markets-heading">市場</h2>
-    <article data-search="himagyo 指数 日次 SPX NDX S&P500 Nasdaq100 市況 判定 押し目 VIX モメンタム ボラティリティ TradingView スクリーンショット ブレッド 相関 信用 金利">
-      <time datetime="2026-09-17">2026年9月17日</time>
-      <div>
-        <h3><a href="himagyo特殊指標/daily.html">市況</a></h3>
-        <p>加重・規模・値動き特性と業種を分け、半年・1週間と前後半年の2本棒で比較。市場参加の期間別一覧と全72系列の短い定義・解説を掲載。</p>
-      </div>
-    </article>
     <article data-search="ボラティリティ ポジションサイズ CTA タイムシリーズモメンタム time series momentum 先物 逆ボラ リスク">
-      <time datetime="2026-09-02">2026年9月2日</time>
+      <a class="card-link" href="ボラサイズ解説/index.html">
+        <time datetime="2026-09-02">2026年9月2日</time>
       <div>
-        <h3><a href="ボラサイズ解説/index.html">CTAフローはどう生まれるか</a></h3>
+        <h3>CTAフローはどう生まれるか</h3>
         <p>トレンドやボラティリティから先物注文が生まれる仕組みを説明します。</p>
       </div>
+      </a>
     </article>
     <article data-search="himagyo note 市場観測 特殊指標 vix vvix gex dix vixeq cor1m dspx cta ボラティリティ オプション 用語集">
-      <time datetime="2026-09-01">2026年9月1日</time>
+      <a class="card-link" href="himagyo特殊指標/index.html">
+        <time datetime="2026-09-01">2026年9月1日</time>
       <div>
-        <h3><a href="himagyo特殊指標/index.html">@himagyo 市場観測の特殊指標</a></h3>
+        <h3>@himagyo 市場観測の特殊指標</h3>
         <p>市場観測に登場する指標の定義と読み方を整理します。</p>
       </div>
+      </a>
     </article>
     </section>
     <p class="empty" id="empty" role="status" hidden>該当するレポートはありません。</p>
@@ -173,4 +209,3 @@
   </script>
 </body>
 </html>
-
