@@ -56,6 +56,152 @@
         }
       }
     ],
+    "return_breadth": [
+      {
+        "window": 1,
+        "start": "2026-09-10",
+        "end": "2026-09-11",
+        "all": {
+          "eligible": 503,
+          "up": 341,
+          "up_pct": 67.79324055666004,
+          "up_weight_pct": 72.751726819223,
+          "median_return_pct": 0.52373798802543,
+          "weighted_mean_return_pct": 0.887461684345259,
+          "p10_return_pct": -0.9486849083938709,
+          "p90_return_pct": 2.7865016116732866
+        },
+        "top10": {
+          "eligible": 10,
+          "up": 8,
+          "up_pct": 80.0,
+          "up_weight_pct": 74.65386759890765,
+          "median_return_pct": 0.6071174430840376,
+          "weighted_mean_return_pct": 0.9210680893162753,
+          "p10_return_pct": -0.21996536130989286,
+          "p90_return_pct": 1.7739007180439081
+        },
+        "rest": {
+          "eligible": 493,
+          "up": 333,
+          "up_pct": 67.54563894523326,
+          "up_weight_pct": 71.57302809915933,
+          "median_return_pct": 0.5233573320835294,
+          "weighted_mean_return_pct": 0.8666368185160094,
+          "p10_return_pct": -0.9829471155786806,
+          "p90_return_pct": 2.813575029464288
+        },
+        "coverage_weight_pct": 99.774341
+      },
+      {
+        "window": 5,
+        "start": "2026-09-03",
+        "end": "2026-09-11",
+        "all": {
+          "eligible": 503,
+          "up": 120,
+          "up_pct": 23.856858846918488,
+          "up_weight_pct": 33.6106785210438,
+          "median_return_pct": -2.3060726194207515,
+          "weighted_mean_return_pct": -0.9582695450518192,
+          "p10_return_pct": -7.178216945329208,
+          "p90_return_pct": 2.6266312712808215
+        },
+        "top10": {
+          "eligible": 10,
+          "up": 4,
+          "up_pct": 40.0,
+          "up_weight_pct": 36.18041606514565,
+          "median_return_pct": -0.9125772602356141,
+          "weighted_mean_return_pct": -0.92096062654575,
+          "p10_return_pct": -4.340444795424125,
+          "p90_return_pct": 1.7846744907297873
+        },
+        "rest": {
+          "eligible": 493,
+          "up": 116,
+          "up_pct": 23.529411764705884,
+          "up_weight_pct": 32.01829041471525,
+          "median_return_pct": -2.3445050768512554,
+          "weighted_mean_return_pct": -0.981388745775413,
+          "p10_return_pct": -7.184855941857371,
+          "p90_return_pct": 2.6266312712808215
+        },
+        "coverage_weight_pct": 99.774341
+      },
+      {
+        "window": 20,
+        "start": "2026-08-13",
+        "end": "2026-09-11",
+        "all": {
+          "eligible": 503,
+          "up": 141,
+          "up_pct": 28.031809145129223,
+          "up_weight_pct": 35.87297259121962,
+          "median_return_pct": -3.8674130989072575,
+          "weighted_mean_return_pct": -1.179789787300354,
+          "p10_return_pct": -12.137741708032369,
+          "p90_return_pct": 4.956448214734377
+        },
+        "top10": {
+          "eligible": 10,
+          "up": 4,
+          "up_pct": 40.0,
+          "up_weight_pct": 33.46137692835576,
+          "median_return_pct": -1.135144429663204,
+          "weighted_mean_return_pct": 0.4525355074523053,
+          "p10_return_pct": -13.362217249333618,
+          "p90_return_pct": 8.848187900139571
+        },
+        "rest": {
+          "eligible": 493,
+          "up": 137,
+          "up_pct": 27.789046653144016,
+          "up_weight_pct": 37.36736498924177,
+          "median_return_pct": -4.002443186091497,
+          "weighted_mean_return_pct": -2.1912920673636895,
+          "p10_return_pct": -12.137741708032369,
+          "p90_return_pct": 4.207620956194402
+        },
+        "coverage_weight_pct": 99.774341
+      }
+    ],
+    "prior_20d_return_breadth": {
+      "window": 20,
+      "start": "2026-08-06",
+      "end": "2026-09-03",
+      "all": {
+        "eligible": 503,
+        "up": 241,
+        "up_pct": 47.912524850894634,
+        "up_weight_pct": 57.178963477193,
+        "median_return_pct": -0.38812755699860757,
+        "weighted_mean_return_pct": 1.228678711509508,
+        "p10_return_pct": -9.572267049889094,
+        "p90_return_pct": 10.064967076196329
+      },
+      "top10": {
+        "eligible": 10,
+        "up": 6,
+        "up_pct": 60.0,
+        "up_weight_pct": 69.05369694280799,
+        "median_return_pct": 2.8836602373666587,
+        "weighted_mean_return_pct": 1.3755591887427576,
+        "p10_return_pct": -15.07715779961133,
+        "p90_return_pct": 8.700239939000154
+      },
+      "rest": {
+        "eligible": 493,
+        "up": 235,
+        "up_pct": 47.66734279918864,
+        "up_weight_pct": 49.82055273993,
+        "median_return_pct": -0.43622111284281617,
+        "weighted_mean_return_pct": 1.1376613523496506,
+        "p10_return_pct": -9.572267049889094,
+        "p90_return_pct": 10.064967076196329
+      },
+      "coverage_weight_pct": 99.774341
+    },
     "holdings_url": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spy.xlsx",
     "raw_run": "データ/raw/SPYブレッド/2026-09-14/141818_465864Z"
   },
