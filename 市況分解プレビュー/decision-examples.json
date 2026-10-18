@@ -3,20 +3,57 @@
     "date": "2026-09-11",
     "holdings_count": 503,
     "top10_weight_pct": 38.172676,
+    "effective_holdings": 45.18819695474728,
     "metrics": [
       {
         "window": 20,
         "equal_pct": 24.652087475149106,
         "weighted_pct": 38.90682074261959,
         "count_above": 124,
-        "eligible": 503
+        "eligible": 503,
+        "groups": {
+          "top10": {
+            "eligible": 10,
+            "count_above": 5,
+            "eligible_weight_pct": 38.172676,
+            "above_weight_pct": 18.350397,
+            "within_group_pct": 48.07207385722709,
+            "total_contribution_pp": 18.391899977570386
+          },
+          "rest": {
+            "eligible": 493,
+            "count_above": 119,
+            "eligible_weight_pct": 61.601665,
+            "above_weight_pct": 20.468627,
+            "within_group_pct": 33.22739247388849,
+            "total_contribution_pp": 20.5149207650492
+          }
+        }
       },
       {
         "window": 200,
         "equal_pct": 56.287425149700596,
         "weighted_pct": 75.84206505125503,
         "count_above": 282,
-        "eligible": 501
+        "eligible": 501,
+        "groups": {
+          "top10": {
+            "eligible": 10,
+            "count_above": 7,
+            "eligible_weight_pct": 38.172676,
+            "above_weight_pct": 31.616008,
+            "within_group_pct": 82.82366161596845,
+            "total_contribution_pp": 31.71838988761484
+          },
+          "rest": {
+            "eligible": 491,
+            "count_above": 275,
+            "eligible_weight_pct": 61.50454,
+            "above_weight_pct": 43.981251,
+            "within_group_pct": 71.50895039618214,
+            "total_contribution_pp": 44.12367516364021
+          }
+        }
       }
     ],
     "holdings_url": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spy.xlsx",
@@ -29,6 +66,7 @@
         "symbol": "AMEX:SPY",
         "name": "SPY｜時価総額加重",
         "return_5d_pct": -1.9677100324954733,
+        "return_20d_pct": 0.20480773017894638,
         "rv20_pct": 10.459484607668253,
         "worst_gap20_pct": -0.4877508758677096,
         "avg_dollar_volume20_musd": 32321.0891783185
@@ -37,6 +75,7 @@
         "symbol": "NASDAQ:QQQ",
         "name": "QQQ｜Nasdaq 100",
         "return_5d_pct": -5.519986156774537,
+        "return_20d_pct": -1.6148035206875133,
         "rv20_pct": 18.344170518756215,
         "worst_gap20_pct": -1.4267096508676969,
         "avg_dollar_volume20_musd": 26619.631587227
@@ -45,6 +84,7 @@
         "symbol": "AMEX:RSP",
         "name": "RSP｜均等加重",
         "return_5d_pct": 0.49286518963576054,
+        "return_20d_pct": 0.847896745018617,
         "rv20_pct": 9.393707553328774,
         "worst_gap20_pct": -0.5416097583949564,
         "avg_dollar_volume20_musd": 1741.8166309875
@@ -53,6 +93,7 @@
         "symbol": "AMEX:IWM",
         "name": "IWM｜小型株",
         "return_5d_pct": -3.0472503047250354,
+        "return_20d_pct": -4.808166138683568,
         "rv20_pct": 14.719044837810799,
         "worst_gap20_pct": -1.2070834839175926,
         "avg_dollar_volume20_musd": 7290.560228631
