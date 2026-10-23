@@ -3,3 +3,4 @@
 #display-formats .format-card .format-delta{display:inline;font-size:12px;font-weight:600}#display-formats .format-delta.warm{color:#9b542f}#display-formats .format-delta.cool{color:#246777}
 #display-formats .format-card .format-guide{font-size:12px;line-height:1.65;margin:12px 0 0;padding-top:10px;border-top:1px solid #d8cec0;color:#514b43}
 #display-formats .format-card .format-rank{font-size:15px;font-weight:600;line-height:1.5;margin:10px 0 0;color:#3e5965}#display-formats .format-rank small{font-weight:400}
+#display-formats .format-rank span{font-size:14px;font-weight:600;color:#3e5965;font-variant-numeric:tabular-nums}
