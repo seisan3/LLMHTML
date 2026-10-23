@@ -1,0 +1,58 @@
+/* All calculations are restricted to the selected observation or earlier. */
+(() => {
+ 'use strict';
+ const root=document.getElementById('sector-rotation'); if(!root)return;
+ const el=id=>document.getElementById(id), fmt=(x,n=1)=>(x>0?'+':'')+x.toFixed(n);
+ const svg=(body,w,h,label)=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}">${body}</svg>`;
+ const txt=(x,y,s,attrs='')=>`<text x="${x}" y="${y}" ${attrs}>${s}</text>`;
+ const color=v=>{const t=Math.min(Math.abs(v)/3,1),a=v>=0?[55,119,104]:[166,99,66];return `rgb(${a.map(x=>Math.round(248+(x-248)*t)).join(',')})`};
+ fetch('sector-rotation.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{
+  const dates=d.dates, input=el('sr-date');input.min=d.firstSelectable;input.max=dates.at(-1);input.value=dates.at(-1);
+  function render(){
+   if(!input.value)return;
+   const wanted=input.value<d.firstSelectable?d.firstSelectable:input.value;
+   let i=dates.length-1;while(i>0&&dates[i]>wanted)i--;
+   const date=dates[i],start=Math.max(0,i-126),spy=d.prices.SPY;
+   el('sr-asof').textContent=`採用日 ${date} ／ 保存最終日 ${dates.at(-1)}`;
+   const ranked=[...d.sectors].sort((a,b)=>d.stats[b.symbol][i][0]-d.stats[a.symbol][i][0]);
+   const top=ranked[0],bottom=ranked.at(-1),pos=ranked.filter(s=>d.stats[s.symbol][i][0]>0).length;
+   el('sr-reading').textContent=`20営業日の対SPYでは${top.name}（${top.symbol}、${fmt(d.stats[top.symbol][i][0])}pp）が先頭、${bottom.name}（${bottom.symbol}、${fmt(d.stats[bottom.symbol][i][0])}pp）が最後尾。11業種中${pos}業種がSPYを上回っています。`;
+   const paths=d.sectors.map(s=>{const p=d.prices[s.symbol],base=p[start]/spy[start];return {...s,v:p.slice(start,i+1).map((x,k)=>x/spy[start+k]/base*100)}});
+   const all=paths.flatMap(s=>s.v),span=Math.max(2,...all.map(v=>Math.abs(v-100)))*1.08,lo=100-span,hi=100+span;
+   el('sr-lines').innerHTML=paths.map(s=>{
+    const x=k=>43+k/(s.v.length-1)*246,y=v=>28+(hi-v)/(hi-lo)*112,delta=s.v.at(-1)-100;
+    let body=[hi,100,lo].map(v=>`<line x1="43" x2="289" y1="${y(v)}" y2="${y(v)}" stroke="${v===100?'#aaa08f':'#e8e2d8'}" ${v===100?'stroke-dasharray="3 3"':''}/>`+txt(37,y(v)+4,v.toFixed(0),'text-anchor="end"')).join('');
+    body+=`<polyline fill="none" stroke="${delta>=0?'#377768':'#a66342'}" stroke-width="2.1" points="${s.v.map((v,k)=>`${x(k).toFixed(2)},${y(v).toFixed(2)}`).join(' ')}"/>`;
+    body+=txt(43,158,dates[start].slice(5))+txt(289,158,date.slice(5),'text-anchor="end"');
+    return `<div class="sr-mini"><div class="sr-mini-title"><strong>${s.name} <small>${s.symbol}</small></strong><span>${fmt(delta)}%</span></div>${svg(body,306,165,`${s.name}、対SPY相対指数 ${s.v.at(-1).toFixed(2)}、起点100`)}</div>`;
+   }).join('');
+   el('sr-line-caption').textContent=`${dates[start]} → ${date}。起点＝100の共通尺度。相対比率の変化（%）と、下図の騰落率差（pp）は計算が異なります。`;
+   // Friday-labelled week buckets. A current partial week is never included.
+   const weekKey=s=>{let t=new Date(s+'T00:00:00Z');t.setUTCDate(t.getUTCDate()+(5-t.getUTCDay()+7)%7);return t.toISOString().slice(0,10)};
+   const buckets=new Map();for(let j=0;j<=i;j++){const key=weekKey(dates[j]);if(key<=date)buckets.set(key,j)}
+   const ends=[...buckets.values()].slice(-27),weeks=ends.slice(1).map((end,k)=>({start:ends[k],end}));
+   const W=885,H=43+11*28, left=141,cw=28;
+   let heat=weeks.map((w,k)=>k%5===0?txt(left+k*cw+12,22,dates[w.end].slice(5),'text-anchor="middle"'): '').join('');
+   heat+=d.sectors.map((s,r)=>{
+    const p=d.prices[s.symbol];let row=txt(left-9,48+r*28,`${s.name} ${s.symbol}`,'text-anchor="end"');
+    weeks.forEach((w,k)=>{const v=((p[w.end]/p[w.start]-1)-(spy[w.end]/spy[w.start]-1))*100;
+     const label=`${s.name} ${dates[w.start]} → ${dates[w.end]}：${fmt(v,2)}pp`;
+     row+=`<rect x="${left+k*cw}" y="${31+r*28}" width="26" height="25" rx="2" fill="${color(v)}" tabindex="0" aria-label="${label}"><title>${label}</title></rect>`});return row;
+   }).join('');
+   el('sr-heat').innerHTML=svg(heat,W,H,'11セクターの26週超過騰落率。緑はSPY超、茶はSPY未満');
+   let detail=el('sr-cell-detail');
+   if(!detail){detail=document.createElement('p');detail.id='sr-cell-detail';detail.className='sr-note';detail.setAttribute('aria-live','polite');el('sr-heat').after(detail)}
+   detail.textContent='セルを選択すると、期間と超過騰落率をここに表示します。';
+   el('sr-heat').querySelectorAll('rect').forEach(cell=>{
+    const show=()=>{detail.textContent=cell.getAttribute('aria-label')};
+    cell.addEventListener('click',show);cell.addEventListener('focus',show);
+    cell.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show()}});
+   });
+   el('sr-heat-caption').textContent=`${dates[weeks[0].start]} → ${dates[weeks.at(-1).end]}、${weeks.length}週。金曜以前の週末休場は、その週の最終保存営業日を使用。`;
+   const maxRel=Math.max(1,...ranked.flatMap(s=>d.stats[s.symbol][i].slice(0,2).map(Math.abs)));
+   const bar=v=>`<span class="sr-bar" style="--pos:${50+Math.min(0,v/maxRel*48)}%;--width:${Math.abs(v)/maxRel*48}%;--bar:${v>=0?'#377768':'#a66342'}"><span></span><b>${fmt(v)}<small> pp</small></b></span>`;
+   el('sr-strength').innerHTML=`<table><thead><tr><th scope="col">セクター</th><th scope="col">20日 対SPY</th><th scope="col">60日 対SPY</th><th scope="col">50日線乖離</th><th scope="col">乖離の過去順位</th></tr></thead><tbody>${ranked.map(s=>{const a=d.stats[s.symbol][i];return `<tr><th scope="row">${s.name}<small>${s.symbol}</small></th><td>${bar(a[0])}</td><td>${bar(a[1])}</td><td>${fmt(a[2])}%</td><td><div class="sr-rank" aria-label="${a[3].toFixed(0)}百分位、${a[4]}観測"><span style="width:${a[3]}%"></span><b>${a[3].toFixed(0)}<small> / 100</small></b></div></td></tr>`}).join('')}</tbody></table>`;
+  }
+  input.addEventListener('change',render);el('sr-latest').addEventListener('click',()=>{input.value=dates.at(-1);render()});render();
+ }).catch(e=>{el('sr-reading').textContent='セクター図表を読み込めませんでした。ページを再読み込みしてください。';console.error('Sector rotation:',e)});
+})();
