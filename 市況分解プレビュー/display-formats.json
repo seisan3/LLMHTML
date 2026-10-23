@@ -8,7 +8,40 @@
       "value": 19.03,
       "previous_date": "2026-10-21",
       "delta": 2.3500000000000014,
-      "unit": "%"
+      "unit": "%",
+      "change_5_sessions": {
+        "value": 2.5700000000000003,
+        "comparison_date": "2026-10-15",
+        "unit": "pp"
+      },
+      "level_gauge": {
+        "minimum": 0,
+        "maximum": 40,
+        "bands": [
+          {
+            "start": 0,
+            "end": 15,
+            "tone": "calm"
+          },
+          {
+            "start": 15,
+            "end": 20,
+            "tone": "middle"
+          },
+          {
+            "start": 20,
+            "end": 30,
+            "tone": "watch"
+          },
+          {
+            "start": 30,
+            "end": 40,
+            "tone": "stress"
+          }
+        ],
+        "clipped": false,
+        "unit": "%"
+      }
     },
     {
       "symbol": "CBOE:SKEW",
@@ -58,7 +91,40 @@
       "value": 107.94,
       "previous_date": "2026-10-21",
       "delta": 13.39,
-      "unit": "pt"
+      "unit": "pt",
+      "change_5_sessions": {
+        "value": 15.370000000000005,
+        "comparison_date": "2026-10-15",
+        "unit": "pt"
+      },
+      "level_gauge": {
+        "minimum": 0,
+        "maximum": 160,
+        "bands": [
+          {
+            "start": 0,
+            "end": 80,
+            "tone": "calm"
+          },
+          {
+            "start": 80,
+            "end": 100,
+            "tone": "middle"
+          },
+          {
+            "start": 100,
+            "end": 120,
+            "tone": "watch"
+          },
+          {
+            "start": 120,
+            "end": 160,
+            "tone": "stress"
+          }
+        ],
+        "clipped": false,
+        "unit": "pt"
+      }
     },
     {
       "symbol": "CBOE:COR1M",
@@ -150,7 +216,40 @@
       "value": 57.25,
       "previous_date": "2026-10-21",
       "delta": 2.5799999999999983,
-      "unit": "%"
+      "unit": "%",
+      "change_5_sessions": {
+        "value": 5.369999999999997,
+        "comparison_date": "2026-10-15",
+        "unit": "pp"
+      },
+      "level_gauge": {
+        "minimum": 0,
+        "maximum": 100,
+        "bands": [
+          {
+            "start": 0,
+            "end": 20,
+            "tone": "stress"
+          },
+          {
+            "start": 20,
+            "end": 50,
+            "tone": "watch"
+          },
+          {
+            "start": 50,
+            "end": 80,
+            "tone": "calm"
+          },
+          {
+            "start": 80,
+            "end": 100,
+            "tone": "strong"
+          }
+        ],
+        "clipped": false,
+        "unit": "%"
+      }
     }
   ],
   "spy_rsp_ratio": [
