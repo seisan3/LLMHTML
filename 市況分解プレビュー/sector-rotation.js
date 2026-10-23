@@ -17,16 +17,6 @@
    const ranked=[...d.sectors].sort((a,b)=>d.stats[b.symbol][i][0]-d.stats[a.symbol][i][0]);
    const top=ranked[0],bottom=ranked.at(-1),pos=ranked.filter(s=>d.stats[s.symbol][i][0]>0).length;
    el('sr-reading').textContent=`20営業日の対SPYでは${top.name}（${top.symbol}、${fmt(d.stats[top.symbol][i][0])}pp）が先頭、${bottom.name}（${bottom.symbol}、${fmt(d.stats[bottom.symbol][i][0])}pp）が最後尾。11業種中${pos}業種がSPYを上回っています。`;
-   const paths=d.sectors.map(s=>{const p=d.prices[s.symbol],base=p[start]/spy[start];return {...s,v:p.slice(start,i+1).map((x,k)=>x/spy[start+k]/base*100)}});
-   const all=paths.flatMap(s=>s.v),span=Math.max(2,...all.map(v=>Math.abs(v-100)))*1.08,lo=100-span,hi=100+span;
-   el('sr-lines').innerHTML=paths.map(s=>{
-    const x=k=>43+k/(s.v.length-1)*246,y=v=>28+(hi-v)/(hi-lo)*112,delta=s.v.at(-1)-100;
-    let body=[hi,100,lo].map(v=>`<line x1="43" x2="289" y1="${y(v)}" y2="${y(v)}" stroke="${v===100?'#aaa08f':'#e8e2d8'}" ${v===100?'stroke-dasharray="3 3"':''}/>`+txt(37,y(v)+4,v.toFixed(0),'text-anchor="end"')).join('');
-    body+=`<polyline fill="none" stroke="${delta>=0?'#377768':'#a66342'}" stroke-width="2.1" points="${s.v.map((v,k)=>`${x(k).toFixed(2)},${y(v).toFixed(2)}`).join(' ')}"/>`;
-    body+=txt(43,158,dates[start].slice(5))+txt(289,158,date.slice(5),'text-anchor="end"');
-    return `<div class="sr-mini"><div class="sr-mini-title"><strong>${s.name} <small>${s.symbol}</small></strong><span>${fmt(delta)}%</span></div>${svg(body,306,165,`${s.name}、対SPY相対指数 ${s.v.at(-1).toFixed(2)}、起点100`)}</div>`;
-   }).join('');
-   el('sr-line-caption').textContent=`${dates[start]} → ${date}。起点＝100の共通尺度。相対比率の変化（%）と、下図の騰落率差（pp）は計算が異なります。`;
    // Friday-labelled week buckets. A current partial week is never included.
    const weekKey=s=>{let t=new Date(s+'T00:00:00Z');t.setUTCDate(t.getUTCDate()+(5-t.getUTCDay()+7)%7);return t.toISOString().slice(0,10)};
    const buckets=new Map();for(let j=0;j<=i;j++){const key=weekKey(dates[j]);if(key<=date)buckets.set(key,j)}
