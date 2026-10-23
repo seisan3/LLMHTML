@@ -45,7 +45,12 @@
           "rank_window_years": 5
         }
       },
-      "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date"
+      "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date",
+      "change_5_sessions": {
+        "value": -8.060000000000002,
+        "comparison_date": "2026-10-15",
+        "unit": "pt"
+      }
     },
     {
       "symbol": "CBOE:VVIX",
@@ -90,7 +95,12 @@
           "rank_window_years": 5
         }
       },
-      "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date"
+      "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date",
+      "change_5_sessions": {
+        "value": 3.2300000000000004,
+        "comparison_date": "2026-10-15",
+        "unit": "pp"
+      }
     },
     {
       "symbol": "CBOE:COR3M",
@@ -127,7 +137,12 @@
           "rank_window_years": 5
         }
       },
-      "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date"
+      "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date",
+      "change_5_sessions": {
+        "value": 2.5200000000000014,
+        "comparison_date": "2026-10-15",
+        "unit": "pp"
+      }
     },
     {
       "symbol": "INDEX:S5TH",
