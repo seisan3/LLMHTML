@@ -16,7 +16,13 @@
       "value": 152.39,
       "previous_date": "2026-10-21",
       "delta": 2.0299999999999727,
-      "unit": "pt"
+      "unit": "pt",
+      "percentile": 85.58847077662129,
+      "rank_history_start": "2021-10-22",
+      "rank_history_end": "2026-10-21",
+      "rank_history_n": 1249,
+      "rank_window_years": 5,
+      "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date"
     },
     {
       "symbol": "CBOE:VVIX",
@@ -32,7 +38,13 @@
       "value": 10.88,
       "previous_date": "2026-10-21",
       "delta": 2.4800000000000004,
-      "unit": "%"
+      "unit": "%",
+      "percentile": 19.537480063795854,
+      "rank_history_start": "2021-10-22",
+      "rank_history_end": "2026-10-21",
+      "rank_history_n": 1254,
+      "rank_window_years": 5,
+      "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date"
     },
     {
       "symbol": "CBOE:COR3M",
@@ -40,7 +52,13 @@
       "value": 14.56,
       "previous_date": "2026-10-21",
       "delta": 1.7300000000000004,
-      "unit": "%"
+      "unit": "%",
+      "percentile": 26.23604465709729,
+      "rank_history_start": "2021-10-22",
+      "rank_history_end": "2026-10-21",
+      "rank_history_n": 1254,
+      "rank_window_years": 5,
+      "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date"
     },
     {
       "symbol": "INDEX:S5TH",
