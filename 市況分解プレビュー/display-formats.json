@@ -1,17 +1,17 @@
 {
-  "asof": "2026-10-27",
-  "snapshot": "snapshot-20261027.json",
+  "asof": "2026-10-28",
+  "snapshot": "snapshot-20261028.json",
   "cards": [
     {
       "symbol": "CBOE:VIX",
-      "date": "2026-10-27",
-      "value": 17.52,
-      "previous_date": "2026-10-26",
-      "delta": -0.870000000000001,
+      "date": "2026-10-28",
+      "value": 16.91,
+      "previous_date": "2026-10-27",
+      "delta": -0.6099999999999994,
       "unit": "%",
       "change_5_sessions": {
-        "value": 0.21000000000000085,
-        "comparison_date": "2026-10-20",
+        "value": 0.23000000000000043,
+        "comparison_date": "2026-10-21",
         "unit": "pp"
       },
       "level_gauge": {
@@ -45,56 +45,56 @@
     },
     {
       "symbol": "CBOE:SKEW",
-      "date": "2026-10-27",
-      "value": 149.22,
-      "previous_date": "2026-10-26",
-      "delta": -1.75,
+      "date": "2026-10-28",
+      "value": 148.74,
+      "previous_date": "2026-10-27",
+      "delta": -0.47999999999998977,
       "unit": "pt",
-      "percentile": 77.10168134507606,
-      "rank_history_start": "2021-10-27",
-      "rank_history_end": "2026-10-26",
+      "percentile": 75.74059247397918,
+      "rank_history_start": "2021-10-28",
+      "rank_history_end": "2026-10-27",
       "rank_history_n": 1249,
       "rank_window_years": 5,
       "percentiles": {
         "1": {
-          "percentile": 77.2,
-          "rank_history_start": "2025-10-27",
-          "rank_history_end": "2026-10-26",
+          "percentile": 75.2,
+          "rank_history_start": "2025-10-28",
+          "rank_history_end": "2026-10-27",
           "rank_history_n": 250,
           "rank_window_years": 1
         },
         "3": {
-          "percentile": 65.86345381526104,
-          "rank_history_start": "2023-10-27",
-          "rank_history_end": "2026-10-26",
+          "percentile": 63.72155287817938,
+          "rank_history_start": "2023-10-30",
+          "rank_history_end": "2026-10-27",
           "rank_history_n": 747,
           "rank_window_years": 3
         },
         "5": {
-          "percentile": 77.10168134507606,
-          "rank_history_start": "2021-10-27",
-          "rank_history_end": "2026-10-26",
+          "percentile": 75.74059247397918,
+          "rank_history_start": "2021-10-28",
+          "rank_history_end": "2026-10-27",
           "rank_history_n": 1249,
           "rank_window_years": 5
         }
       },
       "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date",
       "change_5_sessions": {
-        "value": -11.180000000000007,
-        "comparison_date": "2026-10-20",
+        "value": -1.6200000000000045,
+        "comparison_date": "2026-10-21",
         "unit": "pt"
       }
     },
     {
       "symbol": "CBOE:VVIX",
-      "date": "2026-10-27",
-      "value": 99.45,
-      "previous_date": "2026-10-26",
-      "delta": -1.980000000000004,
+      "date": "2026-10-28",
+      "value": 96.61,
+      "previous_date": "2026-10-27",
+      "delta": -2.8400000000000034,
       "unit": "pt",
       "change_5_sessions": {
-        "value": 2.299999999999997,
-        "comparison_date": "2026-10-20",
+        "value": 2.0600000000000023,
+        "comparison_date": "2026-10-21",
         "unit": "pt"
       },
       "level_gauge": {
@@ -128,98 +128,98 @@
     },
     {
       "symbol": "CBOE:COR1M",
-      "date": "2026-10-27",
-      "value": 9.58,
-      "previous_date": "2026-10-26",
-      "delta": -0.9800000000000004,
+      "date": "2026-10-28",
+      "value": 8.73,
+      "previous_date": "2026-10-27",
+      "delta": -0.8499999999999996,
       "unit": "%",
-      "percentile": 14.114832535885167,
-      "rank_history_start": "2021-10-27",
-      "rank_history_end": "2026-10-26",
+      "percentile": 9.250398724082935,
+      "rank_history_start": "2021-10-28",
+      "rank_history_end": "2026-10-27",
       "rank_history_n": 1254,
       "rank_window_years": 5,
       "percentiles": {
         "1": {
-          "percentile": 39.04382470119522,
-          "rank_history_start": "2025-10-27",
-          "rank_history_end": "2026-10-26",
+          "percentile": 29.48207171314741,
+          "rank_history_start": "2025-10-28",
+          "rank_history_end": "2026-10-27",
           "rank_history_n": 251,
           "rank_window_years": 1
         },
         "3": {
-          "percentile": 22.902796271637815,
-          "rank_history_start": "2023-10-27",
-          "rank_history_end": "2026-10-26",
+          "percentile": 15.44607190412783,
+          "rank_history_start": "2023-10-30",
+          "rank_history_end": "2026-10-27",
           "rank_history_n": 751,
           "rank_window_years": 3
         },
         "5": {
-          "percentile": 14.114832535885167,
-          "rank_history_start": "2021-10-27",
-          "rank_history_end": "2026-10-26",
+          "percentile": 9.250398724082935,
+          "rank_history_start": "2021-10-28",
+          "rank_history_end": "2026-10-27",
           "rank_history_n": 1254,
           "rank_window_years": 5
         }
       },
       "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date",
       "change_5_sessions": {
-        "value": 1.2300000000000004,
-        "comparison_date": "2026-10-20",
+        "value": 0.33000000000000007,
+        "comparison_date": "2026-10-21",
         "unit": "pp"
       }
     },
     {
       "symbol": "CBOE:COR3M",
-      "date": "2026-10-27",
-      "value": 13.49,
-      "previous_date": "2026-10-26",
-      "delta": -0.4599999999999991,
+      "date": "2026-10-28",
+      "value": 12.85,
+      "previous_date": "2026-10-27",
+      "delta": -0.6400000000000006,
       "unit": "%",
-      "percentile": 20.015948963317385,
-      "rank_history_start": "2021-10-27",
-      "rank_history_end": "2026-10-26",
+      "percentile": 16.74641148325359,
+      "rank_history_start": "2021-10-28",
+      "rank_history_end": "2026-10-27",
       "rank_history_n": 1254,
       "rank_window_years": 5,
       "percentiles": {
         "1": {
-          "percentile": 56.57370517928287,
-          "rank_history_start": "2025-10-27",
-          "rank_history_end": "2026-10-26",
+          "percentile": 49.40239043824701,
+          "rank_history_start": "2025-10-28",
+          "rank_history_end": "2026-10-27",
           "rank_history_n": 251,
           "rank_window_years": 1
         },
         "3": {
-          "percentile": 33.422103861517975,
-          "rank_history_start": "2023-10-27",
-          "rank_history_end": "2026-10-26",
+          "percentile": 27.96271637816245,
+          "rank_history_start": "2023-10-30",
+          "rank_history_end": "2026-10-27",
           "rank_history_n": 751,
           "rank_window_years": 3
         },
         "5": {
-          "percentile": 20.015948963317385,
-          "rank_history_start": "2021-10-27",
-          "rank_history_end": "2026-10-26",
+          "percentile": 16.74641148325359,
+          "rank_history_start": "2021-10-28",
+          "rank_history_end": "2026-10-27",
           "rank_history_n": 1254,
           "rank_window_years": 5
         }
       },
       "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date",
       "change_5_sessions": {
-        "value": 0.6300000000000008,
-        "comparison_date": "2026-10-20",
+        "value": 0.019999999999999574,
+        "comparison_date": "2026-10-21",
         "unit": "pp"
       }
     },
     {
       "symbol": "INDEX:S5TH",
-      "date": "2026-10-27",
-      "value": 59.24,
-      "previous_date": "2026-10-26",
-      "delta": 1.1900000000000048,
+      "date": "2026-10-28",
+      "value": 58.25,
+      "previous_date": "2026-10-27",
+      "delta": -0.990000000000002,
       "unit": "%",
       "change_5_sessions": {
-        "value": 5.960000000000001,
-        "comparison_date": "2026-10-20",
+        "value": 3.5799999999999983,
+        "comparison_date": "2026-10-21",
         "unit": "pp"
       },
       "level_gauge": {
@@ -2256,6 +2256,10 @@
     [
       "2026-10-27",
       3.5383413019492456
+    ],
+    [
+      "2026-10-28",
+      3.5519937451133696
     ]
   ],
   "breadth_200dma": [
@@ -4262,6 +4266,10 @@
     [
       "2026-10-27",
       59.24
+    ],
+    [
+      "2026-10-28",
+      58.25
     ]
   ],
   "cor1m": [
@@ -6268,6 +6276,10 @@
     [
       "2026-10-27",
       9.58
+    ],
+    [
+      "2026-10-28",
+      8.73
     ]
   ],
   "cor3m": [
@@ -8274,14 +8286,18 @@
     [
       "2026-10-27",
       13.49
+    ],
+    [
+      "2026-10-28",
+      12.85
     ]
   ],
   "hy_credit": {
     "symbol": "FRED:BAMLH0A0HYM2",
-    "asof": "2026-10-26",
-    "value_bp": 330.0,
-    "comparison_date": "2026-09-28",
-    "change_20_sessions_bp": 28.0,
+    "asof": "2026-10-27",
+    "value_bp": 318.0,
+    "comparison_date": "2026-09-29",
+    "change_20_sessions_bp": 10.0,
     "history_bp": [
       [
         "2024-10-28",
@@ -10374,10 +10390,14 @@
       [
         "2026-10-26",
         330.0
+      ],
+      [
+        "2026-10-27",
+        318.0
       ]
     ],
     "plot_common_start": "2024-10-28",
-    "plot_common_end": "2026-10-26",
+    "plot_common_end": "2026-10-27",
     "unit_conversion": "FRED percentage points * 100 = basis points"
   },
   "holdings_asof": "2026-09-11",
@@ -10476,32 +10496,32 @@
   "contribution_definition": "end_weight_pct / 100 * adjusted_close_20_session_return_pct; approximate, not official attribution",
   "dashboard_chart_window": {
     "years": 2,
-    "requested_start": "2024-10-27",
-    "asof": "2026-10-27",
+    "requested_start": "2024-10-28",
+    "asof": "2026-10-28",
     "charts": [
       {
         "title": "SPY / RSP：加重方法の差",
         "start": "2024-10-28",
-        "end": "2026-10-27",
-        "observations": 501
+        "end": "2026-10-28",
+        "observations": 502
       },
       {
         "title": "200日線超の銘柄比率",
         "start": "2024-10-28",
-        "end": "2026-10-27",
-        "observations": 501
+        "end": "2026-10-28",
+        "observations": 502
       },
       {
         "title": "予想相関：1か月・3か月",
         "start": "2024-10-28",
-        "end": "2026-10-27",
-        "observations": 501
+        "end": "2026-10-28",
+        "observations": 502
       },
       {
         "title": "HY信用スプレッドとSPY",
         "start": "2024-10-28",
-        "end": "2026-10-26",
-        "observations": 500
+        "end": "2026-10-27",
+        "observations": 501
       }
     ]
   }
