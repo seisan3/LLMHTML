@@ -14,6 +14,17 @@
 #sector-cycles .sc-mark.above {fill:#56816b; stroke:#fff;}
 #sector-cycles .sc-mark.below {fill:#a95a49; stroke:#fff;}
 #sector-cycles .sc-mark.current {fill:#a23d2e; stroke:#fff; stroke-width:1.5;}
+#sector-cycles .sc-overview-reading,#sector-cycles .sc-legend {margin:.4rem 0;}
+#sector-cycles .sc-overview-chart {margin:.4rem 0 1rem; padding:.5rem 1rem;}
+#sector-cycles .sc-zero {stroke:#776b5d;stroke-width:1.5;}
+#sector-cycles .sc-leader {stroke:#897d6d;stroke-width:.7;}
+#sector-cycles .sc-dot.above,#sector-cycles .sc-key.above {fill:#56816b; background:#56816b;}
+#sector-cycles .sc-dot.below,#sector-cycles .sc-key.below {fill:#a95a49; background:#a95a49;}
+#sector-cycles .sc-dot {stroke:#fff;stroke-width:1;}
+#sector-cycles .sc-label {font-weight:bold;paint-order:stroke;stroke:#fffdf9;stroke-width:3px;stroke-linejoin:round;}
+#sector-cycles .sc-key {display:inline-block; width:.7em; height:.7em; border-radius:50%; margin-right:.25em;}
+#sector-cycles .sc-summary-table {min-width:0; table-layout:fixed; font-size:.86rem;}
+#sector-cycles .sc-summary-table th,#sector-cycles .sc-summary-table td {padding:.25rem .3rem; overflow-wrap:anywhere;}
 #sector-cycles .sc-scroll {max-width:100%; overflow-x:auto;}
 #sector-cycles table {border-collapse:collapse; width:100%; min-width:610px;}
 #sector-cycles th,#sector-cycles td {text-align:left; border-bottom:1px solid #d5cbbd; padding:.55rem; vertical-align:top;}
@@ -28,4 +39,9 @@
  #sector-cycles td:nth-child(3)::before {content:'中央値：';}
  #sector-cycles td:nth-child(4)::before {content:'各例（開始日）：';}
  #sector-cycles td:nth-child(5)::before {content:'期間内の局面終了：';}
+ #sector-cycles .sc-summary-table {font-size:.68rem; line-height:1.35;}
+ #sector-cycles .sc-summary-table thead {display:table-header-group;}
+ #sector-cycles .sc-summary-table tr {display:table-row; padding:0;}
+ #sector-cycles .sc-summary-table th,#sector-cycles .sc-summary-table td {display:table-cell; border-bottom:1px solid #d5cbbd; padding:.25rem .12rem;}
+ #sector-cycles .sc-summary-table td::before {content:none;}
 }
