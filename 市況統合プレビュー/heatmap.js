@@ -1,4 +1,4 @@
-/* All calculations are restricted to the selected observation or earlier. */
+/* Display the latest saved observation and completed weeks. */
 (() => {
  'use strict';
  const root=document.getElementById('sector-rotation'); if(!root)return;
@@ -7,11 +7,9 @@
  const txt=(x,y,s,attrs='')=>`<text x="${x}" y="${y}" ${attrs}>${s}</text>`;
  const color=v=>{const t=Math.min(Math.abs(v)/3,1),a=v>=0?[55,119,104]:[166,99,66];return `rgb(${a.map(x=>Math.round(248+(x-248)*t)).join(',')})`};
  fetch('sector-rotation.json?v=cd2cca1b22ac').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{
-  const dates=d.dates, input=el('sr-date');input.min=d.firstSelectable;input.max=dates.at(-1);input.value=dates.at(-1);
+  const dates=d.dates;
   function render(){
-   if(!input.value)return;
-   const wanted=input.value<d.firstSelectable?d.firstSelectable:input.value;
-   let i=dates.length-1;while(i>0&&dates[i]>wanted)i--;
+   const i=dates.length-1;
    const date=dates[i],start=Math.max(0,i-126),spy=d.prices.SPY;
    el('sr-asof').textContent=`採用日 ${date} ／ 保存最終日 ${dates.at(-1)}`;
    const ranked=[...d.sectors].sort((a,b)=>d.stats[b.symbol][i][0]-d.stats[a.symbol][i][0]);
@@ -41,6 +39,6 @@
    el('sr-heat-caption').textContent=`${dates[weeks[0].start]} → ${dates[weeks.at(-1).end]}、${weeks.length}週。金曜以前の週末休場は、その週の最終保存営業日を使用。`;
 
   }
-  input.addEventListener('change',render);el('sr-latest').addEventListener('click',()=>{input.value=dates.at(-1);render()});render();
+  render();
  }).catch(e=>{el('sr-reading').textContent='セクター図表を読み込めませんでした。ページを再読み込みしてください。';console.error('Sector rotation:',e)});
 })();
