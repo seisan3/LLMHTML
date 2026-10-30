@@ -12,9 +12,6 @@
    const i=dates.length-1;
    const date=dates[i],start=Math.max(0,i-126),spy=d.prices.SPY;
    el('sr-asof').textContent=`採用日 ${date} ／ 保存最終日 ${dates.at(-1)}`;
-   const ranked=[...d.sectors].sort((a,b)=>d.stats[b.symbol][i][0]-d.stats[a.symbol][i][0]);
-   const top=ranked[0],bottom=ranked.at(-1),pos=ranked.filter(s=>d.stats[s.symbol][i][0]>0).length;
-   el('sr-reading').textContent=`20営業日の対SPYでは${top.name}（${top.symbol}、${fmt(d.stats[top.symbol][i][0])}pp）が先頭、${bottom.name}（${bottom.symbol}、${fmt(d.stats[bottom.symbol][i][0])}pp）が最後尾。11業種中${pos}業種がSPYを上回っています。`;
    // Friday-labelled week buckets. A current partial week is never included.
    const weekKey=s=>{let t=new Date(s+'T00:00:00Z');t.setUTCDate(t.getUTCDate()+(5-t.getUTCDay()+7)%7);return t.toISOString().slice(0,10)};
    const buckets=new Map();for(let j=0;j<=i;j++){const key=weekKey(dates[j]);if(key<=date)buckets.set(key,j)}
@@ -40,5 +37,5 @@
 
   }
   render();
- }).catch(e=>{el('sr-reading').textContent='セクター図表を読み込めませんでした。ページを再読み込みしてください。';console.error('Sector rotation:',e)});
+ }).catch(e=>{el('sr-asof').textContent='セクター図表を読み込めませんでした。ページを再読み込みしてください。';console.error('Sector rotation:',e)});
 })();
