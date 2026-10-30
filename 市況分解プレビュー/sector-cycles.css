@@ -1,0 +1,16 @@
+#sector-cycles {box-sizing:border-box; max-width:1100px; margin: 3.5rem auto; border-top: 1px solid #b9ad9c; padding:1.5rem 1rem 0;}
+#sector-cycles select {font: inherit; padding:.35rem .6rem; max-width:100%; border:1px solid #a69a8b; background:#fffdf9;}
+#sector-cycles svg {display:block; width:100%; height:auto; overflow:visible; background:#fffdf9;}
+#sector-cycles svg text {font:12px sans-serif; fill:#625a50;}
+#sector-cycles polyline {fill:none; stroke-linejoin:round; stroke-linecap:round;}
+#sector-cycles .sc-grid {stroke:#e5ddd2; stroke-width:1;}
+#sector-cycles .sc-historical {stroke:#705646; stroke-width:2.2;}
+#sector-cycles .sc-older {stroke:#c7b8a6; stroke-width:1.1; opacity:.65;}
+#sector-cycles .sc-previous {stroke:#a4815f; stroke-width:1.8;}
+#sector-cycles .sc-current {stroke:#a23d2e; stroke-width:3.2;}
+#sector-cycles .sc-mark.above {fill:#56816b; stroke:#fff;}
+#sector-cycles .sc-mark.below {fill:#a95a49; stroke:#fff;}
+#sector-cycles .sc-mark.current {fill:#a23d2e; stroke:#fff; stroke-width:1.5;}
+#sector-cycles .sc-scroll {max-width:100%; overflow-x:auto;}
+#sector-cycles table {border-collapse:collapse; width:100%; min-width:610px;}
+#sector-cycles th,#sector-cycles td {text-align:left; border-bottom:1px solid #d5cbbd; padding:.55rem; vertical-align:top;}
