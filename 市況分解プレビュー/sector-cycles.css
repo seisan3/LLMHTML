@@ -1,5 +1,8 @@
 #sector-cycles {box-sizing:border-box; max-width:1100px; margin: 3.5rem auto; border-top: 1px solid #b9ad9c; padding:1.5rem 1rem 0;}
-#sector-cycles select {font: inherit; padding:.35rem .6rem; max-width:100%; border:1px solid #a69a8b; background:#fffdf9;}
+#sector-cycles .sc-sector {border-top:1px solid #d5cbbd; padding-top:1.25rem; margin-top:2rem;}
+#sector-cycles .sc-pair {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem;}
+#sector-cycles .sc-pair figure {margin:0; min-width:0; padding:.8rem;}
+#sector-cycles .sc-pair h4 {margin:.2rem 0 .6rem;}
 #sector-cycles svg {display:block; width:100%; height:auto; overflow:visible; background:#fffdf9;}
 #sector-cycles svg text {font:12px sans-serif; fill:#625a50;}
 #sector-cycles polyline {fill:none; stroke-linejoin:round; stroke-linecap:round;}
@@ -14,3 +17,15 @@
 #sector-cycles .sc-scroll {max-width:100%; overflow-x:auto;}
 #sector-cycles table {border-collapse:collapse; width:100%; min-width:610px;}
 #sector-cycles th,#sector-cycles td {text-align:left; border-bottom:1px solid #d5cbbd; padding:.55rem; vertical-align:top;}
+@media (max-width:700px) {
+ #sector-cycles .sc-pair {grid-template-columns:minmax(0,1fr);}
+ #sector-cycles .sc-pair figure {padding:.5rem;}
+ #sector-cycles table {min-width:0;}
+ #sector-cycles thead {display:none;}
+ #sector-cycles tr {display:block; border-bottom:1px solid #d5cbbd; padding:.5rem 0;}
+ #sector-cycles th,#sector-cycles td {display:block; border:0; padding:.12rem .25rem; overflow-wrap:anywhere;}
+ #sector-cycles td:nth-child(2)::before {content:'例数：';}
+ #sector-cycles td:nth-child(3)::before {content:'中央値：';}
+ #sector-cycles td:nth-child(4)::before {content:'各例（開始日）：';}
+ #sector-cycles td:nth-child(5)::before {content:'期間内の局面終了：';}
+}
