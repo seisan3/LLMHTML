@@ -206,43 +206,43 @@
     "raw_run": "データ/raw/SPYブレッド/2026-09-14/141818_465864Z"
   },
   "instruments": {
-    "date": "2026-10-28",
+    "date": "2026-10-29",
     "instruments": [
       {
         "symbol": "AMEX:SPY",
         "name": "SPY｜時価総額加重",
-        "return_5d_pct": -0.10089381572651046,
-        "return_20d_pct": 1.2692917928746494,
-        "rv20_pct": 9.992648767820796,
+        "return_5d_pct": 0.7068432902246125,
+        "return_20d_pct": 0.7028887812667639,
+        "rv20_pct": 10.10466173886404,
         "worst_gap20_pct": -0.8692390277975415,
-        "avg_dollar_volume20_musd": 29281.652095598
+        "avg_dollar_volume20_musd": 29009.472531339
       },
       {
         "symbol": "NASDAQ:QQQ",
         "name": "QQQ｜Nasdaq 100",
-        "return_5d_pct": 0.05653612796470142,
-        "return_20d_pct": -1.914108439109452,
-        "rv20_pct": 19.658181622558942,
+        "return_5d_pct": 1.5430039604241497,
+        "return_20d_pct": -3.596889613627474,
+        "rv20_pct": 20.142954292251396,
         "worst_gap20_pct": -1.5981798124655278,
-        "avg_dollar_volume20_musd": 26664.565208159
+        "avg_dollar_volume20_musd": 26707.113087707
       },
       {
         "symbol": "AMEX:RSP",
         "name": "RSP｜均等加重",
-        "return_5d_pct": 0.3646602658788911,
-        "return_20d_pct": 4.523603499663498,
-        "rv20_pct": 9.380738937884875,
+        "return_5d_pct": 0.8340207130418831,
+        "return_20d_pct": 5.2822966507177105,
+        "rv20_pct": 9.96804490879441,
         "worst_gap20_pct": -0.5416097583949564,
-        "avg_dollar_volume20_musd": 1896.6476246815
+        "avg_dollar_volume20_musd": 1845.0083879535
       },
       {
         "symbol": "AMEX:IWM",
         "name": "IWM｜小型株",
-        "return_5d_pct": 1.739728009259256,
-        "return_20d_pct": 1.2235057036957153,
-        "rv20_pct": 15.139829775232696,
+        "return_5d_pct": 2.6529800845772833,
+        "return_20d_pct": 1.7884022650705989,
+        "rv20_pct": 15.434050788302914,
         "worst_gap20_pct": -1.2070834839175926,
-        "avg_dollar_volume20_musd": 6897.6009718615
+        "avg_dollar_volume20_musd": 6730.146206789
       }
     ],
     "source": "データ/csv/TradingView_市場監視.csv"
