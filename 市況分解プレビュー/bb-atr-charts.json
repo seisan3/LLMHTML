@@ -1,7 +1,7 @@
 {
-  "asof": "2026-10-29",
+  "asof": "2026-10-30",
   "display_start": "2024-10-22",
-  "display_observations": 507,
+  "display_observations": 508,
   "methodology": {
     "bb": "MA20=20終値の単純平均。BB=MA20±2×母標準偏差。",
     "atr": "TR=max(高値−安値,abs(高値−前日終値),abs(安値−前日終値))。最初の14本平均で初期化、以後ATR=(前日ATR×13+当日TR)/14。乖離=(終値−MA20)/ATR14。",
@@ -10,7 +10,7 @@
   "sources": [
     {
       "file": "データ/csv/TradingView_市場監視.csv",
-      "sha256": "1236dee7315ef49f6f691e5b83e5bf6fb92eb0ec389681a213805ed7119184a5"
+      "sha256": "e9ed91bf48bab930dc9c930ae763fc19d0732567231304613e167ca5b363184d"
     }
   ],
   "series": [
@@ -18,8 +18,8 @@
       "symbol": "AMEX:SPY",
       "label": "SPY",
       "unit": "USD",
-      "warmup_first_date": "2021-03-05",
-      "warmup_observations": 914,
+      "warmup_first_date": "2020-06-19",
+      "warmup_observations": 1092,
       "price_axis": {
         "lower": 400,
         "upper": 900,
@@ -6117,6 +6117,18 @@
           "bb_lower": 760.3387953368077,
           "atr14": 6.856640555305674,
           "atr_gap": -0.26310260621785647
+        },
+        {
+          "date": "2026-10-30",
+          "open": 761.38,
+          "high": 761.46,
+          "low": 750.36,
+          "close": 755.72,
+          "ma20": 770.468,
+          "bb_upper": 783.2150115713448,
+          "bb_lower": 757.7209884286551,
+          "atr14": 7.72402337278384,
+          "atr_gap": -1.9093676039310792
         }
       ]
     },
@@ -6124,8 +6136,8 @@
       "symbol": "NASDAQ:QQQ",
       "label": "QQQ",
       "unit": "USD",
-      "warmup_first_date": "2021-03-05",
-      "warmup_observations": 914,
+      "warmup_first_date": "2020-06-19",
+      "warmup_observations": 1092,
       "price_axis": {
         "lower": 300,
         "upper": 800,
@@ -12223,6 +12235,18 @@
           "bb_lower": 694.9350461927547,
           "atr14": 11.238752115616219,
           "atr_gap": -1.4060279857977453
+        },
+        {
+          "date": "2026-10-30",
+          "open": 697.21,
+          "high": 698.63,
+          "low": 683.45,
+          "close": 690.49,
+          "ma20": 728.1875,
+          "bb_upper": 767.4118836790332,
+          "bb_lower": 688.9631163209668,
+          "atr14": 12.713841250215058,
+          "atr_gap": -2.9650755627739436
         }
       ]
     },
@@ -12230,8 +12254,8 @@
       "symbol": "NASDAQ:SOX",
       "label": "SOX（指数）",
       "unit": "指数ポイント",
-      "warmup_first_date": "2021-03-05",
-      "warmup_observations": 914,
+      "warmup_first_date": "2020-06-19",
+      "warmup_observations": 1092,
       "price_axis": {
         "lower": 0,
         "upper": 20000,
@@ -18328,6 +18352,18 @@
           "bb_lower": 10308.083429115137,
           "atr14": 386.8781323860355,
           "atr_gap": -0.9898894973414193
+        },
+        {
+          "date": "2026-10-30",
+          "open": 10855.8134,
+          "high": 10957.3234,
+          "low": 10439.0107,
+          "close": 10688.7996,
+          "ma20": 11778.771855,
+          "bb_upper": 13349.332170023301,
+          "bb_lower": 10208.2115399767,
+          "atr14": 436.3288586441758,
+          "atr_gap": -2.4980521764866075
         }
       ]
     }
