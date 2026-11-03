@@ -4,7 +4,7 @@
  const root=document.getElementById('sector-rotation');if(!root)return;
  const el=id=>document.getElementById(id),fmt=(x,n=2)=>(x>0?'+':'')+x.toFixed(n);
  const color=v=>{const t=Math.min(Math.abs(v)/3,1),a=v>=0?[55,119,104]:[166,99,66];return `rgb(${a.map(x=>Math.round(248+(x-248)*t)).join(',')})`;};
- fetch('sector-rotation.json?v=422f851595fb').then(r=>{if(!r.ok)throw Error(r.status);return r.json();}).then(d=>{
+ fetch('sector-rotation.json?v=1eb165ff2ed5').then(r=>{if(!r.ok)throw Error(r.status);return r.json();}).then(d=>{
   function render(){
    const dates=d.dates,spy=d.prices.SPY,date=dates.at(-1),buckets=new Map();
    const weekKey=s=>{const t=new Date(s+'T00:00:00Z');t.setUTCDate(t.getUTCDate()+(5-t.getUTCDay()+7)%7);return t.toISOString().slice(0,10);};
