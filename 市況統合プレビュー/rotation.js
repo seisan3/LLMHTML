@@ -22,6 +22,6 @@
     document.getElementById('sr-chart').innerHTML=panels;
 
   }
-  const version='e8848775b7ac';
+  const version='60ca99715b8b';
   fetch(`sector-rotation-overview.json?v=${version}`).then(r=>{if(!r.ok)throw Error(`HTTP ${r.status}`);return r.json();}).then(render).catch(e=>{document.getElementById('sr-chart').textContent=`データを読み込めませんでした：${e.message}`;});
 })();
