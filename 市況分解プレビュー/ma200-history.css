@@ -28,5 +28,9 @@
 #ma200-history details{margin:26px 0 0;font-size:14px}
 #ma200-history details summary{cursor:pointer;font-family:var(--sans,sans-serif)}
 #ma200-history .ma200-error{color:#9f3731;font:14px/1.8 var(--sans,sans-serif)}
+#ma200-history .ma200-methods{border-top:1px solid var(--line,#d8dde0);margin-top:38px;padding-top:8px}
+#ma200-history .ma200-methods h4{font:700 16px/1.6 var(--sans,sans-serif);margin:28px 0 10px}
+#ma200-history .ma200-methods .ma200-table td{text-align:right;white-space:nowrap}
+#ma200-history .ma200-methods .ma200-table th[scope=row]{text-align:left;white-space:normal;min-width:140px}
 @media(max-width:700px){#ma200-history{margin-top:48px;padding-top:20px}#ma200-history .ma200-grid{grid-template-columns:1fr;gap:22px}#ma200-history .ma200-tools{align-items:flex-start}#ma200-history .ma200-table table{font-size:12px}#ma200-history .ma200-legend{font-size:11px;gap:8px 14px}}
 @media print{#ma200-history .ma200-grid{grid-template-columns:1fr 1fr}#ma200-history .ma200-tools{display:none}#ma200-history figure{break-inside:avoid}}
