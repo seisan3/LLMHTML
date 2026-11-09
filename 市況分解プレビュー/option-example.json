@@ -4405,6 +4405,19 @@
     {
       "file": "projects\\20260901_himagyo指標\\next_update\\runs\\daily-20261105-approved3\\NASDAQ_SMH-history-normalized.json",
       "sha256": "6a7da5aa5a4c2ff3802dd1aa4fefb97e5de6510022254d49dd3517220342cd9e"
+    },
+    {
+      "file": "データ/csv/TradingView_市場監視.csv",
+      "sha256": "68606f9fa49d55e803d3e7e152a091ce953d63626b045b118d3fd8fb65e03eb5",
+      "asof": "2026-11-06"
+    },
+    {
+      "file": "projects\\20260901_himagyo指標\\next_update\\runs\\check-20261109\\NASDAQ_SMH-normalized.json",
+      "sha256": "56699a277054cd114530715fe2a5b86b4dafa833fac3954b85bdabd3a7952a77"
+    },
+    {
+      "file": "projects\\20260901_himagyo指標\\next_update\\runs\\daily-20261105-approved3\\NASDAQ_SMH-history-normalized.json",
+      "sha256": "6a7da5aa5a4c2ff3802dd1aa4fefb97e5de6510022254d49dd3517220342cd9e"
     }
   ],
   "overlap_checks": [

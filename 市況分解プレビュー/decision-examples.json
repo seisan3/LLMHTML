@@ -215,7 +215,7 @@
         "return_20d_pct": -5.558909282402369,
         "rv20_pct": 20.22200731961961,
         "worst_gap20_pct": -1.0372257460746659,
-        "avg_dollar_volume20_musd": 35681.67894571
+        "avg_dollar_volume20_musd": 35686.3736620665
       },
       {
         "symbol": "NASDAQ:QQQ",
@@ -224,7 +224,7 @@
         "return_20d_pct": -12.667882385826656,
         "rv20_pct": 32.69382335445991,
         "worst_gap20_pct": -2.534459138311851,
-        "avg_dollar_volume20_musd": 34612.221474038
+        "avg_dollar_volume20_musd": 34619.081032343
       },
       {
         "symbol": "AMEX:RSP",
@@ -233,7 +233,7 @@
         "return_20d_pct": 1.412880210289158,
         "rv20_pct": 16.267569602670893,
         "worst_gap20_pct": -0.7492968137593925,
-        "avg_dollar_volume20_musd": 2269.348163565
+        "avg_dollar_volume20_musd": 2269.3890510275
       },
       {
         "symbol": "AMEX:IWM",
@@ -242,7 +242,7 @@
         "return_20d_pct": -1.8892951889295073,
         "rv20_pct": 23.70855106012136,
         "worst_gap20_pct": -1.2070834839175926,
-        "avg_dollar_volume20_musd": 7019.5029362000005
+        "avg_dollar_volume20_musd": 7019.5587511965
       }
     ],
     "source": "データ/csv/TradingView_市場監視.csv"
