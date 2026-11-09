@@ -1,0 +1,626 @@
+{
+  "schema_version": 1,
+  "current": {
+    "definition": "calendar-month-on-or-before-price-ratio-v1",
+    "asof": "2026-11-05",
+    "rows": [
+      {
+        "asset": "SPY",
+        "label": "SPY",
+        "file": "Yahoo_米国ETF株価.csv",
+        "symbol": "SPY",
+        "field": "AdjClose",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "774.8300170898438",
+            "end_value": "733.0",
+            "return_value": -0.053986056512048484,
+            "sign": -1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "767.8831787109375",
+            "end_value": "733.0",
+            "return_value": -0.04542771567088716,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "670.3478393554688",
+            "end_value": "733.0",
+            "return_value": 0.09346216541067766,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "QQQ",
+        "label": "QQQ",
+        "file": "Yahoo_米国ETF株価.csv",
+        "symbol": "QQQ",
+        "field": "AdjClose",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "756.2000122070312",
+            "end_value": "647.0499877929688",
+            "return_value": -0.14434015161610375,
+            "sign": -1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "716.5533447265625",
+            "end_value": "647.0499877929688",
+            "return_value": -0.09699676576084681,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "620.365234375",
+            "end_value": "647.0499877929688",
+            "return_value": 0.043014585504381,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "SOX",
+        "label": "SOX",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "NASDAQ:SOX",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "13172.7364",
+            "end_value": "9011.1375",
+            "return_value": -0.3159251634307356,
+            "sign": -1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "12008.8833",
+            "end_value": "9011.1375",
+            "return_value": -0.2496273571082167,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "7190.266",
+            "end_value": "9011.1375",
+            "return_value": 0.25324118746093677,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "XLB",
+        "label": "XLB 素材",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "AMEX:XLB",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "49.5",
+            "end_value": "52.33",
+            "return_value": 0.05717171717171717,
+            "sign": 1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "52.64",
+            "end_value": "52.33",
+            "return_value": -0.005889057750759878,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "42.61",
+            "end_value": "52.33",
+            "return_value": 0.22811546585308612,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "XLC",
+        "label": "XLC 通信",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "AMEX:XLC",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "111.61",
+            "end_value": "104.34",
+            "return_value": -0.06513753247916854,
+            "sign": -1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "110.87",
+            "end_value": "104.34",
+            "return_value": -0.05889780824388924,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "113.42",
+            "end_value": "104.34",
+            "return_value": -0.08005642743784165,
+            "sign": -1
+          }
+        ]
+      },
+      {
+        "asset": "XLE",
+        "label": "XLE エネルギー",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "AMEX:XLE",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "63.45",
+            "end_value": "61.63",
+            "return_value": -0.028684003152088258,
+            "sign": -1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "57.31",
+            "end_value": "61.63",
+            "return_value": 0.07537951491886233,
+            "sign": 1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "43.71",
+            "end_value": "61.63",
+            "return_value": 0.40997483413406544,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "XLF",
+        "label": "XLF 金融",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "AMEX:XLF",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "53.88",
+            "end_value": "57.5",
+            "return_value": 0.06718634001484781,
+            "sign": 1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "58",
+            "end_value": "57.5",
+            "return_value": -0.008620689655172414,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "52.6",
+            "end_value": "57.5",
+            "return_value": 0.09315589353612168,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "XLI",
+        "label": "XLI 資本財",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "AMEX:XLI",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "170.1",
+            "end_value": "162.47",
+            "return_value": -0.0448559670781893,
+            "sign": -1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "186.35",
+            "end_value": "162.47",
+            "return_value": -0.1281459618996512,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "153.2",
+            "end_value": "162.47",
+            "return_value": 0.06050913838120105,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "XLK",
+        "label": "XLK 情報技術",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "AMEX:XLK",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "200.93",
+            "end_value": "162.38",
+            "return_value": -0.19185786094659832,
+            "sign": -1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "185.91",
+            "end_value": "162.38",
+            "return_value": -0.12656661825614546,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "147.545",
+            "end_value": "162.38",
+            "return_value": 0.10054559625876851,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "XLP",
+        "label": "XLP 生活必需品",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "AMEX:XLP",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "81.04",
+            "end_value": "91.25",
+            "return_value": 0.12598716683119446,
+            "sign": 1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "85.33",
+            "end_value": "91.25",
+            "return_value": 0.06937771006679948,
+            "sign": 1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "75.94",
+            "end_value": "91.25",
+            "return_value": 0.2016065314722149,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "XLRE",
+        "label": "XLRE 不動産",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "AMEX:XLRE",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "40.67",
+            "end_value": "44.3",
+            "return_value": 0.08925497910007377,
+            "sign": 1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "45.2",
+            "end_value": "44.3",
+            "return_value": -0.01991150442477876,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "40.93",
+            "end_value": "44.3",
+            "return_value": 0.08233569508917664,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "XLU",
+        "label": "XLU 公益",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "AMEX:XLU",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "39.97",
+            "end_value": "43.3",
+            "return_value": 0.08331248436327246,
+            "sign": 1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "43.66",
+            "end_value": "43.3",
+            "return_value": -0.008245533669262483,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "44.425",
+            "end_value": "43.3",
+            "return_value": -0.025323579065841307,
+            "sign": -1
+          }
+        ]
+      },
+      {
+        "asset": "XLV",
+        "label": "XLV ヘルスケア",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "AMEX:XLV",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "167.37",
+            "end_value": "184.91",
+            "return_value": 0.10479775348031307,
+            "sign": 1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "164.16",
+            "end_value": "184.91",
+            "return_value": 0.12640107212475635,
+            "sign": 1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "145.66",
+            "end_value": "184.91",
+            "return_value": 0.2694631333241796,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "XLY",
+        "label": "XLY 一般消費財",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "AMEX:XLY",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "110.42",
+            "end_value": "117.64",
+            "return_value": 0.0653867053070096,
+            "sign": 1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "118.64",
+            "end_value": "117.64",
+            "return_value": -0.008428860418071477,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "120.53",
+            "end_value": "117.64",
+            "return_value": -0.023977433004231313,
+            "sign": -1
+          }
+        ]
+      },
+      {
+        "asset": "GOLD",
+        "label": "金",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "TVC:GOLD",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "4140.772",
+            "end_value": "4087.15",
+            "return_value": -0.01294975912704201,
+            "sign": -1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "4249.93",
+            "end_value": "4087.15",
+            "return_value": -0.038301807323885335,
+            "sign": -1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "3979.695",
+            "end_value": "4087.15",
+            "return_value": 0.02700081287636364,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "WTI",
+        "label": "WTI原油",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "NYMEX:CL1!",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "89.43",
+            "end_value": "90.52",
+            "return_value": 0.01218830370121883,
+            "sign": 1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "75.22",
+            "end_value": "90.52",
+            "return_value": 0.20340335017282637,
+            "sign": 1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "59.6",
+            "end_value": "90.52",
+            "return_value": 0.5187919463087248,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "asset": "BTC",
+        "label": "Bitcoin",
+        "file": "TradingView_市場監視.csv",
+        "symbol": "COINBASE:BTCUSD",
+        "field": "Close",
+        "cells": [
+          {
+            "months": 1,
+            "comparison_target": "2026-10-05",
+            "start_date": "2026-10-05",
+            "start_value": "85748.96",
+            "end_value": "75969.06",
+            "return_value": -0.11405269521636181,
+            "sign": -1
+          },
+          {
+            "months": 3,
+            "comparison_target": "2026-08-05",
+            "start_date": "2026-08-05",
+            "start_value": "64603.03",
+            "end_value": "75969.06",
+            "return_value": 0.17593648471286874,
+            "sign": 1
+          },
+          {
+            "months": 12,
+            "comparison_target": "2025-11-05",
+            "start_date": "2025-11-05",
+            "start_value": "103869",
+            "end_value": "75969.06",
+            "return_value": -0.2686069953499119,
+            "sign": -1
+          }
+        ]
+      }
+    ],
+    "fingerprint": "f47d6786d72c3f6a2b5ddf845777101be0acaeeb0144f37dc6bc8bcbdc033d82"
+  },
+  "baseline": null,
+  "history": [],
+  "comparison": "previous committed publication, same definition/source/field; raw unrounded sign",
+  "source_note": "SPY/QQQ AdjClose; sectors split-adjusted Close; GOLD USD; WTI CL1!; Coinbase BTC/USD; no cash deduction"
+}
