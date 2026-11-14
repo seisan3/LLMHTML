@@ -1,17 +1,17 @@
 {
-  "asof": "2026-11-06",
-  "snapshot": "snapshot-20261106.json",
+  "asof": "2026-11-13",
+  "snapshot": "snapshot-20261113.json",
   "cards": [
     {
       "symbol": "CBOE:VIX",
-      "date": "2026-11-06",
-      "value": 25.64,
-      "previous_date": "2026-11-05",
-      "delta": -2.539999999999999,
+      "date": "2026-11-13",
+      "value": 19.3,
+      "previous_date": "2026-11-12",
+      "delta": 0.6000000000000014,
       "unit": "%",
       "change_5_sessions": {
-        "value": 6.219999999999999,
-        "comparison_date": "2026-10-30",
+        "value": -6.34,
+        "comparison_date": "2026-11-06",
         "unit": "pp"
       },
       "level_gauge": {
@@ -45,56 +45,56 @@
     },
     {
       "symbol": "CBOE:SKEW",
-      "date": "2026-11-06",
-      "value": 153.55,
-      "previous_date": "2026-11-05",
-      "delta": 4.180000000000007,
+      "date": "2026-11-13",
+      "value": 147.14,
+      "previous_date": "2026-11-12",
+      "delta": -3.0200000000000102,
       "unit": "pt",
-      "percentile": 87.6701361088871,
-      "rank_history_start": "2021-11-08",
-      "rank_history_end": "2026-11-05",
+      "percentile": 70.61649319455564,
+      "rank_history_start": "2021-11-15",
+      "rank_history_end": "2026-11-12",
       "rank_history_n": 1249,
       "rank_window_years": 5,
       "percentiles": {
         "1": {
-          "percentile": 90.8,
-          "rank_history_start": "2025-11-06",
-          "rank_history_end": "2026-11-05",
+          "percentile": 64.4,
+          "rank_history_start": "2025-11-13",
+          "rank_history_end": "2026-11-12",
           "rank_history_n": 250,
           "rank_window_years": 1
         },
         "3": {
-          "percentile": 80.50734312416556,
-          "rank_history_start": "2023-11-06",
-          "rank_history_end": "2026-11-05",
+          "percentile": 56.34178905206942,
+          "rank_history_start": "2023-11-13",
+          "rank_history_end": "2026-11-12",
           "rank_history_n": 749,
           "rank_window_years": 3
         },
         "5": {
-          "percentile": 87.6701361088871,
-          "rank_history_start": "2021-11-08",
-          "rank_history_end": "2026-11-05",
+          "percentile": 70.61649319455564,
+          "rank_history_start": "2021-11-15",
+          "rank_history_end": "2026-11-12",
           "rank_history_n": 1249,
           "rank_window_years": 5
         }
       },
       "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date",
       "change_5_sessions": {
-        "value": 3.7900000000000205,
-        "comparison_date": "2026-10-30",
+        "value": -6.410000000000025,
+        "comparison_date": "2026-11-06",
         "unit": "pt"
       }
     },
     {
       "symbol": "CBOE:VVIX",
-      "date": "2026-11-06",
-      "value": 121.94,
-      "previous_date": "2026-11-05",
-      "delta": -13.050000000000011,
+      "date": "2026-11-13",
+      "value": 101.53,
+      "previous_date": "2026-11-12",
+      "delta": 4.820000000000007,
       "unit": "pt",
       "change_5_sessions": {
-        "value": 15.509999999999991,
-        "comparison_date": "2026-10-30",
+        "value": -20.409999999999997,
+        "comparison_date": "2026-11-06",
         "unit": "pt"
       },
       "level_gauge": {
@@ -128,98 +128,98 @@
     },
     {
       "symbol": "CBOE:COR1M",
-      "date": "2026-11-06",
-      "value": 20.76,
-      "previous_date": "2026-11-05",
-      "delta": -2.0799999999999983,
+      "date": "2026-11-13",
+      "value": 11.8,
+      "previous_date": "2026-11-12",
+      "delta": 1.8100000000000005,
       "unit": "%",
-      "percentile": 54.70494417862839,
-      "rank_history_start": "2021-11-08",
-      "rank_history_end": "2026-11-05",
+      "percentile": 24.242424242424242,
+      "rank_history_start": "2021-11-15",
+      "rank_history_end": "2026-11-12",
       "rank_history_n": 1254,
       "rank_window_years": 5,
       "percentiles": {
         "1": {
-          "percentile": 87.64940239043824,
-          "rank_history_start": "2025-11-06",
-          "rank_history_end": "2026-11-05",
+          "percentile": 58.96414342629482,
+          "rank_history_start": "2025-11-13",
+          "rank_history_end": "2026-11-12",
           "rank_history_n": 251,
           "rank_window_years": 1
         },
         "3": {
-          "percentile": 81.00929614873839,
-          "rank_history_start": "2023-11-06",
-          "rank_history_end": "2026-11-05",
+          "percentile": 38.91102257636122,
+          "rank_history_start": "2023-11-13",
+          "rank_history_end": "2026-11-12",
           "rank_history_n": 753,
           "rank_window_years": 3
         },
         "5": {
-          "percentile": 54.70494417862839,
-          "rank_history_start": "2021-11-08",
-          "rank_history_end": "2026-11-05",
+          "percentile": 24.242424242424242,
+          "rank_history_start": "2021-11-15",
+          "rank_history_end": "2026-11-12",
           "rank_history_n": 1254,
           "rank_window_years": 5
         }
       },
       "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date",
       "change_5_sessions": {
-        "value": 7.250000000000002,
-        "comparison_date": "2026-10-30",
+        "value": -8.96,
+        "comparison_date": "2026-11-06",
         "unit": "pp"
       }
     },
     {
       "symbol": "CBOE:COR3M",
-      "date": "2026-11-06",
-      "value": 20.47,
-      "previous_date": "2026-11-05",
-      "delta": -0.46000000000000085,
+      "date": "2026-11-13",
+      "value": 13.12,
+      "previous_date": "2026-11-12",
+      "delta": 1.2399999999999984,
       "unit": "%",
-      "percentile": 53.03030303030303,
-      "rank_history_start": "2021-11-08",
-      "rank_history_end": "2026-11-05",
+      "percentile": 18.42105263157895,
+      "rank_history_start": "2021-11-15",
+      "rank_history_end": "2026-11-12",
       "rank_history_n": 1254,
       "rank_window_years": 5,
       "percentiles": {
         "1": {
-          "percentile": 89.64143426294821,
-          "rank_history_start": "2025-11-06",
-          "rank_history_end": "2026-11-05",
+          "percentile": 55.37848605577689,
+          "rank_history_start": "2025-11-13",
+          "rank_history_end": "2026-11-12",
           "rank_history_n": 251,
           "rank_window_years": 1
         },
         "3": {
-          "percentile": 82.47011952191235,
-          "rank_history_start": "2023-11-06",
-          "rank_history_end": "2026-11-05",
+          "percentile": 30.677290836653388,
+          "rank_history_start": "2023-11-13",
+          "rank_history_end": "2026-11-12",
           "rank_history_n": 753,
           "rank_window_years": 3
         },
         "5": {
-          "percentile": 53.03030303030303,
-          "rank_history_start": "2021-11-08",
-          "rank_history_end": "2026-11-05",
+          "percentile": 18.42105263157895,
+          "rank_history_start": "2021-11-15",
+          "rank_history_end": "2026-11-12",
           "rank_history_n": 1254,
           "rank_window_years": 5
         }
       },
       "rank_definition": "100 * count(prior value <= current value) / prior count; excludes current date",
       "change_5_sessions": {
-        "value": 4.869999999999999,
-        "comparison_date": "2026-10-30",
+        "value": -7.35,
+        "comparison_date": "2026-11-06",
         "unit": "pp"
       }
     },
     {
       "symbol": "INDEX:S5TH",
-      "date": "2026-11-06",
-      "value": 55.97,
-      "previous_date": "2026-11-05",
-      "delta": -2.5900000000000034,
+      "date": "2026-11-13",
+      "value": 63.81,
+      "previous_date": "2026-11-12",
+      "delta": 1.990000000000002,
       "unit": "%",
       "change_5_sessions": {
-        "value": -3.469999999999999,
-        "comparison_date": "2026-10-30",
+        "value": 7.840000000000003,
+        "comparison_date": "2026-11-06",
         "unit": "pp"
       },
       "level_gauge": {
@@ -253,26 +253,6 @@
     }
   ],
   "spy_rsp_ratio": [
-    [
-      "2024-11-06",
-      3.231492618917441
-    ],
-    [
-      "2024-11-07",
-      3.2532772558444396
-    ],
-    [
-      "2024-11-08",
-      3.2492667028788706
-    ],
-    [
-      "2024-11-11",
-      3.2361906820884228
-    ],
-    [
-      "2024-11-12",
-      3.250912259680845
-    ],
     [
       "2024-11-13",
       3.2507212454411847
@@ -2260,29 +2240,29 @@
     [
       "2026-11-06",
       3.4033325619069656
+    ],
+    [
+      "2026-11-09",
+      3.4066078298257527
+    ],
+    [
+      "2026-11-10",
+      3.3951466859833395
+    ],
+    [
+      "2026-11-11",
+      3.4125757916011676
+    ],
+    [
+      "2026-11-12",
+      3.4302283436027547
+    ],
+    [
+      "2026-11-13",
+      3.4109694338940133
     ]
   ],
   "breadth_200dma": [
-    [
-      "2024-11-06",
-      74.15
-    ],
-    [
-      "2024-11-07",
-      73.95
-    ],
-    [
-      "2024-11-08",
-      73.55
-    ],
-    [
-      "2024-11-11",
-      72.96
-    ],
-    [
-      "2024-11-12",
-      71.37
-    ],
     [
       "2024-11-13",
       71.57
@@ -4270,29 +4250,29 @@
     [
       "2026-11-06",
       55.97
+    ],
+    [
+      "2026-11-09",
+      63.02
+    ],
+    [
+      "2026-11-10",
+      62.82
+    ],
+    [
+      "2026-11-11",
+      63.81
+    ],
+    [
+      "2026-11-12",
+      61.82
+    ],
+    [
+      "2026-11-13",
+      63.81
     ]
   ],
   "cor1m": [
-    [
-      "2024-11-06",
-      13.74
-    ],
-    [
-      "2024-11-07",
-      12.76
-    ],
-    [
-      "2024-11-08",
-      11.64
-    ],
-    [
-      "2024-11-11",
-      10.85
-    ],
-    [
-      "2024-11-12",
-      9.96
-    ],
     [
       "2024-11-13",
       8.83
@@ -6280,29 +6260,29 @@
     [
       "2026-11-06",
       20.76
+    ],
+    [
+      "2026-11-09",
+      13.23
+    ],
+    [
+      "2026-11-10",
+      12.35
+    ],
+    [
+      "2026-11-11",
+      9.79
+    ],
+    [
+      "2026-11-12",
+      9.99
+    ],
+    [
+      "2026-11-13",
+      11.8
     ]
   ],
   "cor3m": [
-    [
-      "2024-11-06",
-      14.39
-    ],
-    [
-      "2024-11-07",
-      14.0
-    ],
-    [
-      "2024-11-08",
-      13.91
-    ],
-    [
-      "2024-11-11",
-      12.7
-    ],
-    [
-      "2024-11-12",
-      12.18
-    ],
     [
       "2024-11-13",
       11.64
@@ -8290,35 +8270,35 @@
     [
       "2026-11-06",
       20.47
+    ],
+    [
+      "2026-11-09",
+      14.84
+    ],
+    [
+      "2026-11-10",
+      13.81
+    ],
+    [
+      "2026-11-11",
+      11.76
+    ],
+    [
+      "2026-11-12",
+      11.88
+    ],
+    [
+      "2026-11-13",
+      13.12
     ]
   ],
   "hy_credit": {
     "symbol": "FRED:BAMLH0A0HYM2",
-    "asof": "2026-11-05",
-    "value_bp": 348.0,
-    "comparison_date": "2026-10-08",
-    "change_20_sessions_bp": 33.0,
+    "asof": "2026-11-12",
+    "value_bp": 320.0,
+    "comparison_date": "2026-10-15",
+    "change_20_sessions_bp": -3.0,
     "history_bp": [
-      [
-        "2024-11-06",
-        274.0
-      ],
-      [
-        "2024-11-07",
-        273.0
-      ],
-      [
-        "2024-11-08",
-        263.0
-      ],
-      [
-        "2024-11-11",
-        263.0
-      ],
-      [
-        "2024-11-12",
-        261.0
-      ],
       [
         "2024-11-13",
         264.0
@@ -10394,10 +10374,26 @@
       [
         "2026-11-05",
         348.0
+      ],
+      [
+        "2026-11-06",
+        342.0
+      ],
+      [
+        "2026-11-09",
+        334.0
+      ],
+      [
+        "2026-11-11",
+        330.0
+      ],
+      [
+        "2026-11-12",
+        320.0
       ]
     ],
-    "plot_common_start": "2024-11-06",
-    "plot_common_end": "2026-11-05",
+    "plot_common_start": "2024-11-13",
+    "plot_common_end": "2026-11-12",
     "unit_conversion": "FRED percentage points * 100 = basis points"
   },
   "holdings_asof": "2026-09-11",
@@ -10496,32 +10492,32 @@
   "contribution_definition": "end_weight_pct / 100 * adjusted_close_20_session_return_pct; approximate, not official attribution",
   "dashboard_chart_window": {
     "years": 2,
-    "requested_start": "2024-11-06",
-    "asof": "2026-11-06",
+    "requested_start": "2024-11-13",
+    "asof": "2026-11-13",
     "charts": [
       {
         "title": "SPY / RSP：加重方法の差",
-        "start": "2024-11-06",
-        "end": "2026-11-06",
+        "start": "2024-11-13",
+        "end": "2026-11-13",
         "observations": 502
       },
       {
         "title": "200日線超の銘柄比率",
-        "start": "2024-11-06",
-        "end": "2026-11-06",
+        "start": "2024-11-13",
+        "end": "2026-11-13",
         "observations": 502
       },
       {
         "title": "予想相関：1か月・3か月",
-        "start": "2024-11-06",
-        "end": "2026-11-06",
+        "start": "2024-11-13",
+        "end": "2026-11-13",
         "observations": 502
       },
       {
         "title": "HY信用スプレッドとSPY",
-        "start": "2024-11-06",
-        "end": "2026-11-05",
-        "observations": 501
+        "start": "2024-11-13",
+        "end": "2026-11-12",
+        "observations": 500
       }
     ]
   }
