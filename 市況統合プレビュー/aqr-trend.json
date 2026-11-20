@@ -3720,6 +3720,9 @@
   "source_note": "SPY/QQQ AdjClose; sectors split-adjusted Close; GOLD USD; WTI CL1!; Coinbase BTC/USD; no cash deduction",
   "valuations": {
     "SPY": {
+      "five_year_count": 1253,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 1095,
       "asof": "2026-11-18",
       "start": "2003-06-09",
       "count": 5909,
@@ -3727,6 +3730,9 @@
       "at_or_above": 1958
     },
     "XLE": {
+      "five_year_count": 1251,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 1007,
       "asof": "2026-11-18",
       "start": "2003-06-11",
       "count": 5828,
@@ -3734,6 +3740,9 @@
       "at_or_above": 5054
     },
     "XLP": {
+      "five_year_count": 1252,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 168,
       "asof": "2026-11-18",
       "start": "2003-06-11",
       "count": 5905,
@@ -3741,6 +3750,9 @@
       "at_or_above": 269
     },
     "XLV": {
+      "five_year_count": 1252,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 116,
       "asof": "2026-11-18",
       "start": "2003-06-11",
       "count": 5905,
@@ -3748,6 +3760,9 @@
       "at_or_above": 192
     },
     "XLY": {
+      "five_year_count": 1252,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 829,
       "asof": "2026-11-18",
       "start": "2003-06-11",
       "count": 5905,
@@ -3755,6 +3770,9 @@
       "at_or_above": 1304
     },
     "XLB": {
+      "five_year_count": 1252,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 1047,
       "asof": "2026-11-18",
       "start": "2003-06-12",
       "count": 5297,
@@ -3762,6 +3780,9 @@
       "at_or_above": 2814
     },
     "XLI": {
+      "five_year_count": 1252,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 487,
       "asof": "2026-11-18",
       "start": "2003-06-12",
       "count": 5904,
@@ -3769,6 +3790,9 @@
       "at_or_above": 809
     },
     "XLK": {
+      "five_year_count": 1253,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 1253,
       "asof": "2026-11-18",
       "start": "2003-06-12",
       "count": 5905,
@@ -3776,6 +3800,9 @@
       "at_or_above": 3665
     },
     "XLU": {
+      "five_year_count": 1251,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 917,
       "asof": "2026-11-18",
       "start": "2003-06-12",
       "count": 5903,
@@ -3783,6 +3810,9 @@
       "at_or_above": 2057
     },
     "XLF": {
+      "five_year_count": 1252,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 741,
       "asof": "2026-11-18",
       "start": "2016-01-01",
       "count": 2742,
@@ -3790,6 +3820,9 @@
       "at_or_above": 1028
     },
     "XLRE": {
+      "five_year_count": 1252,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 697,
       "asof": "2026-11-18",
       "start": "2016-01-01",
       "count": 2737,
@@ -3797,6 +3830,9 @@
       "at_or_above": 2144
     },
     "XLC": {
+      "five_year_count": 1252,
+      "five_year_start": "2021-11-19",
+      "five_year_at_or_above": 1158,
       "asof": "2026-11-18",
       "start": "2018-06-20",
       "count": 2111,
