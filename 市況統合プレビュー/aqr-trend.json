@@ -3717,5 +3717,91 @@
     }
   ],
   "comparison": "previous committed publication, same definition/source/field; raw unrounded sign",
-  "source_note": "SPY/QQQ AdjClose; sectors split-adjusted Close; GOLD USD; WTI CL1!; Coinbase BTC/USD; no cash deduction"
+  "source_note": "SPY/QQQ AdjClose; sectors split-adjusted Close; GOLD USD; WTI CL1!; Coinbase BTC/USD; no cash deduction",
+  "valuations": {
+    "SPY": {
+      "asof": "2026-11-18",
+      "start": "2003-06-09",
+      "count": 5909,
+      "value": 17.953603655260007,
+      "at_or_above": 1958
+    },
+    "XLE": {
+      "asof": "2026-11-18",
+      "start": "2003-06-11",
+      "count": 5828,
+      "value": 10.269678221900024,
+      "at_or_above": 5054
+    },
+    "XLP": {
+      "asof": "2026-11-18",
+      "start": "2003-06-11",
+      "count": 5905,
+      "value": 21.22290942885502,
+      "at_or_above": 269
+    },
+    "XLV": {
+      "asof": "2026-11-18",
+      "start": "2003-06-11",
+      "count": 5905,
+      "value": 19.446015399194245,
+      "at_or_above": 192
+    },
+    "XLY": {
+      "asof": "2026-11-18",
+      "start": "2003-06-11",
+      "count": 5905,
+      "value": 23.8147998856256,
+      "at_or_above": 1304
+    },
+    "XLB": {
+      "asof": "2026-11-18",
+      "start": "2003-06-12",
+      "count": 5297,
+      "value": 15.952650068966632,
+      "at_or_above": 2814
+    },
+    "XLI": {
+      "asof": "2026-11-18",
+      "start": "2003-06-12",
+      "count": 5904,
+      "value": 22.52816424881733,
+      "at_or_above": 809
+    },
+    "XLK": {
+      "asof": "2026-11-18",
+      "start": "2003-06-12",
+      "count": 5905,
+      "value": 17.0308642684542,
+      "at_or_above": 3665
+    },
+    "XLU": {
+      "asof": "2026-11-18",
+      "start": "2003-06-12",
+      "count": 5903,
+      "value": 17.43996471150484,
+      "at_or_above": 2057
+    },
+    "XLF": {
+      "asof": "2026-11-18",
+      "start": "2016-01-01",
+      "count": 2742,
+      "value": 14.889575894617042,
+      "at_or_above": 1028
+    },
+    "XLRE": {
+      "asof": "2026-11-18",
+      "start": "2016-01-01",
+      "count": 2737,
+      "value": 36.66664789221665,
+      "at_or_above": 2144
+    },
+    "XLC": {
+      "asof": "2026-11-18",
+      "start": "2018-06-20",
+      "count": 2111,
+      "value": 14.526806309899698,
+      "at_or_above": 2017
+    }
+  }
 }
